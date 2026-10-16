@@ -1,9 +1,10 @@
 import SwiftUI
 
-/// Procedural strata world. Draws only the slice that intersects the viewport, so memory stays flat
-/// no matter how tall the world is. Real section artwork can replace `drawSection` per-section later.
+/// Draws only visible sections, preferring catalog artwork with a procedural fallback.
+/// Artwork is aspect-filled into fixed world frames, independent of its pixel dimensions.
 struct WorldBackgroundView: View {
     let motion: WorldMotionController
+    @Environment(\.displayScale) private var displayScale
 
     private static let palette: [(Color, Color)] = [
         (Color(red: 0.30, green: 0.20, blue: 0.12), Color(red: 0.40, green: 0.28, blue: 0.16)), // 表土・根
@@ -30,7 +31,9 @@ struct WorldBackgroundView: View {
                 let last = min(WorldMotionController.sectionCount - 1, Int(floor((pos + size.height) / h)))
                 guard first <= last else { return }
                 for s in first...last {
-                    drawSection(ctx, index: s, top: Double(s) * h - pos, size: size)
+                    let frame = WorldSectionLayout.frame(index: s, position: pos,
+                                                         width: size.width, displayScale: displayScale)
+                    drawSection(ctx, index: s, frame: frame, size: size)
                 }
             }
             .onAppear { motion.setViewport(geo.size.height) }
@@ -40,15 +43,19 @@ struct WorldBackgroundView: View {
         .accessibilityHidden(true)
     }
 
-    private func drawSection(_ ctx: GraphicsContext, index s: Int, top: Double, size: CGSize) {
+    private func drawSection(_ context: GraphicsContext, index s: Int, frame: CGRect, size: CGSize) {
+        var ctx = context
+        ctx.clip(to: Path(frame))
+        let top = frame.minY
         let h = WorldMotionController.sectionHeight
         let (a, b) = Self.palette[s]
         let artName = String(format: "section_%02d", s + 1)
-        if Self.hasArt(artName) {
-            ctx.draw(ctx.resolve(Image(artName)), in: CGRect(x: 0, y: top, width: size.width, height: h + 1))
+        if let artwork = UIImage(named: artName) {
+            let image = ctx.resolve(Image(uiImage: artwork))
+            ctx.draw(image, in: WorldSectionLayout.aspectFillRect(imageSize: image.size, in: frame))
             return
         }
-        let rect = CGRect(x: 0, y: top, width: size.width, height: h + 1)
+        let rect = frame
         ctx.fill(Path(rect), with: .linearGradient(Gradient(colors: [a, b, a]),
                                                    startPoint: CGPoint(x: 0, y: top),
                                                    endPoint: CGPoint(x: 0, y: top + h)))
@@ -110,15 +117,6 @@ struct WorldBackgroundView: View {
             let r = CGRect(x: -40, y: top + h * 0.5, width: size.width + 80, height: 180)
             ctx.fill(Path(ellipseIn: r), with: .color(Color.orange.opacity(0.25)))
         }
-    }
-
-    private static var artCache: [String: Bool] = [:]
-    /// Falls back to the procedural strata when a section image is missing from the asset catalog.
-    private static func hasArt(_ name: String) -> Bool {
-        if let c = artCache[name] { return c }
-        let ok = UIImage(named: name) != nil
-        artCache[name] = ok
-        return ok
     }
 
     private static func hash(_ a: Int, _ b: Int, _ c: Int) -> Int {

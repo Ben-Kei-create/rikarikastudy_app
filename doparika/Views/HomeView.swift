@@ -8,7 +8,14 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             if UIImage(named: "home_bg") != nil {
-                Image("home_bg").resizable().scaledToFill().ignoresSafeArea()
+                GeometryReader { geometry in
+                    Image("home_bg")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .clipped()
+                }
+                .ignoresSafeArea()
             } else {
                 WorldBackgroundView(motion: motion)
             }

@@ -1,0 +1,36 @@
+import Foundation
+import CoreGraphics
+
+/// Run with the production layout and motion sources; no Xcode test target is required.
+@main
+struct BackgroundLayoutChecks {
+    @MainActor static func main() {
+        let sizes = [CGSize(width: 603, height: 603), CGSize(width: 1206, height: 3000),
+                     CGSize(width: 2000, height: 1000)]
+        var checks = 0
+        for width in [320.0, 375, 402, 430, 852] {
+            for scale in [2.0, 3.0] {
+                for position in stride(from: -600.25, through: 10600.25, by: 37.125) {
+                    for index in 0..<WorldMotionController.sectionCount {
+                        let frame = WorldSectionLayout.frame(index: index, position: position,
+                                                             width: width, displayScale: scale)
+                        let next = WorldSectionLayout.frame(index: index + 1, position: position,
+                                                            width: width, displayScale: scale)
+                        precondition(abs(frame.maxY - next.minY) < 0.000001, "section seam gap")
+                        for size in sizes {
+                            let image = WorldSectionLayout.aspectFillRect(imageSize: size, in: frame)
+                            precondition(image.minX <= frame.minX + 0.000001 &&
+                                         image.minY <= frame.minY + 0.000001 &&
+                                         image.maxX >= frame.maxX - 0.000001 &&
+                                         image.maxY >= frame.maxY - 0.000001, "image must cover frame")
+                            precondition(abs(image.width / image.height - size.width / size.height) < 0.000001,
+                                         "image aspect ratio must be preserved")
+                            checks += 1
+                        }
+                    }
+                }
+            }
+        }
+        print("PASS: \(checks) image coverage/aspect-ratio checks; all 10 section seams on 2x/3x displays")
+    }
+}
