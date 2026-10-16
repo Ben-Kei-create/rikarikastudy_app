@@ -1,0 +1,5622 @@
+[
+  {
+    "id": "00001",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "次のうち、分子をつくらない物質はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水"
+      },
+      {
+        "id": "B",
+        "text": "銅"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "金属の銅は分子をつくらず、原子が規則正しく集まってできています。"
+  },
+  {
+    "id": "00002",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "火山の地下にある、高温でどろどろにとけた岩石を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "火山灰"
+      },
+      {
+        "id": "B",
+        "text": "マグマ"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地下ではマグマ、地表に出たあとは溶岩とよばれます。"
+  },
+  {
+    "id": "00003",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "反射の中枢として重要な部分はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "脊髄"
+      },
+      {
+        "id": "B",
+        "text": "肝臓"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "反射では、脊髄が中枢となってすばやく命令を出します。"
+  },
+  {
+    "id": "00004",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "動いている物体がもつエネルギーを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "運動エネルギー"
+      },
+      {
+        "id": "B",
+        "text": "位置エネルギー"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "速く動く物体ほど、大きな運動エネルギーをもちます。"
+  },
+  {
+    "id": "00005",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "液体と固体の混合物から液体だけを通して固体を分ける方法を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ろ過"
+      },
+      {
+        "id": "B",
+        "text": "蒸発"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "ろ過はろ紙などを使って液体と固体を分ける方法です。"
+  },
+  {
+    "id": "00006",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "輪のような環でよく知られている惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "火星"
+      },
+      {
+        "id": "B",
+        "text": "土星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "土星は大きな環をもつ惑星として有名です。"
+  },
+  {
+    "id": "00007",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "メンデルのエンドウの実験で、丸い種子としわの種子をかけ合わせたとき、子（F1）にあらわれる形質はどれか？",
+    "choices": [
+      {
+        "id": "A",
+        "text": "すべて丸い"
+      },
+      {
+        "id": "B",
+        "text": "すべてしわ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "丸い種子が優性（顕性）形質なので、F1ではすべて丸い種子が現れます。しわは劣性（潜性）形質です。"
+  },
+  {
+    "id": "00008",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "面を押す力の大きさをその面積で割ったものを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "速さ"
+      },
+      {
+        "id": "B",
+        "text": "圧力"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "圧力は、面を押す力の大きさを面積で割って求めます。"
+  },
+  {
+    "id": "00009",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "ふたをした容器の中で化学変化を起こしたとき、反応前後で同じといえるものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "容器をふくめた全体の質量"
+      },
+      {
+        "id": "B",
+        "text": "物質のにおい"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "気体が外へ逃げなければ、化学変化の前後で全体の質量は変わりません。"
+  },
+  {
+    "id": "00010",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "星や太陽が1日のうちに東から西へ動いて見えるのは、主に何が原因ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "地球の自転"
+      },
+      {
+        "id": "B",
+        "text": "地球の公転"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "地球が西から東へ自転しているため、天体が東から西へ動くように見えます。"
+  },
+  {
+    "id": "00011",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "だ液にふくまれ、デンプンを分解する消化酵素はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "アミラーゼ"
+      },
+      {
+        "id": "B",
+        "text": "ペプシン"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "アミラーゼはだ液にふくまれ、デンプンを分解します。"
+  },
+  {
+    "id": "00012",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "100Nの力を0.5m²の面積に加えたとき、圧力は何Paか？",
+    "choices": [
+      {
+        "id": "A",
+        "text": "200Pa"
+      },
+      {
+        "id": "B",
+        "text": "50Pa"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "圧力＝力÷面積 なので、100N÷0.5m²＝200Pa です。"
+  },
+  {
+    "id": "00013",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "元素記号 Fe が表す元素は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "鉄"
+      },
+      {
+        "id": "B",
+        "text": "アルミニウム"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "Fe は鉄を表す元素記号です。銅は Cu、銀は Ag です。"
+  },
+  {
+    "id": "00014",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽系の惑星の中で最も大きいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "木星"
+      },
+      {
+        "id": "B",
+        "text": "地球"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "木星は太陽系最大の惑星で、ガスを主成分としています。"
+  },
+  {
+    "id": "00015",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "小腸の内側にある柔毛のはたらきとして正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "消化液をためる"
+      },
+      {
+        "id": "B",
+        "text": "表面積を広げて吸収しやすくする"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "柔毛があることで小腸の表面積が広くなり、養分を効率よく吸収できます。"
+  },
+  {
+    "id": "00016",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "光の屈折で、光が空気中からガラスに入るとき、入射角と屈折角の関係として正しいのはどれか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "入射角＞屈折角"
+      },
+      {
+        "id": "B",
+        "text": "入射角＜屈折角"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "光が空気（速い）からガラス（遅い）に入ると、光の速さが遅くなるため法線に近づくように曲がります。そのため入射角＞屈折角となります。"
+  },
+  {
+    "id": "00017",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "発生した気体を石灰水に通したとき、石灰水が白くにごるのはどの気体ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素"
+      },
+      {
+        "id": "B",
+        "text": "二酸化炭素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "二酸化炭素を石灰水に通すと、石灰水は白くにごります。"
+  },
+  {
+    "id": "00018",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地表にふき出したマグマを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "火山ガス"
+      },
+      {
+        "id": "B",
+        "text": "溶岩"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地下ではマグマでも、地表に出ると溶岩とよばれます。"
+  },
+  {
+    "id": "00019",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "刺激を受け取った感覚器官から中枢へ情報を伝える神経はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "感覚神経"
+      },
+      {
+        "id": "B",
+        "text": "運動神経"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "感覚神経は、感覚器官で受け取った情報を中枢へ伝えます。"
+  },
+  {
+    "id": "00020",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "60Jの仕事を10秒で行ったとき、仕事率は何Wか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "6W"
+      },
+      {
+        "id": "B",
+        "text": "600W"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "仕事率＝仕事÷時間＝60J÷10s＝6W です。"
+  },
+  {
+    "id": "00021",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学変化が起こっても保たれるものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "原子の種類と数"
+      },
+      {
+        "id": "B",
+        "text": "におい"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "化学変化では原子の組み合わせは変わっても、種類と数は変わりません。"
+  },
+  {
+    "id": "00022",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球が1回自転するのにかかる時間は約どれくらいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "24時間"
+      },
+      {
+        "id": "B",
+        "text": "12時間"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "地球は約24時間で1回自転し、これが昼夜のくり返しをつくります。"
+  },
+  {
+    "id": "00023",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "胃液の中で主にタンパク質の消化に関わる場所はどこですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "口"
+      },
+      {
+        "id": "B",
+        "text": "胃"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "胃では胃液にふくまれるペプシンがタンパク質の消化を進めます。"
+  },
+  {
+    "id": "00024",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "振り子が最も低い位置を通過するとき、運動エネルギーと位置エネルギーの大小関係はどうなっているか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "どちらも最小"
+      },
+      {
+        "id": "B",
+        "text": "運動エネルギーが最大、位置エネルギーが最小"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "振り子の最下点では速さが最大なので運動エネルギーが最大、高さが最小なので位置エネルギーが最小になります。力学的エネルギーの和は一定です。"
+  },
+  {
+    "id": "00025",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "窒素の化学式はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "NO"
+      },
+      {
+        "id": "B",
+        "text": "N₂"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "窒素は2個の窒素原子が結びついた分子で、化学式はN₂です。"
+  },
+  {
+    "id": "00026",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "岩石を主成分とする地球型惑星のなかまに入るものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "地球"
+      },
+      {
+        "id": "B",
+        "text": "土星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水星、金星、地球、火星は地球型惑星に分類されます。"
+  },
+  {
+    "id": "00027",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "おしべの先にあるやくでつくられるものは何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "花粉"
+      },
+      {
+        "id": "B",
+        "text": "子房"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "やくはおしべの先端にあり、花粉をつくります。"
+  },
+  {
+    "id": "00028",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "単位面積あたりにはたらく大気の重さによる圧力を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "浮力"
+      },
+      {
+        "id": "B",
+        "text": "大気圧"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "空気にも重さがあるため、地表には大気圧がはたらいています。"
+  },
+  {
+    "id": "00029",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "硫化鉄の化学式はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "FeS₂"
+      },
+      {
+        "id": "B",
+        "text": "FeS"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "硫化鉄の化学式はFeSです。鉄と硫黄が1：1で化合しています。"
+  },
+  {
+    "id": "00030",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "日本で太陽がのぼる方角として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "東"
+      },
+      {
+        "id": "B",
+        "text": "北"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "太陽は日周運動によって東からのぼり、西にしずむように見えます。"
+  },
+  {
+    "id": "00031",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "形質を決めるもとになるものは何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "葉脈"
+      },
+      {
+        "id": "B",
+        "text": "遺伝子"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "遺伝子は形質を決めるもとで、染色体の中にあります。"
+  },
+  {
+    "id": "00032",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "運動している物体に力がはたらかないとき、物体はどうなるか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "等速直線運動を続ける"
+      },
+      {
+        "id": "B",
+        "text": "だんだん速くなる"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "力がはたらかない（合力が0の）物体は、静止し続けるか等速直線運動を続けます。これを慣性の法則（運動の第1法則）といいます。"
+  },
+  {
+    "id": "00033",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩酸を電気分解すると、陰極から発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素"
+      },
+      {
+        "id": "B",
+        "text": "酸素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "塩酸の電気分解では、陰極から水素が発生し、陽極から塩素が発生します。"
+  },
+  {
+    "id": "00034",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽系の中心にある天体はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "太陽"
+      },
+      {
+        "id": "B",
+        "text": "地球"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "太陽系では、太陽のまわりを惑星が公転しています。"
+  },
+  {
+    "id": "00035",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "根で吸収した水を葉まで運ぶ管はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "気孔"
+      },
+      {
+        "id": "B",
+        "text": "道管"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "道管は、根で吸収した水や水にとけた無機養分を葉まで運びます。"
+  },
+  {
+    "id": "00036",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "コイルに電流を流したとき、コイルの内部にできる磁界の向きを決める法則はどれか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "レンツの法則"
+      },
+      {
+        "id": "B",
+        "text": "右ねじの法則"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "右ねじの法則（右手の法則）を使います。右手の4本の指を電流の向きに巻くように曲げると、親指の向きがコイル内部の磁界の向き（N極の方向）になります。"
+  },
+  {
+    "id": "00037",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "pH2の水溶液はどのような性質ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "強い酸性"
+      },
+      {
+        "id": "B",
+        "text": "アルカリ性"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "pHが小さいほど酸性が強く、pH2は強い酸性です。"
+  },
+  {
+    "id": "00038",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "天気図で、気圧の等しい場所を結んだ線を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "等圧線"
+      },
+      {
+        "id": "B",
+        "text": "風向線"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "等圧線の間隔がせまいほど、風が強くなりやすいです。"
+  },
+  {
+    "id": "00039",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "細胞の中で、遺伝子をふくむつくりはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "核"
+      },
+      {
+        "id": "B",
+        "text": "葉緑体"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "核の中には染色体があり、遺伝子がふくまれています。"
+  },
+  {
+    "id": "00040",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "波の山から次の山までの長さを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "波長"
+      },
+      {
+        "id": "B",
+        "text": "周波数"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "波長は、波の1つ分の長さを表します。"
+  },
+  {
+    "id": "00041",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "硫酸と水酸化バリウム水溶液を混ぜると白い沈殿ができます。この沈殿は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水酸化バリウム"
+      },
+      {
+        "id": "B",
+        "text": "硫酸バリウム"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "硫酸と水酸化バリウムの中和で、硫酸バリウムの白い沈殿ができます。"
+  },
+  {
+    "id": "00042",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "日本付近で低気圧のまわりの風は、ふつうどの向きにふきこみますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "反時計回りに中心へ"
+      },
+      {
+        "id": "B",
+        "text": "反時計回りに外へ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "北半球では、低気圧のまわりの風は反時計回りに中心へふきこみます。"
+  },
+  {
+    "id": "00043",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "次のうち、裸子植物のなかまはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ツツジ"
+      },
+      {
+        "id": "B",
+        "text": "マツ"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "マツは裸子植物で、胚珠が子房につつまれていません。"
+  },
+  {
+    "id": "00044",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "仕事の大きさを表す単位はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "J"
+      },
+      {
+        "id": "B",
+        "text": "V"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "仕事の大きさの単位はジュールで、記号は J です。"
+  },
+  {
+    "id": "00045",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "1種類の物質だけからできているものを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "純粋な物質（純物質）"
+      },
+      {
+        "id": "B",
+        "text": "混合物"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "1種類の物質だけからできているものを純粋な物質（純物質）といいます。"
+  },
+  {
+    "id": "00046",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "川が運んできた土砂が水底などに積もるはたらきを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "侵食"
+      },
+      {
+        "id": "B",
+        "text": "堆積"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "流れる水の速さが弱まると、運ばれていた土砂が下に沈んで積もります。"
+  },
+  {
+    "id": "00047",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "中枢から筋肉などへ命令を伝える神経はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "感覚神経"
+      },
+      {
+        "id": "B",
+        "text": "運動神経"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "運動神経は、中枢からの命令を筋肉などへ伝えます。"
+  },
+  {
+    "id": "00048",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "音が空気中を伝わる速さはおよそ秒速何mか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約340m"
+      },
+      {
+        "id": "B",
+        "text": "約34m"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "音は空気中を約340m/s（15℃のとき）で伝わります。温度が高いほど速くなります。光の速さ（約30万km/s）に比べるとはるかに遅いです。"
+  },
+  {
+    "id": "00049",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水を冷やしていくと、0℃で起こる変化はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "凝固"
+      },
+      {
+        "id": "B",
+        "text": "融解"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水は 0℃ で氷になり、液体から固体への凝固が起こります。"
+  },
+  {
+    "id": "00050",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "湿度が100%になると何が起こるか？",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水滴ができ始める（露点に達する）"
+      },
+      {
+        "id": "B",
+        "text": "風が止まる"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "空気中の水蒸気量が飽和水蒸気量に達すると湿度100%になり、それ以上冷えると水蒸気が水滴に変わります。この温度を露点といいます。"
+  },
+  {
+    "id": "00051",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "デンプンが消化されて最終的に吸収される物質は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "脂肪酸"
+      },
+      {
+        "id": "B",
+        "text": "ブドウ糖"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "デンプンは消化されてブドウ糖になり、小腸で吸収されます。"
+  },
+  {
+    "id": "00052",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "電流の大きさをはかる器具はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "電流計"
+      },
+      {
+        "id": "B",
+        "text": "電圧計"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "電流の大きさは電流計で測定します。"
+  },
+  {
+    "id": "00053",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸素を集めるのに最も適した方法はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水上置換法"
+      },
+      {
+        "id": "B",
+        "text": "下方置換法"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "酸素は水にとけにくいので、水上置換法で集めるのが最適です。"
+  },
+  {
+    "id": "00054",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北の空でほとんど動かないように見える星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "金星"
+      },
+      {
+        "id": "B",
+        "text": "北極星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "北極星は北の空のほぼ動かない位置に見え、方角を知る手がかりになります。"
+  },
+  {
+    "id": "00055",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "心臓から肺に向かう血液が流れる血管はどれか？",
+    "choices": [
+      {
+        "id": "A",
+        "text": "肺動脈"
+      },
+      {
+        "id": "B",
+        "text": "肺静脈"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "肺動脈は心臓（右心室）から肺へ血液を送る血管です。静脈血（酸素が少ない血液）が流れています。"
+  },
+  {
+    "id": "00056",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "電流の大きさを表す単位はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A"
+      },
+      {
+        "id": "B",
+        "text": "W"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "電流の大きさはアンペアという単位で表し、記号は A です。"
+  },
+  {
+    "id": "00057",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸化マグネシウムの化学式はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Mg₂O"
+      },
+      {
+        "id": "B",
+        "text": "MgO"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "酸化マグネシウムの化学式はMgOです。"
+  },
+  {
+    "id": "00058",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "季節によって見える星座が変わる主な原因は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "地球の自転"
+      },
+      {
+        "id": "B",
+        "text": "地球の公転"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地球が太陽のまわりを公転するため、夜に見える宇宙の向きが季節で変わります。"
+  },
+  {
+    "id": "00059",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "熱い物にさわったときにすばやく手を引っこめる反応を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "発芽"
+      },
+      {
+        "id": "B",
+        "text": "反射"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "反射は意識とは関係なく、すばやく起こる反応です。"
+  },
+  {
+    "id": "00060",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "くつの裏を広くすると、地面にかかる圧力はどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "大きくなる"
+      },
+      {
+        "id": "B",
+        "text": "小さくなる"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "同じ重さでも、面積が広いと圧力は小さくなります。"
+  },
+  {
+    "id": "00061",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩化銅水溶液の電気分解で、陰極に銅が付着したことを確認する方法はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "リトマス紙にあてる"
+      },
+      {
+        "id": "B",
+        "text": "電極をこすって金属光沢を調べる"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "銅は金属なので、付着した物質をこすって赤褐色の金属光沢が出るかを確認します。"
+  },
+  {
+    "id": "00062",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地震が起こり始めた地下の地点を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "火口"
+      },
+      {
+        "id": "B",
+        "text": "震源"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地震は地下の震源で発生し、その真上の地表の地点を震央といいます。"
+  },
+  {
+    "id": "00063",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "消化された養分の多くが吸収される器官はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "胃"
+      },
+      {
+        "id": "B",
+        "text": "小腸"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "小腸の内側には柔毛があり、養分を吸収しやすくなっています。"
+  },
+  {
+    "id": "00064",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "音の大きさにもっとも関係するものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "波長"
+      },
+      {
+        "id": "B",
+        "text": "振幅"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "振幅が大きいほど、音は大きく聞こえます。"
+  },
+  {
+    "id": "00065",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "pH（ピーエイチ）が7のとき、水溶液は何性ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "中性"
+      },
+      {
+        "id": "B",
+        "text": "弱酸性"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "pH7は中性です。7より小さいと酸性、7より大きいとアルカリ性です。"
+  },
+  {
+    "id": "00066",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地層の中に残された生物のからだや生活のあとを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "化石"
+      },
+      {
+        "id": "B",
+        "text": "火口"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "化石は、昔の生物や当時の環境を知る大切な手がかりになります。"
+  },
+  {
+    "id": "00067",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "目が受け取る刺激は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "味"
+      },
+      {
+        "id": "B",
+        "text": "光"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "目は光の刺激を受け取る感覚器官です。"
+  },
+  {
+    "id": "00068",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "仕事の原理として正しいものはどれか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "滑車を使うと仕事が半分になる"
+      },
+      {
+        "id": "B",
+        "text": "道具を使っても仕事の総量は変わらない"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "仕事の原理：道具（てこ・滑車・斜面）を使うと力は小さくできますが、その分距離が長くなるので、仕事の総量（力×距離）は変わりません。"
+  },
+  {
+    "id": "00069",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "2種類以上の物質が混ざり合ったものを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "化合物"
+      },
+      {
+        "id": "B",
+        "text": "混合物"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "2種類以上の物質が混ざり合ったものを混合物といいます。空気や食塩水は混合物です。"
+  },
+  {
+    "id": "00070",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "自ら光を出している天体を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "小惑星"
+      },
+      {
+        "id": "B",
+        "text": "恒星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "太陽は恒星ですが、地球や月は自ら光っていません。"
+  },
+  {
+    "id": "00071",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "葉の表面にあり、気体の出入りを行う小さなすきまは何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "気孔"
+      },
+      {
+        "id": "B",
+        "text": "根毛"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "気孔は葉の表面にあり、二酸化炭素や酸素、水蒸気の出入りを行います。"
+  },
+  {
+    "id": "00072",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "仕事〔J〕を求める式として正しいものはどれか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "力〔N〕×距離〔m〕"
+      },
+      {
+        "id": "B",
+        "text": "距離〔m〕÷力〔N〕"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "仕事＝力×力の向きに動いた距離 です。5Nの力で2m動かしたら、仕事は5×2＝10Jです。"
+  },
+  {
+    "id": "00073",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩化ナトリウムの化学式として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "NaCl"
+      },
+      {
+        "id": "B",
+        "text": "Na₂Cl"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "塩化ナトリウムの化学式はNaClです。"
+  },
+  {
+    "id": "00074",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "性質がほぼ同じ空気の大きなかたまりを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "気団"
+      },
+      {
+        "id": "B",
+        "text": "低気圧"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "気団は、広い範囲で気温や湿度がほぼ同じ空気の集まりです。"
+  },
+  {
+    "id": "00075",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "次のうち、単細胞生物はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ゾウリムシ"
+      },
+      {
+        "id": "B",
+        "text": "サクラ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "ゾウリムシは1個の細胞だけで生活する単細胞生物です。"
+  },
+  {
+    "id": "00076",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "音の高さを決めるものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "振動数"
+      },
+      {
+        "id": "B",
+        "text": "音の大きさ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "音の高さは、1秒間の振動の回数である振動数で決まります。"
+  },
+  {
+    "id": "00077",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "亜鉛にうすい塩酸を加えると発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素"
+      },
+      {
+        "id": "B",
+        "text": "酸素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "亜鉛などの金属にうすい塩酸を加えると水素が発生します。"
+  },
+  {
+    "id": "00078",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "日本の天気は一般にどの方角から変わるか？",
+    "choices": [
+      {
+        "id": "A",
+        "text": "東から西"
+      },
+      {
+        "id": "B",
+        "text": "西から東"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "日本の上空には偏西風が吹いているため、天気は西から東に変化します。"
+  },
+  {
+    "id": "00079",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "次のうち、胞子でふえる植物はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ゼンマイ"
+      },
+      {
+        "id": "B",
+        "text": "マツ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "ゼンマイはシダ植物で、種子ではなく胞子でふえます。"
+  },
+  {
+    "id": "00080",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "豆電球と電流計をつないで電流をはかるとき、電流計のつなぎ方として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "電池とだけつなぐ"
+      },
+      {
+        "id": "B",
+        "text": "直列につなぐ"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "電流計は、電流が流れる道すじに直列につなぎます。"
+  },
+  {
+    "id": "00081",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水の電気分解で、水素と酸素の体積比はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3：1"
+      },
+      {
+        "id": "B",
+        "text": "2：1"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水の電気分解では、水素：酸素＝2：1の体積比で発生します。"
+  },
+  {
+    "id": "00082",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "空気中にふくむことのできる水蒸気の限度量を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "飽和水蒸気量"
+      },
+      {
+        "id": "B",
+        "text": "湿度"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "空気の温度が高いほど、ふくむことのできる水蒸気の量は多くなります。"
+  },
+  {
+    "id": "00083",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "光合成を主に行う部分はどこ？",
+    "choices": [
+      {
+        "id": "A",
+        "text": "葉"
+      },
+      {
+        "id": "B",
+        "text": "花"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "葉の葉緑体で光合成を行います。"
+  },
+  {
+    "id": "00084",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "鏡に映った像は左右が逆になっているように見える。この理由は鏡の像が何の像だからか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "鏡面対称の虚像"
+      },
+      {
+        "id": "B",
+        "text": "左右反転した虚像"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "鏡は実際には左右を逆にしているのではなく、前後（奥行き方向）を反転しています。鏡の像は鏡面に対して対称な位置にできる虚像です。"
+  },
+  {
+    "id": "00085",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "液体どうしを沸点のちがいを利用して分ける方法はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "中和"
+      },
+      {
+        "id": "B",
+        "text": "蒸留"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "蒸留は沸点のちがいを利用して液体を分ける方法です。"
+  },
+  {
+    "id": "00086",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "性質のちがう気団どうしの境目を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "震源"
+      },
+      {
+        "id": "B",
+        "text": "前線"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "暖かい気団と冷たい気団の境目には前線ができます。"
+  },
+  {
+    "id": "00087",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "植物の細胞で光合成を行うつくりはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "核"
+      },
+      {
+        "id": "B",
+        "text": "葉緑体"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "葉緑体には葉緑素があり、光のエネルギーを使って光合成を行います。"
+  },
+  {
+    "id": "00088",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "10Nの力で物体を3m持ち上げたとき、仕事は何Jか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "30J"
+      },
+      {
+        "id": "B",
+        "text": "3.3J"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "仕事＝力×距離＝10N×3m＝30J です。"
+  },
+  {
+    "id": "00089",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸とアルカリが反応して水と塩ができる反応を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "中和"
+      },
+      {
+        "id": "B",
+        "text": "蒸留"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "中和では、酸とアルカリが反応して水と塩ができます。"
+  },
+  {
+    "id": "00090",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "流れる水が土地や岩石をけずるはたらきを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "風化"
+      },
+      {
+        "id": "B",
+        "text": "侵食"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "流れる水には、地面をけずる侵食、土砂を運ぶ運搬、積もらせる堆積の3つのはたらきがあります。"
+  },
+  {
+    "id": "00091",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "エンドウの実験で遺伝の法則を見いだした科学者は誰ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ダーウィン"
+      },
+      {
+        "id": "B",
+        "text": "メンデル"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "メンデルはエンドウを使った実験で遺伝の規則性を見いだしました。"
+  },
+  {
+    "id": "00092",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "凸レンズで、物体を焦点距離の2倍の位置に置いたとき、できる像の大きさはどうなるか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "物体と同じ大きさ"
+      },
+      {
+        "id": "B",
+        "text": "物体より小さい"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "物体を焦点距離の2倍の位置に置くと、反対側の焦点距離の2倍の位置に、物体と同じ大きさの倒立実像ができます。"
+  },
+  {
+    "id": "00093",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "二酸化マンガンにうすい過酸化水素水（オキシドール）を加えると発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素"
+      },
+      {
+        "id": "B",
+        "text": "酸素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "二酸化マンガンに過酸化水素水を加えると酸素が発生します。二酸化マンガンは触媒としてはたらきます。"
+  },
+  {
+    "id": "00094",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "震源の真上にあたる地表の地点を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "震源"
+      },
+      {
+        "id": "B",
+        "text": "震央"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "震央は、地下の震源を地表に真上へのばした位置です。"
+  },
+  {
+    "id": "00095",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "親から子へ受けつがれる形や性質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "形質"
+      },
+      {
+        "id": "B",
+        "text": "反射"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "親から子へ受けつがれる形や性質を形質といいます。"
+  },
+  {
+    "id": "00096",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "高いところにある物体がもつエネルギーを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "位置エネルギー"
+      },
+      {
+        "id": "B",
+        "text": "運動エネルギー"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "高い位置にある物体は、位置エネルギーをもっています。"
+  },
+  {
+    "id": "00097",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩化銅水溶液を電気分解すると、陽極から発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "窒素"
+      },
+      {
+        "id": "B",
+        "text": "塩素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩化銅水溶液の電気分解では、陽極から塩素が発生します。"
+  },
+  {
+    "id": "00098",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地震のはじめに感じる小さなゆれを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "余震"
+      },
+      {
+        "id": "B",
+        "text": "初期微動"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "初期微動はP波による小さなゆれで、その後に主要動が続きます。"
+  },
+  {
+    "id": "00099",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "第一代どうしをかけ合わせた第二代で、丸い種子としわのある種子の現れ方の比はどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3:1"
+      },
+      {
+        "id": "B",
+        "text": "2:1"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "Aa どうしをかけ合わせると、丸い形質としわのある形質は 3:1 の比で現れます。"
+  },
+  {
+    "id": "00100",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "モーターが回転する原理として正しい説明はどれか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "磁界中の電流が力を受ける"
+      },
+      {
+        "id": "B",
+        "text": "電磁誘導で電流が流れる"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "モーターは、磁界の中にあるコイルに電流を流すと力を受けて回転するしくみです。フレミングの左手の法則で力の向きが決まります。"
+  },
+  {
+    "id": "00101",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸化物が酸素を失う化学変化を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸化"
+      },
+      {
+        "id": "B",
+        "text": "還元"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "酸化物が酸素をうばわれる変化を還元といいます。"
+  },
+  {
+    "id": "00102",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球が太陽のまわりを1回公転するのにかかる時間は約どれくらいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "7日"
+      },
+      {
+        "id": "B",
+        "text": "365日"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地球は約1年かけて太陽のまわりを公転します。"
+  },
+  {
+    "id": "00103",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "1個の受精卵から体が大きくなっていく主な理由は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "消化"
+      },
+      {
+        "id": "B",
+        "text": "細胞分裂"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "受精卵が細胞分裂をくり返すことで、個体の体がつくられていきます。"
+  },
+  {
+    "id": "00104",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "質量 100 g の物体にはたらく重力の大きさは、およそ何 N ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1 N"
+      },
+      {
+        "id": "B",
+        "text": "10 N"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "100 g の物体にはたらく重力は、およそ 1 N と考えます。"
+  },
+  {
+    "id": "00105",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "次のうち、分子をつくる単体はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸素"
+      },
+      {
+        "id": "B",
+        "text": "銅"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "酸素は酸素原子2個が結びついた分子をつくる単体です。"
+  },
+  {
+    "id": "00106",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "各地での地震のゆれの強さを表すものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "震度"
+      },
+      {
+        "id": "B",
+        "text": "マグニチュード"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "震度は場所ごとのゆれの強さ、マグニチュードは地震そのものの規模を表します。"
+  },
+  {
+    "id": "00107",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "遺伝子がふくまれているつくりはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "だ液"
+      },
+      {
+        "id": "B",
+        "text": "染色体"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "染色体は核の中にあり、その中に遺伝子がふくまれています。"
+  },
+  {
+    "id": "00108",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "1つの物体に2つの力が同じ直線上で反対向きにはたらき、つり合うときどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "動きは変わらない"
+      },
+      {
+        "id": "B",
+        "text": "形が必ず変わる"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "力がつり合うと、物体の動きは変わりません。止まっていれば止まり続け、動いていれば等速直線運動を続けます。"
+  },
+  {
+    "id": "00109",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "エタノールの沸点はおよそ何℃ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約78℃"
+      },
+      {
+        "id": "B",
+        "text": "約120℃"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "エタノールの沸点は約78℃です。水の沸点（100℃）より低いので、蒸留で分けることができます。"
+  },
+  {
+    "id": "00110",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "れき・砂・泥のうち、最も粒が大きいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "れき"
+      },
+      {
+        "id": "B",
+        "text": "火山灰"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "れき、砂、泥の順に粒が小さくなります。粒の大きさは堆積した場所のようすを考える手がかりになります。"
+  },
+  {
+    "id": "00111",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "顕微鏡のレンズを取り付けるとき、先につけるのはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "接眼レンズ"
+      },
+      {
+        "id": "B",
+        "text": "反射鏡"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "接眼レンズを先に取り付けると、鏡筒にほこりが入りにくくなります。"
+  },
+  {
+    "id": "00112",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "音が伝わるために必要なものとして正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "空気などの物質"
+      },
+      {
+        "id": "B",
+        "text": "必ず光"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "音は空気や水、固体などの物質を通して伝わります。"
+  },
+  {
+    "id": "00113",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水の電気分解で、陰極から発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "窒素"
+      },
+      {
+        "id": "B",
+        "text": "水素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水の電気分解では、陰極から水素が、陽極から酸素が発生します。"
+  },
+  {
+    "id": "00114",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "広い範囲に長い時間雨を降らせやすい雲はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "巻雲"
+      },
+      {
+        "id": "B",
+        "text": "乱層雲"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "乱層雲は空全体をおおいやすく、しとしとした雨を降らせることが多いです。"
+  },
+  {
+    "id": "00115",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "胆汁をつくる器官はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "すい臓"
+      },
+      {
+        "id": "B",
+        "text": "肝臓"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "胆汁は肝臓でつくられ、脂肪の消化を助けます。"
+  },
+  {
+    "id": "00116",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "仕事率の単位として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "N"
+      },
+      {
+        "id": "B",
+        "text": "W"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "仕事率の単位はワットで、記号は W です。"
+  },
+  {
+    "id": "00117",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水の電気分解を化学反応式で表すとどれが正しいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2H₂O → 2H₂ + O₂"
+      },
+      {
+        "id": "B",
+        "text": "2H₂O → H₂ + 2O₂"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水の電気分解は 2H₂O → 2H₂ + O₂ です。両辺の原子の数が等しくなっています。"
+  },
+  {
+    "id": "00118",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地層が水平に積み重なっているとき、より古い地層はふつうどこにありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "中央だけ"
+      },
+      {
+        "id": "B",
+        "text": "下の方"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地層は下から順に積もるので、変形していなければ下の地層ほど古いと考えられます。"
+  },
+  {
+    "id": "00119",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "植物の細胞にあり、動物の細胞にはないかたいつくりはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "核"
+      },
+      {
+        "id": "B",
+        "text": "細胞壁"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "細胞壁は植物の細胞の外側にあり、細胞の形を保つのに役立ちます。"
+  },
+  {
+    "id": "00120",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "直列回路の特ちょうとして正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "回路のどこでも電流の大きさが同じ"
+      },
+      {
+        "id": "B",
+        "text": "枝分かれが多い"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "直列回路では、回路のどの部分でも同じ大きさの電流が流れます。"
+  },
+  {
+    "id": "00121",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "赤色リトマス紙を青色に変えるのは何性の水溶液ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "アルカリ性"
+      },
+      {
+        "id": "B",
+        "text": "酸性"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "アルカリ性の水溶液は赤色リトマス紙を青色に変えます。"
+  },
+  {
+    "id": "00122",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "泥が固まってできた堆積岩は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "泥岩"
+      },
+      {
+        "id": "B",
+        "text": "砂岩"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "泥が固まると泥岩、砂が固まると砂岩、れきが固まるとれき岩になります。"
+  },
+  {
+    "id": "00123",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "考えたり、判断したりするはたらきにもっとも関係が深い部分はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "大脳"
+      },
+      {
+        "id": "B",
+        "text": "胃"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "大脳は、考える、判断する、覚えるなどのはたらきをしています。"
+  },
+  {
+    "id": "00124",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "電流の単位はどれか？",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A（アンペア）"
+      },
+      {
+        "id": "B",
+        "text": "Ω（オーム）"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "電流の単位はA（アンペア）です。V（ボルト）は電圧、Ω（オーム）は抵抗、W（ワット）は電力の単位です。"
+  },
+  {
+    "id": "00125",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "電気分解で、電源の－極につないだ電極を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "陰極"
+      },
+      {
+        "id": "B",
+        "text": "正極"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "電源の－極につないだ電極を陰極といいます。"
+  },
+  {
+    "id": "00126",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "赤っぽく見えることから「赤い惑星」とよばれる天体はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "海王星"
+      },
+      {
+        "id": "B",
+        "text": "火星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "火星は表面に酸化鉄を多くふくむため、赤っぽく見えます。"
+  },
+  {
+    "id": "00127",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "純系の丸い種子 AA と純系のしわのある種子 aa をかけ合わせると、第一代の形質はどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "すべて丸"
+      },
+      {
+        "id": "B",
+        "text": "すべてしわ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "AA と aa をかけ合わせると、第一代はすべて Aa になり、丸い形質が現れます。"
+  },
+  {
+    "id": "00128",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "物体を水平に持って歩いたとき、物体にした仕事はいくらか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "歩いた距離×重力"
+      },
+      {
+        "id": "B",
+        "text": "0J"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "仕事は「力の向きに動いた距離」で決まります。物体を持って水平に歩く場合、力（上向き）と移動の向き（水平）が垂直なので、仕事は0Jです。"
+  },
+  {
+    "id": "00129",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "線香の火を酸素の入った集気びんに入れるとどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "激しく燃える"
+      },
+      {
+        "id": "B",
+        "text": "すぐ消える"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "酸素には助燃性があるため、線香の火は酸素中で激しく燃えます。"
+  },
+  {
+    "id": "00130",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "細胞呼吸によってエネルギーを取り出すつくりはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ミトコンドリア"
+      },
+      {
+        "id": "B",
+        "text": "液胞"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "ミトコンドリアは呼吸を行い、生物が活動するためのエネルギーを取り出します。"
+  },
+  {
+    "id": "00131",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "大気圧（1気圧）はおよそ何hPaか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "10130hPa"
+      },
+      {
+        "id": "B",
+        "text": "1013hPa"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "1気圧＝1013hPa（ヘクトパスカル）です。これは1cm²あたり約1kgの力に相当します。天気予報でよく使われる単位です。"
+  },
+  {
+    "id": "00132",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水の電気分解のとき、少量の水酸化ナトリウムを加えるのはなぜですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "電流を流れやすくするため"
+      },
+      {
+        "id": "B",
+        "text": "酸素を増やすため"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "純水は電流が流れにくいため、水酸化ナトリウムを加えて電流を流れやすくします。"
+  },
+  {
+    "id": "00133",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "水中で深くなるほど大きくなる圧力はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水圧"
+      },
+      {
+        "id": "B",
+        "text": "摩擦力"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水圧は水の深さが深いほど大きくなります。"
+  },
+  {
+    "id": "00134",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学式の右下の小さい数字は何を表していますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "原子の数"
+      },
+      {
+        "id": "B",
+        "text": "電子の数"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "化学式の右下の小さい数字は、その元素の原子の数を表します。例：H₂Oの2は水素原子が2個。"
+  },
+  {
+    "id": "00135",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "作用・反作用の法則として正しいものはどれか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "反作用は少し遅れて生じる"
+      },
+      {
+        "id": "B",
+        "text": "2つの力は大きさが等しく向きが反対"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "作用・反作用の法則（運動の第3法則）：物体Aが物体Bに力を加えると、同時にBからAに同じ大きさで逆向きの力がはたらきます。"
+  },
+  {
+    "id": "00136",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "次のうち混合物はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "空気"
+      },
+      {
+        "id": "B",
+        "text": "鉄"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "空気は窒素・酸素などが混ざった混合物です。水・食塩・鉄は純物質です。"
+  },
+  {
+    "id": "00137",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "真空中では音はどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "伝わらない"
+      },
+      {
+        "id": "B",
+        "text": "必ず反射する"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "真空中には音を伝える物質がないので、音は伝わりません。"
+  },
+  {
+    "id": "00138",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "アルカリ性の水溶液にBTB溶液を加えると何色になりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "青色"
+      },
+      {
+        "id": "B",
+        "text": "黄色"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "BTB溶液はアルカリ性で青色になります。"
+  },
+  {
+    "id": "00139",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "同じ力で押すとき、圧力を大きくしたいならどうすればよいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "向きを変えるだけにする"
+      },
+      {
+        "id": "B",
+        "text": "面積を小さくする"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "同じ力なら、面積が小さいほど圧力は大きくなります。"
+  },
+  {
+    "id": "00140",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "純粋な物質の融点や沸点はどのような特徴がありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "物質によって変わらない"
+      },
+      {
+        "id": "B",
+        "text": "一定の値を示す"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "純粋な物質は融点・沸点が一定の値を示します。混合物は一定になりません。"
+  },
+  {
+    "id": "00141",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "回路の両端にかかる電圧をはかるとき、電圧計のつなぎ方として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "直列につなぐ"
+      },
+      {
+        "id": "B",
+        "text": "並列につなぐ"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "電圧計は、はかりたい部分に並列につなぎます。"
+  },
+  {
+    "id": "00142",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "次のうち非電解質はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "塩化銅"
+      },
+      {
+        "id": "B",
+        "text": "砂糖"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "砂糖は水にとかしても電流が流れない非電解質です。"
+  },
+  {
+    "id": "00143",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "1 N の力で物体を力の向きに 1 m 動かしたときの仕事は何 J ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "100 J"
+      },
+      {
+        "id": "B",
+        "text": "1 J"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "仕事は 力 × 力の向きに動いた距離 で求めるので、1 N × 1 m = 1 J です。"
+  },
+  {
+    "id": "00144",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "白い粉末が砂糖か食塩かを見分けるのに適した方法はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "色を比べる"
+      },
+      {
+        "id": "B",
+        "text": "加熱して燃えるか調べる"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "砂糖は有機物なので加熱すると焦げて炭になりますが、食塩は無機物なので焦げません。"
+  },
+  {
+    "id": "00145",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "圧力の単位として使う記号はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "V"
+      },
+      {
+        "id": "B",
+        "text": "Pa"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "圧力の単位はパスカルで、記号は Pa です。"
+  },
+  {
+    "id": "00146",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "鉄と硫黄の化合を化学反応式で表すとどれが正しいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Fe + S₂ → FeS₂"
+      },
+      {
+        "id": "B",
+        "text": "Fe + S → FeS"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "鉄と硫黄の化合は Fe + S → FeS で硫化鉄ができます。"
+  },
+  {
+    "id": "00147",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "光の速さは真空中で秒速約何万kmか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約30万km"
+      },
+      {
+        "id": "B",
+        "text": "約3万km"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "光の速さは真空中で秒速約30万km（正確には299,792,458 m/s）です。これは1秒間に地球を約7周半できる速さです。"
+  },
+  {
+    "id": "00148",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "次のうち、酸性の水溶液はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "レモン汁"
+      },
+      {
+        "id": "B",
+        "text": "石けん水"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "レモン汁はクエン酸を含む酸性の水溶液です。石けん水と石灰水はアルカリ性、食塩水は中性です。"
+  },
+  {
+    "id": "00149",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "電力の式として正しいものはどれか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "電力〔W〕＝電圧〔V〕×電流〔A〕"
+      },
+      {
+        "id": "B",
+        "text": "電力〔W〕＝電圧〔V〕÷電流〔A〕"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "電力P＝電圧V×電流I です。100Vで5A流れるドライヤーの電力は100×5＝500Wです。"
+  },
+  {
+    "id": "00150",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "青色リトマス紙を赤色に変えるのは何性の水溶液ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "弱アルカリ性"
+      },
+      {
+        "id": "B",
+        "text": "酸性"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "酸性の水溶液は青色リトマス紙を赤色に変えます。"
+  },
+  {
+    "id": "00151",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "光の反射の法則として正しいものはどれか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "入射角＝反射角"
+      },
+      {
+        "id": "B",
+        "text": "入射角＋反射角＝180°"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "光の反射の法則では、入射角と反射角は常に等しくなります。これはどんな面でも成り立つ基本法則です。"
+  },
+  {
+    "id": "00152",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "次のうち有機物はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "食塩"
+      },
+      {
+        "id": "B",
+        "text": "砂糖"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "砂糖は炭素を含む有機物です。食塩・鉄・ガラスは無機物です。"
+  },
+  {
+    "id": "00153",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "波の中心線から山や谷までの高さを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "電圧"
+      },
+      {
+        "id": "B",
+        "text": "振幅"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "振幅は、波のゆれの大きさを表します。"
+  },
+  {
+    "id": "00154",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "元素記号 H が表す元素は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素"
+      },
+      {
+        "id": "B",
+        "text": "ヘリウム"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "H は水素を表す元素記号です。"
+  },
+  {
+    "id": "00155",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "物体の運動の向きを変えるときに必要なのは何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "力"
+      },
+      {
+        "id": "B",
+        "text": "光"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "物体の速さや向きを変えるには、力がはたらく必要があります。"
+  },
+  {
+    "id": "00156",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸性の水溶液に共通して含まれるイオンは何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素イオン"
+      },
+      {
+        "id": "B",
+        "text": "ナトリウムイオン"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "酸性の水溶液には共通して水素イオン（H⁺）が含まれています。"
+  },
+  {
+    "id": "00157",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "モーターに使われている整流子の役割はどれか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "電流の向きを半回転ごとに切り替える"
+      },
+      {
+        "id": "B",
+        "text": "電圧を一定に保つ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "整流子（コミュテーター）は、コイルが半回転するごとに電流の向きを切り替えることで、コイルが同じ方向に回り続けられるようにする部品です。"
+  },
+  {
+    "id": "00158",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "アンモニアを集めるのに最も適した方法はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "蒸留"
+      },
+      {
+        "id": "B",
+        "text": "上方置換法"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "アンモニアは空気より軽く水に非常にとけやすいので、上方置換法で集めます。"
+  },
+  {
+    "id": "00159",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "物体の形を変えたり、動きを変えたりするはたらきを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "音"
+      },
+      {
+        "id": "B",
+        "text": "力"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "力には、物体を動かしたり、止めたり、形を変えたりするはたらきがあります。"
+  },
+  {
+    "id": "00160",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "電気分解で、電源の＋極につないだ電極を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "陽極"
+      },
+      {
+        "id": "B",
+        "text": "負極"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "電源の＋極につないだ電極を陽極といいます。"
+  },
+  {
+    "id": "00161",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "オームの法則の式として正しいものはどれか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "V＝R×I"
+      },
+      {
+        "id": "B",
+        "text": "V＝R＋I"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "オームの法則：電圧V〔V〕＝抵抗R〔Ω〕×電流I〔A〕です。電圧は電流と抵抗の積で求められます。"
+  },
+  {
+    "id": "00162",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "中和で酸の陰イオンとアルカリの陽イオンが結びついてできる物質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水"
+      },
+      {
+        "id": "B",
+        "text": "塩（えん）"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "中和では水と塩（えん）ができます。塩は酸の陰イオンとアルカリの陽イオンが結びついた物質です。"
+  },
+  {
+    "id": "00163",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "ばねを引く力を大きくすると、ばねののびはどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "大きくなる"
+      },
+      {
+        "id": "B",
+        "text": "変わらない"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "一定の範囲では、ばねを引く力が大きいほどばねののびも大きくなります。"
+  },
+  {
+    "id": "00164",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "有機物が燃えたときに発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素と酸素"
+      },
+      {
+        "id": "B",
+        "text": "二酸化炭素と水"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "有機物は炭素を含むため、燃えると二酸化炭素と水が発生します。"
+  },
+  {
+    "id": "00165",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "電磁誘導で流れる電流を何というか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "放電電流"
+      },
+      {
+        "id": "B",
+        "text": "誘導電流"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "電磁誘導によって生じる電流を誘導電流といいます。コイルに磁石を近づけたり遠ざけたりすると、誘導電流が流れます。"
+  },
+  {
+    "id": "00166",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩酸と水酸化ナトリウム水溶液を中和させるとできる塩は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "塩化ナトリウム"
+      },
+      {
+        "id": "B",
+        "text": "炭酸ナトリウム"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "HCl + NaOH → NaCl + H₂O で、塩化ナトリウム（食塩）ができます。"
+  },
+  {
+    "id": "00167",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "物体にはたらく重力の向きはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "真下"
+      },
+      {
+        "id": "B",
+        "text": "真上"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "重力は地球の中心に向かって、いつも真下向きにはたらきます。"
+  },
+  {
+    "id": "00168",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩化銅水溶液が青色をしているのは何のためですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水酸化物イオンがあるため"
+      },
+      {
+        "id": "B",
+        "text": "銅イオンがあるため"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩化銅水溶液の青色は銅イオン（Cu²⁺）によるものです。"
+  },
+  {
+    "id": "00169",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "電圧の大きさを表す単位はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "V"
+      },
+      {
+        "id": "B",
+        "text": "A"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "電圧の単位はボルトで、記号は V です。"
+  },
+  {
+    "id": "00170",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "マグネシウムの燃焼を化学反応式で表すとどれが正しいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Mg + O₂ → MgO₂"
+      },
+      {
+        "id": "B",
+        "text": "2Mg + O₂ → 2MgO"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "マグネシウムの燃焼は 2Mg + O₂ → 2MgO です。"
+  },
+  {
+    "id": "00171",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "理科でいう「仕事」の単位は何か。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "W（ワット）"
+      },
+      {
+        "id": "B",
+        "text": "J（ジュール）"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "仕事の単位はJ（ジュール）です。1Jは1Nの力で物体を力の向きに1m動かしたときの仕事です。W（ワット）は仕事率、N（ニュートン）は力、Pa（パスカル）は圧力の単位です。"
+  },
+  {
+    "id": "00172",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "次のうち、加熱によって分解する物質はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸素"
+      },
+      {
+        "id": "B",
+        "text": "酸化銀"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "酸化銀は加熱すると銀と酸素に分かれます。"
+  },
+  {
+    "id": "00173",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "てこや滑車などを使っても、仕事の大きさが変わらないという考え方を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "フックの法則"
+      },
+      {
+        "id": "B",
+        "text": "仕事の原理"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "道具を使うと力や距離は変えられても、仕事の大きさは変わらないという考え方です。"
+  },
+  {
+    "id": "00174",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学反応式で、反応の前後で原子の数が等しくなるように化学式の前につける数を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "電極"
+      },
+      {
+        "id": "B",
+        "text": "係数"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "化学反応式では、反応の前後で原子の種類と数が等しくなるように係数をつけます。"
+  },
+  {
+    "id": "00175",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水にとかしたとき、電流が流れる物質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "電解質"
+      },
+      {
+        "id": "B",
+        "text": "非電解質"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水にとかしたとき電流が流れる物質を電解質といいます。"
+  },
+  {
+    "id": "00176",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "次のうち、化合物はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水"
+      },
+      {
+        "id": "B",
+        "text": "酸素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水は水素原子と酸素原子からできた化合物です。"
+  },
+  {
+    "id": "00177",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸化銅の化学式はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Cu"
+      },
+      {
+        "id": "B",
+        "text": "CuO"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "酸化銅（II）の化学式はCuOです。銅原子1個と酸素原子1個からできています。"
+  },
+  {
+    "id": "00178",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学式 NaCl が表す物質は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "塩化ナトリウム"
+      },
+      {
+        "id": "B",
+        "text": "酸化ナトリウム"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "NaCl はナトリウム原子と塩素原子からできた塩化ナトリウムを表します。"
+  },
+  {
+    "id": "00179",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水素に火を近づけるとどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "爆発的に光る"
+      },
+      {
+        "id": "B",
+        "text": "音を立てて燃える"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水素はポンと音を立てて燃えます。これは水素の検出法として用いられます。"
+  },
+  {
+    "id": "00180",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "次のうち電解質はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "デンプン"
+      },
+      {
+        "id": "B",
+        "text": "塩化ナトリウム"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩化ナトリウムは水にとかすと電流が流れる電解質です。砂糖・エタノール・デンプンは非電解質です。"
+  },
+  {
+    "id": "00181",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "フェノールフタレイン溶液はアルカリ性の水溶液中で何色になりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "赤色"
+      },
+      {
+        "id": "B",
+        "text": "無色"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "フェノールフタレイン溶液はアルカリ性で赤色（濃いピンク色）になり、酸性・中性では無色のままです。"
+  },
+  {
+    "id": "00182",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水に食塩をとかしたとき、とけている食塩を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "溶質"
+      },
+      {
+        "id": "B",
+        "text": "溶液"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水溶液にとけている物質を溶質といいます。食塩水の場合、食塩が溶質です。"
+  },
+  {
+    "id": "00183",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "元素記号 Cu が表す元素は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "銅"
+      },
+      {
+        "id": "B",
+        "text": "カルシウム"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "Cu は銅を表す元素記号です。"
+  },
+  {
+    "id": "00184",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化合物についての説明として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "いくつかの物質が混ざったもの"
+      },
+      {
+        "id": "B",
+        "text": "2種類以上の原子が結びついてできた物質"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水や二酸化炭素のように、2種類以上の原子が結びついてできた物質を化合物といいます。"
+  },
+  {
+    "id": "00185",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "元素記号 S が表す元素は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "硫黄"
+      },
+      {
+        "id": "B",
+        "text": "ケイ素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "元素記号 S は硫黄を表します。銀は Ag、ナトリウムは Na です。"
+  },
+  {
+    "id": "00186",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水の化学式として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "HO₂"
+      },
+      {
+        "id": "B",
+        "text": "H₂O"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水の化学式はH₂Oです。水素原子2個と酸素原子1個からできています。"
+  },
+  {
+    "id": "00187",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩化ナトリウムが電離するとできるイオンの組み合わせはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素イオンと塩化物イオン"
+      },
+      {
+        "id": "B",
+        "text": "ナトリウムイオンと塩化物イオン"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩化ナトリウム（NaCl）は電離するとNa⁺（ナトリウムイオン）とCl⁻（塩化物イオン）になります。"
+  },
+  {
+    "id": "00188",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩酸の電離を表す式として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "HCl → H₂ + Cl₂"
+      },
+      {
+        "id": "B",
+        "text": "HCl → H⁺ + Cl⁻"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩酸（HCl）は電離して水素イオン（H⁺）と塩化物イオン（Cl⁻）になります。"
+  },
+  {
+    "id": "00189",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩酸にふくまれる陽イオンはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "OH-"
+      },
+      {
+        "id": "B",
+        "text": "H+"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩酸は水にとけると H+ と Cl- に分かれます。"
+  },
+  {
+    "id": "00190",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "物質の質量を体積でわった値を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "密度"
+      },
+      {
+        "id": "B",
+        "text": "濃度"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "密度＝質量÷体積で求められます。単位はg/cm³などです。"
+  },
+  {
+    "id": "00191",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水溶液にしたとき水素イオン（H⁺）を生じる物質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸化物"
+      },
+      {
+        "id": "B",
+        "text": "酸"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水にとかしたとき水素イオン（H⁺）を生じる物質を酸といいます。"
+  },
+  {
+    "id": "00192",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "電気分解で、陽極に引きよせられるのはどちらのイオンですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "分子"
+      },
+      {
+        "id": "B",
+        "text": "陰イオン"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "陽極はプラスなので、マイナスの電気を帯びた陰イオンが引きよせられます。"
+  },
+  {
+    "id": "00193",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "鉄と硫黄を混ぜたものを加熱してできた物質の性質として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "もとの鉄と硫黄に自然にもどる"
+      },
+      {
+        "id": "B",
+        "text": "磁石につきにくい"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "鉄と硫黄が化合してできた硫化鉄は、もとの鉄とは性質が変わり、磁石につきにくくなります。"
+  },
+  {
+    "id": "00194",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "2種類以上の原子が結びついてできた物質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "化合物"
+      },
+      {
+        "id": "B",
+        "text": "単体"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水や二酸化炭素のような物質は化合物です。"
+  },
+  {
+    "id": "00195",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩化ナトリウムをつくっている原子の組み合わせとして正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ナトリウムと塩素"
+      },
+      {
+        "id": "B",
+        "text": "ナトリウムと酸素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "塩化ナトリウム NaCl は、ナトリウム原子と塩素原子からできています。"
+  },
+  {
+    "id": "00196",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "二酸化炭素を石灰水に通すとどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "変化しない"
+      },
+      {
+        "id": "B",
+        "text": "白くにごる"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "二酸化炭素を石灰水に通すと、石灰水が白くにごります。これは二酸化炭素の検出法として用いられます。"
+  },
+  {
+    "id": "00197",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学式 O2 が表しているものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸素原子2個"
+      },
+      {
+        "id": "B",
+        "text": "酸素分子1個"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "O2 は、酸素原子2個が結びついた酸素分子1個を表します。"
+  },
+  {
+    "id": "00198",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸性の水溶液にBTB溶液を加えると何色になりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "黄色"
+      },
+      {
+        "id": "B",
+        "text": "青色"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "BTB溶液は酸性で黄色、中性で緑色、アルカリ性で青色になります。"
+  },
+  {
+    "id": "00199",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸素にはものを燃やすはたらきがあります。このはたらきを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸化性"
+      },
+      {
+        "id": "B",
+        "text": "助燃性"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "酸素はものが燃えるのを助けるはたらき（助燃性）があります。酸素自体は燃えません。"
+  },
+  {
+    "id": "00200",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "電解質が水にとけてイオンに分かれることを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "分解"
+      },
+      {
+        "id": "B",
+        "text": "電離"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "電解質が水にとけてイオンに分かれることを電離といいます。"
+  },
+  {
+    "id": "00201",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "電気分解で、陰極に引きよせられるのはどちらのイオンですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "陽イオン"
+      },
+      {
+        "id": "B",
+        "text": "電子"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "陰極はマイナスなので、プラスの電気を帯びた陽イオンが引きよせられます。"
+  },
+  {
+    "id": "00202",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "鉄がさびる現象は、どのような酸化の例ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "中和"
+      },
+      {
+        "id": "B",
+        "text": "ゆっくり進む酸化"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "鉄さびは熱や光をほとんど出さず、ゆっくり進む酸化です。"
+  },
+  {
+    "id": "00203",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "物質が熱や光を出しながら激しく酸化することを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "蒸発"
+      },
+      {
+        "id": "B",
+        "text": "燃焼"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "燃焼は、熱や光を出しながら激しく進む酸化です。"
+  },
+  {
+    "id": "00204",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "液体が気体に変わる変化として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "蒸発"
+      },
+      {
+        "id": "B",
+        "text": "融解"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "液体が気体になる変化には蒸発や沸騰があります。"
+  },
+  {
+    "id": "00205",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学式や化学反応式を書くときに使う、原子の種類を表す記号を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "質量数"
+      },
+      {
+        "id": "B",
+        "text": "元素記号"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "原子の種類をアルファベットで表した記号を元素記号といいます。"
+  },
+  {
+    "id": "00206",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "1種類の原子だけでできている純粋な物質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "単体"
+      },
+      {
+        "id": "B",
+        "text": "化合物"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "酸素や銅のように、1種類の原子だけでできている物質を単体といいます。"
+  },
+  {
+    "id": "00207",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸化銀を加熱したときにできる金属は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "銀"
+      },
+      {
+        "id": "B",
+        "text": "鉄"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "酸化銀は加熱すると熱分解し、銀と酸素に分かれます。"
+  },
+  {
+    "id": "00208",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "空気より密度が大きく水にとけやすい気体を集めるのに適した方法はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "蒸留"
+      },
+      {
+        "id": "B",
+        "text": "下方置換法"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "空気より密度が大きい気体は下方置換法で集めることができます。"
+  },
+  {
+    "id": "00209",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "炭酸水素ナトリウムの化学式はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "NaHCO₃"
+      },
+      {
+        "id": "B",
+        "text": "Na₂CO₃"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "炭酸水素ナトリウム（重そう）の化学式はNaHCO₃です。"
+  },
+  {
+    "id": "00210",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "状態変化の前後で変わらないものとして正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "温度"
+      },
+      {
+        "id": "B",
+        "text": "物質そのもの"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "状態変化では別の物質になるわけではなく、物質そのものは変わりません。"
+  },
+  {
+    "id": "00211",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学式 CO2 にふくまれる原子の個数の合計はいくつですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2個"
+      },
+      {
+        "id": "B",
+        "text": "3個"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "CO2 は炭素原子1個と酸素原子2個からできているので、合計3個の原子がふくまれています。"
+  },
+  {
+    "id": "00212",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "石灰石（�ite酸カルシウム）にうすい塩酸を加えると発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "二酸化炭素"
+      },
+      {
+        "id": "B",
+        "text": "酸素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "石灰石にうすい塩酸を加えると二酸化炭素が発生します。"
+  },
+  {
+    "id": "00213",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩化アンモニウムと水酸化カルシウムを混ぜて加熱すると発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素"
+      },
+      {
+        "id": "B",
+        "text": "アンモニア"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩化アンモニウムと水酸化カルシウムを混ぜて加熱するとアンモニアが発生します。"
+  },
+  {
+    "id": "00214",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸性の水溶液にマグネシウムリボンを入れるとどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素が発生してとける"
+      },
+      {
+        "id": "B",
+        "text": "沈殿ができる"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "酸性の水溶液に金属を入れると水素が発生し、金属がとけます。"
+  },
+  {
+    "id": "00215",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "アンモニアの化学式として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "N₂H"
+      },
+      {
+        "id": "B",
+        "text": "NH₃"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "アンモニアの化学式はNH₃です。窒素原子1個と水素原子3個からできています。"
+  },
+  {
+    "id": "00216",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学式の前につける数字は何を表していますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "分子（粒子）の数"
+      },
+      {
+        "id": "B",
+        "text": "原子の質量"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "化学式の前の数字（係数）は分子（粒子）の数を表します。例：2H₂Oは水分子が2個。"
+  },
+  {
+    "id": "00217",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水に非常にとけやすい気体を集めるのに適した方法はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "蒸留"
+      },
+      {
+        "id": "B",
+        "text": "上方置換法"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水にとけやすい気体は水上置換法では集められないので、空気より軽い場合は上方置換法を使います。"
+  },
+  {
+    "id": "00218",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水酸化ナトリウムの電離を表す式として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "NaOH → Na + O + H"
+      },
+      {
+        "id": "B",
+        "text": "NaOH → Na⁺ + OH⁻"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水酸化ナトリウム（NaOH）は電離してナトリウムイオン（Na⁺）と水酸化物イオン（OH⁻）になります。"
+  },
+  {
+    "id": "00219",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "炭素の燃焼を化学反応式で表すとどれが正しいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "C + O₂ → CO₂"
+      },
+      {
+        "id": "B",
+        "text": "C₂ + O₂ → 2CO"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "炭素の燃焼は C + O₂ → CO₂ です。"
+  },
+  {
+    "id": "00220",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水にとけにくい気体を集めるのに最も適した方法はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水上置換法"
+      },
+      {
+        "id": "B",
+        "text": "下方置換法"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水にとけにくい気体は水上置換法で集めると、純粋な気体を集めることができます。"
+  },
+  {
+    "id": "00221",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水にとかしても電流が流れない物質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "非電解質"
+      },
+      {
+        "id": "B",
+        "text": "不導体"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水にとかしても電流が流れない物質を非電解質といいます。"
+  },
+  {
+    "id": "00222",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "溶質をとかしている液体を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "溶媒"
+      },
+      {
+        "id": "B",
+        "text": "溶質"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "溶質をとかしている液体を溶媒といいます。水が溶媒のとき水溶液といいます。"
+  },
+  {
+    "id": "00223",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "同じ体積の物質Aと物質Bを比べたとき、質量が大きいほうは何が大きいといえますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "沸点"
+      },
+      {
+        "id": "B",
+        "text": "密度"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "密度は、一定の体積あたりの質量の大きさを表します。"
+  },
+  {
+    "id": "00224",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "空気中にもっとも多く含まれている気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "二酸化炭素"
+      },
+      {
+        "id": "B",
+        "text": "窒素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "空気中には窒素が約78%、酸素が約21%含まれています。"
+  },
+  {
+    "id": "00225",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "電気を帯びた原子や原子の集まりを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "イオン"
+      },
+      {
+        "id": "B",
+        "text": "原子"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "イオンは、電気を帯びた原子や原子の集まりです。"
+  },
+  {
+    "id": "00226",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学式 H2 が表しているものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素分子1個"
+      },
+      {
+        "id": "B",
+        "text": "水素原子1個"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "H2 は、水素原子2個が結びついた水素分子1個を表します。"
+  },
+  {
+    "id": "00227",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩化銅の電離を表す式として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "CuCl₂ → Cu + Cl₂"
+      },
+      {
+        "id": "B",
+        "text": "CuCl₂ → Cu²⁺ + 2Cl⁻"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩化銅は電離すると銅イオン（Cu²⁺）と塩化物イオン（Cl⁻）に分かれます。"
+  },
+  {
+    "id": "00228",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "1種類の原子だけでできている物質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "単体"
+      },
+      {
+        "id": "B",
+        "text": "化合物"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "酸素や鉄のように、1種類の原子だけでできている物質を単体といいます。"
+  },
+  {
+    "id": "00229",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水を電気分解したときに陽極に発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "二酸化炭素"
+      },
+      {
+        "id": "B",
+        "text": "酸素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水の電気分解では、陽極に酸素、陰極に水素が発生します。"
+  },
+  {
+    "id": "00230",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "二酸化炭素の性質として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "空気より重く水に少しとける"
+      },
+      {
+        "id": "B",
+        "text": "よく燃える"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "二酸化炭素は空気より重く、水に少しとけて弱い酸性を示します。"
+  },
+  {
+    "id": "00231",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "物質がそれ以上とけることができなくなった水溶液を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "濃縮液"
+      },
+      {
+        "id": "B",
+        "text": "飽和水溶液"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "物質がそれ以上とけることができなくなった水溶液を飽和水溶液といいます。"
+  },
+  {
+    "id": "00232",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "金属をたたくとうすく広がる性質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "展性"
+      },
+      {
+        "id": "B",
+        "text": "延性"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "金属をたたくとうすく広がる性質を展性、引っぱると細くのびる性質を延性といいます。"
+  },
+  {
+    "id": "00233",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "アルカリ性の水溶液に共通して含まれるイオンは何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "硫酸イオン"
+      },
+      {
+        "id": "B",
+        "text": "水酸化物イオン"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "アルカリ性の水溶液には共通して水酸化物イオン（OH⁻）が含まれています。"
+  },
+  {
+    "id": "00234",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸化銅を炭素といっしょに加熱したときにできる金属は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "銅"
+      },
+      {
+        "id": "B",
+        "text": "鉄"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "炭素が酸化銅から酸素をうばうと、銅ができます。"
+  },
+  {
+    "id": "00235",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "炭素を使って酸化銅を加熱すると、酸化銅から何が奪われますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "二酸化炭素"
+      },
+      {
+        "id": "B",
+        "text": "酸素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "炭素は酸化銅から酸素を奪い、酸化銅を銅に変える還元を起こします。"
+  },
+  {
+    "id": "00236",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "アンモニアの性質として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "空気より重い"
+      },
+      {
+        "id": "B",
+        "text": "刺激臭があり水に非常によくとける"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "アンモニアは刺激臭があり、水に非常によくとけ、水溶液はアルカリ性を示します。"
+  },
+  {
+    "id": "00237",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水素が燃えたときにできる物質は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水"
+      },
+      {
+        "id": "B",
+        "text": "窒素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水素が燃えると酸素と化合して水ができます。"
+  },
+  {
+    "id": "00238",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "窒素の性質として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "空気より非常に重い"
+      },
+      {
+        "id": "B",
+        "text": "無色・無臭で、ほかの物質と反応しにくい"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "窒素は無色・無臭で化学的に安定しており、ほかの物質と反応しにくい性質があります。"
+  },
+  {
+    "id": "00239",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "銅の酸化を化学反応式で表すとどれが正しいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2Cu + O₂ → 2CuO"
+      },
+      {
+        "id": "B",
+        "text": "Cu + O₂ → CuO₂"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "銅の酸化は 2Cu + O₂ → 2CuO です。"
+  },
+  {
+    "id": "00240",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "2種類以上の物質が結びついて1種類の物質ができる化学変化を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "分解"
+      },
+      {
+        "id": "B",
+        "text": "化合"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "化合は、2種類以上の物質が結びついて1種類の物質になる変化です。"
+  },
+  {
+    "id": "00241",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水素の化学式はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "He"
+      },
+      {
+        "id": "B",
+        "text": "H₂"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水素は2個の水素原子が結びついた分子で、化学式はH₂です。"
+  },
+  {
+    "id": "00242",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "1種類の物質が2種類以上の別の物質に分かれる変化を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "化合"
+      },
+      {
+        "id": "B",
+        "text": "分解"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "分解は、1種類の物質が別の物質に分かれる化学変化です。"
+  },
+  {
+    "id": "00243",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "金属に共通する性質として正しくないものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水にとける"
+      },
+      {
+        "id": "B",
+        "text": "たたくとうすくのびる"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "金属は電気を通す、たたくとのびる（展性・延性）、みがくと光沢が出るなどの性質がありますが、一般に水にはとけません。"
+  },
+  {
+    "id": "00244",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学変化によってそれ以上分けることができない小さな粒を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "原子"
+      },
+      {
+        "id": "B",
+        "text": "細胞"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "化学変化では、原子そのものの種類は変わりません。"
+  },
+  {
+    "id": "00245",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "二酸化炭素の化学式として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "CO₂"
+      },
+      {
+        "id": "B",
+        "text": "C₂O₂"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "二酸化炭素の化学式はCO₂です。炭素原子1個と酸素原子2個からできています。"
+  },
+  {
+    "id": "00246",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸化銅と炭素の混合物を加熱したとき、石灰水を白くにごらせる気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "二酸化炭素"
+      },
+      {
+        "id": "B",
+        "text": "酸素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "炭素が酸化銅から奪った酸素と結びつき、二酸化炭素ができます。"
+  },
+  {
+    "id": "00247",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "物質が酸素と結びつく化学変化を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸化"
+      },
+      {
+        "id": "B",
+        "text": "電離"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "物質が酸素と結びつく変化を酸化といいます。"
+  },
+  {
+    "id": "00248",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "電気エネルギーを使って物質を分解することを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "電気分解"
+      },
+      {
+        "id": "B",
+        "text": "触媒分解"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "電気エネルギーを使って物質を分解することを電気分解といいます。"
+  },
+  {
+    "id": "00249",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "固体が液体に変わる変化を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "融解"
+      },
+      {
+        "id": "B",
+        "text": "蒸発"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "固体が熱を受けて液体になる変化を融解といいます。"
+  },
+  {
+    "id": "00250",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "炭酸水素ナトリウムを加熱したあとに残る白い固体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "炭酸ナトリウム"
+      },
+      {
+        "id": "B",
+        "text": "酸化銅"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "炭酸水素ナトリウムは加熱すると分解し、炭酸ナトリウム、水、二酸化炭素になります。"
+  },
+  {
+    "id": "00251",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学式 CO2 が表す物質はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "二酸化炭素"
+      },
+      {
+        "id": "B",
+        "text": "一酸化炭素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "CO2 は炭素1個と酸素2個からなる二酸化炭素を表します。"
+  },
+  {
+    "id": "00252",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "いくつかの原子が結びついてできた、物質の性質を示す最小の粒はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "イオン"
+      },
+      {
+        "id": "B",
+        "text": "分子"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "分子は、その物質の性質を示す最小の粒です。"
+  },
+  {
+    "id": "00253",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸素の化学式として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "O₂"
+      },
+      {
+        "id": "B",
+        "text": "O₃"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "酸素は2個の酸素原子が結びついた分子で、化学式はO₂です。"
+  },
+  {
+    "id": "00254",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "炭酸水素ナトリウムを加熱したときに発生する気体として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸素"
+      },
+      {
+        "id": "B",
+        "text": "二酸化炭素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "炭酸水素ナトリウムを加熱すると、二酸化炭素、水、炭酸ナトリウムができます。"
+  },
+  {
+    "id": "00255",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学反応式で矢印（→）の左辺と右辺で等しくなければならないものは何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "各原子の数"
+      },
+      {
+        "id": "B",
+        "text": "物質の種類"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "化学反応式では左辺と右辺で各原子の数が等しくなければなりません。これを式を合わせるといいます。"
+  },
+  {
+    "id": "00256",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "溶質・溶媒・溶液の関係として正しいものはどれか？",
+    "choices": [
+      {
+        "id": "A",
+        "text": "溶質＝溶液＋溶媒"
+      },
+      {
+        "id": "B",
+        "text": "溶液＝溶質＋溶媒"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "溶質（溶けている物質）＋溶媒（溶かしている液体）＝溶液（混合物全体）の関係です。"
+  },
+  {
+    "id": "00257",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸化銀を加熱したときに発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "二酸化炭素"
+      },
+      {
+        "id": "B",
+        "text": "酸素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "酸化銀は加熱で分解し、銀と酸素になります。"
+  },
+  {
+    "id": "00258",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "マグネシウムを燃やしたあとにできる物質は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "炭酸ナトリウム"
+      },
+      {
+        "id": "B",
+        "text": "酸化マグネシウム"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "マグネシウムは酸素と結びついて酸化マグネシウムになります。"
+  },
+  {
+    "id": "00259",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸化銅と炭素の混合物を加熱したあとに残る赤色の物質は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "鉄"
+      },
+      {
+        "id": "B",
+        "text": "銅"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "炭素が酸化銅から酸素をうばうと、赤色の銅ができます。"
+  },
+  {
+    "id": "00260",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩酸に含まれるイオンの組み合わせとして正しいものはどれか？",
+    "choices": [
+      {
+        "id": "A",
+        "text": "カリウムイオンと硫酸イオン"
+      },
+      {
+        "id": "B",
+        "text": "水素イオンと塩化物イオン"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩酸（HCl）は水に溶けると水素イオン（H⁺）と塩化物イオン（Cl⁻）に電離します。"
+  },
+  {
+    "id": "00261",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "銅を加熱したときに表面にできる黒色の物質は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸化銅"
+      },
+      {
+        "id": "B",
+        "text": "硫化銅"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "銅は加熱すると空気中の酸素と結びつき、黒色の酸化銅になります。"
+  },
+  {
+    "id": "00262",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "空気中の酸素の割合はおよそ何%ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約21%"
+      },
+      {
+        "id": "B",
+        "text": "約50%"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "空気中の酸素はおよそ21%です。"
+  },
+  {
+    "id": "00263",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "固体が水にとける量が温度によって変わることを利用して結晶を取り出す方法を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "再結晶"
+      },
+      {
+        "id": "B",
+        "text": "ろ過"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "溶解度の差を利用して、高温で溶かした溶液を冷やして結晶を取り出す方法を再結晶といいます。"
+  },
+  {
+    "id": "00264",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "次のうち、混合物はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "鉄"
+      },
+      {
+        "id": "B",
+        "text": "空気"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "空気はいくつかの気体が混ざった混合物です。酸素、水、鉄は純粋な物質です。"
+  },
+  {
+    "id": "00265",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "二酸化炭素の分子をつくっている原子の種類は何種類ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3種類"
+      },
+      {
+        "id": "B",
+        "text": "2種類"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "二酸化炭素は炭素原子と酸素原子からできているので、原子の種類は2種類です。"
+  },
+  {
+    "id": "00266",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "中和によってできる水素イオンと水酸化物イオンの反応で生じる物質は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水"
+      },
+      {
+        "id": "B",
+        "text": "酸素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "H⁺ + OH⁻ → H₂O で、中和では水が生じます。"
+  },
+  {
+    "id": "00267",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水100gにとける物質の最大の質量を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "密度"
+      },
+      {
+        "id": "B",
+        "text": "溶解度"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "一定量の水にとける物質の最大の質量を溶解度といいます。温度によって変化します。"
+  },
+  {
+    "id": "00268",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "プラスの電気を帯びたイオンを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "陰イオン"
+      },
+      {
+        "id": "B",
+        "text": "陽イオン"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "プラスの電気を帯びたイオンは陽イオンです。"
+  },
+  {
+    "id": "00269",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "元素記号 Ag が表す元素は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "銀"
+      },
+      {
+        "id": "B",
+        "text": "アルミニウム"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "Ag は銀を表す元素記号です。"
+  },
+  {
+    "id": "00270",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水溶液にしたとき水酸化物イオン（OH⁻）を生じる物質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "アルカリ"
+      },
+      {
+        "id": "B",
+        "text": "酸"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水にとかしたとき水酸化物イオン（OH⁻）を生じる物質をアルカリといいます。"
+  },
+  {
+    "id": "00271",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "液体を加熱して気体にし、冷やして再び液体として集める方法を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "蒸留"
+      },
+      {
+        "id": "B",
+        "text": "ろ過"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "蒸留は液体を沸騰させて気体にし、冷やして再び液体にして集める方法です。"
+  },
+  {
+    "id": "00272",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水溶液が電流を流す理由として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "イオンが動けるから"
+      },
+      {
+        "id": "B",
+        "text": "温度が高いから"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "電解質の水溶液では、イオンが動いて電流を運びます。"
+  },
+  {
+    "id": "00273",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "炭素を含む物質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "金属"
+      },
+      {
+        "id": "B",
+        "text": "有機物"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "炭素を含む物質を有機物といいます（ただし二酸化炭素など一部は無機物に分類されます）。"
+  },
+  {
+    "id": "00274",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "質量保存の法則を確かめるために、反応前後で比べるものとして正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "液体だけの体積"
+      },
+      {
+        "id": "B",
+        "text": "容器をふくめた全体の質量"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "気体が外へ逃げないようにしたうえで、容器をふくめた全体の質量を比べると質量保存の法則を確かめられます。"
+  },
+  {
+    "id": "00275",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "アンモニアの水溶液は何性ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "アルカリ性"
+      },
+      {
+        "id": "B",
+        "text": "中性"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "アンモニアは水にとけるとアルカリ性を示します。"
+  },
+  {
+    "id": "00276",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水素の燃焼を化学反応式で表すとどれが正しいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2H + O → H₂O"
+      },
+      {
+        "id": "B",
+        "text": "2H₂ + O₂ → 2H₂O"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水素の燃焼は 2H₂ + O₂ → 2H₂O です。"
+  },
+  {
+    "id": "00277",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸の水溶液とアルカリの水溶液を混ぜると、互いの性質を打ち消し合う反応を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "中和"
+      },
+      {
+        "id": "B",
+        "text": "分解"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "酸とアルカリが互いの性質を打ち消し合う反応を中和といいます。"
+  },
+  {
+    "id": "00278",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学変化の前後で変わらないものとして正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "物質の状態"
+      },
+      {
+        "id": "B",
+        "text": "原子の種類と数"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "化学変化では原子の組み合わせは変わりますが、原子そのものの種類と数は変わりません。"
+  },
+  {
+    "id": "00279",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "塩化銅水溶液を電気分解すると、陰極に付着する物質は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "塩素"
+      },
+      {
+        "id": "B",
+        "text": "銅"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩化銅水溶液の電気分解では、陰極に銅が付着し、陽極から塩素が発生します。"
+  },
+  {
+    "id": "00280",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水溶液の濃さを表す「質量パーセント濃度」の求め方として正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "溶媒の質量÷溶液の質量×100"
+      },
+      {
+        "id": "B",
+        "text": "溶質の質量÷溶液の質量×100"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "質量パーセント濃度（%）＝溶質の質量÷溶液の質量×100 で求めます。"
+  },
+  {
+    "id": "00281",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "アルカリ性の水溶液に共通してふくまれるイオンはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Cl-"
+      },
+      {
+        "id": "B",
+        "text": "OH-"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "アルカリ性の水溶液には水酸化物イオン OH- がふくまれます。"
+  }
+]
