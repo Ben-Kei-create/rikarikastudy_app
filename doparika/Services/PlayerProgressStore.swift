@@ -34,7 +34,7 @@ final class PlayerProgressStore {
     }
 
     func recordAnswer(questionID: String, correct: Bool) {
-        let session = sessionsCompleted
+        let level = LevelCalculator.level(forXP: totalXP)
         let id = questionID
         let existing = try? context.fetch(
             FetchDescriptor<QuestionRecord>(predicate: #Predicate { $0.questionID == id })).first
@@ -46,7 +46,7 @@ final class PlayerProgressStore {
         if correct { r.correctCount += 1 } else {
             r.wrongCount += 1
             r.lastWrongAt = Date()
-            r.lastWrongSession = session
+            r.lastWrongLevel = level
         }
         save()
     }

@@ -24,14 +24,16 @@ final class AppModel {
     /// 0...1 progress through the whole release-1 world, used for the starting depth.
     var worldProgress: Double { Double(totalXP) / Double(max(LevelCalculator.maxXP, 1)) }
 
+    var canStartSession: Bool { repository.loadError == nil }
+
     func makeSession() -> [Question] {
         let history = store.records().map {
             QuestionSelector.History(questionID: $0.questionID, wrongCount: $0.wrongCount,
                                      lastCorrect: $0.lastCorrect, lastWrongAt: $0.lastWrongAt,
-                                     lastWrongSession: $0.lastWrongSession, lastAnsweredAt: $0.lastAnsweredAt)
+                                     lastWrongLevel: $0.lastWrongLevel, lastAnsweredAt: $0.lastAnsweredAt)
         }
         return QuestionSelector.select(all: repository.questions(for: .mountain), history: history,
-                                       currentSession: store.sessionsCompleted)
+                                       currentLevel: levelInfo.level)
     }
 
     func record(question: Question, correct: Bool) {

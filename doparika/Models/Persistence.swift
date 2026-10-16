@@ -18,8 +18,8 @@ final class QuestionRecord {
     var lastCorrect: Bool = false
     var lastAnsweredAt: Date = Date.distantPast
     var lastWrongAt: Date?
-    /// Session counter value at last wrong answer; used to find "previous level" mistakes.
-    var lastWrongSession: Int = -1
+    /// Player level when last answered wrong; used to find "previous level" mistakes.
+    var lastWrongLevel: Int = -1
 
     init(questionID: String) {
         self.questionID = questionID

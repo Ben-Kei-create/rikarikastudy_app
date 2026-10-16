@@ -10,11 +10,11 @@ struct QuestionSelector {
         let wrongCount: Int
         let lastCorrect: Bool
         let lastWrongAt: Date?
-        let lastWrongSession: Int
+        let lastWrongLevel: Int
         let lastAnsweredAt: Date
     }
 
-    static func select(all: [Question], history: [History], currentSession: Int,
+    static func select(all: [Question], history: [History], currentLevel: Int,
                        size: Int = sessionSize) -> [Question] {
         let byID = Dictionary(uniqueKeysWithValues: all.map { ($0.id, $0) })
         let answered = history.filter { byID[$0.questionID] != nil }
@@ -28,7 +28,7 @@ struct QuestionSelector {
             for h in items where !ranked.contains(h.questionID) { ranked.append(h.questionID) }
         }
         let wrong = answered.filter { $0.wrongCount > 0 }
-        add(wrong.filter { $0.lastWrongSession == currentSession - 1 }
+        add(wrong.filter { $0.lastWrongLevel == currentLevel - 1 }
             .sorted { ($0.lastWrongAt ?? .distantPast) > ($1.lastWrongAt ?? .distantPast) })
         add(wrong.sorted { ($0.lastWrongAt ?? .distantPast) > ($1.lastWrongAt ?? .distantPast) })
         add(wrong.sorted { $0.wrongCount > $1.wrongCount })

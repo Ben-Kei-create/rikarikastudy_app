@@ -14,12 +14,13 @@ final class QuizSession {
     init(model: AppModel) {
         self.model = model
         self.engine = QuizEngine(questions: model.makeSession())
+        precondition(!engine.questions.isEmpty, "session must have questions")
         engine.onResolved = { [weak self] q, r in self?.handle(q, r) }
     }
 
     func start(viewportHeight: Double) {
         motion.setViewport(viewportHeight)
-        motion.jump(to: motion.maxPosition * model.worldProgress * 0.6)
+        motion.jump(to: motion.startPosition(progress: model.worldProgress))
         motion.startThinking(duration: QuizEngine.timeLimit)
         guard ticker == nil else { return }
         ticker = Task { [weak self] in
@@ -74,13 +75,14 @@ struct QuizView: View {
             ZStack {
                 if let session {
                     QuizContent(session: session, model: model, onRestart: restart, onHome: { path.removeAll() })
+                        .id(ObjectIdentifier(session))
                         .onAppear { session.start(viewportHeight: geo.size.height) }
                         .onDisappear { session.stop() }
                 } else {
                     Theme.night.ignoresSafeArea()
                 }
             }
-            .onAppear { if session == nil { session = QuizSession(model: model) } }
+            .onAppear { if session == nil, model.canStartSession { session = QuizSession(model: model) } }
         }
         .navigationBarBackButtonHidden(true)
         .onChange(of: scenePhase) { _, phase in session?.paused = phase != .active }

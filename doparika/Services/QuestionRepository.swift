@@ -17,7 +17,9 @@ final class QuestionRepository {
             var seen = Set<String>()
             questions = valid.filter { seen.insert($0.id).inserted }.sorted { $0.id < $1.id }
             byID = Dictionary(uniqueKeysWithValues: questions.map { ($0.id, $0) })
-            if questions.isEmpty { loadError = "問題データが空です" }
+            if questions(for: .mountain).count < QuestionSelector.sessionSize {
+                loadError = "問題データが不足しています"
+            }
         } catch {
             loadError = "問題データを読み込めませんでした"
         }

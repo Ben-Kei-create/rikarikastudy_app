@@ -50,7 +50,7 @@ struct HomeView: View {
             }
         }
         .navigationBarHidden(true)
-        .onAppear { motion.jump(to: motion.maxPosition * model.worldProgress * 0.6) }
+        .onAppear { motion.jump(to: motion.startPosition(progress: model.worldProgress)) }
     }
 
     private var levelCard: some View {

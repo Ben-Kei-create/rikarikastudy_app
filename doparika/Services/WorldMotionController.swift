@@ -32,10 +32,15 @@ final class WorldMotionController {
     var maxPosition: Double { Self.worldHeight - viewport }
 
     func setViewport(_ h: Double) { viewport = max(h, 1); position = min(position, maxPosition) }
+    /// Leaves headroom above the start so "fall back" is visible even at 0 XP.
+    func startPosition(progress: Double) -> Double {
+        let margin = 500.0
+        return margin + max(0, maxPosition - 2 * margin) * progress
+    }
     func jump(to p: Double) { position = clamp(p); velocity = 0 }
 
     func startThinking(duration: Double) {
-        thinking = true; thinkElapsed = 0; thinkDuration = duration
+        thinking = true; thinkElapsed = 0; thinkDuration = duration; impulse = nil
     }
     func stopThinking() { thinking = false }
 
