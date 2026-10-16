@@ -29,6 +29,7 @@ final class QuizSession {
             while !Task.isCancelled {
                 try? await Task.sleep(for: .milliseconds(16))
                 let now = clock.now
+                if let self, self.paused { last = now; continue }
                 let dt = Double((now - last).components.seconds)
                     + Double((now - last).components.attoseconds) / 1e18
                 last = now

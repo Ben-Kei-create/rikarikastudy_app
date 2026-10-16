@@ -22,6 +22,9 @@ struct WorldBackgroundView: View {
         GeometryReader { geo in
             Canvas(rendersAsynchronously: false) { ctx, size in
                 let pos = motion.position
+                // Overscroll areas past either end continue the first/last strata colour.
+                ctx.fill(Path(CGRect(origin: .zero, size: size)),
+                         with: .color(pos < 0 ? Self.palette[0].0 : Self.palette[Self.palette.count - 1].0))
                 let h = WorldMotionController.sectionHeight
                 let first = max(0, Int(floor(pos / h)))
                 let last = min(WorldMotionController.sectionCount - 1, Int(floor((pos + size.height) / h)))

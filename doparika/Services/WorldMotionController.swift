@@ -31,11 +31,10 @@ final class WorldMotionController {
 
     var maxPosition: Double { Self.worldHeight - viewport }
 
-    func setViewport(_ h: Double) { viewport = max(h, 1); position = min(position, maxPosition) }
-    /// Leaves headroom above the start so "fall back" is visible even at 0 XP.
+    func setViewport(_ h: Double) { viewport = max(h, 1); position = clamp(position) }
+    /// Start depth for the player's progress; overscroll (see `overscroll`) keeps falls visible at the edges.
     func startPosition(progress: Double) -> Double {
-        let margin = 500.0
-        return margin + max(0, maxPosition - 2 * margin) * progress
+        max(0, maxPosition) * min(max(progress, 0), 1)
     }
     func jump(to p: Double) { position = clamp(p); velocity = 0 }
 
@@ -89,5 +88,10 @@ final class WorldMotionController {
         position = clamp(position + v * dt)
     }
 
-    private func clamp(_ p: Double) -> Double { min(max(p, 0), max(maxPosition, 0)) }
+    /// Visual headroom beyond both ends of the world so motion never freezes at a boundary.
+    static let overscroll: Double = 600
+
+    private func clamp(_ p: Double) -> Double {
+        min(max(p, -Self.overscroll), max(maxPosition, 0) + Self.overscroll)
+    }
 }

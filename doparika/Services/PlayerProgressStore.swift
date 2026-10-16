@@ -20,7 +20,7 @@ final class PlayerProgressStore {
 
     func addXP(_ amount: Int) {
         let p = progress()
-        p.totalXP = min(LevelCalculator.maxXP, p.totalXP + max(0, amount))
+        p.totalXP += max(0, amount)   // uncapped; Lv and world progress are capped elsewhere
         save()
     }
 

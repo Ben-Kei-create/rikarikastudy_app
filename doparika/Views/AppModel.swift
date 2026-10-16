@@ -22,7 +22,7 @@ final class AppModel {
     var levelInfo: LevelCalculator.Info { LevelCalculator.info(forXP: totalXP) }
 
     /// 0...1 progress through the whole release-1 world, used for the starting depth.
-    var worldProgress: Double { Double(totalXP) / Double(max(LevelCalculator.maxXP, 1)) }
+    var worldProgress: Double { min(1, Double(totalXP) / Double(max(LevelCalculator.maxXP, 1))) }
 
     var canStartSession: Bool { repository.loadError == nil }
 
