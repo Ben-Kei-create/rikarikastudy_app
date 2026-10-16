@@ -7,7 +7,7 @@ import Observation
 @Observable
 final class WorldMotionController {
     static let sectionCount = 10
-    static let sectionHeight: Double = 1800
+    static let sectionHeight: Double = 1000   // matches the 1206x3000 art at ~402pt width
     static var worldHeight: Double { Double(sectionCount) * sectionHeight }
 
     private(set) var position: Double = 0

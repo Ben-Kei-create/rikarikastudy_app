@@ -43,6 +43,11 @@ struct WorldBackgroundView: View {
     private func drawSection(_ ctx: GraphicsContext, index s: Int, top: Double, size: CGSize) {
         let h = WorldMotionController.sectionHeight
         let (a, b) = Self.palette[s]
+        let artName = String(format: "section_%02d", s + 1)
+        if Self.hasArt(artName) {
+            ctx.draw(ctx.resolve(Image(artName)), in: CGRect(x: 0, y: top, width: size.width, height: h + 1))
+            return
+        }
         let rect = CGRect(x: 0, y: top, width: size.width, height: h + 1)
         ctx.fill(Path(rect), with: .linearGradient(Gradient(colors: [a, b, a]),
                                                    startPoint: CGPoint(x: 0, y: top),
@@ -105,6 +110,15 @@ struct WorldBackgroundView: View {
             let r = CGRect(x: -40, y: top + h * 0.5, width: size.width + 80, height: 180)
             ctx.fill(Path(ellipseIn: r), with: .color(Color.orange.opacity(0.25)))
         }
+    }
+
+    private static var artCache: [String: Bool] = [:]
+    /// Falls back to the procedural strata when a section image is missing from the asset catalog.
+    private static func hasArt(_ name: String) -> Bool {
+        if let c = artCache[name] { return c }
+        let ok = UIImage(named: name) != nil
+        artCache[name] = ok
+        return ok
     }
 
     private static func hash(_ a: Int, _ b: Int, _ c: Int) -> Int {

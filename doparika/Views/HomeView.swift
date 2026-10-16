@@ -7,7 +7,11 @@ struct HomeView: View {
 
     var body: some View {
         ZStack {
-            WorldBackgroundView(motion: motion)
+            if UIImage(named: "home_bg") != nil {
+                Image("home_bg").resizable().scaledToFill().ignoresSafeArea()
+            } else {
+                WorldBackgroundView(motion: motion)
+            }
             LinearGradient(colors: [.black.opacity(0.55), .black.opacity(0.15), .black.opacity(0.7)],
                            startPoint: .top, endPoint: .bottom).ignoresSafeArea()
             ScrollView {
