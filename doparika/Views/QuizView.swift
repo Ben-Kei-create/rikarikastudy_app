@@ -10,12 +10,12 @@ final class QuizSession {
     private var ticker: Task<Void, Never>?
     private var finishedRecorded = false
     var paused = false
-    /// Section whose top the world rests on; each correct answer advances one section.
-    private var anchor: Int
+
+    /// Permanent resting depth from XP/Lv; animations only deviate from it temporarily.
+    private var permanent: Double { motion.permanentPosition(fraction: model.levelFraction) }
 
     init(model: AppModel) {
         self.model = model
-        self.anchor = min(WorldMotionController.sectionCount - 1, (model.levelInfo.level - 1) / 3)
         self.engine = QuizEngine(questions: model.makeSession())
         precondition(!engine.questions.isEmpty, "session must have questions")
         engine.onResolved = { [weak self] q, r in self?.handle(q, r) }
@@ -23,7 +23,7 @@ final class QuizSession {
 
     func start(viewportHeight: Double) {
         motion.setViewport(viewportHeight)
-        motion.jump(to: WorldMotionController.sectionTop(anchor))
+        motion.jump(to: permanent)
         motion.startThinking(duration: QuizEngine.timeLimit)
         guard ticker == nil else { return }
         ticker = Task { [weak self] in
@@ -49,6 +49,7 @@ final class QuizSession {
 
     func next() {
         engine.next()
+        motion.settle(to: permanent)   // converge back to the permanent depth, never warp
         if engine.phase == .finished {
             if !finishedRecorded { finishedRecorded = true; model.finishSession() }
         } else {
@@ -57,15 +58,16 @@ final class QuizSession {
     }
 
     private func handle(_ q: Question, _ r: Resolution) {
-        if case .correct = r {
-            let wasLast = anchor >= WorldMotionController.sectionCount - 1
-            anchor = min(anchor + 1, WorldMotionController.sectionCount - 1)
-            // Already in the last section: surge to the very bottom of the art instead.
-            motion.boost(to: wasLast ? motion.maxPosition : WorldMotionController.sectionTop(anchor))
-            model.record(question: q, correct: true)
-        } else {
-            motion.fall()
+        switch r {
+        case .correct:
+            model.record(question: q, correct: true)       // XP first, so `permanent` is the new depth
+            motion.boost(to: permanent)
+        case .wrong:
             model.record(question: q, correct: false)
+            motion.fall(distance: 380)
+        case .timeout:
+            model.record(question: q, correct: false)
+            motion.fall(distance: 520)
         }
     }
 }
@@ -82,9 +84,9 @@ struct QuizView: View {
             ZStack {
                 if let session {
                     QuizContent(session: session, model: model, onRestart: restart, onHome: { path.removeAll() })
-                        .id(ObjectIdentifier(session))
                         .onAppear { session.start(viewportHeight: geo.size.height) }
                         .onDisappear { session.stop() }
+                        .id(ObjectIdentifier(session))   // outermost: a new session recreates the view and re-runs onAppear
                 } else {
                     Theme.night.ignoresSafeArea()
                 }

@@ -16,12 +16,17 @@ enum WorldSectionLayout {
         return CGRect(x: 0, y: top, width: width, height: bottom - top)
     }
 
-    static func aspectFillRect(imageSize: CGSize, in frame: CGRect) -> CGRect {
+    /// Aspect-fills the image into `frame`. `topCrop` (0...<1) hides that fraction of the image's
+    /// top edge (e.g. the sky of a cross-section) so neighbouring sections read as continuous ground.
+    static func aspectFillRect(imageSize: CGSize, in frame: CGRect, topCrop: Double = 0) -> CGRect {
         guard imageSize.width > 0, imageSize.height > 0 else { return frame }
-        let scale = max(frame.width / imageSize.width, frame.height / imageSize.height)
+        let crop = min(max(topCrop, 0), 0.9)
+        let scale = max(frame.width / imageSize.width, frame.height / (imageSize.height * (1 - crop)))
         let width = imageSize.width * scale
         let height = imageSize.height * scale
-        return CGRect(x: frame.midX - width / 2, y: frame.midY - height / 2,
-                      width: width, height: height)
+        if crop == 0 {
+            return CGRect(x: frame.midX - width / 2, y: frame.midY - height / 2, width: width, height: height)
+        }
+        return CGRect(x: frame.midX - width / 2, y: frame.minY - height * crop, width: width, height: height)
     }
 }

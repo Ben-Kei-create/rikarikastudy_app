@@ -15,13 +15,26 @@ final class AppModel {
     init(context: ModelContext, repository: QuestionRepository? = nil) {
         self.repository = repository ?? QuestionRepository()
         self.store = PlayerProgressStore(context: context)
+        #if DEBUG
+        // QA aid: `-debugXP <n>` raises stored XP to n so late-world sections can be inspected.
+        let xp = UserDefaults.standard.integer(forKey: "debugXP")
+        if xp > store.totalXP {
+            store.addXP(xp - store.totalXP)
+        }
+        #endif
         self.totalXP = store.totalXP
         self.unlockedIDs = Set(store.records().map(\.questionID))
     }
 
     var levelInfo: LevelCalculator.Info { LevelCalculator.info(forXP: totalXP) }
 
-    /// 0...1 progress through the whole release-1 world, used for the starting depth.
+    /// 0...1 progress through Lv.1...30 (level plus progress inside the level); drives the permanent depth.
+    var levelFraction: Double {
+        let info = levelInfo
+        let lv = info.isMax ? Double(LevelCalculator.maxLevel) : Double(info.level) + info.fraction
+        return (lv - 1) / Double(LevelCalculator.maxLevel - 1)
+    }
+
     var worldProgress: Double { min(1, Double(totalXP) / Double(max(LevelCalculator.maxXP, 1))) }
 
     var canStartSession: Bool { repository.loadError == nil }

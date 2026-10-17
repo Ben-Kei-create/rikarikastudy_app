@@ -19,13 +19,13 @@ struct WorldBackgroundView: View {
         (Color(red: 0.22, green: 0.12, blue: 0.12), Color(red: 0.34, green: 0.18, blue: 0.16)), // 巨大岩盤
     ]
 
+    /// Fraction of each artwork's top (sky/horizon) hidden so sections join as one continuous ground.
+    private static let topCrop: [Double] = [0, 0.10, 0.12, 0.12, 0, 0, 0.09, 0.12, 0, 0]
+
     var body: some View {
         GeometryReader { geo in
             Canvas(rendersAsynchronously: false) { ctx, size in
                 let pos = motion.position
-                // Overscroll areas past either end continue the first/last strata colour.
-                ctx.fill(Path(CGRect(origin: .zero, size: size)),
-                         with: .color(pos < 0 ? Self.palette[0].0 : Self.palette[Self.palette.count - 1].0))
                 let h = WorldMotionController.sectionHeight
                 let first = max(0, Int(floor(pos / h)))
                 let last = min(WorldMotionController.sectionCount - 1, Int(floor((pos + size.height) / h)))
@@ -52,7 +52,8 @@ struct WorldBackgroundView: View {
         let artName = String(format: "section_%02d", s + 1)
         if let artwork = UIImage(named: artName) {
             let image = ctx.resolve(Image(uiImage: artwork))
-            ctx.draw(image, in: WorldSectionLayout.aspectFillRect(imageSize: image.size, in: frame))
+            ctx.draw(image, in: WorldSectionLayout.aspectFillRect(imageSize: image.size, in: frame,
+                                                                   topCrop: Self.topCrop[s]))
             return
         }
         let rect = frame

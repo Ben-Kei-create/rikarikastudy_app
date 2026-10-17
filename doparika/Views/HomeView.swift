@@ -61,7 +61,7 @@ struct HomeView: View {
             }
         }
         .navigationBarHidden(true)
-        .onAppear { motion.jump(to: motion.startPosition(progress: model.worldProgress)) }
+        .onAppear { motion.jump(to: motion.permanentPosition(fraction: model.levelFraction)) }
     }
 
     private var levelCard: some View {
