@@ -8,7 +8,7 @@ import Observation
 @Observable
 final class WorldMotionController {
     static let sectionCount = 10
-    static let sectionHeight: Double = 1000   // logical points; independent of asset pixel dimensions
+    static let sectionHeight: Double = 1200   // ~1:3 art at 402pt width; independent of pixel size
     static var worldHeight: Double { Double(sectionCount) * sectionHeight }
     /// Depth shown at 0 XP; leaves room above so early drift/falls stay inside the artwork.
     static let startMargin: Double = 450

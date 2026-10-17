@@ -20,7 +20,7 @@ struct WorldBackgroundView: View {
     ]
 
     /// Fraction of each artwork's top (sky/horizon) hidden so sections join as one continuous ground.
-    private static let topCrop: [Double] = [0, 0.10, 0.12, 0.12, 0, 0, 0.09, 0.12, 0, 0]
+    private static let topCrop: [Double] = Array(repeating: 0, count: 10)   // new art joins seamlessly
 
     var body: some View {
         GeometryReader { geo in
