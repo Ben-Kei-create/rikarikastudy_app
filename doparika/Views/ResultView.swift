@@ -9,6 +9,7 @@ struct ResultView: View {
     var body: some View {
         let info = model.levelInfo
         let perfect = engine.correctCount == engine.total
+        ScrollView {
         VStack(spacing: 18) {
             Text(perfect ? "満点!" : "\(engine.total)問終了!")
                 .font(.system(size: 34, weight: .black, design: .rounded))
@@ -40,5 +41,8 @@ struct ResultView: View {
             }
         }
         .padding(20)
+        .frame(maxWidth: .infinity)
+        }
+        .scrollBounceBehavior(.basedOnSize)
     }
 }

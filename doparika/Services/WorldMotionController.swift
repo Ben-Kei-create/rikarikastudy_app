@@ -28,6 +28,14 @@ final class WorldMotionController {
 
     private(set) var position: Double = 0
     private(set) var velocity: Double = 0
+    /// Vibration of the world (pt) and a phase that advances every frame; drives the rumble effect.
+    private(set) var shake: Double = 0
+    private(set) var shakePhase: Double = 0
+
+    /// Distance of the camera's top edge from the top of the artwork. `position` is "height climbed":
+    /// it grows on a correct answer, so the camera moves UP toward the surface (Lv.30 = tree and sky)
+    /// and sinks deeper while thinking (Lv.1 = deepest rock).
+    var cameraTop: Double { maxPosition - position }
 
     @ObservationIgnored private var viewport: Double = 800
     @ObservationIgnored private var thinking = false
@@ -66,7 +74,7 @@ final class WorldMotionController {
         if var m = move { m.target = clamp(m.target); m.then = m.then.map(clamp); move = m }
         // Margins are absolute points, so after a rotation re-anchor to the new permanent depth;
         // otherwise the scaled position may have lost the headroom a fall needs.
-        if widthChanged, thinking, move == nil, let rest = restProvider?() {
+        if widthChanged, thinking, let rest = restProvider?() {   // while thinking, any move is a settle
             settle(to: rest)
         }
     }
@@ -152,6 +160,12 @@ final class WorldMotionController {
         }
         velocity = v
         position = clamp(position + v * dt)
+        // Rumble: grows while thinking, kicks hard during a surge, calms as it settles.
+        var amp = 0.0
+        if move != nil { amp = min(7, abs(v) / 200) }
+        else if thinking { let t = min(thinkElapsed / thinkDuration, 1); amp = 0.5 + 2.5 * t * t }
+        shake = amp
+        shakePhase += 1
     }
 
     /// Hard bounds are the artwork edges, so no "outside the image" area is ever visible.

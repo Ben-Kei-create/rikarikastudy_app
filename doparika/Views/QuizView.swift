@@ -146,6 +146,9 @@ private struct QuizContent: View {
                 ResultView(model: model, engine: engine, onRestart: onRestart, onHome: onHome)
             } else {
                 quizBody(engine)
+                if case .resolved(let r) = engine.phase {
+                    AnswerBurst(resolution: r, xp: engine.lastXPGain).id(engine.index)
+                }
             }
         }
         .id(engine.phase == .finished)
@@ -162,20 +165,8 @@ private struct QuizContent: View {
             .foregroundStyle(.white)
             .shadow(color: .black, radius: 3)
 
-            VStack(alignment: .leading, spacing: 16) {
-                Text(engine.current.question)
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundStyle(Theme.ink)
-                    .fixedSize(horizontal: false, vertical: true)
-                ForEach(engine.current.choices) { c in
-                    ChoiceButton(choice: c, phase: engine.phase, correctID: engine.current.correctChoiceId) {
-                        session.answer(c.id)
-                    }
-                }
-            }
-            .parchmentPanel(opacity: 0.8)
-            .frame(maxHeight: .infinity)   // centred in the space between header and feedback area
-
+            questionPanel(engine)
+                .frame(maxHeight: .infinity)   // centred between header and feedback area
             // Fixed-height feedback area: the question panel stays put when an answer is revealed.
             feedback(engine)
                 .frame(height: 300, alignment: .bottom)
@@ -183,6 +174,21 @@ private struct QuizContent: View {
         .padding(.horizontal, 18)
         .padding(.top, 8)
         .padding(.bottom, 16)
+    }
+
+    private func questionPanel(_ engine: QuizEngine) -> some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text(engine.current.question)
+                .font(.system(size: 18, weight: .bold, design: .rounded))
+                .foregroundStyle(Theme.ink)
+                .fixedSize(horizontal: false, vertical: true)
+            ForEach(engine.current.choices) { c in
+                ChoiceButton(choice: c, phase: engine.phase, correctID: engine.current.correctChoiceId) {
+                    session.answer(c.id)
+                }
+            }
+        }
+        .parchmentPanel(opacity: 0.8)
     }
 
     @ViewBuilder
@@ -196,20 +202,27 @@ private struct QuizContent: View {
                 .padding(.bottom, 24)
         case .resolved(let r):
             VStack(spacing: 10) {
-                switch r {
-                case .correct:
-                    Text("正解!  +\(engine.lastXPGain) XP").font(.title2.weight(.black)).foregroundStyle(Theme.good)
-                case .wrong:
-                    Text("残念…").font(.title2.weight(.black)).foregroundStyle(Theme.bad)
-                case .timeout:
-                    Text("時間切れ…").font(.title2.weight(.black)).foregroundStyle(Theme.bad)
+                // Text scrolls if it is long; the button below is always reachable.
+                ScrollView {
+                    VStack(spacing: 8) {
+                        switch r {
+                        case .correct:
+                            Text("正解!  +\(engine.lastXPGain) XP").font(.title2.weight(.black)).foregroundStyle(Theme.good)
+                        case .wrong:
+                            Text("残念…").font(.title2.weight(.black)).foregroundStyle(Theme.bad)
+                        case .timeout:
+                            Text("時間切れ…").font(.title2.weight(.black)).foregroundStyle(Theme.bad)
+                        }
+                        if case .correct = r {} else {
+                            Text("正解: \(engine.current.correctText)").font(.subheadline.weight(.bold))
+                        }
+                        if !engine.current.explanation.isEmpty {
+                            Text(engine.current.explanation).font(.footnote)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
                 }
-                if case .correct = r {} else {
-                    Text("正解: \(engine.current.correctText)").font(.subheadline.weight(.bold))
-                }
-                if !engine.current.explanation.isEmpty {
-                    Text(engine.current.explanation).font(.footnote)
-                }
+                .scrollBounceBehavior(.basedOnSize)
                 Button(engine.isLast ? "結果を見る" : "次の問題へ") { session.next() }
                     .buttonStyle(PrimaryButtonStyle())
             }
@@ -267,5 +280,42 @@ private struct ChoiceButton: View {
         }
         .buttonStyle(.plain)
         .disabled(phase != .answering)
+    }
+}
+
+/// Big ○ with a floating "+XP" on a correct answer; a quieter × otherwise.
+private struct AnswerBurst: View {
+    let resolution: Resolution
+    let xp: Int
+    @State private var scale = 0.3
+    @State private var opacity = 1.0
+    @State private var xpOffset = 0.0
+
+    private var correct: Bool { if case .correct = resolution { return true } else { return false } }
+
+    var body: some View {
+        ZStack {
+            Text(correct ? "○" : "×")
+                .font(.system(size: 220, weight: .black, design: .rounded))
+                .foregroundStyle(correct ? Theme.good : Theme.bad)
+                .shadow(color: .black.opacity(0.45), radius: 10, y: 4)
+                .scaleEffect(scale)
+                .opacity(correct ? opacity : opacity * 0.8)
+            if correct && xp > 0 {
+                Text("+\(xp) XP")
+                    .font(.system(size: 44, weight: .black, design: .rounded))
+                    .foregroundStyle(Theme.ember)
+                    .shadow(color: .black, radius: 4, y: 2)
+                    .offset(y: 120 + xpOffset)
+                    .opacity(opacity)
+            }
+        }
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+        .onAppear {
+            withAnimation(.spring(response: 0.35, dampingFraction: 0.5)) { scale = 1.0 }
+            withAnimation(.easeOut(duration: 1.4)) { xpOffset = -110 }
+            withAnimation(.easeIn(duration: 0.5).delay(0.9)) { opacity = 0 }
+        }
     }
 }

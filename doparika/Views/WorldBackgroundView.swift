@@ -24,8 +24,14 @@ struct WorldBackgroundView: View {
 
     var body: some View {
         GeometryReader { geo in
-            Canvas(rendersAsynchronously: false) { ctx, size in
-                let pos = motion.position
+            Canvas(rendersAsynchronously: false) { context, size in
+                var ctx = context
+                let pos = motion.cameraTop
+                // Rumble: overscan a little, then jitter the whole world.
+                let amp = motion.shake, ph = motion.shakePhase
+                ctx.translateBy(x: size.width / 2, y: size.height / 2)
+                ctx.scaleBy(x: 1.04, y: 1.04)
+                ctx.translateBy(x: -size.width / 2 + sin(ph * 2.7) * amp, y: -size.height / 2 + cos(ph * 3.9) * amp)
                 let h = motion.sectionHeight, ov = motion.overlap, step = motion.sectionStep
                 let first = max(0, Int(floor((pos - ov) / step)))
                 let last = min(WorldMotionController.sectionCount - 1, Int(floor((pos + size.height) / step)))

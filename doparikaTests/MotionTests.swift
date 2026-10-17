@@ -32,6 +32,21 @@ final class MotionTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(before - m.position, 430)
     }
 
+    /// Codex P2: rotating right after the next question starts (still settling) lost headroom.
+    func testRotationDuringSettleAfterNextQuestionKeepsFall() {
+        let m = controller(width: 874, height: 402, fraction: 0)
+        let rest = { m.permanentPosition(fraction: 0) }
+        m.startThinking(duration: 15); run(m, seconds: 15)
+        m.fall(distance: 440); run(m, seconds: 5)
+        m.settle(to: rest()); m.startThinking(duration: 15)   // next question begins mid-return
+        run(m, seconds: 0.1)
+        m.setViewport(874, width: 402)
+        run(m, seconds: 15)
+        let before = m.position
+        m.fall(distance: 440); run(m, seconds: 5)
+        XCTAssertGreaterThanOrEqual(before - m.position, 430)
+    }
+
     func testThinkingNeverDriftsBelowReserve() {
         let m = controller(fraction: 0)
         m.startThinking(duration: 15)
