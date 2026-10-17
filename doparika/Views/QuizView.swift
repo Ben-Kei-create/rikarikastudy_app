@@ -67,6 +67,7 @@ final class QuizSession {
     var currentPosition: Double { motion.position }
 
     func next() {
+        advance()   // settle elapsed time against the finished question, so the new one starts from a fresh clock
         engine.next()
         motion.settle(to: permanent)   // converge back to the permanent depth, never warp
         if engine.phase == .finished {

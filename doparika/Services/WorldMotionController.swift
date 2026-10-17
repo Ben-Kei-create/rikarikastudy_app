@@ -35,7 +35,7 @@ final class WorldMotionController {
         var elapsed = 0.0
         let windUp: Double      // anticipation dip before the surge
         let rampTime: Double    // acceleration
-        let peak: Double        // peak speed (pt/s)
+        var peak: Double        // peak speed (pt/s)
         let damping: Double     // exponential decay rate
         let sign: Double
         var target: Double
@@ -49,7 +49,7 @@ final class WorldMotionController {
         if abs(newSection - sectionHeight) > 0.5 {           // width changed: keep the same place in the world
             let k = newSection / sectionHeight
             position *= k
-            if var m = move { m.target *= k; m.then = m.then.map { $0 * k }; move = m }
+            if var m = move { m.target *= k; m.peak *= k; m.then = m.then.map { $0 * k }; move = m }
             sectionHeight = newSection
         }
         viewport = max(h, 1)

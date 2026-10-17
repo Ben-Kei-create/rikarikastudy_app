@@ -10,12 +10,15 @@ struct BackgroundLayoutChecks {
         var checks = 0
         for width in [320.0, 375, 402, 430, 852] {
             for scale in [2.0, 3.0] {
-                for position in stride(from: -600.25, through: 10600.25, by: 37.125) {
+                let sectionHeight = width * WorldMotionController.sectionAspect
+                for position in stride(from: -600.25, through: sectionHeight * 10 + 600, by: 37.125) {
                     for index in 0..<WorldMotionController.sectionCount {
                         let frame = WorldSectionLayout.frame(index: index, position: position,
-                                                             width: width, displayScale: scale)
+                                                             width: width, sectionHeight: sectionHeight,
+                                                             displayScale: scale)
                         let next = WorldSectionLayout.frame(index: index + 1, position: position,
-                                                            width: width, displayScale: scale)
+                                                            width: width, sectionHeight: sectionHeight,
+                                                             displayScale: scale)
                         precondition(abs(frame.maxY - next.minY) < 0.000001, "section seam gap")
                         for size in sizes {
                             let image = WorldSectionLayout.aspectFillRect(imageSize: size, in: frame)
