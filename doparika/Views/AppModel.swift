@@ -26,6 +26,11 @@ final class AppModel {
         self.unlockedIDs = Set(store.records().map(\.questionID))
     }
 
+    func reloadFromStore() {
+        totalXP = store.totalXP
+        unlockedIDs = Set(store.records().map(\.questionID))
+    }
+
     var levelInfo: LevelCalculator.Info { LevelCalculator.info(forXP: totalXP) }
 
     /// 0...1 progress through Lv.1...30 (level plus progress inside the level); drives the permanent depth.

@@ -16,19 +16,33 @@ Lv.1〜30 / 山・地層 / 2択 / 1セッション5問 / 制限時間15秒 / 正
 ## 背景Assetの差し替え
 
 - `home_bg`、`section_01`〜`section_10`、`AppIcon` の名前を維持する。
-- 山の本番素材は約1206×3000pxを想定。各セクションは画像サイズと独立した1000ptの領域に、縦横比を保った中央基準のAspect Fillで描画する。画面幅によって端がクロップされるため、重要な絵柄は中央寄りに配置する。
-- Asset内の画像だけを交換すればよく、Swiftコードやセクション位置の変更は不要。画像の解像度やAssetのscale指定が変わってもセクションの高さは変わらない。
-- 画面に交差するセクションだけを描画し、各画像をセクション領域でクリップする。隣接セクションは同じピクセル境界を共有し、隙間や画像寸法による位置ずれを防ぐ。画像間の色の連続性は素材側で調整する。
-- `home_bg` が欠けた場合は地層背景へ、各 `section_XX` が欠けた場合はその区間だけ従来のコード描画へ戻る。画像が存在する区間では画像を優先する。
+- 山の素材は縦横比約1:3（現在724×2172px、本番は1206×3000px程度でも可）。**1セクションの高さは画面幅の3倍**（`WorldMotionController.sectionAspect`）で、画像の上下端はクロップされず継ぎ目が保たれる。左右は中央基準のAspect Fillで、極端な縦横比の画像では左右がクロップされる。
+- Asset内の画像だけを交換すればよく、Swiftコードやセクション位置の変更は不要。解像度やAssetのscale指定が変わってもセクションの高さは変わらない。
+- 画面に交差するセクションだけを描画し、隣接セクションは同じピクセル境界を共有する。画像間の色の連続性は素材側で調整する（現状、一部の境界に色の切れ目が見える）。
+- `home_bg` が欠けた場合は地層背景へ、各 `section_XX` が欠けた場合はその区間だけコード描画へ戻る。
 - ロゴ、羊皮紙、正誤・満点演出、空・海ティザーの追加素材は未導入。
 
-## 背景レイアウトの検証
+## 問題データ
 
-現時点でXcodeのテストターゲットはない。以下は本番の座標計算を使い、仮の603×603px、本番想定1206×3000px、横長画像について、全セクションの接続・画像の被覆・縦横比を検証する独立チェック。
+- `tools/build_questions.py` — 初回生成（既存ファイルがあると拒否）。
+- `tools/fetch_supabase.py` — rikarikastudy の Supabase から2択化できる問題を **追記のみ** で取り込む（既存IDは不変、`--dry-run` あり）。`.env` に `SUPABASE_URL` / `SUPABASE_KEY`（Publishable key）を置く。`.env` はコミットしない。
+- 現在 874 問（`00001`〜`00874`）。
+
+## 検証
+
+### 自動テスト（XCTest）
+
+```sh
+xcodebuild -project doparika.xcodeproj -scheme doparika -destination 'platform=iOS Simulator,name=iPhone 18 Pro' test
+```
+
+`doparikaTests`: 背景モーション（境界・回転・ドリフト上限）、回答期限・一時停止・問題切替の時計、再挑戦の位置継承、保存（XP・解放・誤答）、出題（5問・復習混合）、問題データ。
+
+### 背景レイアウトの独立チェック
 
 ```sh
 xcrun swiftc -parse-as-library doparika/Services/WorldMotionController.swift doparika/Views/WorldSectionLayout.swift tools/check_background_layout.swift -o /tmp/doparika-background-checks
 /tmp/doparika-background-checks
 ```
 
-Simulatorでの確認結果と検証範囲は `docs/qa/asset-readiness.md` を参照。
+画面確認の結果と未確認事項は `docs/qa/asset-readiness.md` を参照。

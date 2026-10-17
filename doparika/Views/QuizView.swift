@@ -10,7 +10,7 @@ final class QuizSession {
     private var ticker: Task<Void, Never>?
     private var finishedRecorded = false
     private var lastTick: ContinuousClock.Instant?
-    private let clock = ContinuousClock()
+    private let now: () -> ContinuousClock.Instant   // injectable for tests
     private let carryOverPosition: Double?
     /// Pausing (Background) drops the clock reference, so the suspended interval is never counted.
     var paused = false { didSet { lastTick = nil } }
@@ -20,16 +20,19 @@ final class QuizSession {
 
     /// `carryOverPosition`: where the previous session's world currently is, so a quick retry
     /// converges from there instead of warping.
-    init(model: AppModel, carryOverPosition: Double? = nil) {
+    init(model: AppModel, carryOverPosition: Double? = nil,
+         now: @escaping () -> ContinuousClock.Instant = { ContinuousClock().now }) {
         self.model = model
+        self.now = now
         self.carryOverPosition = carryOverPosition
         self.engine = QuizEngine(questions: model.makeSession())
         precondition(!engine.questions.isEmpty, "session must have questions")
         engine.onResolved = { [weak self] q, r in self?.handle(q, r) }
+        motion.restProvider = { [weak self] in self?.permanent ?? 0 }
     }
 
-    func start(viewportHeight: Double, width: Double) {
-        guard ticker == nil else { return }
+    /// Sets up geometry, position and clocks without starting the frame ticker (tests drive `advance()`).
+    func configure(viewportHeight: Double, width: Double) {
         motion.setViewport(viewportHeight, width: width)
         if let carry = carryOverPosition {
             motion.jump(to: carry)
@@ -37,8 +40,13 @@ final class QuizSession {
         } else {
             motion.jump(to: permanent)
         }
-        motion.startThinking(duration: QuizEngine.timeLimit, rest: permanent)
-        lastTick = clock.now
+        motion.startThinking(duration: QuizEngine.timeLimit)
+        lastTick = now()
+    }
+
+    func start(viewportHeight: Double, width: Double) {
+        guard ticker == nil else { return }
+        configure(viewportHeight: viewportHeight, width: width)
         ticker = Task { [weak self] in
             while !Task.isCancelled {
                 try? await Task.sleep(for: .milliseconds(16))
@@ -51,12 +59,12 @@ final class QuizSession {
 
     /// Single time source: the frame ticker and answer handling both advance the engine to "now" first,
     /// so an answer arriving after the deadline is a timeout regardless of task ordering.
-    private func advance() {
+    func advance() {
         guard !paused else { return }
-        let now = clock.now
-        defer { lastTick = now }
+        let current = now()
+        defer { lastTick = current }
         guard let last = lastTick else { return }
-        let d = now - last
+        let d = current - last
         let dt = Double(d.components.seconds) + Double(d.components.attoseconds) / 1e18
         engine.tick(dt)
         motion.step(dt)
@@ -73,7 +81,7 @@ final class QuizSession {
         if engine.phase == .finished {
             if !finishedRecorded { finishedRecorded = true; model.finishSession() }
         } else {
-            motion.startThinking(duration: QuizEngine.timeLimit, rest: permanent)
+            motion.startThinking(duration: QuizEngine.timeLimit)
         }
     }
 
