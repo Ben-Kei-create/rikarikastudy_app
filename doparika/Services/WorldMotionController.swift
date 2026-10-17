@@ -8,11 +8,15 @@ import Observation
 @Observable
 final class WorldMotionController {
     static let sectionCount = 10
-    static let sectionHeight: Double = 1200   // ~1:3 art at 402pt width; independent of pixel size
-    static var worldHeight: Double { Double(sectionCount) * sectionHeight }
+    /// The artwork is ~1:3, so each section is 3x the screen width tall: art is never cropped at the
+    /// joins, whatever the device width. Positions are stored as pt and rescaled if the width changes.
+    static let sectionAspect: Double = 3
+    private(set) var sectionHeight: Double = 1200
+    var worldHeight: Double { Double(Self.sectionCount) * sectionHeight }
     /// Resting depth at Lv.1 (room above for drift + fall) and at Lv.30 (room below for the final surge).
-    static let startMargin: Double = 650
-    static let endMargin: Double = 450
+    /// Start: room for the max thinking drift (40%) plus the longest fall (440pt / 60%). End: the minimum boost.
+    static let startMargin: Double = 740
+    static let endMargin: Double = 520
     /// Thinking drift never uses more than this share of the headroom, so a fall always has room left.
     static let driftHeadroomShare: Double = 0.4
 
@@ -38,9 +42,16 @@ final class WorldMotionController {
         var then: Double?       // follow-up settle target (overshoot -> permanent position)
     }
 
-    var maxPosition: Double { max(Self.worldHeight - viewport, 0) }
+    var maxPosition: Double { max(worldHeight - viewport, 0) }
 
-    func setViewport(_ h: Double) {
+    func setViewport(_ h: Double, width: Double) {
+        let newSection = max(width, 1) * Self.sectionAspect
+        if abs(newSection - sectionHeight) > 0.5 {           // width changed: keep the same place in the world
+            let k = newSection / sectionHeight
+            position *= k
+            if var m = move { m.target *= k; m.then = m.then.map { $0 * k }; move = m }
+            sectionHeight = newSection
+        }
         viewport = max(h, 1)
         position = clamp(position)
         // Targets computed for the old size could now lie outside the artwork.
@@ -57,9 +68,11 @@ final class WorldMotionController {
 
     func jump(to p: Double) { position = clamp(p); velocity = 0; move = nil }
 
-    func startThinking(duration: Double) {
+    /// `rest` is the permanent depth the world is converging to (the drift budget is based on it,
+    /// not on the transient position, which may still be mid-settle).
+    func startThinking(duration: Double, rest: Double) {
         thinking = true; thinkElapsed = 0; thinkDuration = duration; thinkDrift = 0
-        thinkBudget = position * Self.driftHeadroomShare
+        thinkBudget = clamp(rest) * Self.driftHeadroomShare
     }
     func stopThinking() { thinking = false }
 

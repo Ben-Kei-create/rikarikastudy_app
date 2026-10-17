@@ -9,43 +9,62 @@ final class QuizSession {
     private let model: AppModel
     private var ticker: Task<Void, Never>?
     private var finishedRecorded = false
-    var paused = false
+    private var lastTick: ContinuousClock.Instant?
+    private let clock = ContinuousClock()
+    private let carryOverPosition: Double?
+    /// Pausing (Background) drops the clock reference, so the suspended interval is never counted.
+    var paused = false { didSet { lastTick = nil } }
 
     /// Permanent resting depth from XP/Lv; animations only deviate from it temporarily.
     private var permanent: Double { motion.permanentPosition(fraction: model.levelFraction) }
 
-    init(model: AppModel) {
+    /// `carryOverPosition`: where the previous session's world currently is, so a quick retry
+    /// converges from there instead of warping.
+    init(model: AppModel, carryOverPosition: Double? = nil) {
         self.model = model
+        self.carryOverPosition = carryOverPosition
         self.engine = QuizEngine(questions: model.makeSession())
         precondition(!engine.questions.isEmpty, "session must have questions")
         engine.onResolved = { [weak self] q, r in self?.handle(q, r) }
     }
 
-    func start(viewportHeight: Double) {
-        motion.setViewport(viewportHeight)
-        motion.jump(to: permanent)
-        motion.startThinking(duration: QuizEngine.timeLimit)
+    func start(viewportHeight: Double, width: Double) {
         guard ticker == nil else { return }
+        motion.setViewport(viewportHeight, width: width)
+        if let carry = carryOverPosition {
+            motion.jump(to: carry)
+            motion.settle(to: permanent)
+        } else {
+            motion.jump(to: permanent)
+        }
+        motion.startThinking(duration: QuizEngine.timeLimit, rest: permanent)
+        lastTick = clock.now
         ticker = Task { [weak self] in
-            let clock = ContinuousClock()
-            var last = clock.now
             while !Task.isCancelled {
                 try? await Task.sleep(for: .milliseconds(16))
-                let now = clock.now
-                if let self, self.paused { last = now; continue }
-                let dt = Double((now - last).components.seconds)
-                    + Double((now - last).components.attoseconds) / 1e18
-                last = now
-                guard let self, !self.paused else { continue }
-                self.motion.step(dt)
-                self.engine.tick(dt)
+                self?.advance()
             }
         }
     }
 
-    func stop() { ticker?.cancel(); ticker = nil }
+    func stop() { ticker?.cancel(); ticker = nil; lastTick = nil }
 
-    func answer(_ id: String) { engine.answer(choiceID: id) }
+    /// Single time source: the frame ticker and answer handling both advance the engine to "now" first,
+    /// so an answer arriving after the deadline is a timeout regardless of task ordering.
+    private func advance() {
+        guard !paused else { return }
+        let now = clock.now
+        defer { lastTick = now }
+        guard let last = lastTick else { return }
+        let d = now - last
+        let dt = Double(d.components.seconds) + Double(d.components.attoseconds) / 1e18
+        engine.tick(dt)
+        motion.step(dt)
+    }
+
+    func answer(_ id: String) { advance(); engine.answer(choiceID: id) }
+
+    var currentPosition: Double { motion.position }
 
     func next() {
         engine.next()
@@ -53,7 +72,7 @@ final class QuizSession {
         if engine.phase == .finished {
             if !finishedRecorded { finishedRecorded = true; model.finishSession() }
         } else {
-            motion.startThinking(duration: QuizEngine.timeLimit)
+            motion.startThinking(duration: QuizEngine.timeLimit, rest: permanent)
         }
     }
 
@@ -67,7 +86,7 @@ final class QuizSession {
             motion.fall(distance: 380)
         case .timeout:
             model.record(question: q, correct: false)
-            motion.fall(distance: 520)
+            motion.fall(distance: 440)
         }
     }
 }
@@ -84,7 +103,7 @@ struct QuizView: View {
             ZStack {
                 if let session {
                     QuizContent(session: session, model: model, onRestart: restart, onHome: { path.removeAll() })
-                        .onAppear { session.start(viewportHeight: geo.size.height) }
+                        .onAppear { session.start(viewportHeight: geo.size.height, width: geo.size.width) }
                         .onDisappear { session.stop() }
                         .id(ObjectIdentifier(session))   // outermost: a new session recreates the view and re-runs onAppear
                 } else {
@@ -98,8 +117,9 @@ struct QuizView: View {
     }
 
     private func restart() {
+        let carry = session?.currentPosition
         session?.stop()
-        session = QuizSession(model: model)
+        session = QuizSession(model: model, carryOverPosition: carry)
     }
 }
 

@@ -6,9 +6,8 @@ import CoreGraphics
 @MainActor
 enum WorldSectionLayout {
     static func frame(index: Int, position: Double, width: Double,
-                      displayScale: Double) -> CGRect {
+                      sectionHeight height: Double, displayScale: Double) -> CGRect {
         let scale = max(displayScale, 1)
-        let height = WorldMotionController.sectionHeight
         // Compute both edges from world coordinates so neighbouring sections share an edge,
         // including at fractional scroll offsets and on 2x/3x displays.
         let top = ((Double(index) * height - position) * scale).rounded() / scale

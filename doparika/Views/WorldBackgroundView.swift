@@ -26,18 +26,19 @@ struct WorldBackgroundView: View {
         GeometryReader { geo in
             Canvas(rendersAsynchronously: false) { ctx, size in
                 let pos = motion.position
-                let h = WorldMotionController.sectionHeight
+                let h = motion.sectionHeight
                 let first = max(0, Int(floor(pos / h)))
                 let last = min(WorldMotionController.sectionCount - 1, Int(floor((pos + size.height) / h)))
                 guard first <= last else { return }
                 for s in first...last {
                     let frame = WorldSectionLayout.frame(index: s, position: pos,
-                                                         width: size.width, displayScale: displayScale)
+                                                         width: size.width, sectionHeight: h,
+                                                         displayScale: displayScale)
                     drawSection(ctx, index: s, frame: frame, size: size)
                 }
             }
-            .onAppear { motion.setViewport(geo.size.height) }
-            .onChange(of: geo.size.height) { _, new in motion.setViewport(new) }
+            .onAppear { motion.setViewport(geo.size.height, width: geo.size.width) }
+            .onChange(of: geo.size) { _, new in motion.setViewport(new.height, width: new.width) }
         }
         .ignoresSafeArea()
         .accessibilityHidden(true)
@@ -47,7 +48,7 @@ struct WorldBackgroundView: View {
         var ctx = context
         ctx.clip(to: Path(frame))
         let top = frame.minY
-        let h = WorldMotionController.sectionHeight
+        let h = frame.height
         let (a, b) = Self.palette[s]
         let artName = String(format: "section_%02d", s + 1)
         if let artwork = UIImage(named: artName) {
