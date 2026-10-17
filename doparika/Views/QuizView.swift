@@ -10,9 +10,12 @@ final class QuizSession {
     private var ticker: Task<Void, Never>?
     private var finishedRecorded = false
     var paused = false
+    /// Section whose top the world rests on; each correct answer advances one section.
+    private var anchor: Int
 
     init(model: AppModel) {
         self.model = model
+        self.anchor = min(WorldMotionController.sectionCount - 1, (model.levelInfo.level - 1) / 3)
         self.engine = QuizEngine(questions: model.makeSession())
         precondition(!engine.questions.isEmpty, "session must have questions")
         engine.onResolved = { [weak self] q, r in self?.handle(q, r) }
@@ -20,7 +23,7 @@ final class QuizSession {
 
     func start(viewportHeight: Double) {
         motion.setViewport(viewportHeight)
-        motion.jump(to: motion.startPosition(progress: model.worldProgress))
+        motion.jump(to: WorldMotionController.sectionTop(anchor))
         motion.startThinking(duration: QuizEngine.timeLimit)
         guard ticker == nil else { return }
         ticker = Task { [weak self] in
@@ -55,7 +58,10 @@ final class QuizSession {
 
     private func handle(_ q: Question, _ r: Resolution) {
         if case .correct = r {
-            motion.boost()
+            let wasLast = anchor >= WorldMotionController.sectionCount - 1
+            anchor = min(anchor + 1, WorldMotionController.sectionCount - 1)
+            // Already in the last section: surge to the very bottom of the art instead.
+            motion.boost(to: wasLast ? motion.maxPosition : WorldMotionController.sectionTop(anchor))
             model.record(question: q, correct: true)
         } else {
             motion.fall()

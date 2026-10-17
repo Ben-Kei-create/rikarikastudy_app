@@ -26,7 +26,7 @@ final class WorldMotionController {
         let peak: Double        // peak velocity (pt/s)
         let damping: Double     // exponential decay rate
         let sign: Double
-        var released = false
+        var target: Double? = nil   // exact landing position for boosts
     }
 
     var maxPosition: Double { Self.worldHeight - viewport }
@@ -43,12 +43,18 @@ final class WorldMotionController {
     }
     func stopThinking() { thinking = false }
 
-    /// Correct answer: big upward surge covering ~`distance` pt.
-    func boost(distance: Double = 1100) {
+    static func sectionTop(_ index: Int) -> Double {
+        Double(min(max(index, 0), sectionCount - 1)) * sectionHeight
+    }
+
+    /// Correct answer: surge down the world and land exactly on `target` (top of the next section).
+    func boost(to target: Double) {
         thinking = false
-        let damping = 1.6
-        impulse = Impulse(windUp: 0.18, rampTime: 0.22, peak: distance * damping * 1.25,
-                          damping: damping, sign: 1)
+        let damping = 2.4, ramp = 0.22
+        let distance = max(target - position, 200)
+        // Travel = peak * (ramp/2 + 1/damping): solve for the peak that lands on target.
+        impulse = Impulse(windUp: 0.18, rampTime: ramp, peak: distance / (ramp / 2 + 1 / damping),
+                          damping: damping, sign: 1, target: target)
     }
 
     /// Wrong / timeout: gentler fall back down.
@@ -77,9 +83,12 @@ final class WorldMotionController {
                     let k = t / imp.rampTime
                     v += imp.sign * imp.peak * k * k * (3 - 2 * k) // smoothstep ramp
                 } else {
-                    imp.released = true
-                    v += imp.sign * imp.peak * exp(-imp.damping * (t - imp.rampTime))
-                    if abs(imp.peak * exp(-imp.damping * (t - imp.rampTime))) < 2 { impulse = nil }
+                    let tail = imp.sign * imp.peak * exp(-imp.damping * (t - imp.rampTime))
+                    v += tail
+                    if abs(tail) < 8 {
+                        impulse = nil
+                        if let target = imp.target { position = target; velocity = 0; return }
+                    }
                 }
             }
             if impulse != nil { impulse = imp }
