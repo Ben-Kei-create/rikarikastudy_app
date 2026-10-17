@@ -10,8 +10,11 @@ final class WorldMotionController {
     static let sectionCount = 10
     static let sectionHeight: Double = 1200   // ~1:3 art at 402pt width; independent of pixel size
     static var worldHeight: Double { Double(sectionCount) * sectionHeight }
-    /// Depth shown at 0 XP; leaves room above so early drift/falls stay inside the artwork.
-    static let startMargin: Double = 450
+    /// Resting depth at Lv.1 (room above for drift + fall) and at Lv.30 (room below for the final surge).
+    static let startMargin: Double = 650
+    static let endMargin: Double = 450
+    /// Thinking drift never uses more than this share of the headroom, so a fall always has room left.
+    static let driftHeadroomShare: Double = 0.4
 
     private(set) var position: Double = 0
     private(set) var velocity: Double = 0
@@ -20,6 +23,8 @@ final class WorldMotionController {
     @ObservationIgnored private var thinking = false
     @ObservationIgnored private var thinkElapsed: Double = 0
     @ObservationIgnored private var thinkDuration: Double = 15
+    @ObservationIgnored private var thinkDrift: Double = 0
+    @ObservationIgnored private var thinkBudget: Double = 0
     @ObservationIgnored private var move: Move?
 
     private struct Move {
@@ -29,25 +34,32 @@ final class WorldMotionController {
         let peak: Double        // peak speed (pt/s)
         let damping: Double     // exponential decay rate
         let sign: Double
-        let target: Double
+        var target: Double
         var then: Double?       // follow-up settle target (overshoot -> permanent position)
     }
 
     var maxPosition: Double { max(Self.worldHeight - viewport, 0) }
 
-    func setViewport(_ h: Double) { viewport = max(h, 1); position = clamp(position) }
+    func setViewport(_ h: Double) {
+        viewport = max(h, 1)
+        position = clamp(position)
+        // Targets computed for the old size could now lie outside the artwork.
+        if var m = move { m.target = clamp(m.target); m.then = m.then.map(clamp); move = m }
+    }
 
     /// Permanent resting depth for a 0...1 progress fraction (Lv.1 -> 0, Lv.30 -> bottom of the world).
     func permanentPosition(fraction: Double) -> Double {
         let f = min(max(fraction, 0), 1)
         let start = min(Self.startMargin, maxPosition)
-        return start + (maxPosition - start) * f
+        let end = max(start, maxPosition - Self.endMargin)
+        return start + (end - start) * f
     }
 
     func jump(to p: Double) { position = clamp(p); velocity = 0; move = nil }
 
     func startThinking(duration: Double) {
-        thinking = true; thinkElapsed = 0; thinkDuration = duration
+        thinking = true; thinkElapsed = 0; thinkDuration = duration; thinkDrift = 0
+        thinkBudget = position * Self.driftHeadroomShare
     }
     func stopThinking() { thinking = false }
 
@@ -100,7 +112,7 @@ final class WorldMotionController {
                     let tail = m.peak * exp(-m.damping * (t - m.rampTime))
                     v = m.sign * tail
                     if tail < 8 {                                     // landed: snap the last few pt
-                        position = m.target; velocity = 0; move = nil
+                        position = clamp(m.target); velocity = 0; move = nil
                         if let next = m.then { move = makeMove(to: next, windUp: 0, ramp: 0.3, damping: 3.2) }
                         return
                     }
@@ -110,7 +122,10 @@ final class WorldMotionController {
         } else if thinking {
             thinkElapsed += dt
             let t = min(thinkElapsed / thinkDuration, 1)
-            v = -(4 + 70 * t * t)            // very slow at first, accelerating
+            // Very slow at first, accelerating; total drift is capped by the headroom above us.
+            let raw = 4 + 70 * t * t
+            v = -min(raw, max(0, thinkBudget - thinkDrift) / max(dt, 0.001))
+            thinkDrift += -v * dt
         }
         velocity = v
         position = clamp(position + v * dt)
