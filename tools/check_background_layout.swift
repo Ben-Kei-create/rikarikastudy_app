@@ -11,15 +11,16 @@ struct BackgroundLayoutChecks {
         for width in [320.0, 375, 402, 430, 852] {
             for scale in [2.0, 3.0] {
                 let sectionHeight = width * WorldMotionController.sectionAspect
+                let overlap = sectionHeight * WorldMotionController.overlapFraction
                 for position in stride(from: -600.25, through: sectionHeight * 10 + 600, by: 37.125) {
                     for index in 0..<WorldMotionController.sectionCount {
                         let frame = WorldSectionLayout.frame(index: index, position: position,
-                                                             width: width, sectionHeight: sectionHeight,
+                                                             width: width, sectionHeight: sectionHeight, overlap: overlap,
                                                              displayScale: scale)
                         let next = WorldSectionLayout.frame(index: index + 1, position: position,
-                                                            width: width, sectionHeight: sectionHeight,
+                                                            width: width, sectionHeight: sectionHeight, overlap: overlap,
                                                              displayScale: scale)
-                        precondition(abs(frame.maxY - next.minY) < 0.000001, "section seam gap")
+                        precondition(abs((frame.maxY - next.minY) - overlap) < 1.0 / scale + 0.000001, "neighbouring sections must overlap by the blend height")
                         for size in sizes {
                             let image = WorldSectionLayout.aspectFillRect(imageSize: size, in: frame)
                             precondition(image.minX <= frame.minX + 0.000001 &&

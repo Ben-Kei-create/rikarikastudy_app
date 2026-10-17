@@ -26,15 +26,14 @@ struct WorldBackgroundView: View {
         GeometryReader { geo in
             Canvas(rendersAsynchronously: false) { ctx, size in
                 let pos = motion.position
-                let h = motion.sectionHeight
-                let first = max(0, Int(floor(pos / h)))
-                let last = min(WorldMotionController.sectionCount - 1, Int(floor((pos + size.height) / h)))
+                let h = motion.sectionHeight, ov = motion.overlap, step = motion.sectionStep
+                let first = max(0, Int(floor((pos - ov) / step)))
+                let last = min(WorldMotionController.sectionCount - 1, Int(floor((pos + size.height) / step)))
                 guard first <= last else { return }
                 for s in first...last {
-                    let frame = WorldSectionLayout.frame(index: s, position: pos,
-                                                         width: size.width, sectionHeight: h,
-                                                         displayScale: displayScale)
-                    drawSection(ctx, index: s, frame: frame, size: size)
+                    let frame = WorldSectionLayout.frame(index: s, position: pos, width: size.width,
+                                                         sectionHeight: h, overlap: ov, displayScale: displayScale)
+                    drawSection(ctx, index: s, frame: frame, size: size, overlap: ov)
                 }
             }
             .onAppear { motion.setViewport(geo.size.height, width: geo.size.width) }
@@ -44,7 +43,7 @@ struct WorldBackgroundView: View {
         .accessibilityHidden(true)
     }
 
-    private func drawSection(_ context: GraphicsContext, index s: Int, frame: CGRect, size: CGSize) {
+    private func drawSection(_ context: GraphicsContext, index s: Int, frame: CGRect, size: CGSize, overlap: Double) {
         var ctx = context
         ctx.clip(to: Path(frame))
         let top = frame.minY
@@ -53,8 +52,25 @@ struct WorldBackgroundView: View {
         let artName = String(format: "section_%02d", s + 1)
         if let artwork = UIImage(named: artName) {
             let image = ctx.resolve(Image(uiImage: artwork))
-            ctx.draw(image, in: WorldSectionLayout.aspectFillRect(imageSize: image.size, in: frame,
-                                                                   topCrop: Self.topCrop[s]))
+            let rect = WorldSectionLayout.aspectFillRect(imageSize: image.size, in: frame, topCrop: Self.topCrop[s])
+            if s == 0 {
+                ctx.draw(image, in: rect)
+            } else {
+                // Fade this section in over the overlap with the previous one (smoothstep, no visible edge).
+                ctx.drawLayer { layer in
+                    layer.draw(image, in: rect)
+                    var mask = layer
+                    mask.blendMode = .destinationIn
+                    let f = min(overlap / max(frame.height, 1), 0.99)
+                    let stops = (0...8).map { i -> Gradient.Stop in
+                        let t = Double(i) / 8
+                        return .init(color: .black.opacity(t * t * (3 - 2 * t)), location: t * f)
+                    } + [.init(color: .black, location: 1)]
+                    mask.fill(Path(frame), with: .linearGradient(Gradient(stops: stops),
+                                                                 startPoint: CGPoint(x: 0, y: frame.minY),
+                                                                 endPoint: CGPoint(x: 0, y: frame.maxY)))
+                }
+            }
             return
         }
         let rect = frame

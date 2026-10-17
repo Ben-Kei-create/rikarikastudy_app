@@ -12,7 +12,12 @@ final class WorldMotionController {
     /// joins, whatever the device width. Positions are stored as pt and rescaled if the width changes.
     static let sectionAspect: Double = 3
     private(set) var sectionHeight: Double = 1200
-    var worldHeight: Double { Double(Self.sectionCount) * sectionHeight }
+    /// Neighbouring sections overlap by this fraction of their height; the overlap is cross-faded,
+    /// so the join between two artworks is a soft dissolve instead of a hard edge.
+    static let overlapFraction: Double = 0.12
+    var overlap: Double { sectionHeight * Self.overlapFraction }
+    var sectionStep: Double { sectionHeight - overlap }
+    var worldHeight: Double { Double(Self.sectionCount - 1) * sectionStep + sectionHeight }
     /// Resting depth at Lv.1 (room above for drift + fall) and at Lv.30 (room below for the final surge).
     /// Start: room for the max thinking drift (40%) plus the longest fall (440pt / 60%). End: the minimum boost.
     static let startMargin: Double = 740

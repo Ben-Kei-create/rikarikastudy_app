@@ -174,9 +174,11 @@ private struct QuizContent: View {
                 }
             }
             .parchmentPanel(opacity: 0.8)
+            .frame(maxHeight: .infinity)   // centred in the space between header and feedback area
 
-            Spacer(minLength: 0)
+            // Fixed-height feedback area: the question panel stays put when an answer is revealed.
             feedback(engine)
+                .frame(height: 300, alignment: .bottom)
         }
         .padding(.horizontal, 18)
         .padding(.top, 8)
