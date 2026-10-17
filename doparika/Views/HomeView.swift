@@ -4,6 +4,16 @@ struct HomeView: View {
     let model: AppModel
     @Binding var path: [Route]
     @State private var motion = WorldMotionController()
+    // Launch intro: the logo slams in, the screen flashes, a shine sweeps across, then the rest fades up.
+    private static var introPlayed = false
+    @State private var logoScale = 2.6
+    @State private var logoDrop = -260.0
+    @State private var logoOpacity = 0.0
+    @State private var flash = 0.0
+    @State private var shineX = -0.5
+    @State private var rest = 0.0
+    @State private var pulse = 1.0
+    @State private var shake = 0.0
 
     var body: some View {
         ZStack {
@@ -23,24 +33,22 @@ struct HomeView: View {
                            startPoint: .top, endPoint: .bottom).ignoresSafeArea()
             ScrollView {
                 VStack(spacing: 22) {
-                    VStack(spacing: 6) {
+                    VStack(spacing: 10) {
                         Text("知識で、\n地層を突き上げる。")
                             .font(.system(size: 22, weight: .heavy, design: .serif))
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.white)
-                        Text("ドパリカ!")
-                            .font(.system(size: 64, weight: .black, design: .rounded))
-                            .foregroundStyle(LinearGradient(colors: [Theme.parchment, Theme.ember],
-                                                            startPoint: .top, endPoint: .bottom))
-                            .shadow(color: .black, radius: 6, y: 4)
-                            .rotationEffect(.degrees(-4))
-                            .accessibilityLabel("ドパリカ")
+                            .shadow(color: .black.opacity(0.6), radius: 4, y: 2)
+                            .opacity(rest)
+                        logo
                         Text("問題で、世界をうごかす地球アプリ")
                             .font(.footnote.weight(.semibold))
                             .foregroundStyle(.white.opacity(0.85))
+                            .opacity(rest)
                     }
                     .padding(.top, 24)
 
+                    Group {
                     levelCard
 
                     VStack(spacing: 12) {
@@ -55,13 +63,64 @@ struct HomeView: View {
                     }
 
                     stageRoadmap
+                    }
+                    .opacity(rest)
+                    .offset(y: (1 - rest) * 36)
                 }
                 .padding(.horizontal, 20)
                 .padding(.bottom, 32)
             }
         }
+        .overlay { Color.white.opacity(flash).ignoresSafeArea().allowsHitTesting(false) }
+        .offset(x: shake)
         .navigationBarHidden(true)
-        .onAppear { motion.jump(to: motion.permanentPosition(fraction: model.levelFraction)) }
+        .onAppear {
+            motion.jump(to: motion.permanentPosition(fraction: model.levelFraction))
+            playIntro()
+        }
+    }
+
+    private var logo: some View {
+        Image("logo")
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: 330)
+            .overlay {
+                GeometryReader { g in
+                    LinearGradient(colors: [.clear, .white.opacity(0.9), .clear], startPoint: .leading, endPoint: .trailing)
+                        .frame(width: g.size.width * 0.35)
+                        .offset(x: shineX * g.size.width)
+                }
+                .mask(Image("logo").resizable().scaledToFit())
+            }
+            .shadow(color: Theme.ember.opacity(0.55), radius: 18)
+            .scaleEffect(logoScale * pulse)
+            .offset(y: logoDrop)
+            .opacity(logoOpacity)
+            .accessibilityLabel("ドパリカ")
+    }
+
+    private func playIntro() {
+        guard !Self.introPlayed else {
+            logoScale = 1; logoDrop = 0; logoOpacity = 1; rest = 1; shineX = 1.3
+            startPulse()
+            return
+        }
+        Self.introPlayed = true
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.5)) { logoScale = 1; logoDrop = 0; logoOpacity = 1 }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.28) {          // impact
+            withAnimation(.easeOut(duration: 0.12)) { flash = 0.7 }
+            withAnimation(.easeOut(duration: 0.5).delay(0.12)) { flash = 0 }
+            withAnimation(.interpolatingSpring(stiffness: 900, damping: 5)) { shake = 7 }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) { withAnimation(.interpolatingSpring(stiffness: 900, damping: 8)) { shake = 0 } }
+        }
+        withAnimation(.easeInOut(duration: 0.9).delay(0.8)) { shineX = 1.3 }
+        withAnimation(.easeOut(duration: 0.6).delay(0.75)) { rest = 1 }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { startPulse() }
+    }
+
+    private func startPulse() {
+        withAnimation(.easeInOut(duration: 1.8).repeatForever(autoreverses: true)) { pulse = 1.03 }
     }
 
     private var levelCard: some View {

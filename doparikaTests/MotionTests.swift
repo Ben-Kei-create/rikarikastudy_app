@@ -53,15 +53,28 @@ final class MotionTests: XCTestCase {
         for _ in 0..<(60 * 40) { m.step(1.0 / 60); XCTAssertGreaterThanOrEqual(m.position, WorldMotionController.fallReserve - 0.5) }
     }
 
-    func testBoostAtMaxLevelStillTravels() {
-        let m = controller(fraction: 1)
-        let rest = m.position
-        m.startThinking(duration: 15)
-        var peak = rest
-        m.boost(to: rest)
-        for _ in 0..<300 { m.step(1.0 / 60); peak = max(peak, m.position) }
-        XCTAssertGreaterThanOrEqual(peak - rest, 500)
-        XCTAssertEqual(m.position, rest, accuracy: 1)
+    /// A correct answer climbs to the resting depth and stays there: no overshoot, no trip back down.
+    func testBoostClimbsAndNeverOvershootsOrReturnsDown() {
+        for fraction in [0.0, 0.5, 1.0] {
+            let m = controller(fraction: fraction)
+            let rest = m.position
+            m.startThinking(duration: 15); run(m, seconds: 6)      // sunk below rest
+            let sunk = m.position
+            XCTAssertLessThan(sunk, rest)
+            m.boost(to: rest)
+            var last = m.position
+            for frame in 0..<300 {
+                m.step(1.0 / 60)
+                if frame < 12 {   // the tiny anticipation dip of the wind-up (a few pt at most)
+                    XCTAssertGreaterThanOrEqual(m.position, sunk - 3)
+                } else {
+                    XCTAssertGreaterThanOrEqual(m.position, last - 0.001, "must never move down during a boost")
+                }
+                XCTAssertLessThanOrEqual(m.position, rest + 0.001, "must not overshoot")
+                last = m.position
+            }
+            XCTAssertEqual(m.position, rest, accuracy: 1)
+        }
     }
 
     func testRotationMidBoostIsContinuousAndInRange() {

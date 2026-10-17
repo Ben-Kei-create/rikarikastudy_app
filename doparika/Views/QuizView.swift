@@ -142,6 +142,8 @@ private struct QuizContent: View {
         let engine = session.engine
         ZStack {
             WorldBackgroundView(motion: session.motion)
+            AmbientEffects(motion: session.motion)
+            LowTimeVignette(engine: engine)
             if engine.phase == .finished {
                 ResultView(model: model, engine: engine, onRestart: onRestart, onHome: onHome)
             } else {
@@ -295,6 +297,7 @@ private struct AnswerBurst: View {
 
     var body: some View {
         ZStack {
+            if correct { SparkleBurst() }
             Text(correct ? "○" : "×")
                 .font(.system(size: 220, weight: .black, design: .rounded))
                 .foregroundStyle(correct ? Theme.good : Theme.bad)

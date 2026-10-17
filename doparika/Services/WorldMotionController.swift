@@ -94,16 +94,11 @@ final class WorldMotionController {
     }
     func stopThinking() { thinking = false }
 
-    /// Correct answer: wind-up, hard surge past the new resting point, then a gentle settle onto it.
-    /// The surge always travels at least `minTravel` so a small XP gain still feels like a big jump.
-    func boost(to permanent: Double, minTravel: Double = 520) {
+    /// Correct answer: a short wind-up, then a hard surge UP that lands exactly on the new resting depth.
+    /// No overshoot and no return trip: the world only ever moves toward the surface here.
+    func boost(to permanent: Double) {
         thinking = false
-        let rest = clamp(permanent)
-        let travel = rest - position
-        let overshoot = max(140, minTravel - travel)
-        let peakTarget = clamp(rest + overshoot)
-        move = makeMove(to: peakTarget, windUp: 0.18, ramp: 0.22, damping: 2.4,
-                        then: abs(peakTarget - rest) > 4 ? rest : nil)
+        move = makeMove(to: clamp(permanent), windUp: 0.15, ramp: 0.2, damping: 2.2)
     }
 
     /// Wrong / timeout: visual drop only; permanent progress is untouched.

@@ -10,6 +10,11 @@
 - `doparika/Resources/questions_mountain.json` — 山ステージ問題 (ID は一度発行したら不変)
 - `tools/build_questions.py` — rikarikastudy の choice4 問題を 2 択に変換 (既存ファイルがあると再生成を拒否)
 
+## 対応端末・Bundle ID
+
+- **iPhone専用・縦画面のみ**（`TARGETED_DEVICE_FAMILY = 1`、横画面・iPad は非対応）。
+- Bundle ID は `com.fumiakimogi.doparika`。開発初期の `devplaceholder.*.doparika` から変更したため、旧ビルドの保存データ（XP・解放履歴）は引き継がれない。開発用データなので移行はしない（リリース前の仕様）。
+
 ## 初回リリース仕様
 Lv.1〜30 / 山・地層 / 2択 / 1セッション5問 / 制限時間15秒 / 正解 +20XP
 
