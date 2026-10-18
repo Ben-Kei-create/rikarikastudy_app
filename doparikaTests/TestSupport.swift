@@ -25,6 +25,6 @@ struct TestEnv {
     }
 
     func session(clock: FakeClock, carry: Double? = nil) -> QuizSession {
-        QuizSession(model: model, carryOverPosition: carry, now: { clock.now() })
+        QuizSession(model: model, carryOverDepth: carry, now: { clock.now() })
     }
 }

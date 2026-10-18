@@ -2,101 +2,123 @@ import XCTest
 @testable import doparika
 
 final class MotionTests: XCTestCase {
-    private func controller(width: Double = 402, height: Double = 874, fraction: Double) -> WorldMotionController {
+    private func controller(questions: Int = 10, width: Double = 402, height: Double = 874) -> WorldMotionController {
         let m = WorldMotionController()
+        m.configure(questionCount: questions)
         m.setViewport(height, width: width)
-        m.restProvider = { [unowned m] in m.permanentPosition(fraction: fraction) }
-        m.jump(to: m.permanentPosition(fraction: fraction))
+        m.jump(to: 0)
         return m
     }
     private func run(_ m: WorldMotionController, seconds: Double) {
         for _ in 0..<Int(seconds * 60) { m.step(1.0 / 60) }
     }
 
-    func testTimeoutFallAtZeroXP() {
-        let m = controller(fraction: 0)
-        m.startThinking(duration: 15); run(m, seconds: 15)
-        let before = m.position
-        m.fall(distance: 440); run(m, seconds: 5)
-        XCTAssertGreaterThanOrEqual(before - m.position, 430)
+    func testStartsOnSurfaceAtTopOfFirstImage() {
+        let m = controller()
+        XCTAssertEqual(m.depth, 0)
+        XCTAssertEqual(m.restingDepth(afterCorrect: 0), 0)
     }
 
-    /// Codex P2: landscape -> portrait during thinking used to shrink the fall to ~62pt.
-    func testTimeoutFallSurvivesRotationWhileThinking() {
-        let m = controller(width: 874, height: 402, fraction: 0)
-        m.startThinking(duration: 15); run(m, seconds: 5)
-        m.setViewport(874, width: 402)
-        run(m, seconds: 10)
-        let before = m.position
-        m.fall(distance: 440); run(m, seconds: 5)
-        XCTAssertGreaterThanOrEqual(before - m.position, 430)
-    }
-
-    /// Codex P2: rotating right after the next question starts (still settling) lost headroom.
-    func testRotationDuringSettleAfterNextQuestionKeepsFall() {
-        let m = controller(width: 874, height: 402, fraction: 0)
-        let rest = { m.permanentPosition(fraction: 0) }
-        m.startThinking(duration: 15); run(m, seconds: 15)
-        m.fall(distance: 440); run(m, seconds: 5)
-        m.settle(to: rest()); m.startThinking(duration: 15)   // next question begins mid-return
-        run(m, seconds: 0.1)
-        m.setViewport(874, width: 402)
-        run(m, seconds: 15)
-        let before = m.position
-        m.fall(distance: 440); run(m, seconds: 5)
-        XCTAssertGreaterThanOrEqual(before - m.position, 430)
-    }
-
-    func testThinkingNeverDriftsBelowReserve() {
-        let m = controller(fraction: 0)
-        m.startThinking(duration: 15)
-        for _ in 0..<(60 * 40) { m.step(1.0 / 60); XCTAssertGreaterThanOrEqual(m.position, WorldMotionController.fallReserve - 0.5) }
-    }
-
-    /// A correct answer climbs to the resting depth and stays there: no overshoot, no trip back down.
-    func testBoostClimbsAndNeverOvershootsOrReturnsDown() {
-        for fraction in [0.0, 0.5, 1.0] {
-            let m = controller(fraction: fraction)
-            let rest = m.position
-            m.startThinking(duration: 15); run(m, seconds: 6)      // sunk below rest
-            let sunk = m.position
-            XCTAssertLessThan(sunk, rest)
-            m.boost(to: rest)
-            var last = m.position
-            for frame in 0..<300 {
-                m.step(1.0 / 60)
-                if frame < 12 {   // the tiny anticipation dip of the wind-up (a few pt at most)
-                    XCTAssertGreaterThanOrEqual(m.position, sunk - 3)
-                } else {
-                    XCTAssertGreaterThanOrEqual(m.position, last - 0.001, "must never move down during a boost")
-                }
-                XCTAssertLessThanOrEqual(m.position, rest + 0.001, "must not overshoot")
-                last = m.position
-            }
-            XCTAssertEqual(m.position, rest, accuracy: 1)
+    func testRestingDepthIsTopOfNextImageAndGoalIsBottomOfLast() {
+        for n in [10, 20] {
+            let m = controller(questions: n)
+            for k in 1..<n { XCTAssertEqual(m.restingDepth(afterCorrect: k), Double(k) * m.sectionStep, accuracy: 0.001) }
+            // Goal: the bottom edge of image N (index N-1) sits at the bottom of the screen.
+            let bottomOfLast = Double(n - 1) * m.sectionStep + m.sectionHeight
+            XCTAssertEqual(m.restingDepth(afterCorrect: n) + 874, bottomOfLast, accuracy: 0.001)
+            XCTAssertEqual(m.goalDepth, m.restingDepth(afterCorrect: n))
         }
     }
 
-    func testRotationMidBoostIsContinuousAndInRange() {
-        let m = controller(fraction: 0.5)
-        m.boost(to: m.permanentPosition(fraction: 0.55))
-        run(m, seconds: 0.5)
-        m.setViewport(874, width: 874)
-        var last = m.position, maxStep = 0.0
-        for _ in 0..<300 {
+    func testTwentyQuestionRunUsesTwentyImagesAndNothingBeyond() {
+        let m = controller(questions: 20)
+        XCTAssertLessThanOrEqual(m.goalDepth + 874, Double(WorldMotionController.imageCount - 1) * m.sectionStep + m.sectionHeight + 0.001)
+    }
+
+    /// Correct answer: dive straight down onto the next image's top - no overshoot, no trip back up.
+    func testBoostDivesToNextImageTopMonotonically() {
+        let m = controller()
+        let target = m.restingDepth(afterCorrect: 1)
+        m.boost(to: target)
+        var last = m.depth
+        for frame in 0..<400 {
             m.step(1.0 / 60)
-            maxStep = max(maxStep, abs(m.position - last)); last = m.position
-            XCTAssertGreaterThanOrEqual(m.position, 0); XCTAssertLessThanOrEqual(m.position, m.maxPosition + 0.001)
+            if frame >= 12 { XCTAssertGreaterThanOrEqual(m.depth, last - 0.001, "must not move up during a dive") }
+            XCTAssertLessThanOrEqual(m.depth, target + 0.001, "must not overshoot")
+            last = m.depth
         }
-        XCTAssertLessThan(maxStep, 120)
+        XCTAssertEqual(m.depth, target, accuracy: 1)
     }
 
-    func testPermanentPositionIsMonotonicAndInsideWorld() {
-        let m = controller(fraction: 0)
-        var last = -1.0
-        for i in 0...30 {
-            let p = m.permanentPosition(fraction: Double(i) / 30)
-            XCTAssertGreaterThanOrEqual(p, last); XCTAssertLessThanOrEqual(p, m.maxPosition); last = p
-        }
+    func testBoostIsFastNotAGlide() {
+        let m = controller()
+        m.boost(to: m.restingDepth(afterCorrect: 1))
+        run(m, seconds: 1.8)
+        XCTAssertEqual(m.depth, m.restingDepth(afterCorrect: 1), accuracy: 1, "should have landed within ~1.8s")
+    }
+
+    func testFinalCorrectReachesBottomOfLastImage() {
+        let m = controller()
+        m.jump(to: m.restingDepth(afterCorrect: 9))
+        m.boost(to: m.restingDepth(afterCorrect: 10))
+        run(m, seconds: 3)
+        XCTAssertEqual(m.depth, m.goalDepth, accuracy: 1)
+    }
+
+    /// Thinking drifts back toward the surface, slowly at first, and never leaves the artwork.
+    func testThinkingDriftsTowardSurfaceBounded() {
+        let m = controller()
+        m.jump(to: m.restingDepth(afterCorrect: 4))
+        let start = m.depth
+        m.startThinking(duration: 15)
+        run(m, seconds: 2)
+        XCTAssertLessThan(start - m.depth, 40, "starts very slowly")
+        run(m, seconds: 40)
+        XCTAssertLessThan(m.depth, start)
+        XCTAssertGreaterThanOrEqual(start - m.depth, 250)
+        XCTAssertLessThanOrEqual(start - m.depth, WorldMotionController.maxThinkingDrift + 1)
+    }
+
+    func testThinkingAtTheSurfaceCannotGoAboveFirstImage() {
+        let m = controller()
+        m.startThinking(duration: 15); run(m, seconds: 20)
+        XCTAssertEqual(m.depth, 0, accuracy: 0.001)
+    }
+
+    func testWrongAnswerFallsTowardSurfaceAndStopsAtZero() {
+        let m = controller()
+        m.jump(to: m.restingDepth(afterCorrect: 3))
+        let before = m.depth
+        m.fall(distance: WorldMotionController.wrongFall); run(m, seconds: 4)
+        XCTAssertEqual(before - m.depth, WorldMotionController.wrongFall, accuracy: 1)
+        m.fall(distance: 100_000); run(m, seconds: 5)
+        XCTAssertEqual(m.depth, 0, accuracy: 0.001)
+    }
+
+    func testNextQuestionDoesNotReturnToTheAnchor() {
+        // After a wrong answer the next question simply continues from where the world is.
+        let m = controller()
+        m.jump(to: m.restingDepth(afterCorrect: 3))
+        m.fall(distance: 380); run(m, seconds: 4)
+        let after = m.depth
+        m.startThinking(duration: 15); run(m, seconds: 1)
+        XCTAssertLessThanOrEqual(m.depth, after)
+        XCTAssertGreaterThan(m.depth, after - 20)
+    }
+
+    func testWidthChangeKeepsTheSamePlaceInTheWorld() {
+        let m = controller(width: 375)
+        m.jump(to: m.restingDepth(afterCorrect: 3))
+        let before = m.depth / m.sectionStep
+        m.setViewport(874, width: 430)
+        XCTAssertEqual(m.depth / m.sectionStep, before, accuracy: 0.001)
+        XCTAssertLessThanOrEqual(m.depth, m.maxDepth)
+    }
+
+    func testSettleRisesBackToSurfaceForARetry() {
+        let m = controller()
+        m.jump(to: m.goalDepth)
+        m.settle(to: 0); run(m, seconds: 6)
+        XCTAssertEqual(m.depth, 0, accuracy: 1)
     }
 }

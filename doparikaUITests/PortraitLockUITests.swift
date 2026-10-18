@@ -18,7 +18,7 @@ final class PortraitLockUITests: XCTestCase {
     func testRotatingTheDeviceKeepsPortraitAndQuizWorks() {
         let app = launch()
         app.buttons["スタート"].tap()
-        XCTAssertTrue(app.staticTexts["第1問 / 5問"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", "第1問")).firstMatch.waitForExistence(timeout: 5))
         XCUIDevice.shared.orientation = .landscapeLeft
         sleep(1)
         let w = app.windows.firstMatch.frame
@@ -32,6 +32,6 @@ final class PortraitLockUITests: XCTestCase {
         XCTAssertTrue(next.isHittable)
         attach(app, "explanation")
         next.tap()
-        XCTAssertTrue(app.staticTexts["第2問 / 5問"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", "第2問")).firstMatch.waitForExistence(timeout: 3))
     }
 }

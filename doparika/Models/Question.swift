@@ -5,7 +5,7 @@ enum Stage: String, Codable, CaseIterable {
 
     var title: String {
         switch self {
-        case .mountain: return "山"
+        case .mountain: return "地球"   // raw value stays "mountain": stored IDs/JSON never change
         case .sky: return "空"
         case .sea: return "海"
         }

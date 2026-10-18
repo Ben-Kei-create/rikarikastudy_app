@@ -34,7 +34,7 @@ struct HomeView: View {
             ScrollView {
                 VStack(spacing: 22) {
                     VStack(spacing: 10) {
-                        Text("知識で、\n地層を突き上げる。")
+                        Text("知識で、\n地球の中心をめざせ。")
                             .font(.system(size: 22, weight: .heavy, design: .serif))
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.white)
@@ -75,7 +75,7 @@ struct HomeView: View {
         .offset(x: shake)
         .navigationBarHidden(true)
         .onAppear {
-            motion.jump(to: motion.permanentPosition(fraction: model.levelFraction))
+            motion.jump(to: 0)
             playIntro()
         }
     }
@@ -141,7 +141,7 @@ struct HomeView: View {
 
     private var stageRoadmap: some View {
         VStack(alignment: .leading, spacing: 10) {
-            stageRow(icon: "mountain.2.fill", title: "山・地層", detail: "Lv.1 - 30（配信中）", locked: false)
+            stageRow(icon: "globe.asia.australia.fill", title: "地球・地中", detail: "Lv.1 - 30（配信中）", locked: false)
             stageRow(icon: "cloud.fill", title: "空", detail: "近日公開", locked: true)
             stageRow(icon: "water.waves", title: "海", detail: "近日公開", locked: true)
         }

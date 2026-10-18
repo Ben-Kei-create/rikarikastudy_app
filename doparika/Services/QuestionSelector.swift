@@ -2,7 +2,8 @@ import Foundation
 
 /// Builds a 5-question session: review questions first by priority, rest are unseen (in ID order).
 struct QuestionSelector {
-    static let sessionSize = 5
+    /// Smallest session; the longest (Lv.20+) is 20.
+    static let sessionSize = 10
     static let minReview = 2
 
     struct History {

@@ -12,8 +12,8 @@ struct BackgroundLayoutChecks {
             for scale in [2.0, 3.0] {
                 let sectionHeight = width * WorldMotionController.sectionAspect
                 let overlap = sectionHeight * WorldMotionController.overlapFraction
-                for position in stride(from: -600.25, through: sectionHeight * 10 + 600, by: 37.125) {
-                    for index in 0..<WorldMotionController.sectionCount {
+                for position in stride(from: -600.25, through: sectionHeight * Double(WorldMotionController.imageCount) + 600, by: 37.125) {
+                    for index in 0..<WorldMotionController.imageCount {
                         let frame = WorldSectionLayout.frame(index: index, position: position,
                                                              width: width, sectionHeight: sectionHeight, overlap: overlap,
                                                              displayScale: scale)
@@ -35,6 +35,6 @@ struct BackgroundLayoutChecks {
                 }
             }
         }
-        print("PASS: \(checks) image coverage/aspect-ratio checks; all 10 section seams on 2x/3x displays")
+        print("PASS: \(checks) image coverage/aspect-ratio checks; all \(WorldMotionController.imageCount) image seams on 2x/3x displays")
     }
 }

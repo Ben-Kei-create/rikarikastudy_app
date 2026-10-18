@@ -33,7 +33,7 @@ final class AppModel {
 
     var levelInfo: LevelCalculator.Info { LevelCalculator.info(forXP: totalXP) }
 
-    /// 0...1 progress through Lv.1...30 (level plus progress inside the level); drives the permanent depth.
+    /// 0...1 progress through Lv.1...30 (level plus progress inside the level).
     var levelFraction: Double {
         let info = levelInfo
         let lv = info.isMax ? Double(LevelCalculator.maxLevel) : Double(info.level) + info.fraction
@@ -44,6 +44,9 @@ final class AppModel {
 
     var canStartSession: Bool { repository.loadError == nil }
 
+    /// Lv.1-19: 10 questions (images 001-010). Lv.20-30: 20 questions (images 001-020).
+    var sessionLength: Int { levelInfo.level >= 20 ? 20 : 10 }
+
     func makeSession() -> [Question] {
         let history = store.records().map {
             QuestionSelector.History(questionID: $0.questionID, wrongCount: $0.wrongCount,
@@ -51,7 +54,7 @@ final class AppModel {
                                      lastWrongLevel: $0.lastWrongLevel, lastAnsweredAt: $0.lastAnsweredAt)
         }
         return QuestionSelector.select(all: repository.questions(for: .mountain), history: history,
-                                       currentLevel: levelInfo.level)
+                                       currentLevel: levelInfo.level, size: sessionLength)
     }
 
     func record(question: Question, correct: Bool) {

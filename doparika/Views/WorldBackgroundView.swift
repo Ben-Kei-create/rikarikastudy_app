@@ -20,13 +20,13 @@ struct WorldBackgroundView: View {
     ]
 
     /// Fraction of each artwork's top (sky/horizon) hidden so sections join as one continuous ground.
-    private static let topCrop: [Double] = Array(repeating: 0, count: 10)   // new art joins seamlessly
+    private static let topCrop: [Double] = Array(repeating: 0, count: WorldMotionController.imageCount)   // new art joins seamlessly
 
     var body: some View {
         GeometryReader { geo in
             Canvas(rendersAsynchronously: false) { context, size in
                 var ctx = context
-                let pos = motion.cameraTop
+                let pos = motion.depth
                 // Rumble: overscan a little, then jitter the whole world.
                 let amp = motion.shake, ph = motion.shakePhase
                 ctx.translateBy(x: size.width / 2, y: size.height / 2)
@@ -34,7 +34,7 @@ struct WorldBackgroundView: View {
                 ctx.translateBy(x: -size.width / 2 + sin(ph * 2.7) * amp, y: -size.height / 2 + cos(ph * 3.9) * amp)
                 let h = motion.sectionHeight, ov = motion.overlap, step = motion.sectionStep
                 let first = max(0, Int(floor((pos - ov) / step)))
-                let last = min(WorldMotionController.sectionCount - 1, Int(floor((pos + size.height) / step)))
+                let last = min(WorldMotionController.imageCount - 1, Int(floor((pos + size.height) / step)))
                 guard first <= last else { return }
                 for s in first...last {
                     let frame = WorldSectionLayout.frame(index: s, position: pos, width: size.width,
@@ -54,8 +54,8 @@ struct WorldBackgroundView: View {
         ctx.clip(to: Path(frame))
         let top = frame.minY
         let h = frame.height
-        let (a, b) = Self.palette[s]
-        let artName = String(format: "section_%02d", s + 1)
+        let (a, b) = Self.palette[s % Self.palette.count]
+        let artName = String(format: "earth_%03d", s + 1)
         if let artwork = UIImage(named: artName) {
             let image = ctx.resolve(Image(uiImage: artwork))
             let rect = WorldSectionLayout.aspectFillRect(imageSize: image.size, in: frame, topCrop: Self.topCrop[s])

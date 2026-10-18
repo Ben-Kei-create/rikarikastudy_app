@@ -31,7 +31,7 @@ final class PersistenceAndSelectionTests: XCTestCase {
         let qs = env.model.repository.questions(for: .mountain)
         for q in qs.prefix(8) { env.model.record(question: q, correct: false) }
         let set = env.model.makeSession()
-        XCTAssertEqual(set.count, QuestionSelector.sessionSize)
+        XCTAssertEqual(set.count, env.model.sessionLength)
         XCTAssertEqual(Set(set.map(\.id)).count, set.count)
         let reviewIDs = Set(qs.prefix(8).map(\.id))
         XCTAssertGreaterThanOrEqual(set.filter { reviewIDs.contains($0.id) }.count, QuestionSelector.minReview)

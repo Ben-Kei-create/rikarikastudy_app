@@ -1,48 +1,48 @@
 import Foundation
 import Observation
 
-/// Vertical motion for the strata world. `position` is the on-screen ("visual") depth in pt.
-/// The player's permanent progress is a separate target (see `permanentPosition`); thinking, wrong
-/// answers and boosts only move the visual position around it and always converge back to it.
+/// Vertical motion for the earth stage. `depth` is how far the camera's top edge is below the top of
+/// the first image (001), in pt: 0 = standing on the surface, larger = deeper underground.
+///
+/// - Start of a session: top of image 001.
+/// - Correct answer: surge down and land exactly on the top of the next image
+///   (all answers correct -> the very bottom of the last image).
+/// - Thinking / wrong / time-out: the world drifts (or drops) back toward the surface, shaking.
 @MainActor
 @Observable
 final class WorldMotionController {
-    static let sectionCount = 10
-    /// The artwork is ~1:3, so each section is 3x the screen width tall: art is never cropped at the
-    /// joins, whatever the device width. Positions are stored as pt and rescaled if the width changes.
+    /// Images available in the earth stage (earth_001 ... earth_020).
+    static let imageCount = 20
+    /// The artwork is 1:3, so each image is 3x the screen width tall: art is never cropped at the joins,
+    /// whatever the device width. Depths are stored as pt and rescaled if the width changes.
     static let sectionAspect: Double = 3
-    private(set) var sectionHeight: Double = 1200
-    /// Neighbouring sections overlap by this fraction of their height; the overlap is cross-faded,
+    /// Neighbouring images overlap by this fraction of their height; the overlap is cross-faded,
     /// so the join between two artworks is a soft dissolve instead of a hard edge.
     static let overlapFraction: Double = 0.12
+    /// Most the world drifts back toward the surface during one question of thinking (pt).
+    static let maxThinkingDrift: Double = 320
+    /// Drop toward the surface on a wrong answer / time-out (pt).
+    static let wrongFall: Double = 380
+    static let timeoutFall: Double = 460
+
+    private(set) var sectionHeight: Double = 1200
+    /// Questions in the current session = how many images the run can reach.
+    private(set) var questionCount: Int = 10
+
     var overlap: Double { sectionHeight * Self.overlapFraction }
     var sectionStep: Double { sectionHeight - overlap }
-    var worldHeight: Double { Double(Self.sectionCount - 1) * sectionStep + sectionHeight }
-    /// Resting depth at Lv.1 (room above for drift + fall) and at Lv.30 (room below for the final surge).
-    /// Start: room for the max thinking drift (40%) plus the longest fall (440pt / 60%). End: the minimum boost.
-    static let startMargin: Double = 740
-    static let endMargin: Double = 520
-    /// Longest fall; thinking drift stops this far from the top edge so a fall always has room,
-    /// whatever the device size or rotation.
-    static let fallReserve: Double = 440
 
-    private(set) var position: Double = 0
+    private(set) var depth: Double = 0
     private(set) var velocity: Double = 0
     /// Vibration of the world (pt) and a phase that advances every frame; drives the rumble effect.
     private(set) var shake: Double = 0
     private(set) var shakePhase: Double = 0
 
-    /// Distance of the camera's top edge from the top of the artwork. `position` is "height climbed":
-    /// it grows on a correct answer, so the camera moves UP toward the surface (Lv.30 = tree and sky)
-    /// and sinks deeper while thinking (Lv.1 = deepest rock).
-    var cameraTop: Double { maxPosition - position }
-
     @ObservationIgnored private var viewport: Double = 800
     @ObservationIgnored private var thinking = false
     @ObservationIgnored private var thinkElapsed: Double = 0
     @ObservationIgnored private var thinkDuration: Double = 15
-    /// Returns the permanent depth for the current geometry; used to re-anchor after a resize.
-    @ObservationIgnored var restProvider: (() -> Double)?
+    @ObservationIgnored private var thinkDrift: Double = 0
     @ObservationIgnored private var move: Move?
 
     private struct Move {
@@ -53,74 +53,81 @@ final class WorldMotionController {
         let damping: Double     // exponential decay rate
         let sign: Double
         var target: Double
-        var then: Double?       // follow-up settle target (overshoot -> permanent position)
     }
 
-    var maxPosition: Double { max(worldHeight - viewport, 0) }
+    // MARK: Geometry
+
+    /// Camera depth at which the top of image `index` (0-based) is at the top of the screen.
+    func sectionTop(_ index: Int) -> Double { Double(index) * sectionStep }
+
+    /// Camera depth at which the bottom of the last reachable image meets the bottom of the screen.
+    var goalDepth: Double {
+        max(Double(questionCount - 1) * sectionStep + sectionHeight - viewport, 0)
+    }
+    var maxDepth: Double { goalDepth }
+
+    /// Resting depth after `correct` right answers in this session.
+    func restingDepth(afterCorrect correct: Int) -> Double {
+        correct >= questionCount ? goalDepth : min(sectionTop(correct), goalDepth)
+    }
+
+    func configure(questionCount n: Int) {
+        questionCount = min(max(n, 1), Self.imageCount)
+        depth = clamp(depth)
+    }
 
     func setViewport(_ h: Double, width: Double) {
         let newSection = max(width, 1) * Self.sectionAspect
-        let oldSection = sectionHeight
         if abs(newSection - sectionHeight) > 0.5 {           // width changed: keep the same place in the world
             let k = newSection / sectionHeight
-            position *= k
-            if var m = move { m.target *= k; m.peak *= k; m.then = m.then.map { $0 * k }; move = m }
+            depth *= k
+            thinkDrift *= k
+            if var m = move { m.target *= k; m.peak *= k; move = m }
             sectionHeight = newSection
         }
-        let widthChanged = abs(newSection - oldSection) > 0.5
         viewport = max(h, 1)
-        position = clamp(position)
-        // Targets computed for the old size could now lie outside the artwork.
-        if var m = move { m.target = clamp(m.target); m.then = m.then.map(clamp); move = m }
-        // Margins are absolute points, so after a rotation re-anchor to the new permanent depth;
-        // otherwise the scaled position may have lost the headroom a fall needs.
-        if widthChanged, thinking, let rest = restProvider?() {   // while thinking, any move is a settle
-            settle(to: rest)
-        }
+        depth = clamp(depth)
+        if var m = move { m.target = clamp(m.target); move = m }
     }
 
-    /// Permanent resting depth for a 0...1 progress fraction (Lv.1 -> 0, Lv.30 -> bottom of the world).
-    func permanentPosition(fraction: Double) -> Double {
-        let f = min(max(fraction, 0), 1)
-        let start = min(Self.startMargin, maxPosition)
-        let end = max(start, maxPosition - Self.endMargin)
-        return start + (end - start) * f
-    }
+    // MARK: Commands
 
-    func jump(to p: Double) { position = clamp(p); velocity = 0; move = nil }
+    func jump(to d: Double) { depth = clamp(d); velocity = 0; move = nil }
 
     func startThinking(duration: Double) {
-        thinking = true; thinkElapsed = 0; thinkDuration = duration
+        thinking = true; thinkElapsed = 0; thinkDuration = duration; thinkDrift = 0
     }
     func stopThinking() { thinking = false }
 
-    /// Correct answer: a short wind-up, then a hard surge UP that lands exactly on the new resting depth.
-    /// No overshoot and no return trip: the world only ever moves toward the surface here.
-    func boost(to permanent: Double) {
+    /// Correct answer: a short wind-up, then a hard surge DOWN that lands exactly on `target`.
+    func boost(to target: Double) {
         thinking = false
-        move = makeMove(to: clamp(permanent), windUp: 0.15, ramp: 0.2, damping: 2.2)
+        move = makeMove(to: clamp(target), windUp: 0.15, ramp: 0.2, damping: 5)
     }
 
-    /// Wrong / timeout: visual drop only; permanent progress is untouched.
+    /// Wrong / timeout: drop back toward the surface.
     func fall(distance: Double) {
         thinking = false
-        move = makeMove(to: clamp(position - distance), windUp: 0.05, ramp: 0.3, damping: 2.2)
+        let target = clamp(depth - distance)
+        guard depth - target > 1 else { move = nil; return }
+        move = makeMove(to: target, windUp: 0.05, ramp: 0.3, damping: 2.4)
     }
 
-    /// Gentle convergence to the permanent position (between questions, end of session).
-    func settle(to permanent: Double) {
-        let rest = clamp(permanent)
-        guard abs(rest - position) > 1 else { position = rest; move = nil; return }
-        move = makeMove(to: rest, windUp: 0, ramp: 0.35, damping: 3.5)
+    /// Gentle travel to a resting depth (e.g. rising back to the surface for a retry).
+    func settle(to d: Double) {
+        let target = clamp(d)
+        guard abs(target - depth) > 1 else { depth = target; move = nil; return }
+        move = makeMove(to: target, windUp: 0, ramp: 0.5, damping: 2.2)
     }
 
-    private func makeMove(to target: Double, windUp: Double, ramp: Double, damping: Double,
-                          then: Double? = nil) -> Move {
-        let distance = target - position
+    private func makeMove(to target: Double, windUp: Double, ramp: Double, damping: Double) -> Move {
+        let distance = target - depth
         let travelFactor = ramp / 2 + 1 / damping   // distance = peak * travelFactor
         return Move(windUp: windUp, rampTime: ramp, peak: abs(distance) / travelFactor, damping: damping,
-                    sign: distance >= 0 ? 1 : -1, target: target, then: then)
+                    sign: distance >= 0 ? 1 : -1, target: target)
     }
+
+    // MARK: Frame step
 
     func step(_ dt: Double) {
         let dt = min(dt, 1.0 / 20)
@@ -138,8 +145,8 @@ final class WorldMotionController {
                     let tail = m.peak * exp(-m.damping * (t - m.rampTime))
                     v = m.sign * tail
                     if tail < 8 {                                     // landed: snap the last few pt
-                        position = clamp(m.target); velocity = 0; move = nil
-                        if let next = m.then { move = makeMove(to: next, windUp: 0, ramp: 0.3, damping: 3.2) }
+                        depth = clamp(m.target); velocity = 0; move = nil
+                        shake = 0; shakePhase += 1
                         return
                     }
                 }
@@ -148,21 +155,23 @@ final class WorldMotionController {
         } else if thinking {
             thinkElapsed += dt
             let t = min(thinkElapsed / thinkDuration, 1)
-            // Very slow at first, accelerating; never drifts closer to the top than `fallReserve`.
+            // Very slow at first, accelerating; drifts toward the surface, never past it or the per-question cap.
             let raw = 4 + 70 * t * t
-            let room = max(0, position - min(Self.fallReserve, maxPosition))
-            v = -min(raw, room / max(dt, 0.001))
+            let room = max(0, min(Self.maxThinkingDrift - thinkDrift, depth))
+            let speed = min(raw, room / max(dt, 0.001))
+            v = -speed
+            thinkDrift += speed * dt
         }
         velocity = v
-        position = clamp(position + v * dt)
+        depth = clamp(depth + v * dt)
         // Rumble: grows while thinking, kicks hard during a surge, calms as it settles.
         var amp = 0.0
         if move != nil { amp = min(7, abs(v) / 200) }
-        else if thinking { let t = min(thinkElapsed / thinkDuration, 1); amp = 0.5 + 2.5 * t * t }
+        else if thinking { let t = min(thinkElapsed / thinkDuration, 1); amp = 0.6 + 3.0 * t * t }
         shake = amp
         shakePhase += 1
     }
 
     /// Hard bounds are the artwork edges, so no "outside the image" area is ever visible.
-    private func clamp(_ p: Double) -> Double { min(max(p, 0), maxPosition) }
+    private func clamp(_ p: Double) -> Double { min(max(p, 0), maxDepth) }
 }

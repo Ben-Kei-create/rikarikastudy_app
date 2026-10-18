@@ -11,34 +11,31 @@ final class QuizSession {
     private var finishedRecorded = false
     private var lastTick: ContinuousClock.Instant?
     private let now: () -> ContinuousClock.Instant   // injectable for tests
-    private let carryOverPosition: Double?
+    private let carryOverDepth: Double?
     /// Pausing (Background) drops the clock reference, so the suspended interval is never counted.
     var paused = false { didSet { lastTick = nil } }
 
-    /// Permanent resting depth from XP/Lv; animations only deviate from it temporarily.
-    private var permanent: Double { motion.permanentPosition(fraction: model.levelFraction) }
-
-    /// `carryOverPosition`: where the previous session's world currently is, so a quick retry
-    /// converges from there instead of warping.
-    init(model: AppModel, carryOverPosition: Double? = nil,
+    /// `carryOverDepth`: where the previous run's world currently is, so a quick retry rises back to the
+    /// surface from there instead of warping.
+    init(model: AppModel, carryOverDepth: Double? = nil,
          now: @escaping () -> ContinuousClock.Instant = { ContinuousClock().now }) {
         self.model = model
         self.now = now
-        self.carryOverPosition = carryOverPosition
+        self.carryOverDepth = carryOverDepth
         self.engine = QuizEngine(questions: model.makeSession())
         precondition(!engine.questions.isEmpty, "session must have questions")
         engine.onResolved = { [weak self] q, r in self?.handle(q, r) }
-        motion.restProvider = { [weak self] in self?.permanent ?? 0 }
+        motion.configure(questionCount: engine.total)
     }
 
     /// Sets up geometry, position and clocks without starting the frame ticker (tests drive `advance()`).
     func configure(viewportHeight: Double, width: Double) {
         motion.setViewport(viewportHeight, width: width)
-        if let carry = carryOverPosition {
+        if let carry = carryOverDepth {
             motion.jump(to: carry)
-            motion.settle(to: permanent)
+            motion.settle(to: 0)                 // every run starts on the surface, at the top of 001
         } else {
-            motion.jump(to: permanent)
+            motion.jump(to: 0)
         }
         motion.startThinking(duration: QuizEngine.timeLimit)
         lastTick = now()
@@ -72,12 +69,11 @@ final class QuizSession {
 
     func answer(_ id: String) { advance(); engine.answer(choiceID: id) }
 
-    var currentPosition: Double { motion.position }
+    var currentDepth: Double { motion.depth }
 
     func next() {
         advance()   // settle elapsed time against the finished question, so the new one starts from a fresh clock
         engine.next()
-        motion.settle(to: permanent)   // converge back to the permanent depth, never warp
         if engine.phase == .finished {
             if !finishedRecorded { finishedRecorded = true; model.finishSession() }
         } else {
@@ -88,14 +84,15 @@ final class QuizSession {
     private func handle(_ q: Question, _ r: Resolution) {
         switch r {
         case .correct:
-            model.record(question: q, correct: true)       // XP first, so `permanent` is the new depth
-            motion.boost(to: permanent)
+            model.record(question: q, correct: true)
+            // Each correct answer dives to the top of the next image; the last one reaches the very bottom.
+            motion.boost(to: motion.restingDepth(afterCorrect: engine.correctCount))
         case .wrong:
             model.record(question: q, correct: false)
-            motion.fall(distance: 380)
+            motion.fall(distance: WorldMotionController.wrongFall)
         case .timeout:
             model.record(question: q, correct: false)
-            motion.fall(distance: 440)
+            motion.fall(distance: WorldMotionController.timeoutFall)
         }
     }
 }
@@ -126,9 +123,9 @@ struct QuizView: View {
     }
 
     private func restart() {
-        let carry = session?.currentPosition
+        let carry = session?.currentDepth
         session?.stop()
-        session = QuizSession(model: model, carryOverPosition: carry)
+        session = QuizSession(model: model, carryOverDepth: carry)
     }
 }
 

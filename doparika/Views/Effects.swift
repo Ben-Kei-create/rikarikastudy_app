@@ -10,15 +10,15 @@ struct AmbientEffects: View {
         TimelineView(.animation) { timeline in
             Canvas { ctx, size in
                 let t = timeline.date.timeIntervalSinceReferenceDate
-                let pos = motion.position
-                let v = motion.velocity                          // + = world moving down on screen (rising)
+                let pos = motion.depth
+                let v = motion.velocity                          // + = descending: the world streams UP the screen
                 let streak = min(abs(v) * 0.035, 90)
                 let span = size.height + 120
                 for i in 0..<Self.count {
                     let r1 = Self.unit(i, 1), r2 = Self.unit(i, 2), r3 = Self.unit(i, 3)
                     let depth = 0.35 + r3 * 1.1                  // parallax: near particles move more
                     let x = r1 * size.width + sin(t * 0.6 + r2 * 6.28) * 12
-                    var y = (r2 * span - t * (5 + 16 * r2) * depth + pos * depth).truncatingRemainder(dividingBy: span)
+                    var y = (r2 * span - t * (5 + 16 * r2) * depth - pos * depth).truncatingRemainder(dividingBy: span)
                     if y < 0 { y += span }
                     y -= 60
                     let radius = 1.1 + r3 * 2.6
@@ -26,7 +26,7 @@ struct AmbientEffects: View {
                         .opacity(0.25 + 0.5 * r1)
                     if streak > 6 {
                         var p = Path()
-                        p.move(to: CGPoint(x: x, y: y - (v > 0 ? streak * depth : -streak * depth)))
+                        p.move(to: CGPoint(x: x, y: y + (v > 0 ? streak * depth : -streak * depth)))
                         p.addLine(to: CGPoint(x: x, y: y))
                         ctx.stroke(p, with: .color(color), style: StrokeStyle(lineWidth: radius * 0.9, lineCap: .round))
                     } else {
@@ -42,7 +42,7 @@ struct AmbientEffects: View {
                         let y0 = Self.unit(i, 8) * size.height
                         var p = Path()
                         p.move(to: CGPoint(x: x, y: y0))
-                        p.addLine(to: CGPoint(x: x, y: y0 + (v > 0 ? 1 : -1) * (80 + streak * 3)))
+                        p.addLine(to: CGPoint(x: x, y: y0 - (v > 0 ? 1 : -1) * (80 + streak * 3)))
                         ctx.stroke(p, with: .color(.white.opacity(alpha * (0.4 + 0.6 * Self.unit(i, 9)))),
                                    style: StrokeStyle(lineWidth: 1.2, lineCap: .round))
                     }
