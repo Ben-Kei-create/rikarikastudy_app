@@ -53,8 +53,20 @@ final class AppModel {
                                      lastCorrect: $0.lastCorrect, lastWrongAt: $0.lastWrongAt,
                                      lastWrongLevel: $0.lastWrongLevel, lastAnsweredAt: $0.lastAnsweredAt)
         }
-        return QuestionSelector.select(all: repository.questions(for: .mountain), history: history,
-                                       currentLevel: levelInfo.level, size: sessionLength)
+        var picked = QuestionSelector.select(all: repository.questions(for: .mountain), history: history,
+                                             currentLevel: levelInfo.level, size: sessionLength)
+        #if DEBUG
+        // QA aid: `-debugLongestFirst YES` puts the longest question and the longest explanation first.
+        if UserDefaults.standard.bool(forKey: "debugLongestFirst") {
+            let all = repository.questions(for: .mountain)
+            let longQ = all.max { $0.question.count + $0.choices.map(\.text.count).max()! < $1.question.count + $1.choices.map(\.text.count).max()! }
+            let longE = all.max { $0.explanation.count < $1.explanation.count }
+            let front = [longQ, longE].compactMap { $0 }
+            picked = front + picked.filter { p in !front.contains { $0.id == p.id } }
+            picked = Array(picked.prefix(sessionLength))
+        }
+        #endif
+        return picked
     }
 
     func record(question: Question, correct: Bool) {

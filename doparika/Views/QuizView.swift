@@ -182,25 +182,32 @@ private struct QuizContent: View {
     }
 
     private func quizBody(_ engine: QuizEngine) -> some View {
-        VStack(spacing: 14) {
-            HStack {
-                Text("第\(engine.index + 1)問 / \(engine.total)問")
-                    .font(.subheadline.weight(.bold))
-                Spacer()
-                TimerLabel(engine: engine)
-            }
-            .foregroundStyle(.white)
-            .shadow(color: .black, radius: 3)
+        GeometryReader { geo in
+            // The content width is pinned to the screen: a long single line must wrap, never widen the layout.
+            let contentWidth = max(geo.size.width - 36, 100)
+            VStack(spacing: 14) {
+                HStack {
+                    Text("第\(engine.index + 1)問 / \(engine.total)問")
+                        .font(.system(size: 24, weight: .heavy, design: .rounded))
+                        .accessibilityIdentifier("progress")
+                    Spacer()
+                    TimerLabel(engine: engine)
+                }
+                .foregroundStyle(.white)
+                .shadow(color: .black, radius: 3)
+                .frame(width: contentWidth)
 
-            questionPanel(engine)
-                .frame(maxHeight: .infinity)   // centred between header and feedback area
-            // Fixed-height feedback area: the question panel stays put when an answer is revealed.
-            feedback(engine)
-                .frame(height: 300, alignment: .bottom)
+                questionPanel(engine)
+                    .frame(width: contentWidth)
+                    .frame(maxHeight: .infinity)   // centred between header and feedback area
+                // Fixed-height feedback area: the question panel stays put when an answer is revealed.
+                feedback(engine)
+                    .frame(width: contentWidth, height: 300, alignment: .bottom)
+            }
+            .frame(width: geo.size.width, height: geo.size.height)
+            .padding(.top, 8)
+            .padding(.bottom, 16)
         }
-        .padding(.horizontal, 18)
-        .padding(.top, 8)
-        .padding(.bottom, 16)
     }
 
     private func questionPanel(_ engine: QuizEngine) -> some View {
@@ -242,9 +249,14 @@ private struct QuizContent: View {
                         }
                         if case .correct = r {} else {
                             Text("正解: \(engine.current.correctText)").font(.subheadline.weight(.bold))
+                                .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                         if !engine.current.explanation.isEmpty {
-                            Text(engine.current.explanation).font(.footnote)
+                            Text(engine.current.explanation)
+                                .font(.footnote)
+                                .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                     .frame(maxWidth: .infinity)

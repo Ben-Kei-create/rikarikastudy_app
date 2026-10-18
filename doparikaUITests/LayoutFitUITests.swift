@@ -1,0 +1,55 @@
+import XCTest
+
+/// Guards the layout against content wider than the screen (a long explanation once pushed the panels off-screen).
+final class LayoutFitUITests: XCTestCase {
+    override func setUp() { continueAfterFailure = false }
+
+    private func assertInside(_ e: XCUIElement, _ window: CGRect, _ what: String,
+                              file: StaticString = #filePath, line: UInt = #line) {
+        let f = e.frame
+        XCTAssertGreaterThanOrEqual(f.minX, window.minX - 1, "\(what) leaks left: \(f)", file: file, line: line)
+        XCTAssertLessThanOrEqual(f.maxX, window.maxX + 1, "\(what) leaks right: \(f) window \(window)", file: file, line: line)
+    }
+
+    private func attach(_ app: XCUIApplication, _ name: String) {
+        let a = XCTAttachment(screenshot: app.screenshot()); a.name = name; a.lifetime = .keepAlways; add(a)
+    }
+
+    func testEveryQuestionAndAnswerStateFitsTheScreen() { run(extraArgs: []) }
+
+    /// Larger Dynamic Type widens every line's natural width: the case most likely to break a layout.
+    func testFitsWithLargeAccessibilityText() {
+        run(extraArgs: ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityL"])
+    }
+
+    func testFitsWithSmallerStandardText() {
+        run(extraArgs: ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryXXXLarge"])
+    }
+
+    private func run(extraArgs: [String]) {
+        let app = XCUIApplication()
+        app.launchArguments = ["-debugXP", "0", "-debugLongestFirst", "YES"] + extraArgs
+        app.launch()
+        app.buttons["スタート"].tap()
+        let window = app.windows.firstMatch.frame
+        for n in 1...5 {
+            XCTAssertTrue(app.staticTexts["progress"].waitForExistence(timeout: 5))
+            XCTAssertTrue(app.staticTexts["progress"].label.hasPrefix("第\(n)問"))
+            let a = app.buttons.matching(NSPredicate(format: "label CONTAINS 'A'")).firstMatch
+            XCTAssertTrue(a.waitForExistence(timeout: 3))
+            assertInside(a, window, "choice A (q\(n))")
+            attach(app, "q\(n)-asking")
+            a.tap()
+            let next = app.buttons["次の問題へ"]
+            XCTAssertTrue(next.waitForExistence(timeout: 3))
+            sleep(2)                                   // let the dive settle
+            assertInside(next, window, "next button (q\(n))")
+            assertInside(a, window, "choice A after answer (q\(n))")
+            for t in app.staticTexts.allElementsBoundByIndex where t.exists && t.frame.height > 0 {
+                assertInside(t, window, "text '\(t.label.prefix(12))' (q\(n))")
+            }
+            attach(app, "q\(n)-answered")
+            next.tap()
+        }
+    }
+}
