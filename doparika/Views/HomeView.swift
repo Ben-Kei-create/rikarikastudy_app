@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var rest = 0.0
     @State private var pulse = 1.0
     @State private var shake = 0.0
+    @State private var showSettings = false
 
     var body: some View {
         ZStack {
@@ -71,11 +72,24 @@ struct HomeView: View {
                 .padding(.bottom, 32)
             }
         }
+        .overlay(alignment: .topTrailing) {
+            Button { showSettings = true } label: {
+                Image(systemName: "gearshape.fill")
+                    .font(.title3)
+                    .foregroundStyle(.white)
+                    .frame(width: 44, height: 44)
+                    .background(.black.opacity(0.4), in: Circle())
+            }
+            .padding(.trailing, 16).padding(.top, 8)
+            .accessibilityLabel("せってい")
+        }
+        .sheet(isPresented: $showSettings) { SettingsView() }
         .overlay { Color.white.opacity(flash).ignoresSafeArea().allowsHitTesting(false) }
         .offset(x: shake)
         .navigationBarHidden(true)
         .onAppear {
             motion.jump(to: 0)
+            MusicPlayer.shared.request(.home)
             playIntro()
         }
     }
@@ -101,7 +115,8 @@ struct HomeView: View {
     }
 
     private func playIntro() {
-        guard !Self.introPlayed else {
+        guard !Self.introPlayed, AppSettings.shared.effectsEnabled else {
+            Self.introPlayed = true
             logoScale = 1; logoDrop = 0; logoOpacity = 1; rest = 1; shineX = 1.3
             startPulse()
             return

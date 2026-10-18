@@ -28,7 +28,7 @@ struct WorldBackgroundView: View {
                 var ctx = context
                 let pos = motion.depth
                 // Rumble: overscan a little, then jitter the whole world.
-                let amp = motion.shake, ph = motion.shakePhase
+                let amp = AppSettings.shared.effectsEnabled ? motion.shake : 0, ph = motion.shakePhase
                 ctx.translateBy(x: size.width / 2, y: size.height / 2)
                 ctx.scaleBy(x: 1.04, y: 1.04)
                 ctx.translateBy(x: -size.width / 2 + sin(ph * 2.7) * amp, y: -size.height / 2 + cos(ph * 3.9) * amp)

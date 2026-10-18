@@ -9,11 +9,13 @@ final class QuizSession {
     private let model: AppModel
     private var ticker: Task<Void, Never>?
     private var finishedRecorded = false
+    private var countdownStarted = false
+    private let sound = SoundPlayer.shared
     private var lastTick: ContinuousClock.Instant?
     private let now: () -> ContinuousClock.Instant   // injectable for tests
     private let carryOverDepth: Double?
     /// Pausing (Background) drops the clock reference, so the suspended interval is never counted.
-    var paused = false { didSet { lastTick = nil } }
+    var paused = false { didSet { lastTick = nil; if paused { sound.stopAll() } } }
 
     /// `carryOverDepth`: where the previous run's world currently is, so a quick retry rises back to the
     /// surface from there instead of warping.
@@ -44,6 +46,7 @@ final class QuizSession {
     func start(viewportHeight: Double, width: Double) {
         guard ticker == nil else { return }
         configure(viewportHeight: viewportHeight, width: width)
+        MusicPlayer.shared.request(MusicPlayer.Track.earthStage.randomElement() ?? .earth)
         ticker = Task { [weak self] in
             while !Task.isCancelled {
                 try? await Task.sleep(for: .milliseconds(16))
@@ -52,7 +55,7 @@ final class QuizSession {
         }
     }
 
-    func stop() { ticker?.cancel(); ticker = nil; lastTick = nil }
+    func stop() { ticker?.cancel(); ticker = nil; lastTick = nil; sound.stopAll() }
 
     /// Single time source: the frame ticker and answer handling both advance the engine to "now" first,
     /// so an answer arriving after the deadline is a timeout regardless of task ordering.
@@ -65,6 +68,12 @@ final class QuizSession {
         let dt = Double(d.components.seconds) + Double(d.components.attoseconds) / 1e18
         engine.tick(dt)
         motion.step(dt)
+        // "3, 2, 1, 0" voice: starts so that it ends as the time runs out.
+        if engine.phase == .answering, !countdownStarted, engine.remaining <= 3.4 {
+            countdownStarted = true
+            sound.play(.countdown)
+            MusicPlayer.shared.duck(to: 0.35, for: 3.6)
+        }
     }
 
     func answer(_ id: String) { advance(); engine.answer(choiceID: id) }
@@ -74,8 +83,9 @@ final class QuizSession {
     func next() {
         advance()   // settle elapsed time against the finished question, so the new one starts from a fresh clock
         engine.next()
+        countdownStarted = false
         if engine.phase == .finished {
-            if !finishedRecorded { finishedRecorded = true; model.finishSession() }
+            if !finishedRecorded { finishedRecorded = true; model.finishSession(); sound.play(.finishVoice); MusicPlayer.shared.duck(for: 1.3) }
         } else {
             motion.startThinking(duration: QuizEngine.timeLimit)
         }
@@ -86,15 +96,28 @@ final class QuizSession {
         case .correct:
             model.record(question: q, correct: true)
             Haptics.correct()
+            sound.stop(.countdown)
+            sound.play(.correctVoice)
+            MusicPlayer.shared.duck(for: 1.2)
+            sound.playRandom(SoundPlayer.Sfx.digs)
+            // Land on a new image: a heavy wall-break just as the dive settles.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { [weak self] in
+                self?.sound.playRandom(SoundPlayer.Sfx.breaks, volume: 0.9)
+            }
             // Each correct answer dives to the top of the next image; the last one reaches the very bottom.
             motion.boost(to: motion.restingDepth(afterCorrect: engine.correctCount))
         case .wrong:
             model.record(question: q, correct: false)
             Haptics.wrong()
+            sound.stop(.countdown)
+            sound.play(.wrong)
+            MusicPlayer.shared.duck(for: 1.8)
             motion.fall(distance: WorldMotionController.wrongFall)
         case .timeout:
             model.record(question: q, correct: false)
             Haptics.timeout()
+            sound.play(.timeoutVoice)
+            MusicPlayer.shared.duck(for: 1.3)
             motion.fall(distance: WorldMotionController.timeoutFall)
         }
     }
@@ -142,13 +165,15 @@ private struct QuizContent: View {
         let engine = session.engine
         ZStack {
             WorldBackgroundView(motion: session.motion)
-            AmbientEffects(motion: session.motion)
-            LowTimeVignette(engine: engine)
+            if AppSettings.shared.effectsEnabled {
+                AmbientEffects(motion: session.motion)
+                LowTimeVignette(engine: engine)
+            }
             if engine.phase == .finished {
                 ResultView(model: model, engine: engine, onRestart: onRestart, onHome: onHome)
             } else {
                 quizBody(engine)
-                if case .resolved(let r) = engine.phase {
+                if AppSettings.shared.effectsEnabled, case .resolved(let r) = engine.phase {
                     AnswerBurst(resolution: r, xp: engine.lastXPGain).id(engine.index)
                 }
             }

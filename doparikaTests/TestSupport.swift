@@ -17,6 +17,7 @@ struct TestEnv {
 
     init(xp: Int = 0) throws {
         Haptics.isEnabled = false
+        SoundPlayer.testOverride = false
         container = try ModelContainer(
             for: PlayerProgress.self, QuestionRecord.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true))

@@ -1,0 +1,68 @@
+import AVFoundation
+
+/// Short sound effects, loaded once and played on demand. Silent switch is respected (ambient session).
+@MainActor
+final class SoundPlayer {
+    static let shared = SoundPlayer()
+
+    enum Sfx: String, CaseIterable {
+        case correctVoice = "correct_voice", wrong, timeoutVoice = "timeout_voice"
+        case countdown, finishVoice = "finish_voice"
+        case dig1 = "dig_1", dig2 = "dig_2", dig3 = "dig_3", dig4 = "dig_4"
+        case break1 = "break_1", break2 = "break_2"
+        // Deep-sea stage (not used by the earth stage yet).
+        case seaRush = "sea_rush", seaAmbient = "sea_ambient", seaDrown = "sea_drown"
+        case seaBubbles1 = "sea_bubbles_1", seaBubbles2 = "sea_bubbles_2", seaBubbles3 = "sea_bubbles_3"
+
+        static let digs: [Sfx] = [.dig1, .dig2, .dig3, .dig4]
+        static let breaks: [Sfx] = [.break1, .break2]
+    }
+
+    /// Sound effects follow the settings switch (kept as `isMuted` so call sites and tests stay simple).
+    /// Test override: nil = follow the user's setting; true/false = force sound on/off regardless of
+    /// whatever the simulator or device has saved. Unit tests use it so they never play audio.
+    static var testOverride: Bool?
+    var isMuted: Bool { !(Self.testOverride ?? AppSettings.shared.sfxEnabled) }
+
+    private var data: [Sfx: Data] = [:]
+    private var playing: [AVAudioPlayer] = []
+    private var configured = false
+    private(set) var playCount = 0   // for tests
+
+    func preload() {
+        configureSession()
+        for s in Sfx.allCases where data[s] == nil {
+            if let url = Bundle.main.url(forResource: s.rawValue, withExtension: "mp3"),
+               let d = try? Data(contentsOf: url) { data[s] = d }
+        }
+    }
+
+    @discardableResult
+    func play(_ s: Sfx, volume: Float = 1) -> AVAudioPlayer? {
+        guard !isMuted else { return nil }
+        if data[s] == nil { preload() }
+        guard let d = data[s], let p = try? AVAudioPlayer(data: d) else { return nil }
+        p.volume = volume
+        playing.removeAll { !$0.isPlaying }
+        playing.append(p)
+        p.play()
+        playCount += 1
+        return p
+    }
+
+    func playRandom(_ group: [Sfx], volume: Float = 1) { if let s = group.randomElement() { play(s, volume: volume) } }
+
+    func stop(_ s: Sfx) {
+        guard let d = data[s] else { return }
+        for p in playing where p.data == d { p.stop() }
+    }
+
+    func stopAll() { playing.forEach { $0.stop() }; playing.removeAll() }
+
+    private func configureSession() {
+        guard !configured else { return }
+        configured = true
+        try? AVAudioSession.sharedInstance().setCategory(.ambient, options: [.mixWithOthers])
+        try? AVAudioSession.sharedInstance().setActive(true)
+    }
+}
