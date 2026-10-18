@@ -85,13 +85,16 @@ final class QuizSession {
         switch r {
         case .correct:
             model.record(question: q, correct: true)
+            Haptics.correct()
             // Each correct answer dives to the top of the next image; the last one reaches the very bottom.
             motion.boost(to: motion.restingDepth(afterCorrect: engine.correctCount))
         case .wrong:
             model.record(question: q, correct: false)
+            Haptics.wrong()
             motion.fall(distance: WorldMotionController.wrongFall)
         case .timeout:
             model.record(question: q, correct: false)
+            Haptics.timeout()
             motion.fall(distance: WorldMotionController.timeoutFall)
         }
     }

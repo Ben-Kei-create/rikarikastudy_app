@@ -16,6 +16,7 @@ struct TestEnv {
     let model: AppModel
 
     init(xp: Int = 0) throws {
+        Haptics.isEnabled = false
         container = try ModelContainer(
             for: PlayerProgress.self, QuestionRecord.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true))
