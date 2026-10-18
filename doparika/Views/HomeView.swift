@@ -142,8 +142,8 @@ struct HomeView: View {
     private var stageRoadmap: some View {
         VStack(alignment: .leading, spacing: 10) {
             stageRow(icon: "globe.asia.australia.fill", title: "地球・地中", detail: "Lv.1 - 30（配信中）", locked: false)
-            stageRow(icon: "cloud.fill", title: "空", detail: "近日公開", locked: true)
-            stageRow(icon: "water.waves", title: "海", detail: "近日公開", locked: true)
+            stageRow(icon: "cloud.fill", title: "宇宙", detail: "近日公開", locked: true)
+            stageRow(icon: "water.waves", title: "深海", detail: "近日公開", locked: true)
         }
         .foregroundStyle(.white)
         .padding(16)

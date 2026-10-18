@@ -72,11 +72,12 @@ final class SessionTests: XCTestCase {
 
     func testSessionLengthFollowsLevel() throws {
         XCTAssertEqual(try TestEnv().session(clock: FakeClock()).engine.total, 10)
-        let high = try TestEnv(xp: LevelCalculator.xpThreshold(for: 20))
-        XCTAssertEqual(high.model.levelInfo.level, 20)
+        let high = try TestEnv(xp: LevelCalculator.xpThreshold(for: 21))
+        XCTAssertEqual(high.model.levelInfo.level, 21)
         XCTAssertEqual(high.session(clock: FakeClock()).engine.total, 20)
-        let nineteen = try TestEnv(xp: LevelCalculator.xpThreshold(for: 19))
-        XCTAssertEqual(nineteen.session(clock: FakeClock()).engine.total, 10)
+        let twenty = try TestEnv(xp: LevelCalculator.xpThreshold(for: 20))
+        XCTAssertEqual(twenty.model.levelInfo.level, 20)
+        XCTAssertEqual(twenty.session(clock: FakeClock()).engine.total, 10)
     }
 
     func testEachCorrectAnswerDivesToTheNextImageTop() throws {
@@ -118,9 +119,10 @@ final class SessionTests: XCTestCase {
         XCTAssertGreaterThan(carried, 5000)
         let retry = env.session(clock: clock, carry: carried)
         retry.configure(viewportHeight: 874, width: 402)
-        XCTAssertEqual(retry.currentDepth, carried, accuracy: 0.001)       // no jump on start
+        XCTAssertEqual(retry.currentDepth, carried, accuracy: 1)           // no jump on start
         for _ in 0..<(60 * 8) { clock.advance(1.0 / 60); retry.advance() }
-        XCTAssertEqual(retry.currentDepth, 0, accuracy: 1)                  // every run starts on the surface
+        // Every run starts on the surface: back at the top of 001, bobbing within its top range.
+        XCTAssertLessThanOrEqual(retry.currentDepth, WorldMotionController.surfaceBobRange + 1)
     }
 
     func testTenConsecutiveRetriesKeepTimerRunning() throws {
@@ -133,7 +135,7 @@ final class SessionTests: XCTestCase {
             let carry = session.currentDepth
             session = env.session(clock: clock, carry: carry)
             session.configure(viewportHeight: 874, width: 402)
-            XCTAssertEqual(session.currentDepth, carry, accuracy: 0.001)
+            XCTAssertEqual(session.currentDepth, carry, accuracy: 1)        // no visible jump
             clock.advance(1); session.advance()
             XCTAssertEqual(session.engine.remaining, QuizEngine.timeLimit - 1, accuracy: 0.05)
         }

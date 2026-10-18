@@ -44,8 +44,8 @@ final class AppModel {
 
     var canStartSession: Bool { repository.loadError == nil }
 
-    /// Lv.1-19: 10 questions (images 001-010). Lv.20-30: 20 questions (images 001-020).
-    var sessionLength: Int { levelInfo.level >= 20 ? 20 : 10 }
+    /// Lv.1-20: 10 questions (images 001-010). Lv.21-30: 20 questions (images 001-020).
+    var sessionLength: Int { levelInfo.level > 20 ? 20 : 10 }
 
     func makeSession() -> [Question] {
         let history = store.records().map {

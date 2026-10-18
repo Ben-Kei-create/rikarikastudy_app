@@ -24,6 +24,9 @@ final class WorldMotionController {
     /// Drop toward the surface on a wrong answer / time-out (pt).
     static let wrongFall: Double = 380
     static let timeoutFall: Double = 460
+    /// On the surface (top of 001) there is nowhere to drift, so the world bobs gently up and down instead.
+    static let surfaceBobRange: Double = 170
+    static let surfaceBobPeriod: Double = 6
 
     private(set) var sectionHeight: Double = 1200
     /// Questions in the current session = how many images the run can reach.
@@ -43,6 +46,7 @@ final class WorldMotionController {
     @ObservationIgnored private var thinkElapsed: Double = 0
     @ObservationIgnored private var thinkDuration: Double = 15
     @ObservationIgnored private var thinkDrift: Double = 0
+    @ObservationIgnored private var bobbing = false
     @ObservationIgnored private var move: Move?
 
     private struct Move {
@@ -96,6 +100,8 @@ final class WorldMotionController {
 
     func startThinking(duration: Double) {
         thinking = true; thinkElapsed = 0; thinkDuration = duration; thinkDrift = 0
+        // At (or heading back to) the very top, bob slowly instead of drifting.
+        bobbing = depth < 1 || (move.map { $0.target < 1 } ?? false)
     }
     func stopThinking() { thinking = false }
 
@@ -152,6 +158,12 @@ final class WorldMotionController {
                 }
             }
             move = m
+        } else if thinking && bobbing {
+            thinkElapsed += dt
+            // Slow down-and-back-up wave between the very top and `surfaceBobRange`; starts at the top.
+            let wave = (1 - cos(2 * .pi * thinkElapsed / Self.surfaceBobPeriod)) / 2
+            let target = Self.surfaceBobRange * wave
+            v = (target - depth) / max(dt, 0.001)
         } else if thinking {
             thinkElapsed += dt
             let t = min(thinkElapsed / thinkDuration, 1)

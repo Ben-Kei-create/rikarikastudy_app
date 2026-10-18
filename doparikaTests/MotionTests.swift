@@ -79,10 +79,41 @@ final class MotionTests: XCTestCase {
         XCTAssertLessThanOrEqual(start - m.depth, WorldMotionController.maxThinkingDrift + 1)
     }
 
-    func testThinkingAtTheSurfaceCannotGoAboveFirstImage() {
+    /// First question: bob slowly up and down within the top of image 001 (not just vibrate in place).
+    func testSurfaceBobsUpAndDownButNeverAboveTheTop() {
         let m = controller()
-        m.startThinking(duration: 15); run(m, seconds: 20)
-        XCTAssertEqual(m.depth, 0, accuracy: 0.001)
+        m.startThinking(duration: 15)
+        var lo = Double.infinity, hi = -Double.infinity, ups = 0, downs = 0, last = m.depth
+        for _ in 0..<(60 * 14) {
+            m.step(1.0 / 60)
+            XCTAssertGreaterThanOrEqual(m.depth, -0.001)
+            lo = min(lo, m.depth); hi = max(hi, m.depth)
+            if m.depth > last + 1e-6 { downs += 1 } else if m.depth < last - 1e-6 { ups += 1 }
+            last = m.depth
+        }
+        XCTAssertLessThan(lo, 1)
+        XCTAssertGreaterThan(hi, WorldMotionController.surfaceBobRange * 0.9)
+        XCTAssertLessThanOrEqual(hi, WorldMotionController.surfaceBobRange + 0.5)
+        XCTAssertGreaterThan(ups, 100); XCTAssertGreaterThan(downs, 100)   // goes both ways
+        XCTAssertLessThan(abs(m.depth - 0), 170)
+    }
+
+    func testWrongAnswerOnTheFirstQuestionReturnsToTheTop() {
+        let m = controller()
+        m.startThinking(duration: 15); run(m, seconds: 3)       // bobbed part-way down
+        XCTAssertGreaterThan(m.depth, 20)
+        m.fall(distance: WorldMotionController.wrongFall); run(m, seconds: 3)
+        XCTAssertEqual(m.depth, 0, accuracy: 0.5)
+    }
+
+    func testBobContinuesOnTheNextQuestionStartedMidReturn() {
+        let m = controller()
+        m.startThinking(duration: 15); run(m, seconds: 3)
+        m.fall(distance: WorldMotionController.wrongFall)       // heading back to the top
+        run(m, seconds: 0.2)
+        m.startThinking(duration: 15)                           // next question begins mid-return
+        run(m, seconds: 5)
+        XCTAssertGreaterThan(m.depth, 10)                       // bobbing again, not frozen at 0
     }
 
     func testWrongAnswerFallsTowardSurfaceAndStopsAtZero() {
