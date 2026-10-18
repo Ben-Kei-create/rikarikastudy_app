@@ -62,7 +62,6 @@ final class SoundPlayer {
     private func configureSession() {
         guard !configured else { return }
         configured = true
-        try? AVAudioSession.sharedInstance().setCategory(.ambient, options: [.mixWithOthers])
-        try? AVAudioSession.sharedInstance().setActive(true)
+        AudioSessionSetup.configureOnce()
     }
 }

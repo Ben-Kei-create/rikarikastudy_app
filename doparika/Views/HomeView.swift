@@ -50,6 +50,11 @@ struct HomeView: View {
                     .padding(.top, 24)
 
                     Group {
+                    GlobeView(spins: AppSettings.shared.effectsEnabled)
+                        .frame(width: 150, height: 150)
+                        .opacity(rest)
+                        .accessibilityHidden(true)
+
                     levelCard
 
                     VStack(spacing: 12) {

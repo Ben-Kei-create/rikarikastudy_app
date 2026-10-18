@@ -15,7 +15,7 @@ struct DoparikaApp: App {
         WindowGroup {
             RootView()
                 .preferredColorScheme(.dark)
-                .task { SoundPlayer.shared.preload() }
+                .task { AudioSessionSetup.configureOnce(); SoundPlayer.shared.preload() }
         }
         .modelContainer(container)
     }

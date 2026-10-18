@@ -27,8 +27,7 @@ final class MusicPlayer {
         stop(fadeOut: 0.4)
         guard let url = Bundle.main.url(forResource: track.rawValue, withExtension: "m4a"),
               let p = try? AVAudioPlayer(contentsOf: url) else { return }
-        try? AVAudioSession.sharedInstance().setCategory(.ambient, options: [.mixWithOthers])
-        try? AVAudioSession.sharedInstance().setActive(true)
+        AudioSessionSetup.configureOnce()
         p.numberOfLoops = -1
         p.volume = 0
         p.prepareToPlay()

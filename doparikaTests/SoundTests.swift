@@ -1,5 +1,6 @@
 import XCTest
 import AVFoundation
+import SceneKit
 @testable import doparika
 
 @MainActor
@@ -61,5 +62,20 @@ final class SettingsTests: XCTestCase {
         let a = AppSettings(defaults: d)
         XCTAssertFalse(a.bgmEnabled); XCTAssertFalse(a.sfxEnabled)
         XCTAssertTrue(a.effectsEnabled); XCTAssertTrue(a.hapticsEnabled)
+    }
+}
+
+@MainActor
+final class GlobeTests: XCTestCase {
+    func testGlobeModelLoadsWithGeometryAndTexture() throws {
+        let scene = try XCTUnwrap(GlobeView.loadScene(), "globe.usdz missing or unreadable")
+        var meshes = 0
+        scene.rootNode.enumerateHierarchy { node, _ in
+            if let g = node.geometry {
+                meshes += 1
+                XCTAssertFalse(g.materials.isEmpty)
+            }
+        }
+        XCTAssertGreaterThanOrEqual(meshes, 1)
     }
 }
