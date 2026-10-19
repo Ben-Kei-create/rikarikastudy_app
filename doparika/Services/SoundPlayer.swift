@@ -6,7 +6,7 @@ final class SoundPlayer {
     static let shared = SoundPlayer()
 
     enum Sfx: String, CaseIterable {
-        case correctVoice = "correct_voice", wrong, timeoutVoice = "timeout_voice"
+        case correctVoice = "correct_voice", correctChime = "correct_chime", wrong, timeoutVoice = "timeout_voice"
         case countdown, finishVoice = "finish_voice"
         case dig1 = "dig_1", dig2 = "dig_2", dig3 = "dig_3", dig4 = "dig_4"
         case break1 = "break_1", break2 = "break_2"

@@ -98,8 +98,8 @@ final class QuizSession {
             Haptics.correct()
             sound.stop(.countdown)
             sound.play(.correctVoice)
+            sound.play(.correctChime)   // replaces the dig sound (dig_*.mp3 stay bundled, just unused)
             MusicPlayer.shared.duck(for: 1.2)
-            sound.playRandom(SoundPlayer.Sfx.digs)
             // Land on a new image: a heavy wall-break just as the dive settles.
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { [weak self] in
                 self?.sound.playRandom(SoundPlayer.Sfx.breaks, volume: 0.9)
@@ -258,7 +258,7 @@ private struct QuizContent: View {
                         }
                         if !engine.current.explanation.isEmpty {
                             Text(engine.current.explanation)
-                                .font(.footnote)
+                                .font(.body)
                                 .multilineTextAlignment(.center)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
