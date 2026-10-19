@@ -98,12 +98,8 @@ final class QuizSession {
             Haptics.correct()
             sound.stop(.countdown)
             sound.play(.correctVoice)
-            sound.play(.correctChime)   // replaces the dig sound (dig_*.mp3 stay bundled, just unused)
+            sound.play(.correctChime)   // correct = voice + chime only (dig_*/break_*.mp3 stay bundled, unused)
             MusicPlayer.shared.duck(for: 1.2)
-            // Land on a new image: a heavy wall-break just as the dive settles.
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { [weak self] in
-                self?.sound.playRandom(SoundPlayer.Sfx.breaks, volume: 0.9)
-            }
             // Each correct answer dives to the top of the next image; the last one reaches the very bottom.
             motion.boost(to: motion.restingDepth(afterCorrect: engine.correctCount))
         case .wrong:

@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+    let model: AppModel
     @Bindable var settings = AppSettings.shared
+    @State private var confirmReset = false
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -15,12 +17,23 @@ struct SettingsView: View {
                 } footer: {
                     Text("演出をオフにすると、背景のゆれ・粒子・スパークル・○×の表示・起動演出が止まります。")
                 }
+                Section {
+                    Button("進行状況を初期化", role: .destructive) { confirmReset = true }
+                } footer: {
+                    Text("XP・レベル・回答履歴・コレクションがすべて消えます。")
+                }
+            }
+            .confirmationDialog("本当に初期化しますか？", isPresented: $confirmReset, titleVisibility: .visible) {
+                Button("初期化する", role: .destructive) { model.resetProgress(); dismiss() }
+                Button("キャンセル", role: .cancel) {}
+            } message: {
+                Text("この操作は取り消せません。")
             }
             .navigationTitle("せってい")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("とじる") { dismiss() } } }
         }
-        .presentationDetents([.medium])
+        .presentationDetents([.medium, .large])
         .preferredColorScheme(.light)
     }
 

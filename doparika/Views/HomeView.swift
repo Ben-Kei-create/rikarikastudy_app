@@ -88,7 +88,7 @@ struct HomeView: View {
             .padding(.trailing, 16).padding(.top, 8)
             .accessibilityLabel("せってい")
         }
-        .sheet(isPresented: $showSettings) { SettingsView() }
+        .sheet(isPresented: $showSettings) { SettingsView(model: model) }
         .overlay { Color.white.opacity(flash).ignoresSafeArea().allowsHitTesting(false) }
         .offset(x: shake)
         .navigationBarHidden(true)

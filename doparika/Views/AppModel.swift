@@ -31,6 +31,11 @@ final class AppModel {
         unlockedIDs = Set(store.records().map(\.questionID))
     }
 
+    func resetProgress() {
+        store.resetAll()
+        reloadFromStore()
+    }
+
     var levelInfo: LevelCalculator.Info { LevelCalculator.info(forXP: totalXP) }
 
     /// 0...1 progress through Lv.1...30 (level plus progress inside the level).

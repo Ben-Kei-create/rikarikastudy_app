@@ -1,10 +1,12 @@
 import Foundation
 
-/// Builds a 5-question session: review questions first by priority, rest are unseen (in ID order).
+/// Builds a session: a few review questions (only ones still answered wrong), the rest unseen (in ID order).
+/// With no open mistakes every question is new.
 struct QuestionSelector {
     /// Smallest session; the longest (Lv.20+) is 20.
     static let sessionSize = 10
-    static let minReview = 2
+    /// Reviews never take more than this share of a session, so most questions stay new.
+    static let maxReviewShare = 0.3
 
     struct History {
         let questionID: String
@@ -28,16 +30,18 @@ struct QuestionSelector {
         func add(_ items: [History]) {
             for h in items where !ranked.contains(h.questionID) { ranked.append(h.questionID) }
         }
-        let wrong = answered.filter { $0.wrongCount > 0 }
+        // Mistakes not yet answered correctly since (those that were drop to the "previously correct" tier).
+        let wrong = answered.filter { $0.wrongCount > 0 && !$0.lastCorrect }
         add(wrong.filter { $0.lastWrongLevel == currentLevel - 1 }
             .sorted { ($0.lastWrongAt ?? .distantPast) > ($1.lastWrongAt ?? .distantPast) })
         add(wrong.sorted { ($0.lastWrongAt ?? .distantPast) > ($1.lastWrongAt ?? .distantPast) })
         add(wrong.sorted { $0.wrongCount > $1.wrongCount })
         add(answered.filter { $0.lastCorrect }.sorted { $0.lastAnsweredAt < $1.lastAnsweredAt })
 
-        // Cap at the wrong-questions that exist but never starve new content entirely.
-        let reviewTarget = min(ranked.count, max(minReview, min(size - 1, wrong.count)))
-        let reviewCount = unseen.isEmpty ? min(ranked.count, size) : reviewTarget
+        let open = Set(wrong.map(\.questionID))
+        let cap = max(1, Int(Double(size) * maxReviewShare))
+        let reviewCount = unseen.isEmpty ? min(ranked.count, size)
+                                         : min(ranked.filter(open.contains).count, cap)
         var picked: [Question] = ranked.prefix(reviewCount).compactMap { byID[$0] }
         picked += unseen.prefix(size - picked.count)
         // Not enough unseen: top up with remaining review questions.

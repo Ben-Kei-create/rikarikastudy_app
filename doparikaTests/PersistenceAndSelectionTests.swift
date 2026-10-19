@@ -34,7 +34,27 @@ final class PersistenceAndSelectionTests: XCTestCase {
         XCTAssertEqual(set.count, env.model.sessionLength)
         XCTAssertEqual(Set(set.map(\.id)).count, set.count)
         let reviewIDs = Set(qs.prefix(8).map(\.id))
-        XCTAssertGreaterThanOrEqual(set.filter { reviewIDs.contains($0.id) }.count, QuestionSelector.minReview)
+        let reviews = set.filter { reviewIDs.contains($0.id) }.count
+        XCTAssertGreaterThanOrEqual(reviews, 1)
+        XCTAssertLessThanOrEqual(reviews, Int(Double(env.model.sessionLength) * QuestionSelector.maxReviewShare))
+    }
+
+    func testNoMistakesMeansEverythingIsNew() throws {
+        let env = try TestEnv()
+        let qs = env.model.repository.questions(for: .mountain)
+        for q in qs.prefix(8) { env.model.record(question: q, correct: true) }
+        let seen = Set(qs.prefix(8).map(\.id))
+        XCTAssertTrue(env.model.makeSession().allSatisfy { !seen.contains($0.id) })
+    }
+
+    func testResetClearsXPAndHistory() throws {
+        let env = try TestEnv()
+        let q = env.model.repository.questions(for: .mountain)[0]
+        env.model.record(question: q, correct: true)
+        env.model.resetProgress()
+        XCTAssertEqual(env.model.totalXP, 0)
+        XCTAssertTrue(env.model.unlockedIDs.isEmpty)
+        XCTAssertEqual(env.model.store.sessionsCompleted, 0)
     }
 
     func testRepositoryIDsAreFivePaddedAndUnique() {

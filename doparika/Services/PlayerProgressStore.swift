@@ -51,5 +51,14 @@ final class PlayerProgressStore {
         save()
     }
 
+    /// Wipes XP, session count and every question record.
+    func resetAll() {
+        for r in records() { context.delete(r) }
+        let p = progress()
+        p.totalXP = 0
+        p.sessionsCompleted = 0
+        save()
+    }
+
     private func save() { try? context.save() }
 }
