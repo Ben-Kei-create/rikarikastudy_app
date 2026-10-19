@@ -56,6 +56,15 @@ final class AppModel {
         var picked = QuestionSelector.select(all: repository.questions(for: .mountain), history: history,
                                              currentLevel: levelInfo.level, size: sessionLength)
         #if DEBUG
+        // QA aid: `-debugCorrectIsA YES` always makes choice A the right one, so UI tests can answer correctly.
+        if UserDefaults.standard.bool(forKey: "debugCorrectIsA") {
+            picked = picked.map { q in
+                guard q.correctChoiceId != "A", q.choices.count == 2 else { return q }
+                let swapped = [Choice(id: "A", text: q.choices[1].text), Choice(id: "B", text: q.choices[0].text)]
+                return Question(id: q.id, stage: q.stage, grade: q.grade, subject: q.subject, difficulty: q.difficulty,
+                                question: q.question, choices: swapped, correctChoiceId: "A", explanation: q.explanation)
+            }
+        }
         // QA aid: `-debugLongestFirst YES` puts the longest question and the longest explanation first.
         if UserDefaults.standard.bool(forKey: "debugLongestFirst") {
             let all = repository.questions(for: .mountain)

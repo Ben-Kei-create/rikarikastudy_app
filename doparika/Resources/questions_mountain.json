@@ -17478,5 +17478,1625 @@
     ],
     "correctChoiceId": "A",
     "explanation": "これらは受精を伴わない「無性生殖」の原理を利用しているため、もとの細胞（親）と遺伝子が完全に一致する個体が生まれます。"
+  },
+  {
+    "id": "00875",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "光合成が行われる、細胞の中の緑色の小さな粒を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "液胞"
+      },
+      {
+        "id": "B",
+        "text": "葉緑体"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "葉緑体には葉緑素が含まれ、光エネルギーを使って二酸化炭素と水から養分(デンプンなど)をつくります。"
+  },
+  {
+    "id": "00876",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "植物の根から吸い上げた水が、葉の気孔から水蒸気として出ていくことを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "蒸散"
+      },
+      {
+        "id": "B",
+        "text": "呼吸"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "蒸散は主に気孔で起こり、水を吸い上げる力のもとになります。"
+  },
+  {
+    "id": "00877",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "被子植物で、胚珠が入っている部分を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "やく"
+      },
+      {
+        "id": "B",
+        "text": "子房"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "被子植物の胚珠は子房の中にあり、受粉後、子房は果実に、胚珠は種子になります。"
+  },
+  {
+    "id": "00878",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "背骨をもたない動物をまとめて何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "無セキツイ動物"
+      },
+      {
+        "id": "B",
+        "text": "セキツイ動物"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "背骨をもつ動物がセキツイ動物で、昆虫・貝・エビ・クラゲなどは背骨のない無セキツイ動物です。"
+  },
+  {
+    "id": "00879",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "食物の養分を小さな分子に分解するはたらきを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "消化"
+      },
+      {
+        "id": "B",
+        "text": "吸収"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "消化液にふくまれる消化酵素のはたらきで、養分は吸収されやすい小さな物質になります。"
+  },
+  {
+    "id": "00880",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "血液の成分のうち、酸素を運ぶはたらきをもつものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "赤血球"
+      },
+      {
+        "id": "B",
+        "text": "白血球"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "赤血球にふくまれるヘモグロビンが、酸素の多いところで酸素と結びつきます。"
+  },
+  {
+    "id": "00881",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "刺激に対して、大脳を通らずに無意識に起こる反応を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "感覚"
+      },
+      {
+        "id": "B",
+        "text": "反射"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "熱いものに触れて思わず手を引くような反応が反射で、脊髄などが命令を出すため反応が速くなります。"
+  },
+  {
+    "id": "00882",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "体細胞分裂で、分裂の前後で染色体の数はどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "半分になる"
+      },
+      {
+        "id": "B",
+        "text": "変わらない"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "体細胞分裂では染色体が複製されてから分かれるので、できた細胞の染色体の数は元と同じです。"
+  },
+  {
+    "id": "00883",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "生殖細胞がつくられるときに行われる、染色体の数が半分になる分裂を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "減数分裂"
+      },
+      {
+        "id": "B",
+        "text": "体細胞分裂"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "減数分裂で染色体の数が半分になり、受精すると元の数にもどります。"
+  },
+  {
+    "id": "00884",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "純系の丸い種子(AA)としわの種子(aa)をかけ合わせてできる子の種子の形質は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "すべてしわ"
+      },
+      {
+        "id": "B",
+        "text": "すべて丸い"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "子の遺伝子型はAaで、顕性の形質である「丸」だけが現れます(メンデルの優性の法則)。"
+  },
+  {
+    "id": "00885",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "物質1cm³あたりの質量を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "密度"
+      },
+      {
+        "id": "B",
+        "text": "体積"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "密度(g/cm³)=質量(g)÷体積(cm³)で求められ、物質の種類によって決まっています。"
+  },
+  {
+    "id": "00886",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "二酸化マンガンにうすい過酸化水素水を加えると、発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水素"
+      },
+      {
+        "id": "B",
+        "text": "酸素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "二酸化マンガンは反応を助けるはたらきをし、過酸化水素が分解して酸素が発生します。"
+  },
+  {
+    "id": "00887",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水に溶けにくく、水上置換法で集める気体はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "アンモニア"
+      },
+      {
+        "id": "B",
+        "text": "水素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "アンモニアは水に非常によく溶けるため上方置換法で集めます。水素は水に溶けにくいので水上置換法を使います。"
+  },
+  {
+    "id": "00888",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "物質をつくっている、それ以上分けられない最小の粒を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "分子"
+      },
+      {
+        "id": "B",
+        "text": "原子"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "原子が結びついたものが分子です。化学変化では原子の種類と数は変わりません。"
+  },
+  {
+    "id": "00889",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水を電気分解したとき、陽極から発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸素"
+      },
+      {
+        "id": "B",
+        "text": "水素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "陰極から水素、陽極から酸素が発生し、体積の比はおよそ水素:酸素=2:1です。"
+  },
+  {
+    "id": "00890",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "化学変化の前後で、物質全体の質量が変わらないという法則を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "質量保存の法則"
+      },
+      {
+        "id": "B",
+        "text": "定比例の法則"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "化学変化では原子の組み合わせが変わるだけで、原子の種類と数は変わらないので、全体の質量は変わりません。"
+  },
+  {
+    "id": "00891",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸化銅を炭素と混ぜて加熱したとき、酸化銅は何をされていますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸化"
+      },
+      {
+        "id": "B",
+        "text": "還元"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "酸化銅は酸素を失って銅になる(還元)、炭素は酸素を得て二酸化炭素になる(酸化)という反応が同時に起こります。"
+  },
+  {
+    "id": "00892",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "二酸化炭素を石灰水に通すと、石灰水はどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "白くにごる"
+      },
+      {
+        "id": "B",
+        "text": "赤く変わる"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "二酸化炭素は石灰水(水酸化カルシウム水溶液)と反応して炭酸カルシウムができ、白くにごります。"
+  },
+  {
+    "id": "00893",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水溶液中で電離して、水素イオン(H⁺)を生じる物質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸"
+      },
+      {
+        "id": "B",
+        "text": "アルカリ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "酸は水素イオンを生じ、アルカリは水酸化物イオン(OH⁻)を生じる物質です。"
+  },
+  {
+    "id": "00894",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "酸の水溶液とアルカリの水溶液を混ぜたとき、互いの性質を打ち消し合う反応を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "中和"
+      },
+      {
+        "id": "B",
+        "text": "電離"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "中和では、水素イオンと水酸化物イオンが結びついて水ができ、同時に塩もできます。"
+  },
+  {
+    "id": "00895",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "光が鏡ではね返るとき、入射角と反射角の大きさの関係はどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "等しい"
+      },
+      {
+        "id": "B",
+        "text": "反射角が大きい"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "これを光の反射の法則といい、入射角と反射角は常に等しくなります。"
+  },
+  {
+    "id": "00896",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "光が空気中から水中へ斜めに進むとき、境界面で光が曲がる現象を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "反射"
+      },
+      {
+        "id": "B",
+        "text": "屈折"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "光は進む物質が変わる境界面で曲がり、空気から水へ進むとき、屈折角は入射角より小さくなります。"
+  },
+  {
+    "id": "00897",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "音の大きさは、振動の何で決まりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "振幅"
+      },
+      {
+        "id": "B",
+        "text": "振動数"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "振幅が大きいほど大きな音になります。音の高さは振動数(Hz)で決まります。"
+  },
+  {
+    "id": "00898",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "地球上で物体にはたらく、地球が物体を引く力を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "弾性力"
+      },
+      {
+        "id": "B",
+        "text": "重力"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "重力は物体の質量に比例し、月面では地球上の約6分の1になります。"
+  },
+  {
+    "id": "00899",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "電圧が一定のとき、抵抗が大きくなると電流はどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "小さくなる"
+      },
+      {
+        "id": "B",
+        "text": "大きくなる"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "オームの法則(電流=電圧÷抵抗)より、電圧が一定のとき、電流は抵抗に反比例します。"
+  },
+  {
+    "id": "00900",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "電熱線の電力が一定のとき、発生する熱量は電流を流した時間とどのような関係ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "比例する"
+      },
+      {
+        "id": "B",
+        "text": "反比例する"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "熱量(J)=電力(W)×時間(s)なので、電力が一定なら、発熱量は電流を流した時間に比例します。"
+  },
+  {
+    "id": "00901",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "コイルの中の磁界が変化したとき、コイルに電圧が生じて電流が流れる現象を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "電磁誘導"
+      },
+      {
+        "id": "B",
+        "text": "静電気"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "磁石をコイルに出し入れすると、コイルに誘導電流が流れます。発電機はこの原理を利用しています。"
+  },
+  {
+    "id": "00902",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "物体にはたらく2力がつり合うための条件として、正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "向きが同じ"
+      },
+      {
+        "id": "B",
+        "text": "向きが反対"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "つり合う2力は、大きさが等しく、向きが反対で、一直線上にあります。"
+  },
+  {
+    "id": "00903",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "仕事の原理により、道具を使っても、仕事の大きさはどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "変わらない"
+      },
+      {
+        "id": "B",
+        "text": "小さくなる"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "滑車や斜面を使うと力は小さくできますが、その分、力を加える距離が長くなり、仕事の大きさは変わりません。"
+  },
+  {
+    "id": "00904",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "運動している物体がもつエネルギーを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "位置エネルギー"
+      },
+      {
+        "id": "B",
+        "text": "運動エネルギー"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "運動エネルギーは、物体の質量が大きいほど、速さが大きいほど大きくなります。"
+  },
+  {
+    "id": "00905",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "マグマが地下深くでゆっくり冷えて固まってできる、粒の大きな火成岩を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "深成岩"
+      },
+      {
+        "id": "B",
+        "text": "火山岩"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "深成岩は大きな鉱物が組み合わさった等粒状組織で、花こう岩などがあります。"
+  },
+  {
+    "id": "00906",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地層に残された、昔の生物の遺骸や生活のあとを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "鉱物"
+      },
+      {
+        "id": "B",
+        "text": "化石"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地層ができた当時の環境を知る手がかりになる化石を示相化石、地層の年代を知る手がかりになる化石を示準化石といいます。"
+  },
+  {
+    "id": "00907",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地震が発生した地下の場所を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "震源"
+      },
+      {
+        "id": "B",
+        "text": "震央"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "震源の真上の地表の地点が震央です。"
+  },
+  {
+    "id": "00908",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "大きなゆれをもたらす、地震の波を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "P波"
+      },
+      {
+        "id": "B",
+        "text": "S波"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "P波は先に届く小さなゆれ(初期微動)を起こし、S波は遅れて届く大きなゆれ(主要動)を起こします。"
+  },
+  {
+    "id": "00909",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "空気中の水蒸気が冷やされて、水滴に変わり始める温度を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "露点"
+      },
+      {
+        "id": "B",
+        "text": "沸点"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "露点は空気中にふくまれる水蒸気の量で決まり、露点に達すると雲や霧ができます。"
+  },
+  {
+    "id": "00910",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北半球で、低気圧の中心付近の風は、どのように吹きこみますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "時計回り"
+      },
+      {
+        "id": "B",
+        "text": "反時計回り"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "北半球の低気圧では、中心に向かって反時計回りに風が吹きこみ、上昇気流が生じて雲ができやすくなります。"
+  },
+  {
+    "id": "00911",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "冷たい空気が暖かい空気の下にもぐりこみながら進む前線を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "温暖前線"
+      },
+      {
+        "id": "B",
+        "text": "寒冷前線"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "寒冷前線では積乱雲が発達し、狭い範囲に短時間の強い雨が降ります。"
+  },
+  {
+    "id": "00912",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽の表面にあらわれる、まわりより温度が低く黒く見える部分を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "プロミネンス"
+      },
+      {
+        "id": "B",
+        "text": "黒点"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "黒点の動きから、太陽が自転していることがわかります。"
+  },
+  {
+    "id": "00913",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球から見て、月が太陽の光を受けて全く見えなくなる月の形を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "満月"
+      },
+      {
+        "id": "B",
+        "text": "新月"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "新月は月が太陽と地球の間にあり、光を受けた面が地球と反対側を向いているため、見えません。"
+  },
+  {
+    "id": "00914",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽と地球と月が、この順に一直線に並び、月が地球の影に入る現象を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "月食"
+      },
+      {
+        "id": "B",
+        "text": "日食"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "月食は満月のときに起こります。日食は新月のとき、月が太陽をかくす現象です。"
+  },
+  {
+    "id": "00915",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "光合成を行って自分で栄養分をつくる植物を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "消費者"
+      },
+      {
+        "id": "B",
+        "text": "生産者"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "光合成で自ら有機物をつくる植物を生産者と呼び、他者を食べる動物などを消費者と呼びます。"
+  },
+  {
+    "id": "00916",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "顕微鏡を使うとき、最初に動かすのは接眼レンズと反射鏡のどちらですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "反射鏡"
+      },
+      {
+        "id": "B",
+        "text": "接眼レンズ"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "鏡筒内にごみが入るのを防ぐため、必ず接眼レンズを先に取り付けてから対物レンズを取り付けます。"
+  },
+  {
+    "id": "00917",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "植物の葉の表皮にあり、気体や水蒸気の出入り口となる小さなすきまを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "道管"
+      },
+      {
+        "id": "B",
+        "text": "気孔"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "気孔は主に葉の裏側に多く存在し、蒸散や呼吸、光合成に伴う気体の出入りを行います。"
+  },
+  {
+    "id": "00918",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "血液の成分のうち、全身の細胞へ酸素を運ぶはたらきをもつものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "赤血球"
+      },
+      {
+        "id": "B",
+        "text": "白血球"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "赤血球に含まれるヘモグロビンが酸素と結びつくことで、全身へ酸素を運搬します。"
+  },
+  {
+    "id": "00919",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "砂糖やプラスチックのように、加熱するとこげて炭になる物質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "無機物"
+      },
+      {
+        "id": "B",
+        "text": "有機物"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "炭素を含む物質を有機物といい、加熱すると二酸化炭素と水が発生します。"
+  },
+  {
+    "id": "00920",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "二酸化マンガンに過酸化水素水を加えたときに発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸素"
+      },
+      {
+        "id": "B",
+        "text": "二酸化炭素"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "二酸化マンガンは触媒として働き、過酸化水素（オキシドール）を分解して酸素を発生させます。"
+  },
+  {
+    "id": "00921",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "水を電気分解したとき、陰極側に発生する気体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "酸素"
+      },
+      {
+        "id": "B",
+        "text": "水素"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水の電気分解では、陰極から水素、陽極から酸素が2対1の体積比で発生します。"
+  },
+  {
+    "id": "00922",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "物体が移動した距離を、移動にかかった時間で割ることで求められる値は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "圧力"
+      },
+      {
+        "id": "B",
+        "text": "速さ"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "速さは単位時間（1秒や1時間など）あたりに物体が移動する距離を表します。"
+  },
+  {
+    "id": "00923",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "光が空気中から水やガラスに進むとき、境界面で光が折れ曲がる現象を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "反射"
+      },
+      {
+        "id": "B",
+        "text": "屈折"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "密度が異なる物質の境界面を光が斜めに通過するとき、進む向きが変わる現象を屈折といいます。"
+  },
+  {
+    "id": "00924",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "異なる種類の物体どうしを擦り合わせたときに発生する電気を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "静電気"
+      },
+      {
+        "id": "B",
+        "text": "交流"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "摩擦によって物体間に電子が移動することで生じる電気を静電気といいます。"
+  },
+  {
+    "id": "00925",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "電流の強さを表す単位「A」の読み方は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "アンペア"
+      },
+      {
+        "id": "B",
+        "text": "ボルト"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "電流の単位はアンペア（A）、電圧の単位はボルト（V）を使用します。"
+  },
+  {
+    "id": "00926",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地震が発生したとき、最初に伝わってくる伝播速度の速い小さな揺れ（波）を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "S波"
+      },
+      {
+        "id": "B",
+        "text": "P波"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地震の波のうち速く伝わる波をP波と呼び、P波によって引き起こされる小さな揺れを初期微動といいます。"
+  },
+  {
+    "id": "00927",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "マグマが地下深くでゆっくり冷えて固まってできたマグマ岩を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "火山岩"
+      },
+      {
+        "id": "B",
+        "text": "深成岩"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地下深くでゆっくり冷え固まると結晶が大きく育ち、等粒状組織をもつ深成岩になります。"
+  },
+  {
+    "id": "00928",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "寒気団が暖気団を押しのけながら進む境目にできる前線を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "温暖前線"
+      },
+      {
+        "id": "B",
+        "text": "寒冷前線"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "寒気が暖気を急激にはね上げるため、積乱雲が発生して激しい雨が短時間に降ります。"
+  },
+  {
+    "id": "00929",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽のように、自ら光や熱を放って輝いている天体を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "惑星"
+      },
+      {
+        "id": "B",
+        "text": "恒星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "宇宙空間で自ら発光する天体を恒星と呼び、その周囲を公転する地球などの天体を惑星といいます。"
+  },
+  {
+    "id": "00930",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "異なる物体を擦り合わせたときに発生し、物体にたまる電気が流れ出す現象を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "電磁誘導"
+      },
+      {
+        "id": "B",
+        "text": "静電気"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "摩擦によって発生する電気を静電気といい、これが他の物体へ移動して流れる現象を放電といいます。"
+  },
+  {
+    "id": "00931",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "磁石の周りや電流の周りに存在する、磁気の力がはたらく空間を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "磁界"
+      },
+      {
+        "id": "B",
+        "text": "電界"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "磁気の力がはたらく空間を磁界と呼び、磁界の向きは方位磁針のN極が指す向きで表します。"
+  },
+  {
+    "id": "00932",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "運動している物体に摩擦などの外力がはたらかないとき、そのまま運動を続けようとする性質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "慣性"
+      },
+      {
+        "id": "B",
+        "text": "重力"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "物体が現在の運動状態を保とうとする性質を慣性と呼び、この法則を慣性の法則といいます。"
+  },
+  {
+    "id": "00933",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "物体に1Nの力を加えて、その力の向きに1m動かしたときの仕事の大きさは何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1W"
+      },
+      {
+        "id": "B",
+        "text": "1J"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "仕事（J）は「力（N）×距離（m）」で計算します。1Wは1秒あたりに行う仕事の大きさ（仕事率）の単位です。"
+  },
+  {
+    "id": "00934",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "体細胞分裂によって新しくできた細胞の染色体の数は、分裂前の親の細胞と比べてどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "半分になる"
+      },
+      {
+        "id": "B",
+        "text": "同じ"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "体細胞分裂ではDNAが複製されたのち均等に分けられるため、染色体の数は親と同じになります。"
+  },
+  {
+    "id": "00935",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "対立形質をもつ純系同士をかけ合わせたとき、子の代で表面に現れる形質を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "顕性形質"
+      },
+      {
+        "id": "B",
+        "text": "潜性形質"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "子の代で現れる形質を顕性形質（旧：優性形質）、現れずに隠れる形質を潜性形質（旧：劣性形質）といいます。"
+  },
+  {
+    "id": "00936",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "生殖細胞ができる際、対になっている遺伝子が分かれて別々の生殖細胞に入る法則を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "独立の法則"
+      },
+      {
+        "id": "B",
+        "text": "分離の法則"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "減数分裂の際に対をなす遺伝子が分離してそれぞれの生殖細胞に入ることを分離の法則といいます。"
+  },
+  {
+    "id": "00937",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "マグマが地表付近で急激に冷えて固まってできた火成岩を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "深成岩"
+      },
+      {
+        "id": "B",
+        "text": "火山岩"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "急激に冷えると結晶が育たず斑状組織の火山岩になります。地下深くでゆっくり冷えると深成岩になります。"
+  },
+  {
+    "id": "00938",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地震の揺れのうち、初期微動を起こすP波の速度は主要動を起こすS波と比べてどうですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "S波のほうが速い"
+      },
+      {
+        "id": "B",
+        "text": "P波のほうが速い"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "P波はS波よりも伝わる速度が早いため、観測地点に先に到達して初期微動を引き起こします。"
+  },
+  {
+    "id": "00939",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "空気が冷やされて、水蒸気が凝結して水滴になり始めるときの温度を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "露点"
+      },
+      {
+        "id": "B",
+        "text": "沸点"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "空気が冷やされて水蒸気が飽和状態に達し、水滴ができ始める温度を露点といいます。"
+  },
+  {
+    "id": "00940",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "暖気が寒気の上へ穏やかに這い上がるように進み、広い範囲に長雨をもたらす前線を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "温暖前線"
+      },
+      {
+        "id": "B",
+        "text": "寒冷前線"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "暖気が這い上がる温暖前線では乱層雲などが形成され、広い範囲で長時間おだやかな雨が降ります。"
+  },
+  {
+    "id": "00941",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "直列回路において、各抵抗を流れる電流の大きさの関係はどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "どこでも同じ"
+      },
+      {
+        "id": "B",
+        "text": "抵抗が大きいほど小さい"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "直列回路は一本道のため電流の通り道が分かれず、回路のどの点でも電流の大きさはすべて等しくなります。"
+  },
+  {
+    "id": "00942",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "コイルに磁石を近づけたり遠ざけたりしたとき、コイルに電圧が生じて電流が流れる現象を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "静電気誘導"
+      },
+      {
+        "id": "B",
+        "text": "電磁誘導"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "コイル内の磁界の変化によって電圧が生じ電流が流れる現象を電磁誘導といい、流れる電流を誘導電流といいます。"
+  },
+  {
+    "id": "00943",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "1Wの電力で1秒間電流を流したときに発生する熱量は何Jですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1 cal"
+      },
+      {
+        "id": "B",
+        "text": "1J"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "熱量（J）は「電力（W）×時間（秒）」で求められるため、1Wで1秒間使用したときの熱量は1Jとなります。"
+  },
+  {
+    "id": "00944",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "物体が一定の割合で速さを増しながら一直線上を運動するとき、物体にはたらいている力はどうなっていますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "運動の向きに一定の力がはたらいている"
+      },
+      {
+        "id": "B",
+        "text": "力は一切はたらいていない"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "等速直線運動と異なり、速さが一定の割合で増加するときは運動の向きに一定の大きさの力がはたらき続けています。"
+  },
+  {
+    "id": "00945",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "道具を使っても必要な仕事の大きさは変わらないという法則を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "質量保存の法則"
+      },
+      {
+        "id": "B",
+        "text": "仕事の原理"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "てこや滑車などの道具を使うと加える力は小さくできますが、動かす距離が長くなるため仕事の総量は変わりません。"
+  },
+  {
+    "id": "00946",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "1秒間あたりに行う仕事の量を表す単位は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "J（ジュール）"
+      },
+      {
+        "id": "B",
+        "text": "W（ワット）"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "1秒間あたりに行う仕事（仕事率）の単位にはWを用い、「仕事（J）÷時間（秒）」で計算します。"
+  },
+  {
+    "id": "00947",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "有性生殖において、精子や卵などの生殖細胞ができるときに行われる特別な細胞分裂を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "減数分裂"
+      },
+      {
+        "id": "B",
+        "text": "体細胞分裂"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "生殖細胞がつくられるときは染色体の数が半分になる減数分裂が行われ、受精によって親と同じ数に戻ります。"
+  },
+  {
+    "id": "00948",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "精子の核と卵の核が合体して受精卵になることを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "受精"
+      },
+      {
+        "id": "B",
+        "text": "発生"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "精子と卵の核が結合する現象を受精といい、受精卵が細胞分裂を繰り返して成体になるまでの過程を発生といいます。"
+  },
+  {
+    "id": "00949",
+    "stage": "mountain",
+    "grade": 3,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "遺伝子の本体である物質の略称は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "DNA"
+      },
+      {
+        "id": "B",
+        "text": "RNA"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "染色体の中に含まれ、親から子へ形質を伝える遺伝情報の本体はDNA（デオキシリボ核酸）です。"
+  },
+  {
+    "id": "00950",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地震が発生した地下の場所そのものを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "震央"
+      },
+      {
+        "id": "B",
+        "text": "震源"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地震が発生した地下の地点を震源と呼び、震源の真上にあたる地表の地点を震央と呼びます。"
+  },
+  {
+    "id": "00951",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "その地層が堆積した当時の環境（あたたかく浅い海など）を知る手がかりとなる化石を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "示相化石"
+      },
+      {
+        "id": "B",
+        "text": "示準化石"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "サンゴやアサリのように特定の環境でしか生きられない生物の化石を示相化石といい、当時の環境を示します。"
+  },
+  {
+    "id": "00952",
+    "stage": "mountain",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地震そのものの規模（エネルギーの大きさ）を表す尺度を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "震度"
+      },
+      {
+        "id": "B",
+        "text": "マグニチュード"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地震そのものの規模を表す値がマグニチュードであり、各観測地点での揺れの強さを表す値が震度です。"
+  },
+  {
+    "id": "00953",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "周囲より気圧が高く、中心部で下降気流が発生している気圧の配置を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "高気圧"
+      },
+      {
+        "id": "B",
+        "text": "低気圧"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "高気圧の中心部では下降気流が起こり、水滴や雲が蒸発して天気が良くなる傾向があります。"
+  },
+  {
+    "id": "00954",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "日本付近の夏の特徴的な天気に大きく影響を与える、太平洋上にある気団を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "シベリア気団"
+      },
+      {
+        "id": "B",
+        "text": "小笠原気団"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "小笠原気団は高温で多湿な性質をもち、日本の夏に蒸し暑い晴天をもたらします。"
+  },
+  {
+    "id": "00955",
+    "stage": "mountain",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "風は気圧の高いほうから低いほうへ向かって吹きますか、それとも低いほうから高いほうへ吹きますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "高いほうから低いほうへ吹く"
+      },
+      {
+        "id": "B",
+        "text": "低いほうから高いほうへ吹く"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "空気の密度や押す力が大きい高気圧側から、気圧の低い低気圧側へ向かって空気が移動するため風が生じます。"
   }
 ]

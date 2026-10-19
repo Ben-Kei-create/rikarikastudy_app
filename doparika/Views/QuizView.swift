@@ -172,10 +172,14 @@ private struct QuizContent: View {
             if engine.phase == .finished {
                 ResultView(model: model, engine: engine, onRestart: onRestart, onHome: onHome)
             } else {
+                // The burst is an overlay: it is drawn on top but never takes part in layout, so its
+                // 520pt sparkle can no longer widen the screen (it did, on every correct answer).
                 quizBody(engine)
-                if AppSettings.shared.effectsEnabled, case .resolved(let r) = engine.phase {
-                    AnswerBurst(resolution: r, xp: engine.lastXPGain).id(engine.index)
-                }
+                    .overlay {
+                        if AppSettings.shared.effectsEnabled, case .resolved(let r) = engine.phase {
+                            AnswerBurst(resolution: r, xp: engine.lastXPGain).id(engine.index)
+                        }
+                    }
             }
         }
         .id(engine.phase == .finished)

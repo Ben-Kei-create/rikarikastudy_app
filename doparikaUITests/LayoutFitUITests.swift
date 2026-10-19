@@ -28,7 +28,7 @@ final class LayoutFitUITests: XCTestCase {
 
     private func run(extraArgs: [String]) {
         let app = XCUIApplication()
-        app.launchArguments = ["-debugXP", "0", "-debugLongestFirst", "YES"] + extraArgs
+        app.launchArguments = ["-debugXP", "0", "-debugLongestFirst", "YES", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "YES", "-settings.haptics", "NO"] + extraArgs
         app.launch()
         app.buttons["スタート"].tap()
         let window = app.windows.firstMatch.frame
@@ -52,4 +52,27 @@ final class LayoutFitUITests: XCTestCase {
             next.tap()
         }
     }
+
+    /// A correct answer plays the big ○ and sparkle burst; the layout must not widen while it is on screen.
+    func testCorrectAnswerBurstDoesNotWidenTheLayout() {
+        let app = XCUIApplication()
+        app.launchArguments = ["-debugXP", "0", "-debugCorrectIsA", "YES", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "YES", "-settings.haptics", "NO"]
+        app.launch()
+        app.buttons["スタート"].tap()
+        let window = app.windows.firstMatch.frame
+        let a = app.buttons.matching(NSPredicate(format: "label CONTAINS 'A'")).firstMatch
+        XCTAssertTrue(a.waitForExistence(timeout: 5))
+        a.tap()
+        let next = app.buttons["次の問題へ"]
+        XCTAssertTrue(next.waitForExistence(timeout: 3))
+        // Sample while the burst animates (0 - ~1.6 s) and after it has faded.
+        for i in 0..<8 {
+            assertInside(next, window, "next button (burst t=\(i))")
+            assertInside(a, window, "choice A (burst t=\(i))")
+            if i == 2 { attach(app, "burst-mid") }
+            usleep(250_000)
+        }
+        attach(app, "burst-end")
+    }
 }
+
