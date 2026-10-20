@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFAudio
 
 /// Wires the pure QuizEngine to a frame ticker, the world motion and persistence.
 @MainActor
@@ -14,8 +15,27 @@ final class QuizSession {
     private var lastTick: ContinuousClock.Instant?
     private let now: () -> ContinuousClock.Instant   // injectable for tests
     private let carryOverDepth: Double?
-    /// Pausing (Background) drops the clock reference, so the suspended interval is never counted.
-    var paused = false { didSet { lastTick = nil; if paused { sound.stopAll() } } }
+    /// Pausing (Background, or the player's pause button) drops the clock reference, so the suspended
+    /// interval is never counted. `paused` is the system's switch (scene phase); `userPaused` is the button.
+    var paused = false { didSet { pauseChanged() } }
+    var userPaused = false { didSet { pauseChanged() } }
+    var isPaused: Bool { paused || userPaused }
+    /// Length of the "3, 2, 1, 0" voice; it starts that long before the deadline.
+    @ObservationIgnored private var cachedLead: Double?
+    private var countdownLead: Double {
+        if let c = cachedLead { return c }
+        let d = SoundPlayer.shared.duration(of: .countdown)
+        cachedLead = d > 0 ? d : 3.4
+        return cachedLead!
+    }
+
+    private func pauseChanged() {
+        lastTick = nil
+        guard isPaused else { return }
+        sound.stopAll()
+        countdownStarted = false      // on resume, restart it from the right spot for the time left
+        MusicPlayer.shared.cancelDuck()
+    }
 
     /// `carryOverDepth`: where the previous run's world currently is, so a quick retry rises back to the
     /// surface from there instead of warping.
@@ -60,7 +80,7 @@ final class QuizSession {
     /// Single time source: the frame ticker and answer handling both advance the engine to "now" first,
     /// so an answer arriving after the deadline is a timeout regardless of task ordering.
     func advance() {
-        guard !paused else { return }
+        guard !isPaused else { return }
         let current = now()
         defer { lastTick = current }
         guard let last = lastTick else { return }
@@ -68,11 +88,11 @@ final class QuizSession {
         let dt = Double(d.components.seconds) + Double(d.components.attoseconds) / 1e18
         engine.tick(dt)
         motion.step(dt)
-        // "3, 2, 1, 0" voice: starts so that it ends as the time runs out.
-        if engine.phase == .answering, !countdownStarted, engine.remaining <= 3.4 {
+        // "3, 2, 1, 0" voice: ends as the time runs out. After a pause it resumes from the matching offset.
+        if engine.phase == .answering, !countdownStarted, engine.remaining <= countdownLead {
             countdownStarted = true
-            sound.play(.countdown)
-            MusicPlayer.shared.duck(to: 0.35, for: 3.6)
+            sound.play(.countdown)?.currentTime = max(0, countdownLead - engine.remaining)
+            MusicPlayer.shared.duck(to: 0.35, for: engine.remaining + 0.2)
         }
     }
 
@@ -82,6 +102,7 @@ final class QuizSession {
 
     func next() {
         advance()   // settle elapsed time against the finished question, so the new one starts from a fresh clock
+        sound.stopAll()   // nothing from the previous question may leak into the next one
         engine.next()
         countdownStarted = false
         if engine.phase == .finished {
@@ -99,7 +120,9 @@ final class QuizSession {
             sound.stop(.countdown)
             sound.play(.correctVoice)
             sound.play(.correctChime)   // correct = voice + chime only (dig_*/break_*.mp3 stay bundled, unused)
-            MusicPlayer.shared.duck(for: 1.2)
+            // Hold the music down for as long as the longer of the two sounds, plus a short tail.
+            let len = max(sound.duration(of: .correctVoice), sound.duration(of: .correctChime))
+            MusicPlayer.shared.duck(for: len + 0.3)
             // Each correct answer dives to the top of the next image; the last one reaches the very bottom.
             motion.boost(to: motion.restingDepth(afterCorrect: engine.correctCount))
         case .wrong:
@@ -107,13 +130,14 @@ final class QuizSession {
             Haptics.wrong()
             sound.stop(.countdown)
             sound.play(.wrong)
-            MusicPlayer.shared.duck(for: 1.8)
+            MusicPlayer.shared.duck(for: sound.duration(of: .wrong) + 0.3)
             motion.fall(distance: WorldMotionController.wrongFall)
         case .timeout:
             model.record(question: q, correct: false)
             Haptics.timeout()
+            sound.stop(.countdown)
             sound.play(.timeoutVoice)
-            MusicPlayer.shared.duck(for: 1.3)
+            MusicPlayer.shared.duck(for: sound.duration(of: .timeoutVoice) + 0.3)
             motion.fall(distance: WorldMotionController.timeoutFall)
         }
     }
@@ -156,12 +180,18 @@ private struct QuizContent: View {
     let model: AppModel
     let onRestart: () -> Void
     let onHome: () -> Void
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @ScaledMetric(relativeTo: .title2) private var progressSize: CGFloat = 24
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    /// Decorative motion: off with the in-app switch or the system "Reduce Motion".
+    private var effects: Bool { AppSettings.shared.effectsEnabled && !reduceMotion }
 
     var body: some View {
         let engine = session.engine
         ZStack {
             WorldBackgroundView(motion: session.motion)
-            if AppSettings.shared.effectsEnabled {
+            if effects {
                 AmbientEffects(motion: session.motion)
                 LowTimeVignette(engine: engine)
             }
@@ -172,10 +202,13 @@ private struct QuizContent: View {
                 // 520pt sparkle can no longer widen the screen (it did, on every correct answer).
                 quizBody(engine)
                     .overlay {
-                        if AppSettings.shared.effectsEnabled, case .resolved(let r) = engine.phase {
+                        if effects, case .resolved(let r) = engine.phase {
                             AnswerBurst(resolution: r, xp: engine.lastXPGain).id(engine.index)
                         }
                     }
+                if session.userPaused {
+                    PauseOverlay(onResume: { session.userPaused = false }, onHome: onHome)
+                }
             }
         }
         .id(engine.phase == .finished)
@@ -186,23 +219,40 @@ private struct QuizContent: View {
             // The content width is pinned to the screen: a long single line must wrap, never widen the layout.
             let contentWidth = max(geo.size.width - 36, 100)
             VStack(spacing: 14) {
-                HStack {
+                HStack(spacing: 12) {
                     Text("第\(engine.index + 1)問 / \(engine.total)問")
-                        .font(.system(size: 24, weight: .heavy, design: .rounded))
+                        .font(.system(size: progressSize, weight: .heavy, design: .rounded))
+                        .lineLimit(1).minimumScaleFactor(0.6)
                         .accessibilityIdentifier("progress")
-                    Spacer()
+                    Spacer(minLength: 0)
                     TimerLabel(engine: engine)
+                    Button { session.userPaused = true } label: {
+                        Image(systemName: "pause.fill")
+                            .font(.headline)
+                            .frame(width: 44, height: 44)
+                            .background(.black.opacity(0.4), in: Circle())
+                    }
+                    .accessibilityLabel("一時停止")
+                    .accessibilityIdentifier("pause")
                 }
                 .foregroundStyle(.white)
                 .shadow(color: .black, radius: 3)
                 .frame(width: contentWidth)
 
-                questionPanel(engine)
-                    .frame(width: contentWidth)
-                    .frame(maxHeight: .infinity)   // centred between header and feedback area
+                // The panel is centred when it is short and scrolls when it is not (small screens, big text),
+                // so every word of the question and both choices can always be reached.
+                GeometryReader { area in
+                    ScrollView {
+                        questionPanel(engine)
+                            .frame(width: contentWidth)
+                            .frame(maxWidth: .infinity, minHeight: area.size.height)
+                    }
+                    .scrollBounceBehavior(.basedOnSize)
+                    .scrollIndicators(.visible)
+                }
                 // Fixed-height feedback area: the question panel stays put when an answer is revealed.
                 feedback(engine)
-                    .frame(width: contentWidth, height: 300, alignment: .bottom)
+                    .frame(width: contentWidth, height: geo.size.height * (typeSize.isAccessibilitySize ? 0.3 : 0.42) > 300 ? 300 : geo.size.height * (typeSize.isAccessibilitySize ? 0.3 : 0.42), alignment: .bottom)
             }
             .frame(width: geo.size.width, height: geo.size.height)
             .padding(.top, 8)
@@ -213,7 +263,7 @@ private struct QuizContent: View {
     private func questionPanel(_ engine: QuizEngine) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(engine.current.question)
-                .font(.system(size: 18, weight: .bold, design: .rounded))
+                .font(.system(.title3, design: .rounded, weight: .bold))
                 .foregroundStyle(Theme.ink)
                 .fixedSize(horizontal: false, vertical: true)
             ForEach(engine.current.choices) { c in
@@ -238,38 +288,69 @@ private struct QuizContent: View {
             VStack(spacing: 10) {
                 // Text scrolls if it is long; the button below is always reachable.
                 ScrollView {
-                    VStack(spacing: 8) {
+                    VStack(alignment: .leading, spacing: 8) {
                         switch r {
                         case .correct:
-                            Text("正解!  +\(engine.lastXPGain) XP").font(.title2.weight(.black)).foregroundStyle(Theme.good)
+                            Text("正解!  +\(engine.lastXPGain) XP").font(.title2.weight(.black)).foregroundStyle(Theme.goodDark)
                         case .wrong:
-                            Text("残念…").font(.title2.weight(.black)).foregroundStyle(Theme.bad)
+                            Text("残念…").font(.title2.weight(.black)).foregroundStyle(Theme.badDark)
                         case .timeout:
-                            Text("時間切れ…").font(.title2.weight(.black)).foregroundStyle(Theme.bad)
+                            Text("時間切れ…").font(.title2.weight(.black)).foregroundStyle(Theme.badDark)
                         }
                         if case .correct = r {} else {
                             Text("正解: \(engine.current.correctText)").font(.subheadline.weight(.bold))
-                                .multilineTextAlignment(.center)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         if !engine.current.explanation.isEmpty {
                             Text(engine.current.explanation)
                                 .font(.body)
-                                .multilineTextAlignment(.center)
+                                .lineSpacing(4)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                     }
-                    .frame(maxWidth: .infinity)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .scrollBounceBehavior(.basedOnSize)
+                .scrollIndicators(.visible)
                 Button(engine.isLast ? "結果を見る" : "次の問題へ") { session.next() }
                     .buttonStyle(PrimaryButtonStyle())
             }
             .foregroundStyle(Theme.ink)
-            .parchmentPanel(opacity: 0.92)
+            .parchmentPanel(opacity: 0.96)
             .transition(.move(edge: .bottom).combined(with: .opacity))
         case .finished:
             EmptyView()
+        }
+    }
+}
+
+/// Pause menu. It hides the question, so pausing is not a way to get extra thinking time.
+private struct PauseOverlay: View {
+    let onResume: () -> Void
+    let onHome: () -> Void
+    @Bindable private var settings = AppSettings.shared
+
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.88).ignoresSafeArea()
+            VStack(spacing: 16) {
+                Text("一時停止").font(.title.weight(.black)).foregroundStyle(.white)
+                VStack(spacing: 4) {
+                    Toggle("BGM", isOn: $settings.bgmEnabled)
+                    Toggle("効果音・ボイス", isOn: $settings.sfxEnabled)
+                }
+                .tint(Theme.ember)
+                .foregroundStyle(Theme.ink)
+                .parchmentPanel(opacity: 0.95)
+                Button("再開", action: onResume).buttonStyle(PrimaryButtonStyle())
+                    .accessibilityIdentifier("resume")
+                Button("ホームへもどる", action: onHome).buttonStyle(PrimaryButtonStyle(tint: Theme.parchment))
+                Text("ここまでの回答とXPは保存されています。この回のつづきはありません。")
+                    .font(.footnote).foregroundStyle(.white.opacity(0.8)).multilineTextAlignment(.center)
+            }
+            .padding(24)
+            .frame(maxWidth: 460)
         }
     }
 }
@@ -279,7 +360,7 @@ private struct TimerLabel: View {
     let engine: QuizEngine
     var body: some View {
         Label(String(format: "%.1f", engine.remaining), systemImage: "timer")
-            .font(.system(size: 20, weight: .heavy, design: .rounded).monospacedDigit())
+            .font(.system(.title3, design: .rounded, weight: .heavy).monospacedDigit())
             .foregroundStyle(engine.remaining <= 5 ? Theme.bad : .white)
             .shadow(color: .black, radius: 3)
             .accessibilityLabel("残り \(Int(engine.remaining.rounded(.up))) 秒")
@@ -299,23 +380,29 @@ private struct ChoiceButton: View {
         return (.white.opacity(0.4), nil)
     }
 
+    @ScaledMetric(relativeTo: .body) private var badge: CGFloat = 30
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 12) {
                 Text(choice.id)
-                    .font(.system(size: 16, weight: .black, design: .rounded))
+                    .font(.system(.callout, design: .rounded, weight: .black))
                     .foregroundStyle(.white)
-                    .frame(width: 30, height: 30)
+                    .frame(width: badge, height: badge)
                     .background(Theme.ink, in: Circle())
-                Text(choice.text).font(.system(size: 18, weight: .bold, design: .rounded))
-                Spacer()
+                // Full text, any length: wraps instead of truncating, and the row grows with it.
+                Text(choice.text)
+                    .font(.system(.title3, design: .rounded, weight: .bold))
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 if let m = state.mark { Image(systemName: m).fontWeight(.black) }
             }
             .foregroundStyle(Theme.ink)
             .padding(.horizontal, 14).padding(.vertical, 12)
             .frame(maxWidth: .infinity, minHeight: 52)
-            .background(state.fill, in: Capsule())
-            .overlay(Capsule().stroke(Theme.parchmentDark, lineWidth: 1.5))
+            .background(state.fill, in: RoundedRectangle(cornerRadius: 26, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: 26, style: .continuous).stroke(Theme.parchmentDark, lineWidth: 1.5))
         }
         .buttonStyle(.plain)
         .disabled(phase != .answering)

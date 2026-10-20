@@ -3,6 +3,7 @@ import SwiftUI
 struct HomeView: View {
     let model: AppModel
     @Binding var path: [Route]
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var motion = WorldMotionController()
     // Launch intro: the logo slams in, the screen flashes, a shine sweeps across, then the rest fades up.
     private static var introPlayed = false
@@ -50,7 +51,7 @@ struct HomeView: View {
                     .padding(.top, 24)
 
                     Group {
-                    GlobeView(spins: AppSettings.shared.effectsEnabled)
+                    GlobeView(spins: motionAllowed)
                         .frame(width: 150, height: 150)
                         .opacity(rest)
                         .accessibilityHidden(true)
@@ -99,6 +100,9 @@ struct HomeView: View {
         }
     }
 
+    /// Decorative motion: off with the in-app switch or the system "Reduce Motion".
+    private var motionAllowed: Bool { AppSettings.shared.effectsEnabled && !reduceMotion }
+
     private var logo: some View {
         Image("logo")
             .resizable()
@@ -120,11 +124,10 @@ struct HomeView: View {
     }
 
     private func playIntro() {
-        guard !Self.introPlayed, AppSettings.shared.effectsEnabled else {
+        guard !Self.introPlayed, motionAllowed else {
             Self.introPlayed = true
             logoScale = 1; logoDrop = 0; logoOpacity = 1; rest = 1; shineX = 1.3
-            startPulse()
-            return
+            return                      // no intro and no idle pulse when motion is switched off
         }
         Self.introPlayed = true
         withAnimation(.spring(response: 0.5, dampingFraction: 0.5)) { logoScale = 1; logoDrop = 0; logoOpacity = 1 }
@@ -140,6 +143,7 @@ struct HomeView: View {
     }
 
     private func startPulse() {
+        guard motionAllowed else { return }
         withAnimation(.easeInOut(duration: 1.8).repeatForever(autoreverses: true)) { pulse = 1.03 }
     }
 

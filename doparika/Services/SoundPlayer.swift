@@ -24,7 +24,13 @@ final class SoundPlayer {
     static var testOverride: Bool?
     var isMuted: Bool { !(Self.testOverride ?? AppSettings.shared.sfxEnabled) }
 
+    /// Every play/stop request in order, whether or not it was audible (tests assert on this).
+    enum Event: Equatable { case play(Sfx), stop(Sfx), stopAll }
+    private(set) var events: [Event] = []
+    func clearEvents() { events.removeAll() }
+
     private var data: [Sfx: Data] = [:]
+    private var durations: [Sfx: TimeInterval] = [:]
     private var playing: [AVAudioPlayer] = []
     private var configured = false
     private(set) var playCount = 0   // for tests
@@ -39,6 +45,7 @@ final class SoundPlayer {
 
     @discardableResult
     func play(_ s: Sfx, volume: Float = 1) -> AVAudioPlayer? {
+        events.append(.play(s))
         guard !isMuted else { return nil }
         if data[s] == nil { preload() }
         guard let d = data[s], let p = try? AVAudioPlayer(data: d) else { return nil }
@@ -52,12 +59,22 @@ final class SoundPlayer {
 
     func playRandom(_ group: [Sfx], volume: Float = 1) { if let s = group.randomElement() { play(s, volume: volume) } }
 
+    /// Length of a bundled sound in seconds (0 if it cannot be decoded).
+    func duration(of s: Sfx) -> TimeInterval {
+        if let d = durations[s] { return d }
+        if data[s] == nil { preload() }
+        let d = data[s].flatMap { try? AVAudioPlayer(data: $0).duration } ?? 0
+        durations[s] = d
+        return d
+    }
+
     func stop(_ s: Sfx) {
+        events.append(.stop(s))
         guard let d = data[s] else { return }
         for p in playing where p.data == d { p.stop() }
     }
 
-    func stopAll() { playing.forEach { $0.stop() }; playing.removeAll() }
+    func stopAll() { events.append(.stopAll); playing.forEach { $0.stop() }; playing.removeAll() }
 
     private func configureSession() {
         guard !configured else { return }

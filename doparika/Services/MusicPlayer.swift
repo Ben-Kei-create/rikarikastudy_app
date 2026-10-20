@@ -53,13 +53,28 @@ final class MusicPlayer {
     private(set) var wanted: Track?
     func request(_ track: Track) { wanted = track; play(track) }
 
-    /// Duck under a voice line / effect, then come back.
+    /// Whether the music is currently held down for a voice line / effect.
+    private(set) var isDucked = false
+    private var duckToken = 0
+
+    /// Duck under a voice line / effect, then come back. A new duck replaces the previous one, so an
+    /// older duck's restore can never cut a newer one short.
     func duck(to level: Float = 0.2, for seconds: TimeInterval = 1.4) {
-        guard let p = player else { return }
-        p.setVolume(baseVolume * level, fadeDuration: 0.15)
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) { [weak self, weak p] in
-            guard let self, let p, p === self.player else { return }
-            p.setVolume(self.baseVolume, fadeDuration: 0.6)
+        duckToken += 1
+        let token = duckToken
+        isDucked = true
+        player?.setVolume(baseVolume * level, fadeDuration: 0.15)
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) { [weak self] in
+            guard let self, token == self.duckToken else { return }
+            self.isDucked = false
+            self.player?.setVolume(self.baseVolume, fadeDuration: 0.6)
         }
+    }
+
+    /// Bring the music back right away (pause / Background) and invalidate any pending restore.
+    func cancelDuck() {
+        duckToken += 1
+        isDucked = false
+        player?.setVolume(baseVolume, fadeDuration: 0.3)
     }
 }

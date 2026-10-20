@@ -11,6 +11,15 @@ final class LayoutFitUITests: XCTestCase {
         XCTAssertLessThanOrEqual(f.maxX, window.maxX + 1, "\(what) leaks right: \(f) window \(window)", file: file, line: line)
     }
 
+    /// Fully on screen vertically too, and actually tappable (not covered or clipped).
+    private func assertReachable(_ e: XCUIElement, _ window: CGRect, _ what: String,
+                                 file: StaticString = #filePath, line: UInt = #line) {
+        let f = e.frame
+        XCTAssertGreaterThanOrEqual(f.minY, window.minY - 1, "\(what) leaks above: \(f)", file: file, line: line)
+        XCTAssertLessThanOrEqual(f.maxY, window.maxY + 1, "\(what) leaks below: \(f) window \(window)", file: file, line: line)
+        XCTAssertTrue(e.isHittable, "\(what) is not hittable", file: file, line: line)
+    }
+
     private func attach(_ app: XCUIApplication, _ name: String) {
         let a = XCTAttachment(screenshot: app.screenshot()); a.name = name; a.lifetime = .keepAlways; add(a)
     }
@@ -44,6 +53,7 @@ final class LayoutFitUITests: XCTestCase {
             XCTAssertTrue(next.waitForExistence(timeout: 3))
             sleep(2)                                   // let the dive settle
             assertInside(next, window, "next button (q\(n))")
+            assertReachable(next, window, "next button (q\(n))")
             assertInside(a, window, "choice A after answer (q\(n))")
             for t in app.staticTexts.allElementsBoundByIndex where t.exists && t.frame.height > 0 {
                 assertInside(t, window, "text '\(t.label.prefix(12))' (q\(n))")
@@ -51,6 +61,24 @@ final class LayoutFitUITests: XCTestCase {
             attach(app, "q\(n)-answered")
             next.tap()
         }
+    }
+
+    /// The pause menu: it opens, hides the question, and resuming gives the question back.
+    func testPauseMenuOpensAndResumes() {
+        let app = XCUIApplication()
+        app.launchArguments = ["-debugXP", "0", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "NO", "-settings.haptics", "NO"]
+        app.launch()
+        app.buttons["スタート"].tap()
+        let pause = app.buttons["pause"]
+        XCTAssertTrue(pause.waitForExistence(timeout: 5))
+        pause.tap()
+        let resume = app.buttons["resume"]
+        XCTAssertTrue(resume.waitForExistence(timeout: 3))
+        XCTAssertTrue(app.buttons["ホームへもどる"].exists)
+        attach(app, "paused")
+        resume.tap()
+        XCTAssertTrue(app.staticTexts["progress"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.staticTexts["progress"].label.hasPrefix("第1問"))
     }
 
     /// A correct answer plays the big ○ and sparkle burst; the layout must not widen while it is on screen.
