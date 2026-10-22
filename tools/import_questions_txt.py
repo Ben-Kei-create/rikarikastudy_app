@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-"""Append questions written in the plain-text format (see docs/QUESTION_FORMAT.md) to questions_mountain.json.
+"""Append questions written in the plain-text format (see docs/QUESTION_FORMAT.md) to a stage's JSON file.
 
 Append-only: existing IDs/questions are never changed; new questions get the next IDs (zero-padded 5 digits).
-Usage: import_questions_txt.py FILE.txt [FILE2.txt ...] [--dry-run] [--out PATH]
+IDs are unique across ALL stages (the next ID continues after the highest ID in any stage file).
+Usage: import_questions_txt.py FILE.txt [FILE2.txt ...] [--stage mountain|sky|sea] [--dry-run] [--out PATH]
+  --stage defaults to mountain (地球). sky = 宇宙, sea = 深海. The file is questions_<stage>.json under Resources.
 """
 import hashlib, json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEFAULT_OUT = os.path.join(ROOT, "doparika/Resources/questions_mountain.json")
+RES = os.path.join(ROOT, "doparika/Resources")
+STAGES = ("mountain", "sky", "sea")
 SUBJECT = {"生物": "biology", "化学": "chemistry", "物理": "physics", "地学": "earth"}
 GRADE = {"中1": 1, "中2": 2, "中3": 3}
 KEYS = {"分野": "field", "学年": "grade", "難易度": "difficulty", "問題": "question",
@@ -69,15 +72,26 @@ def validate(path, no, b):
 
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    out = DEFAULT_OUT
+    stage = "mountain"
+    if "--stage" in sys.argv:
+        stage = sys.argv[sys.argv.index("--stage") + 1]
+        args = [a for a in args if a != stage]
+        if stage not in STAGES:
+            sys.exit("--stage は " + "/".join(STAGES) + " のどれか")
+    out = os.path.join(RES, f"questions_{stage}.json")
     if "--out" in sys.argv:
         out = sys.argv[sys.argv.index("--out") + 1]
         args = [a for a in args if a != out]
     if not args:
         sys.exit(__doc__)
-    existing = json.load(open(out, encoding="utf-8"))
-    seen = {q["question"] for q in existing}
-    next_id = max(int(q["id"]) for q in existing) + 1
+    existing = json.load(open(out, encoding="utf-8")) if os.path.exists(out) else []
+    everything = []
+    for st in STAGES:
+        f = os.path.join(RES, f"questions_{st}.json")
+        if os.path.exists(f):
+            everything += json.load(open(f, encoding="utf-8"))
+    seen = {q["question"] for q in everything}
+    next_id = max([int(q["id"]) for q in everything] or [0]) + 1
     added, errors, dups = [], [], 0
     for path in args:
         try:
@@ -95,7 +109,7 @@ def main():
             if b["correct"] not in ("○", "×") and h(b["question"] + "swap") % 2:
                 pair.reverse()               # spread the correct answer over A and B
             added.append({
-                "id": "%05d" % next_id, "stage": "mountain",
+                "id": "%05d" % next_id, "stage": stage,
                 "grade": GRADE.get(b.get("grade", "中1"), 1), "subject": SUBJECT[b["field"]],
                 "difficulty": int(b["difficulty"]) if b.get("difficulty", "").isdigit() else 1,
                 "question": b["question"],

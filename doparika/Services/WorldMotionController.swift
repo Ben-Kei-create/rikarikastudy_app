@@ -28,6 +28,11 @@ final class WorldMotionController {
     static let surfaceBobRange: Double = 170
     static let surfaceBobPeriod: Double = 6
 
+    /// Per-stage geometry: how many images this stage has and which way the world flows.
+    private(set) var stageImageCount = WorldMotionController.imageCount
+    private(set) var direction: StageDirection = .descend
+    private(set) var stage: Stage = .mountain
+
     private(set) var sectionHeight: Double = 1200
     /// Questions in the current session = how many images the run can reach.
     private(set) var questionCount: Int = 10
@@ -78,8 +83,15 @@ final class WorldMotionController {
     }
 
     func configure(questionCount n: Int) {
-        questionCount = min(max(n, 1), Self.imageCount)
+        questionCount = min(max(n, 1), stageImageCount)
         depth = clamp(depth)
+    }
+
+    func configure(stage: Stage, questionCount n: Int) {
+        self.stage = stage
+        stageImageCount = stage.config.imageCount
+        direction = stage.config.direction
+        configure(questionCount: n)
     }
 
     func setViewport(_ h: Double, width: Double) {

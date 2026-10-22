@@ -20,7 +20,7 @@ struct WorldBackgroundView: View {
     ]
 
     /// Fraction of each artwork's top (sky/horizon) hidden so sections join as one continuous ground.
-    private static let topCrop: [Double] = Array(repeating: 0, count: WorldMotionController.imageCount)   // new art joins seamlessly
+    private static let topCrop = 0.0   // new art joins seamlessly
 
     var body: some View {
         GeometryReader { geo in
@@ -34,12 +34,16 @@ struct WorldBackgroundView: View {
                 ctx.translateBy(x: -size.width / 2 + sin(ph * 2.7) * amp, y: -size.height / 2 + cos(ph * 3.9) * amp)
                 let h = motion.sectionHeight, ov = motion.overlap, step = motion.sectionStep
                 let first = max(0, Int(floor((pos - ov) / step)))
-                let last = min(WorldMotionController.imageCount - 1, Int(floor((pos + size.height) / step)))
+                let last = min(motion.stageImageCount - 1, Int(floor((pos + size.height) / step)))
                 guard first <= last else { return }
+                let ascending = motion.direction == .ascend
                 for s in first...last {
-                    let frame = WorldSectionLayout.frame(index: s, position: pos, width: size.width,
+                    var frame = WorldSectionLayout.frame(index: s, position: pos, width: size.width,
                                                          sectionHeight: h, overlap: ov, displayScale: displayScale)
-                    drawSection(ctx, index: s, frame: frame, size: size, overlap: ov)
+                    // Space flows the other way: the same layout mirrored top-to-bottom (the art itself stays
+                    // upright), so image 001 starts at the bottom and higher numbers lie further up.
+                    if ascending { frame.origin.y = size.height - frame.maxY }
+                    drawSection(ctx, index: s, frame: frame, size: size, overlap: ov, ascending: ascending)
                 }
             }
             .onAppear { motion.setViewport(geo.size.height, width: geo.size.width) }
@@ -49,16 +53,18 @@ struct WorldBackgroundView: View {
         .accessibilityHidden(true)
     }
 
-    private func drawSection(_ context: GraphicsContext, index s: Int, frame: CGRect, size: CGSize, overlap: Double) {
+    private func drawSection(_ context: GraphicsContext, index s: Int, frame: CGRect, size: CGSize, overlap: Double,
+                             ascending: Bool) {
         var ctx = context
         ctx.clip(to: Path(frame))
         let top = frame.minY
         let h = frame.height
         let (a, b) = Self.palette[s % Self.palette.count]
-        let artName = String(format: "earth_%03d", s + 1)
+        let config = motion.stage.config
+        let artName = String(format: config.imagePrefix + "%03d", s + 1)
         if let artwork = UIImage(named: artName) {
             let image = ctx.resolve(Image(uiImage: artwork))
-            let rect = WorldSectionLayout.aspectFillRect(imageSize: image.size, in: frame, topCrop: Self.topCrop[s])
+            let rect = WorldSectionLayout.aspectFillRect(imageSize: image.size, in: frame, topCrop: Self.topCrop)
             if s == 0 {
                 ctx.draw(image, in: rect)
             } else {
@@ -73,10 +79,24 @@ struct WorldBackgroundView: View {
                         return .init(color: .black.opacity(t * t * (3 - 2 * t)), location: t * f)
                     } + [.init(color: .black, location: 1)]
                     mask.fill(Path(frame), with: .linearGradient(Gradient(stops: stops),
-                                                                 startPoint: CGPoint(x: 0, y: frame.minY),
-                                                                 endPoint: CGPoint(x: 0, y: frame.maxY)))
+                                                                 // The fade-in edge is the one facing the previous image:
+                                                                 // top when diving, bottom when climbing.
+                                                                 startPoint: CGPoint(x: 0, y: ascending ? frame.maxY : frame.minY),
+                                                                 endPoint: CGPoint(x: 0, y: ascending ? frame.minY : frame.maxY)))
                 }
             }
+            return
+        }
+        if motion.stage != .mountain {
+            // Artwork missing: a plain depth gradient instead of the Earth strata fallback.
+            let t = Double(s) / Double(max(motion.stageImageCount - 1, 1))
+            let space = motion.stage == .sky
+            let hue = space ? 0.68 : 0.52
+            let c1 = Color(hue: hue, saturation: 0.75, brightness: max(0.1, (space ? 0.9 : 0.85) - 0.75 * t))
+            let c2 = Color(hue: hue, saturation: 0.8, brightness: max(0.05, (space ? 0.9 : 0.85) - 0.75 * min(t + 0.1, 1)))
+            ctx.fill(Path(frame), with: .linearGradient(Gradient(colors: ascending ? [c2, c1] : [c1, c2]),
+                                                        startPoint: CGPoint(x: 0, y: frame.minY),
+                                                        endPoint: CGPoint(x: 0, y: frame.maxY)))
             return
         }
         let rect = frame

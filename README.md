@@ -31,11 +31,21 @@ Lv.1〜30 / 地球ステージ / 2択 / 制限時間15秒 / 正解 +20XP
 - `home_bg` が欠けた場合は地層背景へ、各 `earth_XXX` が欠けた場合はその区間だけコード描画へ戻る。
 - ロゴ、羊皮紙、正誤・満点演出、空・海ティザーの追加素材は未導入。
 
+## 宇宙・深海ステージ（実装済み・リリース1では非表示）
+
+- スイッチは `FeatureFlags.extraStagesShipped`（`doparika/Models/StageConfig.swift`）。**リリース2では `true` にするだけ**で、宇宙（Lv.31-60）・深海（Lv.61-100）、Lv上限100、ホームのステージ選択、コレクションのタブが有効になる。リリース1（`false`）ではレベル上限30・地球のみで、ステージ行もタブも表示されない。
+- デバッグビルドでは起動引数 `-debugStages YES`（と `-debugXP 15000` でLv.35）で確認できる。
+- ステージ差分は `Stage.config`（画像の接頭辞・枚数・向き・Lv範囲・BGM）に集約。宇宙は **上昇**（`space_001` の下端＝地表から始まり、正解で上へ。ワールドを上下反転して描画、画像自体は正立）、深海は地球と同じ **潜行**（`sea_001`〜`sea_030`）。
+- 問題は `questions_mountain.json` / `questions_sky.json` / `questions_sea.json`。IDは全ステージで通し番号（一意）。追加は `tools/import_questions_txt.py FILE.txt --stage sky|sea`（`tools/question_sources/` に現在の元データ）。
+- 現在の問題数: 地球955 / 宇宙35 / 深海38。**宇宙・深海は初期の少数で、リリース2までに増やして内容を確認する必要がある**（Lv31-100の長さに対して不足）。
+- 1回の問題数: 地球 Lv.1-20=10 / 21+=20、宇宙=20、深海=20（Lv.81+は30）。過去ステージの復習プレイは獲得XP×0.5。
+- 深海専用BGMは未制作（暫定でホームBGM）。
+
 ## 問題データ
 
 - `tools/build_questions.py` — 初回生成（既存ファイルがあると拒否）。
 - `tools/fetch_supabase.py` — rikarikastudy の Supabase から2択化できる問題を **追記のみ** で取り込む（既存IDは不変、`--dry-run` あり）。`.env` に `SUPABASE_URL` / `SUPABASE_KEY`（Publishable key）を置く。`.env` はコミットしない。
-- 現在 874 問（`00001`〜`00874`）。
+- 地球ステージは 955 問（`00001`〜`00955`）。
 
 ## 検証
 

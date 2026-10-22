@@ -28,11 +28,16 @@ final class QuizEngine {
     private(set) var correctCount = 0
     private(set) var earnedXP = 0
     private(set) var lastXPGain = 0
+    /// XP per correct answer in this run (half of the normal amount when replaying an earlier stage).
+    let xpPerCorrectAnswer: Int
 
     /// Called exactly once per question when it resolves.
     @ObservationIgnored var onResolved: ((Question, Resolution) -> Void)?
 
-    init(questions: [Question]) { self.questions = questions }
+    init(questions: [Question], xpPerCorrect: Int = QuizEngine.xpPerCorrect) {
+        self.questions = questions
+        self.xpPerCorrectAnswer = xpPerCorrect
+    }
 
     var current: Question { questions[index] }
     var total: Int { questions.count }
@@ -64,8 +69,8 @@ final class QuizEngine {
         phase = .resolved(r)
         if case .correct = r {
             correctCount += 1
-            lastXPGain = Self.xpPerCorrect
-            earnedXP += Self.xpPerCorrect
+            lastXPGain = xpPerCorrectAnswer
+            earnedXP += xpPerCorrectAnswer
         } else { lastXPGain = 0 }
         onResolved?(current, r)
     }

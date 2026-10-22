@@ -1,0 +1,702 @@
+[
+  {
+    "id": "00956",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽系で最も質量が大きい天体はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "木星"
+      },
+      {
+        "id": "B",
+        "text": "太陽"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "太陽系全体の質量の約99.9%を太陽が占めています。木星は惑星で最大ですが、太陽にはるかに及びません。"
+  },
+  {
+    "id": "00957",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽の表面にあり、周囲より温度が低いため黒く見える部分を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "黒点"
+      },
+      {
+        "id": "B",
+        "text": "プロミネンス"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "黒点は約4000℃で、まわりの約6000℃より低いため暗く見えます。プロミネンスは縁からふき上がる高温のガスです。"
+  },
+  {
+    "id": "00958",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽の表面温度は約何℃ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約6000℃"
+      },
+      {
+        "id": "B",
+        "text": "約100万℃"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "太陽の表面(光球)は約6000℃です。約100万℃以上になるのは、さらに外側のコロナです。"
+  },
+  {
+    "id": "00959",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽が光や熱を出し続けているのは、中心部で何が起こっているからですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "石油の燃焼"
+      },
+      {
+        "id": "B",
+        "text": "水素の核融合"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "太陽の中心部では水素がヘリウムに変わる核融合が起こり、莫大なエネルギーが生まれています。"
+  },
+  {
+    "id": "00960",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽系の惑星のうち、地球より内側を公転しているものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "金星"
+      },
+      {
+        "id": "B",
+        "text": "火星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "太陽に近い順に水星・金星・地球・火星です。水星と金星が地球の内側を回る内惑星です。"
+  },
+  {
+    "id": "00961",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "金星が真夜中に見えないのはなぜですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "小さくて暗いから"
+      },
+      {
+        "id": "B",
+        "text": "地球より内側を公転するから"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "金星は地球より太陽に近い軌道を回るため、地球から見ると太陽から遠く離れず、明け方か夕方にしか見えません。"
+  },
+  {
+    "id": "00962",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "次のうち、地球型惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "火星"
+      },
+      {
+        "id": "B",
+        "text": "土星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水星・金星・地球・火星が地球型惑星で、小さく密度が大きい岩石質です。木星・土星は木星型惑星です。"
+  },
+  {
+    "id": "00963",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "木星型惑星は、地球型惑星に比べて密度が大きいですか、小さいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "大きい"
+      },
+      {
+        "id": "B",
+        "text": "小さい"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "木星型惑星は水素やヘリウムなどの軽い気体が主成分なので、体積が大きいわりに密度が小さくなります。"
+  },
+  {
+    "id": "00964",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "大きな環をもつことで特に有名な惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "火星"
+      },
+      {
+        "id": "B",
+        "text": "土星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "土星の環は氷や岩のかけらでできていて、小さな望遠鏡でも見えます。火星には環がありません。"
+  },
+  {
+    "id": "00965",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "小惑星が多く集まっている帯は、どの惑星どうしの間にありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "火星と木星の間"
+      },
+      {
+        "id": "B",
+        "text": "地球と火星の間"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "火星と木星の軌道の間に、岩石でできた小惑星が数多く分布しています。これを小惑星帯といいます。"
+  },
+  {
+    "id": "00966",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "惑星のまわりを公転する、月のような天体を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "衛星"
+      },
+      {
+        "id": "B",
+        "text": "小惑星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "惑星のまわりを回る天体を衛星といいます。小惑星は太陽のまわりを回る小さな天体です。"
+  },
+  {
+    "id": "00967",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "彗星の尾は、太陽に対してどちら向きにのびますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "太陽の側"
+      },
+      {
+        "id": "B",
+        "text": "太陽と反対側"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "彗星の尾は、太陽からの光や太陽風に押されて、いつも太陽と反対の向きにのびます。"
+  },
+  {
+    "id": "00968",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "流れ星(流星)の正体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "宇宙のちりが光る現象"
+      },
+      {
+        "id": "B",
+        "text": "恒星が落ちる現象"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "宇宙空間のちりなどが地球の大気に高速で突入し、摩擦熱で光って見えるのが流星です。"
+  },
+  {
+    "id": "00969",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月がクレーターだらけなのは、何がたくさん衝突したからですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "隕石"
+      },
+      {
+        "id": "B",
+        "text": "氷河"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "月には大気や水がなく、衝突でできた円形のくぼ地(クレーター)が風化せずに残っています。"
+  },
+  {
+    "id": "00970",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月がいつも同じ面を地球に向けているのは、月の自転周期と公転周期がどうだからですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ちがう"
+      },
+      {
+        "id": "B",
+        "text": "同じ"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "月の自転周期と公転周期はどちらも約27.3日で同じです。そのため地球からは同じ面しか見えません。"
+  },
+  {
+    "id": "00971",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月が満ち欠けして元の形に戻るまで、約何日かかりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約7日"
+      },
+      {
+        "id": "B",
+        "text": "約29.5日"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "新月から次の新月までは約29.5日です。月と太陽と地球の位置関係が変わり、光って見える部分が変化します。"
+  },
+  {
+    "id": "00972",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "新月のとき、月は地球から見てどの方向にありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "太陽と同じ方向"
+      },
+      {
+        "id": "B",
+        "text": "太陽の反対方向"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "新月は月が太陽と同じ方向にあり、地球に向いた面に光が当たらないので見えません。"
+  },
+  {
+    "id": "00973",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "日食が起こるとき、天体はどの順に並んでいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "太陽・月・地球"
+      },
+      {
+        "id": "B",
+        "text": "太陽・地球・月"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "月が太陽と地球の間に入り、太陽をかくすのが日食です。"
+  },
+  {
+    "id": "00974",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月食が起こるとき、天体はどの順に並んでいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "太陽・月・地球"
+      },
+      {
+        "id": "B",
+        "text": "太陽・地球・月"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "月が地球の影に入ると、欠けて見えるのが月食です。地球が太陽と月の間にあります。"
+  },
+  {
+    "id": "00975",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "星が東から西へ動いて見える日周運動は、何が原因ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "地球の自転"
+      },
+      {
+        "id": "B",
+        "text": "地球の公転"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "地球が西から東へ約24時間で自転しているため、星や太陽が東から西へ動くように見えます。"
+  },
+  {
+    "id": "00976",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "星の日周運動で、星は1時間に約何度動いて見えますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約15度"
+      },
+      {
+        "id": "B",
+        "text": "約30度"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "地球は24時間で360度自転するので、360÷24＝15度です。"
+  },
+  {
+    "id": "00977",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "同じ時刻に見える星座は、1か月たつと東西のどちらにずれて見えますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "東"
+      },
+      {
+        "id": "B",
+        "text": "西"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地球の公転により、同じ時刻の星座は1日に約1度、1か月で約30度西へずれて見えます。"
+  },
+  {
+    "id": "00978",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "季節の変化が起こる主な原因は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "太陽との距離の変化"
+      },
+      {
+        "id": "B",
+        "text": "地軸の傾き"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地軸が公転面に垂直な線から約23.4度傾いたまま公転するため、太陽の高さや昼の長さが変わります。"
+  },
+  {
+    "id": "00979",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北半球で太陽の南中高度が1年で最も高くなる日を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "冬至"
+      },
+      {
+        "id": "B",
+        "text": "夏至"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "夏至は太陽の南中高度が最も高く、昼が最も長くなります。"
+  },
+  {
+    "id": "00980",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "昼と夜の長さがほぼ等しくなる日はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "夏至・冬至"
+      },
+      {
+        "id": "B",
+        "text": "春分・秋分"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "春分と秋分の日は、太陽が真東から昇って真西に沈み、昼と夜の長さがほぼ等しくなります。"
+  },
+  {
+    "id": "00981",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北の空で、ほとんど動かずに見える星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ベガ"
+      },
+      {
+        "id": "B",
+        "text": "北極星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "北極星は地軸の延長線上近くにあるため、ほとんど動かず、北の目印になります。"
+  },
+  {
+    "id": "00982",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "天球上での太陽の1年間の見かけの通り道を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "白道"
+      },
+      {
+        "id": "B",
+        "text": "黄道"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "太陽が星座の間を1年かけて動く見かけの道を黄道といいます。白道は月の通り道です。"
+  },
+  {
+    "id": "00983",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "自ら光を出してかがやく天体を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "惑星"
+      },
+      {
+        "id": "B",
+        "text": "恒星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "太陽のように自ら光を出す天体が恒星です。惑星は恒星の光を反射してかがやきます。"
+  },
+  {
+    "id": "00984",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "表面温度が高い星は、何色に見えますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "青白色"
+      },
+      {
+        "id": "B",
+        "text": "赤色"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "星の色は表面温度で決まり、高温ほど青白く、低温ほど赤く見えます。"
+  },
+  {
+    "id": "00985",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "私たちの太陽系がある銀河を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "銀河系"
+      },
+      {
+        "id": "B",
+        "text": "アンドロメダ銀河"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "太陽系は、約2000億個の恒星が集まる銀河系(天の川銀河)の中にあります。"
+  },
+  {
+    "id": "00986",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "光は真空中を1秒間に約何km進みますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約30万km"
+      },
+      {
+        "id": "B",
+        "text": "約3万km"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "光の速さは秒速約30万kmで、1秒間に地球を約7周半します。"
+  },
+  {
+    "id": "00987",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "「1光年」は何を表す単位ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "時間"
+      },
+      {
+        "id": "B",
+        "text": "距離"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "1光年は、光が1年間に進む距離(約9.5兆km)です。時間の単位ではありません。"
+  },
+  {
+    "id": "00988",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽の直径は、地球の直径の約何倍ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約10倍"
+      },
+      {
+        "id": "B",
+        "text": "約109倍"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "太陽の直径は約140万kmで、地球(約1.3万km)の約109倍です。"
+  },
+  {
+    "id": "00989",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽系で最も小さい惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "火星"
+      },
+      {
+        "id": "B",
+        "text": "水星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水星は直径が地球の約0.4倍で、太陽系の惑星で最小です。"
+  },
+  {
+    "id": "00990",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽系の惑星のうち、太陽にいちばん近い惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "金星"
+      },
+      {
+        "id": "B",
+        "text": "水星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "太陽に近い順に、水星・金星・地球・火星・木星・土星・天王星・海王星です。"
+  }
+]

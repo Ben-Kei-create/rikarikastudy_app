@@ -1,7 +1,7 @@
 import SwiftUI
 import SwiftData
 
-enum Route: Hashable { case quiz, collection }
+enum Route: Hashable { case quiz(Stage), collection }
 
 struct RootView: View {
     @Environment(\.modelContext) private var context
@@ -15,7 +15,7 @@ struct RootView: View {
                     HomeView(model: model, path: $path)
                         .navigationDestination(for: Route.self) { route in
                             switch route {
-                            case .quiz: QuizView(model: model, path: $path)
+                            case .quiz(let stage): QuizView(model: model, stage: stage, path: $path)
                             case .collection: CollectionView(model: model)
                             }
                         }

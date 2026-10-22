@@ -13,6 +13,9 @@ struct AmbientEffects: View {
                 let pos = motion.depth
                 let v = motion.velocity                          // + = descending: the world streams UP the screen
                 let streak = min(abs(v) * 0.035, 90)
+                // Space climbs: the world streams DOWN the screen, so particles and speed lines flip.
+                let flip = motion.direction == .ascend
+                let up = (v > 0) != flip
                 let span = size.height + 120
                 for i in 0..<Self.count {
                     let r1 = Self.unit(i, 1), r2 = Self.unit(i, 2), r3 = Self.unit(i, 3)
@@ -21,12 +24,18 @@ struct AmbientEffects: View {
                     var y = (r2 * span - t * (5 + 16 * r2) * depth - pos * depth).truncatingRemainder(dividingBy: span)
                     if y < 0 { y += span }
                     y -= 60
+                    if flip { y = size.height - y }
                     let radius = 1.1 + r3 * 2.6
-                    let color = Color(red: 1, green: 0.78 - 0.3 * r2, blue: 0.42 - 0.2 * r1)
-                        .opacity(0.25 + 0.5 * r1)
+                    let base: Color
+                    switch motion.stage {
+                    case .mountain: base = Color(red: 1, green: 0.78 - 0.3 * r2, blue: 0.42 - 0.2 * r1)   // warm dust
+                    case .sky: base = Color(red: 0.85 + 0.1 * r2, green: 0.9, blue: 1)                    // pale stars
+                    case .sea: base = Color(red: 0.55 + 0.2 * r2, green: 0.9, blue: 1)                    // bubbles
+                    }
+                    let color = base.opacity(0.25 + 0.5 * r1)
                     if streak > 6 {
                         var p = Path()
-                        p.move(to: CGPoint(x: x, y: y + (v > 0 ? streak * depth : -streak * depth)))
+                        p.move(to: CGPoint(x: x, y: y + (up ? streak * depth : -streak * depth)))
                         p.addLine(to: CGPoint(x: x, y: y))
                         ctx.stroke(p, with: .color(color), style: StrokeStyle(lineWidth: radius * 0.9, lineCap: .round))
                     } else {
@@ -42,7 +51,7 @@ struct AmbientEffects: View {
                         let y0 = Self.unit(i, 8) * size.height
                         var p = Path()
                         p.move(to: CGPoint(x: x, y: y0))
-                        p.addLine(to: CGPoint(x: x, y: y0 - (v > 0 ? 1 : -1) * (80 + streak * 3)))
+                        p.addLine(to: CGPoint(x: x, y: y0 - (up ? 1 : -1) * (80 + streak * 3)))
                         ctx.stroke(p, with: .color(.white.opacity(alpha * (0.4 + 0.6 * Self.unit(i, 9)))),
                                    style: StrokeStyle(lineWidth: 1.2, lineCap: .round))
                     }

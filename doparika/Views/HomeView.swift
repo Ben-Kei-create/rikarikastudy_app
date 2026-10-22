@@ -16,6 +16,8 @@ struct HomeView: View {
     @State private var pulse = 1.0
     @State private var shake = 0.0
     @State private var showSettings = false
+    /// Chosen stage (only meaningful when extra stages are on and unlocked); nil = the current level's stage.
+    @State private var selectedStage: Stage?
 
     var body: some View {
         ZStack {
@@ -59,7 +61,7 @@ struct HomeView: View {
                     levelCard
 
                     VStack(spacing: 12) {
-                        Button("スタート") { path.append(.quiz) }
+                        Button("スタート") { path.append(.quiz(playStage)) }
                             .buttonStyle(PrimaryButtonStyle())
                             .disabled(model.repository.loadError != nil)
                         Button("コレクション") { path.append(.collection) }
@@ -69,7 +71,7 @@ struct HomeView: View {
                         }
                     }
 
-                    stageRoadmap
+                    if FeatureFlags.extraStagesEnabled { stageRoadmap }   // hidden in release 1
                     }
                     .opacity(rest)
                     .offset(y: (1 - rest) * 36)
@@ -163,18 +165,46 @@ struct HomeView: View {
         .accessibilityElement(children: .combine)
     }
 
+    /// The stage the Start button plays: the player's pick if unlocked, else the current level's stage.
+    private var playStage: Stage {
+        if let s = selectedStage, model.unlockedStages.contains(s) { return s }
+        return model.currentStage
+    }
+
     private var stageRoadmap: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            stageRow(icon: "globe.asia.australia.fill", title: "地球・地中", detail: "Lv.1 - 30（配信中）", locked: false)
-            stageRow(icon: "cloud.fill", title: "宇宙", detail: "近日公開", locked: true)
-            stageRow(icon: "water.waves", title: "深海", detail: "近日公開", locked: true)
+        VStack(alignment: .leading, spacing: 4) {
+            ForEach(FeatureFlags.availableStages, id: \.self) { stage in
+                let unlocked = model.unlockedStages.contains(stage)
+                Button { if unlocked { selectedStage = stage } } label: {
+                    stageRow(icon: Self.icon(stage), title: stage.title,
+                             detail: unlocked ? Self.detail(stage, current: model.currentStage)
+                                              : "Lv.\(stage.config.levels.lowerBound)で解放",
+                             locked: !unlocked, selected: unlocked && playStage == stage)
+                }
+                .buttonStyle(.plain)
+                .disabled(!unlocked)
+                .accessibilityIdentifier("stage-\(stage.rawValue)")
+            }
         }
         .foregroundStyle(.white)
         .padding(16)
         .background(.black.opacity(0.45), in: RoundedRectangle(cornerRadius: 18))
     }
 
-    private func stageRow(icon: String, title: String, detail: String, locked: Bool) -> some View {
+    private static func icon(_ stage: Stage) -> String {
+        switch stage {
+        case .mountain: return "globe.asia.australia.fill"
+        case .sky: return "sparkles"
+        case .sea: return "water.waves"
+        }
+    }
+
+    private static func detail(_ stage: Stage, current: Stage) -> String {
+        let lv = "Lv.\(stage.config.levels.lowerBound) - \(stage.config.levels.upperBound)"
+        return stage == current ? lv : "\(lv)（復習 XP×0.5）"
+    }
+
+    private func stageRow(icon: String, title: String, detail: String, locked: Bool, selected: Bool) -> some View {
         HStack(spacing: 12) {
             Image(systemName: locked ? "lock.fill" : icon)
                 .frame(width: 28)
@@ -182,6 +212,9 @@ struct HomeView: View {
             Text(title).font(.headline)
             Spacer()
             Text(detail).font(.footnote).foregroundStyle(.white.opacity(0.7))
+            if selected { Image(systemName: "checkmark.circle.fill").foregroundStyle(Theme.ember) }
         }
+        .padding(.vertical, 6)
+        .contentShape(Rectangle())
     }
 }

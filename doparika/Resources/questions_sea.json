@@ -1,0 +1,762 @@
+[
+  {
+    "id": "00991",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "海水に最も多くふくまれる塩類はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "塩化ナトリウム"
+      },
+      {
+        "id": "B",
+        "text": "塩化カルシウム"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "海水の塩分のうち約8割弱は塩化ナトリウム(食塩)です。"
+  },
+  {
+    "id": "00992",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "海水の塩分濃度は、約何%ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約10%"
+      },
+      {
+        "id": "B",
+        "text": "約3.5%"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "海水1kgには平均約35gの塩類がとけていて、塩分濃度は約3.5%です。"
+  },
+  {
+    "id": "00993",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "海水は真水に比べて、密度が大きいですか、小さいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "大きい"
+      },
+      {
+        "id": "B",
+        "text": "小さい"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "塩類がとけている分、海水のほうが重く、物体が浮きやすくなります。"
+  },
+  {
+    "id": "00994",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "海水は真水に比べて、凍る温度が高いですか、低いですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "高い"
+      },
+      {
+        "id": "B",
+        "text": "低い"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩類がとけていると凍る温度が下がり、海水は約-1.8℃で凍りはじめます。"
+  },
+  {
+    "id": "00995",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "海水を加熱して水を蒸発させたあとに残る白い固体は何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "砂糖"
+      },
+      {
+        "id": "B",
+        "text": "塩"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "海水にとけている塩類(おもに食塩)が、水が蒸発したあとに残ります。"
+  },
+  {
+    "id": "00996",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "海水から真水を得るには、加熱して出た蒸気を冷やします。この方法を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "蒸留"
+      },
+      {
+        "id": "B",
+        "text": "ろ過"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "液体を加熱して出た蒸気を冷やして液体にもどす方法を蒸留といいます。"
+  },
+  {
+    "id": "00997",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "水深が深くなるほど、水圧はどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "小さくなる"
+      },
+      {
+        "id": "B",
+        "text": "大きくなる"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "上にある水の重さが増えるので、水深が深いほど水圧は大きくなります。"
+  },
+  {
+    "id": "00998",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "水圧は、どの向きからはたらきますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "上からだけ"
+      },
+      {
+        "id": "B",
+        "text": "あらゆる向き"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水中の物体には、上下左右などあらゆる向きから水圧がはたらきます。"
+  },
+  {
+    "id": "00999",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "水中の物体が水から受ける、上向きの力を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "浮力"
+      },
+      {
+        "id": "B",
+        "text": "垂直抗力"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水中の物体は、押しのけた水の重さに等しい上向きの力(浮力)を受けます。"
+  },
+  {
+    "id": "01000",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "浮力の大きさは、物体が押しのけた水の何と等しいですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "温度"
+      },
+      {
+        "id": "B",
+        "text": "重さ"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "浮力の大きさは、物体が押しのけた水の重さと等しくなります(アルキメデスの原理)。"
+  },
+  {
+    "id": "01001",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "音は、空気中と水中のどちらで速く伝わりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水中"
+      },
+      {
+        "id": "B",
+        "text": "空気中"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "音の速さは空気中で約340m/s、水中で約1500m/sです。水中のほうが約4倍以上速くなります。"
+  },
+  {
+    "id": "01002",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "水中のものが実際より浅く見えるのは、光が何するからですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "屈折"
+      },
+      {
+        "id": "B",
+        "text": "反射"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "光が水から空気へ進むとき、境界で曲がります。これを屈折といい、水底が浅く見えます。"
+  },
+  {
+    "id": "01003",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "深い海ほど青く見えるのは、何色の光が先に吸収されるからですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "青色"
+      },
+      {
+        "id": "B",
+        "text": "赤色"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水は赤い光を吸収しやすく、青い光は深くまで届きます。そのため深い海は青く見えます。"
+  },
+  {
+    "id": "01004",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "潜水艦が沈むときは、バラストタンクに何を入れますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "空気"
+      },
+      {
+        "id": "B",
+        "text": "海水"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "タンクに海水を入れて全体の重さを増やすと沈み、空気を入れると浮かびます。"
+  },
+  {
+    "id": "01005",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球の表面のうち、海がしめる割合は約何割ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約3割"
+      },
+      {
+        "id": "B",
+        "text": "約7割"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地球の表面の約70%は海で、陸地は約30%です。"
+  },
+  {
+    "id": "01006",
+    "stage": "sea",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "世界で最も深い海溝はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "マリアナ海溝"
+      },
+      {
+        "id": "B",
+        "text": "日本海溝"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "マリアナ海溝の最深部は水深約1万mあり、世界で最も深い場所です。"
+  },
+  {
+    "id": "01007",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽の光がほとんど届かなくなる、水深約200mより深い海を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "深海"
+      },
+      {
+        "id": "B",
+        "text": "沿岸"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水深約200mより深いと光がほとんど届かず、暗くて水温が低い世界が広がります。"
+  },
+  {
+    "id": "01008",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "水深が深い海の水温は、海面付近と比べて高いですか、低いですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "高い"
+      },
+      {
+        "id": "B",
+        "text": "低い"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "日光で温まるのは表面付近だけなので、深海の水温は数℃ととても低くなります。"
+  },
+  {
+    "id": "01009",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "海底で新しい海洋プレートが生まれる、海底山脈を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "海嶺"
+      },
+      {
+        "id": "B",
+        "text": "海溝"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "海嶺ではマグマが上昇して新しい海洋プレートができ、左右に広がっていきます。"
+  },
+  {
+    "id": "01010",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "海洋プレートが大陸プレートの下に沈み込む、細長い深い溝を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "海溝"
+      },
+      {
+        "id": "B",
+        "text": "海嶺"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "プレートが沈み込む場所に海溝ができます。日本の東の沖には日本海溝があります。"
+  },
+  {
+    "id": "01011",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "日本の東の沖で、日本列島の下に沈み込んでいる海洋プレートはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "太平洋プレート"
+      },
+      {
+        "id": "B",
+        "text": "ユーラシアプレート"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "太平洋プレートが日本海溝から日本列島の下へ沈み込み、地震や火山のもとになります。"
+  },
+  {
+    "id": "01012",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "海底で、マグマで熱せられた高温の水がふき出す場所を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "間欠泉"
+      },
+      {
+        "id": "B",
+        "text": "熱水噴出孔"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "熱水噴出孔からは数百℃にもなる水がふき出し、まわりには特別な生き物が集まります。"
+  },
+  {
+    "id": "01013",
+    "stage": "sea",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "多くの津波は、何が原因で起こりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "海底で起こる地震"
+      },
+      {
+        "id": "B",
+        "text": "台風"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "海底の地震で海底が急に動くと、海水全体が持ち上げられたり下がったりして津波になります。"
+  },
+  {
+    "id": "01014",
+    "stage": "sea",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "潮の満ち引きの主な原因は、何の引力ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "月"
+      },
+      {
+        "id": "B",
+        "text": "火星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "地球にいちばん近い月の引力が主な原因で、太陽の引力も加わります。"
+  },
+  {
+    "id": "01015",
+    "stage": "sea",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "日本の太平洋側を流れる暖流はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "黒潮"
+      },
+      {
+        "id": "B",
+        "text": "親潮"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "黒潮は日本の南岸を流れる暖流で、親潮は北から南下する寒流です。"
+  },
+  {
+    "id": "01016",
+    "stage": "sea",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "日本の東の沖を北から南へ流れる寒流はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "親潮"
+      },
+      {
+        "id": "B",
+        "text": "黒潮"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "親潮(千島海流)は栄養分が豊かな寒流で、黒潮とぶつかる海域は好漁場になります。"
+  },
+  {
+    "id": "01017",
+    "stage": "sea",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "台風は、どのような海上で発生しますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "熱帯の暖かい海上"
+      },
+      {
+        "id": "B",
+        "text": "極地方の冷たい海上"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "台風は、海面温度の高い熱帯の海上で、水蒸気をたくさんふくむ空気が上昇して発達します。"
+  },
+  {
+    "id": "01018",
+    "stage": "sea",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "海水は陸地に比べて、どのような性質がありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "あたたまりにくく冷めにくい"
+      },
+      {
+        "id": "B",
+        "text": "あたたまりやすく冷めやすい"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "海水は比熱が大きいため、陸より温度が変化しにくくなります。これが海風・陸風の原因です。"
+  },
+  {
+    "id": "01019",
+    "stage": "sea",
+    "grade": 2,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "晴れた日の昼、海岸付近で吹く風はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "海から陸へ吹く風"
+      },
+      {
+        "id": "B",
+        "text": "陸から海へ吹く風"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "昼は陸のほうが温まり、陸で上昇気流ができるので、海から陸へ風が吹きます。"
+  },
+  {
+    "id": "01020",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "深海に植物が育たないのは、なぜですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水圧が低すぎる"
+      },
+      {
+        "id": "B",
+        "text": "光が届かず光合成できない"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "植物は光合成に光が必要です。光が届かない深海では光合成ができず、植物は育ちません。"
+  },
+  {
+    "id": "01021",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "海の食物連鎖で、光合成をして有機物をつくる生物はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "動物プランクトン"
+      },
+      {
+        "id": "B",
+        "text": "植物プランクトン"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "植物プランクトンが光合成で有機物をつくり、それを動物プランクトンや魚が食べていきます。"
+  },
+  {
+    "id": "01022",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "海の生き物が自ら光を出すことを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "生物発光"
+      },
+      {
+        "id": "B",
+        "text": "光合成"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "ホタルイカや深海魚の多くは、体の発光器で光を出します。"
+  },
+  {
+    "id": "01023",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "熱水噴出孔のまわりの細菌は、何を利用して栄養をつくりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "太陽の光"
+      },
+      {
+        "id": "B",
+        "text": "硫化水素などの化学物質"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "光の届かない場所では、細菌が硫化水素などの化学物質のエネルギーで栄養をつくります(化学合成)。"
+  },
+  {
+    "id": "01024",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "巨大なものでは十数mにもなる、深海にすむ大型のイカはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ダイオウイカ"
+      },
+      {
+        "id": "B",
+        "text": "ホタルイカ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "ダイオウイカは深海にすむ巨大なイカです。ホタルイカは体長が数cmの小さなイカです。"
+  },
+  {
+    "id": "01025",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "春の富山湾で見られ、体が青白く光る小さなイカはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ダイオウイカ"
+      },
+      {
+        "id": "B",
+        "text": "ホタルイカ"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "ホタルイカは体の発光器で青白く光ります。春に産卵のため富山湾の岸近くへ集まります。"
+  },
+  {
+    "id": "01026",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "クジラやイルカは、何類に分類されますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ほ乳類"
+      },
+      {
+        "id": "B",
+        "text": "魚類"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "クジラやイルカは肺で呼吸し、子を乳で育てるほ乳類です。"
+  },
+  {
+    "id": "01027",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "魚が水中の酸素をとり入れる器官はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "えら"
+      },
+      {
+        "id": "B",
+        "text": "肺"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "魚類はえらで水にとけた酸素をとり入れます。"
+  },
+  {
+    "id": "01028",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "サンゴ礁が見られるのは、どのような海ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "暖かく浅い海"
+      },
+      {
+        "id": "B",
+        "text": "冷たく深い海"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "サンゴは、光の届く暖かい浅い海で、体内の藻類と共生して育ちます。"
+  }
+]

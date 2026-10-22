@@ -49,17 +49,39 @@ final class AppModel {
 
     var canStartSession: Bool { repository.loadError == nil }
 
-    /// Lv.1-20: 10 questions (images 001-010). Lv.21-30: 20 questions (images 001-020).
-    var sessionLength: Int { levelInfo.level > 20 ? 20 : 10 }
+    /// The stage the player's current level belongs to.
+    var currentStage: Stage { LevelCalculator.stage(forLevel: levelInfo.level) }
 
-    func makeSession() -> [Question] {
+    /// Stages that are visible AND reached by level. A stage opens when the player reaches its first level.
+    var unlockedStages: [Stage] {
+        FeatureFlags.availableStages.filter { levelInfo.level >= $0.config.levels.lowerBound }
+    }
+
+    /// Replaying an earlier stage pays half XP; the current stage pays in full.
+    func xpPerCorrect(for stage: Stage) -> Int {
+        stage == currentStage ? QuizEngine.xpPerCorrect : QuizEngine.xpPerCorrect / 2
+    }
+
+    /// Earth: Lv.1-20 = 10 questions (images 001-010), Lv.21+ = 20. Space: 20. Deep sea: 20, and 30 from Lv.81.
+    func sessionLength(for stage: Stage) -> Int {
+        switch stage {
+        case .mountain: return levelInfo.level > 20 ? 20 : 10
+        case .sky: return 20
+        case .sea: return levelInfo.level > 80 ? 30 : 20
+        }
+    }
+    var sessionLength: Int { sessionLength(for: currentStage) }
+
+    func makeSession(stage: Stage? = nil) -> [Question] {
+        let stage = stage ?? currentStage
+        let length = sessionLength(for: stage)
         let history = store.records().map {
             QuestionSelector.History(questionID: $0.questionID, wrongCount: $0.wrongCount,
                                      lastCorrect: $0.lastCorrect, lastWrongAt: $0.lastWrongAt,
                                      lastWrongLevel: $0.lastWrongLevel, lastAnsweredAt: $0.lastAnsweredAt)
         }
-        var picked = QuestionSelector.select(all: repository.questions(for: .mountain), history: history,
-                                             currentLevel: levelInfo.level, size: sessionLength)
+        var picked = QuestionSelector.select(all: repository.questions(for: stage), history: history,
+                                             currentLevel: levelInfo.level, size: length)
         #if DEBUG
         // QA aid: `-debugCorrectIsA YES` always makes choice A the right one, so UI tests can answer correctly.
         if UserDefaults.standard.bool(forKey: "debugCorrectIsA") {
@@ -72,22 +94,22 @@ final class AppModel {
         }
         // QA aid: `-debugLongestFirst YES` puts the longest question and the longest explanation first.
         if UserDefaults.standard.bool(forKey: "debugLongestFirst") {
-            let all = repository.questions(for: .mountain)
+            let all = repository.questions(for: stage)
             let longQ = all.max { $0.question.count + $0.choices.map(\.text.count).max()! < $1.question.count + $1.choices.map(\.text.count).max()! }
             let longE = all.max { $0.explanation.count < $1.explanation.count }
             let front = [longQ, longE].compactMap { $0 }
             picked = front + picked.filter { p in !front.contains { $0.id == p.id } }
-            picked = Array(picked.prefix(sessionLength))
+            picked = Array(picked.prefix(length))
         }
         #endif
         return picked
     }
 
-    func record(question: Question, correct: Bool) {
+    func record(question: Question, correct: Bool, xp: Int = QuizEngine.xpPerCorrect) {
         store.recordAnswer(questionID: question.id, correct: correct)
         unlockedIDs.insert(question.id)
         if correct {
-            store.addXP(QuizEngine.xpPerCorrect)
+            store.addXP(xp)
             totalXP = store.totalXP
         }
     }

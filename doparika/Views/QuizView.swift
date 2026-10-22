@@ -8,6 +8,7 @@ final class QuizSession {
     let engine: QuizEngine
     let motion = WorldMotionController()
     private let model: AppModel
+    let stage: Stage
     private var ticker: Task<Void, Never>?
     private var finishedRecorded = false
     private var countdownStarted = false
@@ -39,15 +40,18 @@ final class QuizSession {
 
     /// `carryOverDepth`: where the previous run's world currently is, so a quick retry rises back to the
     /// surface from there instead of warping.
-    init(model: AppModel, carryOverDepth: Double? = nil,
+    init(model: AppModel, stage: Stage? = nil, carryOverDepth: Double? = nil,
          now: @escaping () -> ContinuousClock.Instant = { ContinuousClock().now }) {
+        let stage = stage ?? model.currentStage
         self.model = model
+        self.stage = stage
         self.now = now
         self.carryOverDepth = carryOverDepth
-        self.engine = QuizEngine(questions: model.makeSession())
+        self.engine = QuizEngine(questions: model.makeSession(stage: stage),
+                                 xpPerCorrect: model.xpPerCorrect(for: stage))
         precondition(!engine.questions.isEmpty, "session must have questions")
         engine.onResolved = { [weak self] q, r in self?.handle(q, r) }
-        motion.configure(questionCount: engine.total)
+        motion.configure(stage: stage, questionCount: engine.total)
     }
 
     /// Sets up geometry, position and clocks without starting the frame ticker (tests drive `advance()`).
@@ -66,7 +70,7 @@ final class QuizSession {
     func start(viewportHeight: Double, width: Double) {
         guard ticker == nil else { return }
         configure(viewportHeight: viewportHeight, width: width)
-        MusicPlayer.shared.request(MusicPlayer.Track.earthStage.randomElement() ?? .earth)
+        MusicPlayer.shared.request(stage.config.music.randomElement() ?? .earth)
         ticker = Task { [weak self] in
             while !Task.isCancelled {
                 try? await Task.sleep(for: .milliseconds(16))
@@ -124,7 +128,7 @@ final class QuizSession {
     private func handle(_ q: Question, _ r: Resolution) {
         switch r {
         case .correct:
-            model.record(question: q, correct: true)
+            model.record(question: q, correct: true, xp: engine.xpPerCorrectAnswer)
             Haptics.correct()
             sound.stop(.countdown)
             let voice = sound.play(.correctVoice)
@@ -152,6 +156,7 @@ final class QuizSession {
 
 struct QuizView: View {
     let model: AppModel
+    let stage: Stage
     @Binding var path: [Route]
     @Environment(\.scenePhase) private var scenePhase
     @State private var session: QuizSession?
@@ -169,7 +174,7 @@ struct QuizView: View {
                     Theme.night.ignoresSafeArea()
                 }
             }
-            .onAppear { if session == nil, model.canStartSession { session = QuizSession(model: model) } }
+            .onAppear { if session == nil, model.canStartSession { session = QuizSession(model: model, stage: stage) } }
         }
         .navigationBarBackButtonHidden(true)
         .onChange(of: scenePhase) { _, phase in session?.paused = phase != .active }
@@ -178,7 +183,7 @@ struct QuizView: View {
     private func restart() {
         let carry = session?.currentDepth
         session?.stop()
-        session = QuizSession(model: model, carryOverDepth: carry)
+        session = QuizSession(model: model, stage: stage, carryOverDepth: carry)
     }
 }
 

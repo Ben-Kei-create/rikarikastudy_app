@@ -8,11 +8,14 @@ struct CollectionView: View {
         let rows = CollectionService.rows(for: stage, questions: model.repository.questions,
                                           unlockedIDs: model.unlockedIDs)
         VStack(spacing: 0) {
-            Picker("ステージ", selection: $stage) {
-                ForEach(Stage.allCases, id: \.self) { Text($0.title).tag($0) }
+            // With only the Earth stage (release 1) there is nothing to switch between.
+            if FeatureFlags.availableStages.count > 1 {
+                Picker("ステージ", selection: $stage) {
+                    ForEach(FeatureFlags.availableStages, id: \.self) { Text($0.title).tag($0) }
+                }
+                .pickerStyle(.segmented)
+                .padding()
             }
-            .pickerStyle(.segmented)
-            .padding()
             List(rows) { row in
                 if let q = row.question {
                     NavigationLink {
