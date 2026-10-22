@@ -63,6 +63,36 @@ final class LayoutFitUITests: XCTestCase {
         }
     }
 
+    /// Large text, longest questions: after answering with the panel scrolled, the next question starts at
+    /// its top (not half-scrolled with the clock already running), and the timer stays on one line.
+    func testNextQuestionStartsAtTopAndTimerStaysOneLine() {
+        let app = XCUIApplication()
+        app.launchArguments = ["-debugXP", "0", "-debugLongestFirst", "YES", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "NO", "-settings.haptics", "NO",
+                               "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityL"]
+        app.launch()
+        app.buttons["スタート"].tap()
+        let progress = app.staticTexts["progress"]
+        XCTAssertTrue(progress.waitForExistence(timeout: 5))
+        let timerText = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH '残り'")).firstMatch
+        XCTAssertTrue(timerText.exists)
+        XCTAssertLessThan(timerText.frame.height, 60, "timer wrapped onto several lines: \(timerText.frame)")
+        // Answer B (forces scrolling to the bottom of the panel), then go on.
+        let b = app.buttons.matching(NSPredicate(format: "label CONTAINS 'B'")).firstMatch
+        XCTAssertTrue(b.waitForExistence(timeout: 3))
+        b.tap()
+        let next = app.buttons["次の問題へ"]
+        XCTAssertTrue(next.waitForExistence(timeout: 3))
+        next.tap()
+        XCTAssertTrue(progress.waitForExistence(timeout: 3))
+        XCTAssertTrue(progress.label.hasPrefix("第2問"))
+        // The first choice badge/text must be below the header, and the panel top must not be scrolled above it.
+        let header = progress.frame
+        let firstText = app.staticTexts.matching(NSPredicate(format: "NOT (label BEGINSWITH '第') AND NOT (label BEGINSWITH '残り')")).firstMatch
+        XCTAssertTrue(firstText.exists)
+        XCTAssertGreaterThanOrEqual(firstText.frame.minY, header.maxY - 1, "question starts above the header (scrolled): \(firstText.frame)")
+        attach(app, "q2-top")
+    }
+
     /// The pause menu: it opens, hides the question, and resuming gives the question back.
     func testPauseMenuOpensAndResumes() {
         let app = XCUIApplication()

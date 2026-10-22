@@ -91,8 +91,10 @@ final class QuizSession {
         // "3, 2, 1, 0" voice: ends as the time runs out. After a pause it resumes from the matching offset.
         if engine.phase == .answering, !countdownStarted, engine.remaining <= countdownLead {
             countdownStarted = true
-            sound.play(.countdown)?.currentTime = max(0, countdownLead - engine.remaining)
-            MusicPlayer.shared.duck(to: 0.35, for: engine.remaining + 0.2)
+            if let p = sound.play(.countdown) {
+                p.currentTime = max(0, countdownLead - engine.remaining)
+                MusicPlayer.shared.duck(to: 0.35, for: engine.remaining + 0.2)
+            }
         }
     }
 
@@ -106,10 +108,17 @@ final class QuizSession {
         engine.next()
         countdownStarted = false
         if engine.phase == .finished {
-            if !finishedRecorded { finishedRecorded = true; model.finishSession(); sound.play(.finishVoice); MusicPlayer.shared.duck(for: 1.3) }
+            if !finishedRecorded { finishedRecorded = true; model.finishSession(); duck(for: [sound.play(.finishVoice)]) }
         } else {
             motion.startThinking(duration: QuizEngine.timeLimit)
         }
+    }
+
+    /// Lowers the music only for sounds that actually started, for as long as the longest of them lasts.
+    private func duck(for players: [AVAudioPlayer?]) {
+        let lengths = players.compactMap { $0?.duration }
+        guard let longest = lengths.max() else { return }
+        MusicPlayer.shared.duck(for: longest + 0.3)
     }
 
     private func handle(_ q: Question, _ r: Resolution) {
@@ -118,26 +127,24 @@ final class QuizSession {
             model.record(question: q, correct: true)
             Haptics.correct()
             sound.stop(.countdown)
-            sound.play(.correctVoice)
-            sound.play(.correctChime)   // correct = voice + chime only (dig_*/break_*.mp3 stay bundled, unused)
+            let voice = sound.play(.correctVoice)
+            let chime = sound.play(.correctChime)   // correct = voice + chime only (dig_*/break_*.mp3 stay bundled, unused)
             // Hold the music down for as long as the longer of the two sounds, plus a short tail.
-            let len = max(sound.duration(of: .correctVoice), sound.duration(of: .correctChime))
-            MusicPlayer.shared.duck(for: len + 0.3)
+            // Nothing audible (sound effects off) means nothing to duck for.
+            duck(for: [voice, chime])
             // Each correct answer dives to the top of the next image; the last one reaches the very bottom.
             motion.boost(to: motion.restingDepth(afterCorrect: engine.correctCount))
         case .wrong:
             model.record(question: q, correct: false)
             Haptics.wrong()
             sound.stop(.countdown)
-            sound.play(.wrong)
-            MusicPlayer.shared.duck(for: sound.duration(of: .wrong) + 0.3)
+            duck(for: [sound.play(.wrong)])
             motion.fall(distance: WorldMotionController.wrongFall)
         case .timeout:
             model.record(question: q, correct: false)
             Haptics.timeout()
             sound.stop(.countdown)
-            sound.play(.timeoutVoice)
-            MusicPlayer.shared.duck(for: sound.duration(of: .timeoutVoice) + 0.3)
+            duck(for: [sound.play(.timeoutVoice)])
             motion.fall(distance: WorldMotionController.timeoutFall)
         }
     }
@@ -212,6 +219,7 @@ private struct QuizContent: View {
             }
         }
         .id(engine.phase == .finished)
+        .onChange(of: reduceMotion, initial: true) { _, on in session.motion.reduceMotion = on }
     }
 
     private func quizBody(_ engine: QuizEngine) -> some View {
@@ -219,21 +227,22 @@ private struct QuizContent: View {
             // The content width is pinned to the screen: a long single line must wrap, never widen the layout.
             let contentWidth = max(geo.size.width - 36, 100)
             VStack(spacing: 14) {
-                HStack(spacing: 12) {
-                    Text("第\(engine.index + 1)問 / \(engine.total)問")
-                        .font(.system(size: progressSize, weight: .heavy, design: .rounded))
-                        .lineLimit(1).minimumScaleFactor(0.6)
-                        .accessibilityIdentifier("progress")
-                    Spacer(minLength: 0)
-                    TimerLabel(engine: engine)
-                    Button { session.userPaused = true } label: {
-                        Image(systemName: "pause.fill")
-                            .font(.headline)
-                            .frame(width: 44, height: 44)
-                            .background(.black.opacity(0.4), in: Circle())
+                // One row normally; at large text sizes progress and timer stack so the time never wraps.
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 12) {
+                        progressLabel(engine)
+                        Spacer(minLength: 0)
+                        TimerLabel(engine: engine)
+                        pauseButton
                     }
-                    .accessibilityLabel("一時停止")
-                    .accessibilityIdentifier("pause")
+                    VStack(spacing: 6) {
+                        HStack(spacing: 12) {
+                            progressLabel(engine)
+                            Spacer(minLength: 0)
+                            pauseButton
+                        }
+                        HStack { Spacer(minLength: 0); TimerLabel(engine: engine) }
+                    }
                 }
                 .foregroundStyle(.white)
                 .shadow(color: .black, radius: 3)
@@ -249,6 +258,7 @@ private struct QuizContent: View {
                     }
                     .scrollBounceBehavior(.basedOnSize)
                     .scrollIndicators(.visible)
+                    .id(engine.index)        // a new question always starts scrolled to its top
                 }
                 // Fixed-height feedback area: the question panel stays put when an answer is revealed.
                 feedback(engine)
@@ -258,6 +268,25 @@ private struct QuizContent: View {
             .padding(.top, 8)
             .padding(.bottom, 16)
         }
+    }
+
+    private func progressLabel(_ engine: QuizEngine) -> some View {
+        Text("第\(engine.index + 1)問 / \(engine.total)問")
+            .font(.system(size: progressSize, weight: .heavy, design: .rounded))
+            .lineLimit(1)
+            .fixedSize()
+            .accessibilityIdentifier("progress")
+    }
+
+    private var pauseButton: some View {
+        Button { session.userPaused = true } label: {
+            Image(systemName: "pause.fill")
+                .font(.headline)
+                .frame(width: 44, height: 44)
+                .background(.black.opacity(0.4), in: Circle())
+        }
+        .accessibilityLabel("一時停止")
+        .accessibilityIdentifier("pause")
     }
 
     private func questionPanel(_ engine: QuizEngine) -> some View {
@@ -363,6 +392,8 @@ private struct TimerLabel: View {
             .font(.system(.title3, design: .rounded, weight: .heavy).monospacedDigit())
             .foregroundStyle(engine.remaining <= 5 ? Theme.bad : .white)
             .shadow(color: .black, radius: 3)
+            .lineLimit(1)
+            .fixedSize()
             .accessibilityLabel("残り \(Int(engine.remaining.rounded(.up))) 秒")
     }
 }

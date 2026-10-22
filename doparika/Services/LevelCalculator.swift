@@ -4,8 +4,9 @@ import Foundation
 enum LevelCalculator {
     static let maxLevel = 30
 
-    /// XP needed to go from `level` to `level + 1`.
-    static func xpToNext(from level: Int) -> Int { 100 + 10 * (level - 1) }
+    /// XP needed to go from `level` to `level + 1`. Tuned so Lv.30 takes roughly 600 correct answers
+    /// (20 XP each): about two thirds of the ~900 questions.
+    static func xpToNext(from level: Int) -> Int { 240 + 12 * (level - 1) }
 
     /// Cumulative XP at which `level` is reached.
     static func xpThreshold(for level: Int) -> Int {

@@ -39,6 +39,31 @@ final class PersistenceAndSelectionTests: XCTestCase {
         XCTAssertLessThanOrEqual(reviews, Int(Double(env.model.sessionLength) * QuestionSelector.maxReviewShare))
     }
 
+    func testLevel30TakesRoughlySixHundredCorrectAnswers() {
+        let correct = LevelCalculator.maxXP / QuizEngine.xpPerCorrect
+        XCTAssertTrue((550...650).contains(correct), "Lv.30 needs \(correct) correct answers")
+    }
+
+    func testNewQuestionsAreRandomNotInIDOrder() throws {
+        let env = try TestEnv()
+        let firstTen = Set(env.model.repository.questions(for: .mountain).prefix(env.model.sessionLength).map(\.id))
+        let ids = Set(env.model.makeSession().map(\.id))
+        XCTAssertNotEqual(ids, firstTen, "a fresh session must not just be the first IDs in order")
+        let other = Set(env.model.makeSession().map(\.id))
+        XCTAssertNotEqual(ids, other, "two fresh sessions should differ")
+    }
+
+    func testCollectionFillsAtRandomPlacesNotFromTheTop() throws {
+        let env = try TestEnv()
+        for _ in 0..<3 { for q in env.model.makeSession() { env.model.record(question: q, correct: true) } }
+        let rows = CollectionService.rows(for: .mountain, questions: env.model.repository.questions,
+                                          unlockedIDs: env.model.unlockedIDs)
+        XCTAssertEqual(rows.count, env.model.repository.questions(for: .mountain).count, "every ID is listed")
+        let unlockedIdx = rows.indices.filter { rows[$0].question != nil }
+        XCTAssertEqual(unlockedIdx.count, 30)
+        XCTAssertNotEqual(unlockedIdx, Array(0..<30), "unlocked entries must be scattered by ID, not the first 30 rows")
+    }
+
     func testNoMistakesMeansEverythingIsNew() throws {
         let env = try TestEnv()
         let qs = env.model.repository.questions(for: .mountain)

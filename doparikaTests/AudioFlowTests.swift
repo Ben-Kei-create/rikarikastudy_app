@@ -106,6 +106,24 @@ final class AudioFlowTests: XCTestCase {
         XCTAssertTrue(s.isPaused, "returning to the foreground must not undo the player's pause")
     }
 
+    func testMusicIsNotDuckedWhenSoundEffectsAreOff() throws {
+        let clock = FakeClock(), env = try TestEnv()      // TestEnv mutes sound effects
+        let s = started(env, clock)
+        MusicPlayer.shared.cancelDuck()
+        s.answer(s.engine.current.correctChoiceId)
+        XCTAssertFalse(MusicPlayer.shared.isDucked, "nothing was played, so the music must stay put")
+    }
+
+    func testMusicIsDuckedWhenSoundsPlay() throws {
+        let clock = FakeClock(), env = try TestEnv()
+        SoundPlayer.testOverride = true
+        let s = started(env, clock)
+        MusicPlayer.shared.cancelDuck()
+        s.answer(s.engine.current.correctChoiceId)
+        XCTAssertTrue(MusicPlayer.shared.isDucked)
+        MusicPlayer.shared.cancelDuck()
+    }
+
     // MARK: music duck
 
     func testNewerDuckIsNotCutShortByOlderOne() {

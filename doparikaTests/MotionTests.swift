@@ -13,6 +13,21 @@ final class MotionTests: XCTestCase {
         for _ in 0..<Int(seconds * 60) { m.step(1.0 / 60) }
     }
 
+    func testReduceMotionJumpsWithoutSurgingOrShaking() {
+        let m = controller()
+        m.reduceMotion = true
+        let target = m.restingDepth(afterCorrect: 3)
+        m.boost(to: target)
+        XCTAssertEqual(m.depth, target, accuracy: 0.001, "lands at once, no surge")
+        m.startThinking(duration: 15)
+        run(m, seconds: 5)
+        XCTAssertEqual(m.depth, target, accuracy: 0.001, "no drift while thinking")
+        XCTAssertEqual(m.shake, 0)
+        m.fall(distance: 300)
+        XCTAssertEqual(m.depth, max(target - 300, 0), accuracy: 0.001)
+        XCTAssertEqual(m.velocity, 0)
+    }
+
     func testStartsOnSurfaceAtTopOfFirstImage() {
         let m = controller()
         XCTAssertEqual(m.depth, 0)

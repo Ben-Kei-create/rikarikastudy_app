@@ -38,6 +38,8 @@ final class WorldMotionController {
     private(set) var depth: Double = 0
     private(set) var velocity: Double = 0
     /// Vibration of the world (pt) and a phase that advances every frame; drives the rumble effect.
+    /// System "Reduce Motion": the world jumps to its resting place instead of surging, drifting or shaking.
+    @ObservationIgnored var reduceMotion = false
     private(set) var shake: Double = 0
     private(set) var shakePhase: Double = 0
 
@@ -99,6 +101,7 @@ final class WorldMotionController {
     func jump(to d: Double) { depth = clamp(d); velocity = 0; move = nil }
 
     func startThinking(duration: Double) {
+        if reduceMotion { thinking = false; bobbing = false; return }     // the world stays still while thinking
         thinking = true; thinkElapsed = 0; thinkDuration = duration; thinkDrift = 0
         // At (or heading back to) the very top, bob slowly instead of drifting.
         bobbing = depth < 1 || (move.map { $0.target < 1 } ?? false)
@@ -108,6 +111,7 @@ final class WorldMotionController {
     /// Correct answer: a short wind-up, then a hard surge DOWN that lands exactly on `target`.
     func boost(to target: Double) {
         thinking = false
+        if reduceMotion { jump(to: target); shake = 0; return }
         move = makeMove(to: clamp(target), windUp: 0.15, ramp: 0.2, damping: 5)
     }
 
@@ -115,6 +119,7 @@ final class WorldMotionController {
     func fall(distance: Double) {
         thinking = false
         let target = clamp(depth - distance)
+        if reduceMotion { jump(to: target); shake = 0; return }
         guard depth - target > 1 else { move = nil; return }
         move = makeMove(to: target, windUp: 0.05, ramp: 0.3, damping: 2.4)
     }
@@ -122,6 +127,7 @@ final class WorldMotionController {
     /// Gentle travel to a resting depth (e.g. rising back to the surface for a retry).
     func settle(to d: Double) {
         let target = clamp(d)
+        if reduceMotion { jump(to: target); return }
         guard abs(target - depth) > 1 else { depth = target; move = nil; return }
         move = makeMove(to: target, windUp: 0, ramp: 0.5, damping: 2.2)
     }

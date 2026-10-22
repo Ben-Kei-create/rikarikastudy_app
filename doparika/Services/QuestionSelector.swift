@@ -1,6 +1,6 @@
 import Foundation
 
-/// Builds a session: a few review questions (only ones still answered wrong), the rest unseen (in ID order).
+/// Builds a session: a few review questions (only ones still answered wrong), the rest random unseen ones.
 /// With no open mistakes every question is new.
 struct QuestionSelector {
     /// Smallest session; the longest (Lv.20+) is 20.
@@ -22,7 +22,8 @@ struct QuestionSelector {
         let byID = Dictionary(uniqueKeysWithValues: all.map { ($0.id, $0) })
         let answered = history.filter { byID[$0.questionID] != nil }
         let answeredIDs = Set(answered.map(\.questionID))
-        let unseen = all.filter { !answeredIDs.contains($0.id) }
+        // New questions are drawn at random from everything not yet answered (not in ID order).
+        let unseen = all.filter { !answeredIDs.contains($0.id) }.shuffled()
 
         // Priority: 1. previous session's mistakes  2. recent mistakes
         // 3. repeat offenders  4. previously correct.
