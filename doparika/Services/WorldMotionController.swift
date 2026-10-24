@@ -44,7 +44,11 @@ final class WorldMotionController {
     private(set) var velocity: Double = 0
     /// Vibration of the world (pt) and a phase that advances every frame; drives the rumble effect.
     /// System "Reduce Motion": the world jumps to its resting place instead of surging, drifting or shaking.
-    @ObservationIgnored var reduceMotion = false
+    /// Turning it on mid-run finishes whatever is moving at once: a surge lands on its target, drifting,
+    /// bobbing, velocity and shaking all stop.
+    @ObservationIgnored var reduceMotion = false {
+        didSet { if reduceMotion && !oldValue { freezeInPlace() } }
+    }
     private(set) var shake: Double = 0
     private(set) var shakePhase: Double = 0
 
@@ -109,6 +113,15 @@ final class WorldMotionController {
     }
 
     // MARK: Commands
+
+    private func freezeInPlace() {
+        thinking = false
+        bobbing = false
+        if let m = move { depth = clamp(m.target) }
+        move = nil
+        velocity = 0
+        shake = 0
+    }
 
     func jump(to d: Double) { depth = clamp(d); velocity = 0; move = nil }
 

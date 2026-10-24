@@ -28,6 +28,34 @@ final class MotionTests: XCTestCase {
         XCTAssertEqual(m.velocity, 0)
     }
 
+    func testReduceMotionSwitchedOnWhileThinkingStopsTheDrift() {
+        let m = controller()
+        m.jump(to: 2000)
+        m.startThinking(duration: 15)
+        run(m, seconds: 12)
+        let held = m.depth
+        XCTAssertGreaterThan(m.shake, 0, "precondition: it was drifting and shaking")
+        m.reduceMotion = true
+        run(m, seconds: 1)
+        XCTAssertEqual(m.depth, held, accuracy: 0.001, "drift must stop immediately")
+        XCTAssertEqual(m.shake, 0)
+        XCTAssertEqual(m.velocity, 0)
+    }
+
+    func testReduceMotionSwitchedOnMidSurgeLandsOnTheTarget() {
+        let m = controller()
+        let target = m.restingDepth(afterCorrect: 4)
+        m.boost(to: target)
+        run(m, seconds: 0.4)
+        XCTAssertNotEqual(m.depth, target, accuracy: 1, "precondition: still travelling")
+        m.reduceMotion = true
+        XCTAssertEqual(m.depth, target, accuracy: 0.001)
+        run(m, seconds: 1)
+        XCTAssertEqual(m.depth, target, accuracy: 0.001)
+        XCTAssertEqual(m.shake, 0)
+        XCTAssertEqual(m.velocity, 0)
+    }
+
     func testStartsOnSurfaceAtTopOfFirstImage() {
         let m = controller()
         XCTAssertEqual(m.depth, 0)

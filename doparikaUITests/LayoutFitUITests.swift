@@ -37,7 +37,7 @@ final class LayoutFitUITests: XCTestCase {
 
     private func run(extraArgs: [String]) {
         let app = XCUIApplication()
-        app.launchArguments = ["-debugXP", "0", "-debugLongestFirst", "YES", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "YES", "-settings.haptics", "NO"] + extraArgs
+        app.launchArguments = ["-debugNoAds", "YES", "-debugXP", "0", "-debugLongestFirst", "YES", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "YES", "-settings.haptics", "NO"] + extraArgs
         app.launch()
         app.buttons["スタート"].tap()
         let window = app.windows.firstMatch.frame
@@ -67,7 +67,7 @@ final class LayoutFitUITests: XCTestCase {
     /// its top (not half-scrolled with the clock already running), and the timer stays on one line.
     func testNextQuestionStartsAtTopAndTimerStaysOneLine() {
         let app = XCUIApplication()
-        app.launchArguments = ["-debugXP", "0", "-debugLongestFirst", "YES", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "NO", "-settings.haptics", "NO",
+        app.launchArguments = ["-debugNoAds", "YES", "-debugXP", "0", "-debugLongestFirst", "YES", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "NO", "-settings.haptics", "NO",
                                "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityL"]
         app.launch()
         app.buttons["スタート"].tap()
@@ -93,10 +93,37 @@ final class LayoutFitUITests: XCTestCase {
         attach(app, "q2-top")
     }
 
+    /// Largest text, 20-question run (two-digit numbers): progress, timer and pause stay fully on screen.
+    func testHeaderFitsAtLargestTextOnQuestionTen() {
+        let app = XCUIApplication()
+        app.launchArguments = ["-debugNoAds", "YES", "-debugXP", "7080", "-debugCorrectIsA", "YES", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "NO", "-settings.haptics", "NO",
+                               "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+        app.launch()
+        app.buttons["スタート"].tap()
+        let window = app.windows.firstMatch.frame
+        for n in 1...10 {
+            let progress = app.staticTexts["progress"]
+            XCTAssertTrue(progress.waitForExistence(timeout: 5))
+            XCTAssertTrue(progress.label.hasPrefix("第\(n)問"), progress.label)
+            let pause = app.buttons["pause"]
+            for (name, e) in [("progress", progress), ("pause", pause)] {
+                XCTAssertGreaterThanOrEqual(e.frame.minX, window.minX - 1, "\(name) leaks left on q\(n): \(e.frame)")
+                XCTAssertLessThanOrEqual(e.frame.maxX, window.maxX + 1, "\(name) leaks right on q\(n): \(e.frame)")
+            }
+            if n == 10 { attach(app, "q10-header"); break }
+            let a = app.buttons.matching(NSPredicate(format: "label CONTAINS 'A'")).firstMatch
+            XCTAssertTrue(a.waitForExistence(timeout: 3))
+            a.tap()
+            let next = app.buttons["次の問題へ"]
+            XCTAssertTrue(next.waitForExistence(timeout: 3))
+            next.tap()
+        }
+    }
+
     /// The pause menu: it opens, hides the question, and resuming gives the question back.
     func testPauseMenuOpensAndResumes() {
         let app = XCUIApplication()
-        app.launchArguments = ["-debugXP", "0", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "NO", "-settings.haptics", "NO"]
+        app.launchArguments = ["-debugNoAds", "YES", "-debugXP", "0", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "NO", "-settings.haptics", "NO"]
         app.launch()
         app.buttons["スタート"].tap()
         let pause = app.buttons["pause"]
@@ -114,7 +141,7 @@ final class LayoutFitUITests: XCTestCase {
     /// A correct answer plays the big ○ and sparkle burst; the layout must not widen while it is on screen.
     func testCorrectAnswerBurstDoesNotWidenTheLayout() {
         let app = XCUIApplication()
-        app.launchArguments = ["-debugXP", "0", "-debugCorrectIsA", "YES", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "YES", "-settings.haptics", "NO"]
+        app.launchArguments = ["-debugNoAds", "YES", "-debugXP", "0", "-debugCorrectIsA", "YES", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "YES", "-settings.haptics", "NO"]
         app.launch()
         app.buttons["スタート"].tap()
         let window = app.windows.firstMatch.frame

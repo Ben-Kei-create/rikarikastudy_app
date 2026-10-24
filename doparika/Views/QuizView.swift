@@ -248,6 +248,15 @@ private struct QuizContent: View {
                         }
                         HStack { Spacer(minLength: 0); TimerLabel(engine: engine) }
                     }
+                    // Largest text sizes: the short "10 / 20" always fits next to the pause button.
+                    VStack(spacing: 6) {
+                        HStack(spacing: 12) {
+                            progressLabel(engine, short: true)
+                            Spacer(minLength: 0)
+                            pauseButton
+                        }
+                        HStack { Spacer(minLength: 0); TimerLabel(engine: engine) }
+                    }
                 }
                 .foregroundStyle(.white)
                 .shadow(color: .black, radius: 3)
@@ -275,11 +284,13 @@ private struct QuizContent: View {
         }
     }
 
-    private func progressLabel(_ engine: QuizEngine) -> some View {
-        Text("第\(engine.index + 1)問 / \(engine.total)問")
+    private func progressLabel(_ engine: QuizEngine, short: Bool = false) -> some View {
+        let full = "第\(engine.index + 1)問 / \(engine.total)問"
+        return Text(short ? "\(engine.index + 1) / \(engine.total)" : full)
             .font(.system(size: progressSize, weight: .heavy, design: .rounded))
             .lineLimit(1)
             .fixedSize()
+            .accessibilityLabel(full)          // VoiceOver and tests always get the full wording
             .accessibilityIdentifier("progress")
     }
 
