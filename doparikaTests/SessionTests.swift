@@ -1,4 +1,5 @@
 import XCTest
+import UIKit
 @testable import doparika
 
 @MainActor
@@ -139,5 +140,61 @@ final class SessionTests: XCTestCase {
             clock.advance(1); session.advance()
             XCTAssertEqual(session.engine.remaining, QuizEngine.timeLimit - 1, accuracy: 0.05)
         }
+    }
+}
+
+@MainActor
+final class ComboAndRankTests: XCTestCase {
+    private func engine(_ n: Int = 6) throws -> QuizEngine {
+        let repo = QuestionRepository()
+        return QuizEngine(questions: Array(repo.questions(for: .mountain).prefix(n)))
+    }
+    private func right(_ e: QuizEngine) { e.answer(choiceID: e.current.correctChoiceId) }
+    private func wrong(_ e: QuizEngine) { e.answer(choiceID: e.current.choices.first { $0.id != e.current.correctChoiceId }!.id) }
+
+    func testComboCountsConsecutiveCorrectAnswersAndTracksTheBest() throws {
+        let e = try engine()
+        right(e); e.next(); right(e); e.next(); right(e)
+        XCTAssertEqual(e.combo, 3)
+        e.next(); wrong(e)
+        XCTAssertEqual(e.combo, 0, "a wrong answer breaks the streak")
+        XCTAssertEqual(e.maxCombo, 3)
+        e.next(); right(e); e.next(); right(e)
+        XCTAssertEqual(e.combo, 2)
+        XCTAssertEqual(e.maxCombo, 3, "the best streak is kept")
+    }
+
+    func testTimeoutBreaksTheCombo() throws {
+        let e = try engine()
+        right(e); e.next(); right(e)
+        XCTAssertEqual(e.combo, 2)
+        e.next(); e.tick(QuizEngine.timeLimit + 1)
+        XCTAssertEqual(e.phase, .resolved(.timeout))
+        XCTAssertEqual(e.combo, 0)
+    }
+
+    func testDoubleAnswerDoesNotCountTwice() throws {
+        let e = try engine()
+        right(e); right(e)
+        XCTAssertEqual(e.combo, 1)
+    }
+
+    func testRankThresholds() {
+        XCTAssertEqual(ResultRank.rank(correct: 10, total: 10), .s)
+        XCTAssertEqual(ResultRank.rank(correct: 9, total: 10), .s)
+        XCTAssertEqual(ResultRank.rank(correct: 8, total: 10), .a)
+        XCTAssertEqual(ResultRank.rank(correct: 15, total: 20), .a)
+        XCTAssertEqual(ResultRank.rank(correct: 7, total: 10), .b)
+        XCTAssertEqual(ResultRank.rank(correct: 5, total: 10), .b)
+        XCTAssertEqual(ResultRank.rank(correct: 4, total: 10), .c)
+        XCTAssertEqual(ResultRank.rank(correct: 0, total: 10), .c)
+        XCTAssertEqual(ResultRank.rank(correct: 0, total: 0), .c)
+        XCTAssertEqual(ResultRank.rank(correct: 18, total: 20), .s)
+        XCTAssertEqual(ResultRank.rank(correct: 17, total: 20), .a)
+    }
+
+    func testRankAndPerfectArtworkIsBundled() {
+        for r in ResultRank.allCases { XCTAssertNotNil(UIImage(named: r.imageName), r.imageName) }
+        XCTAssertNotNil(UIImage(named: "result_perfect"))
     }
 }

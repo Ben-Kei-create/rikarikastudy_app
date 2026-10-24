@@ -28,6 +28,10 @@ final class QuizEngine {
     private(set) var correctCount = 0
     private(set) var earnedXP = 0
     private(set) var lastXPGain = 0
+    /// Consecutive correct answers right now; any wrong answer or time-out resets it to 0.
+    private(set) var combo = 0
+    /// Longest streak of this run.
+    private(set) var maxCombo = 0
     /// XP per correct answer in this run (half of the normal amount when replaying an earlier stage).
     let xpPerCorrectAnswer: Int
 
@@ -69,9 +73,11 @@ final class QuizEngine {
         phase = .resolved(r)
         if case .correct = r {
             correctCount += 1
+            combo += 1
+            maxCombo = max(maxCombo, combo)
             lastXPGain = xpPerCorrectAnswer
             earnedXP += xpPerCorrectAnswer
-        } else { lastXPGain = 0 }
+        } else { lastXPGain = 0; combo = 0 }
         onResolved?(current, r)
     }
 }

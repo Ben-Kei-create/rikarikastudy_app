@@ -218,6 +218,12 @@ private struct QuizContent: View {
                             AnswerBurst(resolution: r, xp: engine.lastXPGain).id(engine.index)
                         }
                     }
+                    .overlay(alignment: .top) {
+                        // Streak shout-out: from the second correct answer in a row. Overlay only, no layout.
+                        if effects, case .resolved(.correct) = engine.phase, engine.combo >= 2 {
+                            ComboBurst(combo: engine.combo).id(engine.index).padding(.top, 20)
+                        }
+                    }
                 if session.userPaused {
                     PauseOverlay(onResume: { session.userPaused = false }, onHome: onHome)
                 }
@@ -336,7 +342,9 @@ private struct QuizContent: View {
                     VStack(alignment: .leading, spacing: 8) {
                         switch r {
                         case .correct:
-                            Text("正解!  +\(engine.lastXPGain) XP").font(.title2.weight(.black)).foregroundStyle(Theme.goodDark)
+                            // The streak is spelled out here too, so it is readable with effects off.
+                            Text("正解!  +\(engine.lastXPGain) XP" + (engine.combo >= 2 ? "   \(engine.combo)連続!" : ""))
+                                .font(.title2.weight(.black)).foregroundStyle(Theme.goodDark)
                         case .wrong:
                             Text("残念…").font(.title2.weight(.black)).foregroundStyle(Theme.badDark)
                         case .timeout:
@@ -453,6 +461,48 @@ private struct ChoiceButton: View {
         }
         .buttonStyle(.plain)
         .disabled(phase != .answering)
+    }
+}
+
+/// "N COMBO!" shout for consecutive correct answers. Bigger and hotter as the streak grows.
+private struct ComboBurst: View {
+    let combo: Int
+    @State private var scale = 0.3
+    @State private var opacity = 1.0
+
+    /// 0: 2 in a row, 1: 3-4, 2: 5-9, 3: 10+
+    private var tier: Int { combo >= 10 ? 3 : combo >= 5 ? 2 : combo >= 3 ? 1 : 0 }
+    private var colors: [Color] {
+        switch tier {
+        case 3: return [Color(red: 1, green: 0.4, blue: 0.8), Color(red: 0.6, green: 0.35, blue: 1)]
+        case 2: return [Color(red: 1, green: 0.25, blue: 0.2), Color(red: 1, green: 0.65, blue: 0.1)]
+        case 1: return [Color(red: 1, green: 0.6, blue: 0.1), Color(red: 1, green: 0.9, blue: 0.3)]
+        default: return [Color(red: 1, green: 0.9, blue: 0.35), .white]
+        }
+    }
+
+    var body: some View {
+        HStack(alignment: .firstTextBaseline, spacing: 6) {
+            if tier >= 2 { Image(systemName: "flame.fill").font(.system(size: 40, weight: .black)) }
+            Text("\(combo)").font(.system(size: CGFloat(52 + 4 * min(combo, 10)), weight: .black, design: .rounded))
+            Text("COMBO" + String(repeating: "!", count: min(tier + 1, 3)))
+                .font(.system(size: 30, weight: .black, design: .rounded))
+        }
+        .lineLimit(1)
+        .minimumScaleFactor(0.5)
+        .foregroundStyle(LinearGradient(colors: colors, startPoint: .top, endPoint: .bottom))
+        .shadow(color: .black.opacity(0.8), radius: 0, x: 0, y: 3)
+        .shadow(color: colors[0].opacity(0.8), radius: 14)
+        .padding(.horizontal, 20)
+        .rotationEffect(.degrees(-5))
+        .scaleEffect(scale)
+        .opacity(opacity)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+        .onAppear {
+            withAnimation(.spring(response: 0.32, dampingFraction: 0.42)) { scale = 1 }
+            withAnimation(.easeIn(duration: 0.4).delay(1.1)) { opacity = 0 }
+        }
     }
 }
 
