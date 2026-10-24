@@ -11,9 +11,13 @@ struct DoparikaApp: App {
         }
     }()
 
+    init() { AppFontAppearance.install() }
+
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environment(\.font, .mplus(.body))     // default for every Text without its own font
+                .background(TouchEffectInstaller())
                 .preferredColorScheme(.dark)
                 .task { AudioSessionSetup.configureOnce(); SoundPlayer.shared.preload() }
         }

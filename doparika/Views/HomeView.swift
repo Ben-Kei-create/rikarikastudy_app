@@ -39,14 +39,14 @@ struct HomeView: View {
                 VStack(spacing: 22) {
                     VStack(spacing: 10) {
                         Text("知識で、\n地球の中心をめざせ。")
-                            .font(.system(size: 22, weight: .heavy, design: .serif))
+                            .font(.mplus(fixed: 22, .heavy))
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.white)
                             .shadow(color: .black.opacity(0.6), radius: 4, y: 2)
                             .opacity(rest)
                         logo
                         Text("問題で、世界をうごかす地球アプリ")
-                            .font(.footnote.weight(.semibold))
+                            .font(.mplus(.footnote, .semibold))
                             .foregroundStyle(.white.opacity(0.85))
                             .opacity(rest)
                     }
@@ -67,7 +67,7 @@ struct HomeView: View {
                         Button("コレクション") { path.append(.collection) }
                             .buttonStyle(PrimaryButtonStyle(tint: Theme.parchment))
                         if let err = model.repository.loadError {
-                            Text(err).font(.footnote).foregroundStyle(Theme.bad)
+                            Text(err).font(.mplus(.footnote)).foregroundStyle(Theme.bad)
                         }
                     }
 
@@ -83,7 +83,7 @@ struct HomeView: View {
         .overlay(alignment: .topTrailing) {
             Button { showSettings = true } label: {
                 Image(systemName: "gearshape.fill")
-                    .font(.title3)
+                    .font(.mplus(.title3))
                     .foregroundStyle(.white)
                     .frame(width: 44, height: 44)
                     .background(.black.opacity(0.4), in: Circle())
@@ -153,10 +153,10 @@ struct HomeView: View {
         let info = model.levelInfo
         return VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text("Lv.\(info.level)").font(.system(size: 28, weight: .black, design: .rounded))
+                Text("Lv.\(info.level)").font(.mplus(fixed: 28, .black))
                 Spacer()
                 Text(info.isMax ? "MAX" : "あと \(info.remaining) XP で Lv.\(info.level + 1)")
-                    .font(.footnote.weight(.semibold))
+                    .font(.mplus(.footnote, .semibold))
             }
             ProgressView(value: info.fraction).tint(Theme.ember)
         }
@@ -209,9 +209,9 @@ struct HomeView: View {
             Image(systemName: locked ? "lock.fill" : icon)
                 .frame(width: 28)
                 .foregroundStyle(locked ? .white.opacity(0.6) : Theme.ember)
-            Text(title).font(.headline)
+            Text(title).font(.mplus(.headline))
             Spacer()
-            Text(detail).font(.footnote).foregroundStyle(.white.opacity(0.7))
+            Text(detail).font(.mplus(.footnote)).foregroundStyle(.white.opacity(0.7))
             if selected { Image(systemName: "checkmark.circle.fill").foregroundStyle(Theme.ember) }
         }
         .padding(.vertical, 6)

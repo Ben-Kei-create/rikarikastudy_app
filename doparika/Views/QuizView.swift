@@ -293,7 +293,7 @@ private struct QuizContent: View {
     private func progressLabel(_ engine: QuizEngine, short: Bool = false) -> some View {
         let full = "第\(engine.index + 1)問 / \(engine.total)問"
         return Text(short ? "\(engine.index + 1) / \(engine.total)" : full)
-            .font(.system(size: progressSize, weight: .heavy, design: .rounded))
+            .font(.mplus(fixed: progressSize, .heavy))
             .lineLimit(1)
             .fixedSize()
             .accessibilityLabel(full)          // VoiceOver and tests always get the full wording
@@ -314,7 +314,7 @@ private struct QuizContent: View {
     private func questionPanel(_ engine: QuizEngine) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(engine.current.question)
-                .font(.system(.title3, design: .rounded, weight: .bold))
+                .font(.mplus(.title3, .bold))
                 .foregroundStyle(Theme.ink)
                 .fixedSize(horizontal: false, vertical: true)
             ForEach(engine.current.choices) { c in
@@ -331,7 +331,7 @@ private struct QuizContent: View {
         switch engine.phase {
         case .answering:
             Label("考え中…", systemImage: "chevron.down.2")
-                .font(.subheadline.weight(.semibold))
+                .font(.mplus(.subheadline, .semibold))
                 .foregroundStyle(.white.opacity(0.9))
                 .shadow(color: .black, radius: 3)
                 .padding(.bottom, 24)
@@ -344,19 +344,19 @@ private struct QuizContent: View {
                         case .correct:
                             // The streak is spelled out here too, so it is readable with effects off.
                             Text("正解!  +\(engine.lastXPGain) XP" + (engine.combo >= 2 ? "   \(engine.combo)連続!" : ""))
-                                .font(.title2.weight(.black)).foregroundStyle(Theme.goodDark)
+                                .font(.mplus(.title2, .black)).foregroundStyle(Theme.goodDark)
                         case .wrong:
-                            Text("残念…").font(.title2.weight(.black)).foregroundStyle(Theme.badDark)
+                            Text("残念…").font(.mplus(.title2, .black)).foregroundStyle(Theme.badDark)
                         case .timeout:
-                            Text("時間切れ…").font(.title2.weight(.black)).foregroundStyle(Theme.badDark)
+                            Text("時間切れ…").font(.mplus(.title2, .black)).foregroundStyle(Theme.badDark)
                         }
                         if case .correct = r {} else {
-                            Text("正解: \(engine.current.correctText)").font(.subheadline.weight(.bold))
+                            Text("正解: \(engine.current.correctText)").font(.mplus(.subheadline, .bold))
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         if !engine.current.explanation.isEmpty {
                             Text(engine.current.explanation)
-                                .font(.body)
+                                .font(.mplus(.body))
                                 .lineSpacing(4)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
@@ -388,7 +388,7 @@ private struct PauseOverlay: View {
         ZStack {
             Color.black.opacity(0.88).ignoresSafeArea()
             VStack(spacing: 16) {
-                Text("一時停止").font(.title.weight(.black)).foregroundStyle(.white)
+                Text("一時停止").font(.mplus(.title, .black)).foregroundStyle(.white)
                 VStack(spacing: 4) {
                     Toggle("BGM", isOn: $settings.bgmEnabled)
                     Toggle("効果音・ボイス", isOn: $settings.sfxEnabled)
@@ -400,7 +400,7 @@ private struct PauseOverlay: View {
                     .accessibilityIdentifier("resume")
                 Button("ホームへもどる", action: onHome).buttonStyle(PrimaryButtonStyle(tint: Theme.parchment))
                 Text("ここまでの回答とXPは保存されています。この回のつづきはありません。")
-                    .font(.footnote).foregroundStyle(.white.opacity(0.8)).multilineTextAlignment(.center)
+                    .font(.mplus(.footnote)).foregroundStyle(.white.opacity(0.8)).multilineTextAlignment(.center)
             }
             .padding(24)
             .frame(maxWidth: 460)
@@ -413,7 +413,7 @@ private struct TimerLabel: View {
     let engine: QuizEngine
     var body: some View {
         Label(String(format: "%.1f", engine.remaining), systemImage: "timer")
-            .font(.system(.title3, design: .rounded, weight: .heavy).monospacedDigit())
+            .font(.mplus(.title3, .heavy).monospacedDigit())
             .foregroundStyle(engine.remaining <= 5 ? Theme.bad : .white)
             .shadow(color: .black, radius: 3)
             .lineLimit(1)
@@ -441,13 +441,13 @@ private struct ChoiceButton: View {
         Button(action: action) {
             HStack(spacing: 12) {
                 Text(choice.id)
-                    .font(.system(.callout, design: .rounded, weight: .black))
+                    .font(.mplus(.callout, .black))
                     .foregroundStyle(.white)
                     .frame(width: badge, height: badge)
                     .background(Theme.ink, in: Circle())
                 // Full text, any length: wraps instead of truncating, and the row grows with it.
                 Text(choice.text)
-                    .font(.system(.title3, design: .rounded, weight: .bold))
+                    .font(.mplus(.title3, .bold))
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -484,9 +484,9 @@ private struct ComboBurst: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 6) {
             if tier >= 2 { Image(systemName: "flame.fill").font(.system(size: 40, weight: .black)) }
-            Text("\(combo)").font(.system(size: CGFloat(52 + 4 * min(combo, 10)), weight: .black, design: .rounded))
+            Text("\(combo)").font(.mplus(fixed: CGFloat(52 + 4 * min(combo, 10)), .black))
             Text("COMBO" + String(repeating: "!", count: min(tier + 1, 3)))
-                .font(.system(size: 30, weight: .black, design: .rounded))
+                .font(.mplus(fixed: 30, .black))
         }
         .lineLimit(1)
         .minimumScaleFactor(0.5)
@@ -520,14 +520,14 @@ private struct AnswerBurst: View {
         ZStack {
             if correct { SparkleBurst() }
             Text(correct ? "○" : "×")
-                .font(.system(size: 220, weight: .black, design: .rounded))
+                .font(.mplus(fixed: 220, .black))
                 .foregroundStyle(correct ? Theme.good : Theme.bad)
                 .shadow(color: .black.opacity(0.45), radius: 10, y: 4)
                 .scaleEffect(scale)
                 .opacity(correct ? opacity : opacity * 0.8)
             if correct && xp > 0 {
                 Text("+\(xp) XP")
-                    .font(.system(size: 44, weight: .black, design: .rounded))
+                    .font(.mplus(fixed: 44, .black))
                     .foregroundStyle(Theme.ember)
                     .shadow(color: .black, radius: 4, y: 2)
                     .offset(y: 120 + xpOffset)

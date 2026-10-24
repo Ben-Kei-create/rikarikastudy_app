@@ -5,6 +5,12 @@
 	<!-- Merged into the generated Info.plist (GENERATE_INFOPLIST_FILE = YES). -->
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-4859622277330192~2902136055</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MPLUSRounded1c-Regular.ttf</string>
+		<string>MPLUSRounded1c-Bold.ttf</string>
+		<string>MPLUSRounded1c-Black.ttf</string>
+	</array>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>

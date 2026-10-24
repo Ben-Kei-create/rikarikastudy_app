@@ -38,8 +38,8 @@ struct CollectionView: View {
 
     private func rowLabel(id: String, text: String) -> some View {
         HStack(spacing: 12) {
-            Text(id).font(.system(.footnote, design: .monospaced))
-            Text(text).font(.footnote).lineLimit(1).truncationMode(.tail)
+            Text(id).font(.mplus(.footnote, .bold))
+            Text(text).font(.mplus(.footnote, .bold)).lineLimit(1).truncationMode(.tail)
         }
         .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
     }
@@ -51,8 +51,8 @@ struct CollectionDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
-                Text("No.\(question.id)").font(.system(.subheadline, design: .monospaced))
-                Text(question.question).font(.title3.weight(.bold))
+                Text("No.\(question.id)").font(.mplus(.subheadline, .bold))
+                Text(question.question).font(.mplus(.title3, .bold))
                 Divider()
                 section("正解", question.correctText)
                 if !question.explanation.isEmpty { section("解説", question.explanation) }
@@ -69,8 +69,8 @@ struct CollectionDetailView: View {
 
     private func section(_ title: String, _ body: String) -> some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(title).font(.caption.weight(.bold)).foregroundStyle(.secondary)
-            Text(body).font(.body)
+            Text(title).font(.mplus(.caption, .bold)).foregroundStyle(.secondary)
+            Text(body).font(.mplus(.body, .bold))
         }
     }
 }

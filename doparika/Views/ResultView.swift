@@ -22,12 +22,12 @@ struct ResultView: View {
                     .accessibilityLabel("全問正解")
             } else {
                 Text("\(engine.total)問終了!")
-                    .font(.system(size: 34, weight: .black, design: .rounded))
+                    .font(.mplus(fixed: 34, .black))
                     .foregroundStyle(.white)
                     .shadow(color: .black, radius: 4)
             }
             VStack(spacing: 2) {
-                Text("RANK").font(.caption.weight(.heavy)).foregroundStyle(.white.opacity(0.9)).shadow(color: .black, radius: 3)
+                Text("RANK").font(.mplus(.caption, .heavy)).foregroundStyle(.white.opacity(0.9)).shadow(color: .black, radius: 3)
                 Image(rank.imageName).resizable().scaledToFit().frame(height: 120)
                     .shadow(color: .black.opacity(0.5), radius: 8, y: 4)
                     .scaleEffect(animate && !shown ? 0.3 : 1)
@@ -38,26 +38,26 @@ struct ResultView: View {
             .accessibilityLabel("ランク \(rank.letter)")
             .accessibilityIdentifier("rank")
             VStack(spacing: 12) {
-                Text("SCORE").font(.caption.weight(.bold))
+                Text("SCORE").font(.mplus(.caption, .bold))
                 Text("\(engine.correctCount) / \(engine.total)")
-                    .font(.system(size: 52, weight: .black, design: .rounded))
+                    .font(.mplus(fixed: 52, .black))
                 Divider()
-                Text("獲得XP").font(.caption.weight(.bold))
-                Text("+\(engine.earnedXP)").font(.system(size: 30, weight: .black, design: .rounded))
+                Text("獲得XP").font(.mplus(.caption, .bold))
+                Text("+\(engine.earnedXP)").font(.mplus(fixed: 30, .black))
                     .foregroundStyle(Theme.ember)
                 HStack {
-                    Text("最大コンボ").font(.caption.weight(.bold))
+                    Text("最大コンボ").font(.mplus(.caption, .bold))
                     Spacer()
-                    Text("\(engine.maxCombo)").font(.headline.weight(.black))
+                    Text("\(engine.maxCombo)").font(.mplus(.headline, .black))
                 }
                 HStack {
-                    Text("現在のレベル").font(.caption.weight(.bold))
+                    Text("現在のレベル").font(.mplus(.caption, .bold))
                     Spacer()
-                    Text("Lv.\(info.level)").font(.headline.weight(.black))
+                    Text("Lv.\(info.level)").font(.mplus(.headline, .black))
                 }
                 ProgressView(value: info.fraction).tint(Theme.ember)
                 Text(info.isMax ? "最高レベルです!" : "あと \(info.remaining) XP で Lv.\(info.level + 1)")
-                    .font(.footnote)
+                    .font(.mplus(.footnote))
             }
             .foregroundStyle(Theme.ink)
             .frame(maxWidth: .infinity)

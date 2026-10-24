@@ -80,6 +80,7 @@ final class AdMobManager: NSObject, AdManaging, FullScreenContentDelegate {
         }
         interstitial = nil
         onClose = completion
+        TouchEffects.shared.suppressed = true          // never draw over an ad
         MusicPlayer.shared.stop(fadeOut: 0.2)          // the ad has its own sound
         ad.present(from: vc)
     }
@@ -95,6 +96,7 @@ final class AdMobManager: NSObject, AdManaging, FullScreenContentDelegate {
     }
 
     private func finish(shown: Bool) {
+        TouchEffects.shared.suppressed = false
         MusicPlayer.shared.settingsChanged()           // bring the stage music back
         let done = onClose
         onClose = nil

@@ -32,7 +32,7 @@ struct PrimaryButtonStyle: ButtonStyle {
     var tint: Color = Theme.ember
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(.title3, design: .rounded, weight: .heavy))
+            .font(.mplus(.title3, .heavy))
             .foregroundStyle(Theme.ink)
             .multilineTextAlignment(.center)
             .padding(.horizontal, 12)
