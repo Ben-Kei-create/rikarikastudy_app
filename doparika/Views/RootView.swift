@@ -24,6 +24,13 @@ struct RootView: View {
                 Theme.night.ignoresSafeArea()
             }
         }
-        .task { if model == nil { model = AppModel(context: context) } }
+        .task {
+            if model == nil {
+                let m = AppModel(context: context)
+                m.ads = AdMobManager.shared
+                model = m
+                AdMobManager.shared.start()
+            }
+        }
     }
 }

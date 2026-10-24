@@ -36,8 +36,8 @@ struct ResultView: View {
             .frame(maxWidth: .infinity)
             .parchmentPanel(opacity: 0.92)
             HStack(spacing: 12) {
-                Button("もう一度挑戦", action: onRestart).buttonStyle(PrimaryButtonStyle())
-                Button("ホームに戻る", action: onHome).buttonStyle(PrimaryButtonStyle(tint: Theme.parchment))
+                Button("もう一度挑戦") { model.presentAdIfDue(then: onRestart) }.buttonStyle(PrimaryButtonStyle())
+                Button("ホームに戻る") { model.presentAdIfDue(then: onHome) }.buttonStyle(PrimaryButtonStyle(tint: Theme.parchment))
             }
         }
         .padding(20)

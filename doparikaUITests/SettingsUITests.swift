@@ -11,7 +11,7 @@ final class SettingsUITests: XCTestCase {
     func testTogglesSwitchOffAndStaySavedAfterRelaunch() {
         let titles = ["BGM", "効果音・ボイス", "演出（振動・光・スタンプ）", "ハプティクス（端末の振動）"]
         let app = XCUIApplication()
-        app.launchArguments = ["-settings.bgm", "YES", "-settings.sfx", "YES",
+        app.launchArguments = ["-debugNoAds", "YES", "-settings.bgm", "YES", "-settings.sfx", "YES",
                                "-settings.effects", "YES", "-settings.haptics", "YES"]
         app.launch()
         openSettings(app)

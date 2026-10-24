@@ -7,7 +7,8 @@ import SwiftData
 final class AppModel {
     let repository: QuestionRepository
     let store: PlayerProgressStore
-    let ads: AdManaging = NoopAdManager()
+    var ads: AdManaging = NoopAdManager()
+    var adScheduler = AdScheduler()
 
     private(set) var totalXP: Int
     private(set) var unlockedIDs: Set<String>
@@ -16,6 +17,9 @@ final class AppModel {
         self.repository = repository ?? QuestionRepository()
         self.store = PlayerProgressStore(context: context)
         #if DEBUG
+        // QA aid: `-debugPlays <n>` raises the finished-plays counter to n (e.g. 9: the next finished run is the 10th).
+        let plays = UserDefaults.standard.integer(forKey: "debugPlays")
+        while store.sessionsCompleted < plays { store.completeSession() }
         // QA aid: `-debugXP <n>` raises stored XP to n so late-world sections can be inspected.
         let xp = UserDefaults.standard.integer(forKey: "debugXP")
         if xp > store.totalXP {
@@ -31,7 +35,19 @@ final class AppModel {
         unlockedIDs = Set(store.records().map(\.questionID))
     }
 
+    /// Runs `next` after the full-screen ad that is due every 10 finished plays (or at once if none is due).
+    /// A due ad that could not be shown (no SDK / not loaded) stays due and is tried again at the next break.
+    func presentAdIfDue(then next: @escaping () -> Void) {
+        let plays = store.sessionsCompleted
+        guard adScheduler.isDue(playsCompleted: plays) else { next(); return }
+        ads.showInterstitial { [weak self] shown in
+            if shown { self?.adScheduler.markShown(playsCompleted: plays) }
+            next()
+        }
+    }
+
     func resetProgress() {
+        adScheduler.reset()
         store.resetAll()
         reloadFromStore()
     }

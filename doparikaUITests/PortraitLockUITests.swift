@@ -6,7 +6,7 @@ final class PortraitLockUITests: XCTestCase {
 
     private func launch() -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-debugXP", "0"]
+        app.launchArguments = ["-debugNoAds", "YES", "-debugXP", "0"]
         app.launch()
         return app
     }
