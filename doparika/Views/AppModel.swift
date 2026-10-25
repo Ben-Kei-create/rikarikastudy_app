@@ -20,6 +20,11 @@ final class AppModel {
         // QA aid: `-debugPlays <n>` raises the finished-plays counter to n (e.g. 9: the next finished run is the 10th).
         let plays = UserDefaults.standard.integer(forKey: "debugPlays")
         while store.sessionsCompleted < plays { store.completeSession() }
+        // QA aid: `-debugUnlock <n>` answers n random Earth questions so the collection looks played (screenshots).
+        let unlock = UserDefaults.standard.integer(forKey: "debugUnlock")
+        if unlock > 0, store.records().count < unlock {
+            for q in self.repository.questions(for: .mountain).shuffled().prefix(unlock) { store.recordAnswer(questionID: q.id, correct: true) }
+        }
         // QA aid: `-debugXP <n>` raises stored XP to n so late-world sections can be inspected.
         let xp = UserDefaults.standard.integer(forKey: "debugXP")
         if xp > store.totalXP {
