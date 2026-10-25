@@ -27,6 +27,8 @@ struct Question: Codable, Hashable, Identifiable {
     let choices: [Choice]
     let correctChoiceId: String
     let explanation: String
+    /// Optional table / graph / diagram shown with the question (nil for plain text questions).
+    let figure: Figure?
 
     var correctText: String {
         choices.first { $0.id == correctChoiceId }?.text ?? ""
@@ -38,5 +40,6 @@ struct Question: Codable, Hashable, Identifiable {
             && Set(choices.map(\.id)).count == choices.count
             && choices.contains { $0.id == correctChoiceId }
             && !question.isEmpty
+            && (figure?.isValid ?? true)
     }
 }

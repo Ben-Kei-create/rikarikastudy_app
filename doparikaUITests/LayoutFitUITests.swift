@@ -120,6 +120,32 @@ final class LayoutFitUITests: XCTestCase {
         }
     }
 
+    /// Deep-sea questions with a table / graph / diagram: the figure and BOTH choices are visible and tappable
+    /// without scrolling, and the next button stays on screen after answering.
+    func testDeepSeaFigureQuestionsFitOnScreen() {
+        let app = XCUIApplication()
+        app.launchArguments = ["-debugNoAds", "YES", "-debugStages", "YES", "-debugXP", "40000", "-debugFigureFirst", "YES",
+                               "-debugCorrectIsA", "YES", "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "NO", "-settings.haptics", "NO"]
+        app.launch()
+        app.buttons["スタート"].tap()
+        let window = app.windows.firstMatch.frame
+        for n in 1...6 {
+            let figure = app.otherElements["figure"]
+            XCTAssertTrue(figure.waitForExistence(timeout: 6), "question \(n) has a figure")
+            let a = app.buttons.matching(NSPredicate(format: "label CONTAINS 'A'")).firstMatch
+            let b = app.buttons.matching(NSPredicate(format: "label CONTAINS 'B'")).firstMatch
+            XCTAssertTrue(a.waitForExistence(timeout: 3) && b.waitForExistence(timeout: 3))
+            XCTAssertTrue(a.isHittable && b.isHittable, "both choices reachable without scrolling (q\(n))")
+            XCTAssertLessThanOrEqual(b.frame.maxY, window.maxY, "choice B on screen (q\(n))")
+            if n == 1 { attach(app, "sea-figure-q1") }
+            a.tap()
+            let next = app.buttons.matching(NSPredicate(format: "label == '次の問題へ' OR label == '結果を見る'")).firstMatch
+            XCTAssertTrue(next.waitForExistence(timeout: 3))
+            assertReachable(next, window, "next button (sea q\(n))")
+            next.tap()
+        }
+    }
+
     /// The pause menu: it opens, hides the question, and resuming gives the question back.
     func testPauseMenuOpensAndResumes() {
         let app = XCUIApplication()

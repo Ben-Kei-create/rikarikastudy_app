@@ -13,8 +13,9 @@ RES = os.path.join(ROOT, "doparika/Resources")
 STAGES = ("mountain", "sky", "sea")
 SUBJECT = {"生物": "biology", "化学": "chemistry", "物理": "physics", "地学": "earth"}
 GRADE = {"中1": 1, "中2": 2, "中3": 3}
-KEYS = {"分野": "field", "学年": "grade", "難易度": "difficulty", "問題": "question",
+KEYS = {"図表": "figure", "分野": "field", "学年": "grade", "難易度": "difficulty", "問題": "question",
         "正解": "correct", "不正解": "wrong", "解説": "explanation", "単元": "unit"}
+DIAGRAMS = {"ocean_zones", "trench", "ridge", "food_chain", "water_pressure"}
 LIMITS = {"question": 90, "correct": 24, "wrong": 24, "explanation": 140}
 
 def h(s):
@@ -54,8 +55,42 @@ def parse(path):
     flush()
     return blocks
 
+def check_figure(raw):
+    """Return (figure_dict, error). Same rules as Figure.isValid in the app."""
+    try:
+        f = json.loads(raw)
+    except ValueError as e:
+        return None, f"図表のJSONが読めません: {e}"
+    kind = f.get("kind")
+    if kind == "table":
+        h, r = f.get("headers"), f.get("rows")
+        if not h or not r or len(h) > 5 or any(len(x) != len(h) for x in r):
+            return None, "表の headers / rows が正しくありません(列数をそろえ、列は5つまで)"
+    elif kind == "chart":
+        t = f.get("chartType")
+        if t == "line":
+            xs, ys = f.get("xs"), f.get("ys")
+            if not xs or not ys or len(xs) != len(ys) or len(xs) < 2:
+                return None, "折れ線グラフの xs / ys が正しくありません"
+        elif t == "bar":
+            c, v = f.get("categories"), f.get("values")
+            if not c or not v or len(c) != len(v) or len(c) < 2:
+                return None, "棒グラフの categories / values が正しくありません"
+        else:
+            return None, "chartType は line か bar"
+    elif kind == "diagram":
+        if f.get("name") not in DIAGRAMS:
+            return None, "diagram の name は " + " / ".join(sorted(DIAGRAMS))
+    else:
+        return None, "kind は table / chart / diagram"
+    return f, None
+
 def validate(path, no, b):
     errs = []
+    if b.get("figure"):
+        _, fe = check_figure(b["figure"])
+        if fe:
+            errs.append(fe)
     for k in ("field", "question", "correct", "wrong", "explanation"):
         if not b.get(k):
             errs.append(f"{k} がありません")
@@ -116,6 +151,7 @@ def main():
                 "choices": [{"id": "A", "text": pair[0]}, {"id": "B", "text": pair[1]}],
                 "correctChoiceId": "A" if pair[0] == b["correct"] else "B",
                 "explanation": b["explanation"],
+                **({"figure": check_figure(b["figure"])[0]} if b.get("figure") else {}),
             })
             next_id += 1
     for e in errors:

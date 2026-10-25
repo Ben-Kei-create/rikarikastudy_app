@@ -110,7 +110,8 @@ final class AppModel {
                 guard q.correctChoiceId != "A", q.choices.count == 2 else { return q }
                 let swapped = [Choice(id: "A", text: q.choices[1].text), Choice(id: "B", text: q.choices[0].text)]
                 return Question(id: q.id, stage: q.stage, grade: q.grade, subject: q.subject, difficulty: q.difficulty,
-                                question: q.question, choices: swapped, correctChoiceId: "A", explanation: q.explanation)
+                                question: q.question, choices: swapped, correctChoiceId: "A", explanation: q.explanation,
+                                figure: q.figure)
             }
         }
         // QA aid: `-debugLongestFirst YES` puts the longest question and the longest explanation first.
@@ -120,6 +121,12 @@ final class AppModel {
             let longE = all.max { $0.explanation.count < $1.explanation.count }
             let front = [longQ, longE].compactMap { $0 }
             picked = front + picked.filter { p in !front.contains { $0.id == p.id } }
+            picked = Array(picked.prefix(length))
+        }
+        // QA aid: `-debugFigureFirst YES` puts the questions that carry a table / graph / diagram first.
+        if UserDefaults.standard.bool(forKey: "debugFigureFirst") {
+            let figs = repository.questions(for: stage).filter { $0.figure != nil }.shuffled().prefix(length)
+            picked = Array(figs) + picked.filter { p in !figs.contains { $0.id == p.id } }
             picked = Array(picked.prefix(length))
         }
         #endif

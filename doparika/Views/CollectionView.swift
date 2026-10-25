@@ -53,6 +53,7 @@ struct CollectionDetailView: View {
             VStack(alignment: .leading, spacing: 18) {
                 Text("No.\(question.id)").font(.mplus(.subheadline, .bold))
                 Text(question.question).font(.mplus(.title3, .bold))
+                if let figure = question.figure { FigureView(figure: figure) }
                 Divider()
                 section("正解", question.correctText)
                 if !question.explanation.isEmpty { section("解説", question.explanation) }

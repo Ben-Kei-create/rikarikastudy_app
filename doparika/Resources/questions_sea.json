@@ -758,5 +758,875 @@
     ],
     "correctChoiceId": "A",
     "explanation": "サンゴは、光の届く暖かい浅い海で、体内の藻類と共生して育ちます。"
+  },
+  {
+    "id": "01029",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "表から考えて、水深50mの水圧は何気圧ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "6気圧"
+      },
+      {
+        "id": "B",
+        "text": "5気圧"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水深が10m深くなるごとに、水圧は約1気圧ずつ増えます。40mで5気圧なので、50mでは6気圧です。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "水深(m)",
+        "水圧(気圧)"
+      ],
+      "rows": [
+        [
+          "0",
+          "1"
+        ],
+        [
+          "10",
+          "2"
+        ],
+        [
+          "20",
+          "3"
+        ],
+        [
+          "30",
+          "4"
+        ],
+        [
+          "40",
+          "5"
+        ]
+      ],
+      "caption": "水深と水圧（水面は1気圧）"
+    }
+  },
+  {
+    "id": "01030",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "表から、水深が10m深くなるごとに、水圧は約何気圧ずつ増えますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約2気圧"
+      },
+      {
+        "id": "B",
+        "text": "約1気圧"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "表の水圧は、0mの1気圧から10mごとに1気圧ずつ増えています。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "水深(m)",
+        "水圧(気圧)"
+      ],
+      "rows": [
+        [
+          "0",
+          "1"
+        ],
+        [
+          "10",
+          "2"
+        ],
+        [
+          "20",
+          "3"
+        ],
+        [
+          "30",
+          "4"
+        ],
+        [
+          "40",
+          "5"
+        ]
+      ],
+      "caption": "水深と水圧（水面は1気圧）"
+    }
+  },
+  {
+    "id": "01031",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "おもりAにはたらく浮力は何Nですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2.2N"
+      },
+      {
+        "id": "B",
+        "text": "0.8N"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "浮力は、空気中の値から水中の値を引いて求めます。3.0−2.2＝0.8Nです。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "おもり",
+        "空気中(N)",
+        "水中(N)"
+      ],
+      "rows": [
+        [
+          "A",
+          "3.0",
+          "2.2"
+        ],
+        [
+          "B",
+          "4.0",
+          "2.8"
+        ],
+        [
+          "C",
+          "5.0",
+          "3.0"
+        ]
+      ],
+      "caption": "ばねばかりの値"
+    }
+  },
+  {
+    "id": "01032",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "3つのおもりのうち、浮力が最も大きいのはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "おもりA"
+      },
+      {
+        "id": "B",
+        "text": "おもりC"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "浮力は、Aが0.8N、Bが1.2N、Cが2.0Nです。Cは5.0−3.0＝2.0Nで、最大です。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "おもり",
+        "空気中(N)",
+        "水中(N)"
+      ],
+      "rows": [
+        [
+          "A",
+          "3.0",
+          "2.2"
+        ],
+        [
+          "B",
+          "4.0",
+          "2.8"
+        ],
+        [
+          "C",
+          "5.0",
+          "3.0"
+        ]
+      ],
+      "caption": "ばねばかりの値"
+    }
+  },
+  {
+    "id": "01033",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "表で、塩分濃度が最も高い海域はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "バルト海"
+      },
+      {
+        "id": "B",
+        "text": "紅海"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "紅海は蒸発が多く、流れこむ川の水が少ないので塩分が高くなります。バルト海は川の水が多く、低くなります。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "海域",
+        "塩分濃度(%)"
+      ],
+      "rows": [
+        [
+          "紅海",
+          "4.1"
+        ],
+        [
+          "地中海",
+          "3.8"
+        ],
+        [
+          "日本近海",
+          "3.4"
+        ],
+        [
+          "バルト海",
+          "0.8"
+        ]
+      ],
+      "caption": "海域ごとの塩分濃度（約）"
+    }
+  },
+  {
+    "id": "01034",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "表で、海水1kgにとけている塩類が最も少ない海域はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "地中海"
+      },
+      {
+        "id": "B",
+        "text": "バルト海"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "バルト海の塩分濃度は0.8%で、海水1kgに塩類は約8gです。表の中で最も少なくなります。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "海域",
+        "塩分濃度(%)"
+      ],
+      "rows": [
+        [
+          "紅海",
+          "4.1"
+        ],
+        [
+          "地中海",
+          "3.8"
+        ],
+        [
+          "日本近海",
+          "3.4"
+        ],
+        [
+          "バルト海",
+          "0.8"
+        ]
+      ],
+      "caption": "海域ごとの塩分濃度（約）"
+    }
+  },
+  {
+    "id": "01035",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "表から、海水中の音の速さは、空気中の約何倍ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約4倍"
+      },
+      {
+        "id": "B",
+        "text": "約40倍"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "1500÷340＝約4.4なので、約4倍です。音は、空気中より水中のほうが速く伝わります。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "物質",
+        "音の速さ(m/s)"
+      ],
+      "rows": [
+        [
+          "空気（約15℃）",
+          "340"
+        ],
+        [
+          "海水",
+          "1500"
+        ],
+        [
+          "鉄",
+          "5950"
+        ]
+      ],
+      "caption": "音が伝わる速さ（約）"
+    }
+  },
+  {
+    "id": "01036",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "表の3つのうち、音が最も速く伝わるものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "海水"
+      },
+      {
+        "id": "B",
+        "text": "鉄"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "音の速さは、鉄が5950m/sで最も速く、次が海水の1500m/s、空気は340m/sです。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "物質",
+        "音の速さ(m/s)"
+      ],
+      "rows": [
+        [
+          "空気（約15℃）",
+          "340"
+        ],
+        [
+          "海水",
+          "1500"
+        ],
+        [
+          "鉄",
+          "5950"
+        ]
+      ],
+      "caption": "音が伝わる速さ（約）"
+    }
+  },
+  {
+    "id": "01037",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "グラフで、水深1000mの水温は約何℃ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約5℃"
+      },
+      {
+        "id": "B",
+        "text": "約10℃"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "グラフで、水深1000mの点を読むと、水温は約5℃です。水深500mで約10℃です。",
+    "figure": {
+      "kind": "chart",
+      "chartType": "line",
+      "xs": [
+        0,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        4000
+      ],
+      "ys": [
+        25,
+        24,
+        20,
+        10,
+        5,
+        3,
+        2
+      ],
+      "xLabel": "水深(m)",
+      "yLabel": "水温(℃)",
+      "caption": "ある海の水深と水温"
+    }
+  },
+  {
+    "id": "01038",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "グラフで、水温が最も大きく下がっているのは、水深のどの範囲ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "200〜1000m"
+      },
+      {
+        "id": "B",
+        "text": "0〜200m"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "0〜200mでは25℃から20℃へ5℃の低下、200〜1000mでは20℃から5℃へ15℃の低下です。",
+    "figure": {
+      "kind": "chart",
+      "chartType": "line",
+      "xs": [
+        0,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        4000
+      ],
+      "ys": [
+        25,
+        24,
+        20,
+        10,
+        5,
+        3,
+        2
+      ],
+      "xLabel": "水深(m)",
+      "yLabel": "水温(℃)",
+      "caption": "ある海の水深と水温"
+    }
+  },
+  {
+    "id": "01039",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "グラフで、水深0mの水圧が1気圧なのはなぜですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "大気の圧力がはたらくから"
+      },
+      {
+        "id": "B",
+        "text": "水の重さがはたらくから"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水面でも、空気の重さによる大気圧（約1気圧）がはたらいています。水の中では、さらに水の重さの分が加わります。",
+    "figure": {
+      "kind": "chart",
+      "chartType": "line",
+      "xs": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50
+      ],
+      "ys": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "xLabel": "水深(m)",
+      "yLabel": "水圧(気圧)",
+      "caption": "水深と水圧"
+    }
+  },
+  {
+    "id": "01040",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "グラフで、水深30mの水圧のうち、水の重さによる分は約何気圧ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約3気圧"
+      },
+      {
+        "id": "B",
+        "text": "約4気圧"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水深30mの水圧は4気圧です。そのうち1気圧は大気圧なので、水の重さによる分は約3気圧です。",
+    "figure": {
+      "kind": "chart",
+      "chartType": "line",
+      "xs": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50
+      ],
+      "ys": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "xLabel": "水深(m)",
+      "yLabel": "水圧(気圧)",
+      "caption": "水深と水圧"
+    }
+  },
+  {
+    "id": "01041",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "グラフで、海水にとけている塩類で最も多いものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "塩化マグネシウム"
+      },
+      {
+        "id": "B",
+        "text": "塩化ナトリウム"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "塩化ナトリウム（食塩）が約78%で、塩類の大部分をしめています。",
+    "figure": {
+      "kind": "chart",
+      "chartType": "bar",
+      "categories": [
+        "塩化ナトリウム",
+        "塩化マグネシウム",
+        "硫酸マグネシウム",
+        "その他"
+      ],
+      "values": [
+        78,
+        10,
+        6,
+        6
+      ],
+      "yLabel": "割合(%)",
+      "caption": "海水にとけている塩類の割合（約）"
+    }
+  },
+  {
+    "id": "01042",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "chemistry",
+    "difficulty": 1,
+    "question": "グラフで、塩化ナトリウムは塩類全体のおよそ何割ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約8割"
+      },
+      {
+        "id": "B",
+        "text": "約5割"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "グラフの塩化ナトリウムは約78%なので、およそ8割です。",
+    "figure": {
+      "kind": "chart",
+      "chartType": "bar",
+      "categories": [
+        "塩化ナトリウム",
+        "塩化マグネシウム",
+        "硫酸マグネシウム",
+        "その他"
+      ],
+      "values": [
+        78,
+        10,
+        6,
+        6
+      ],
+      "yLabel": "割合(%)",
+      "caption": "海水にとけている塩類の割合（約）"
+    }
+  },
+  {
+    "id": "01043",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のA〜Cのうち、植物プランクトンが光合成をさかんに行うのはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A"
+      },
+      {
+        "id": "B",
+        "text": "C"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "光合成には光が必要です。太陽の光が届く浅いA（約200mまで）で、さかんに行われます。",
+    "figure": {
+      "kind": "diagram",
+      "name": "ocean_zones",
+      "caption": "海の深さによる区分（A〜C）"
+    }
+  },
+  {
+    "id": "01044",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のCの層の特徴として、正しいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "光がほとんど届かず暗い"
+      },
+      {
+        "id": "B",
+        "text": "光が最もよく届く"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水深約1000mより深いCでは、太陽の光がほとんど届かず、水温も低く、暗い世界が広がります。",
+    "figure": {
+      "kind": "diagram",
+      "name": "ocean_zones",
+      "caption": "海の深さによる区分（A〜C）"
+    }
+  },
+  {
+    "id": "01045",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のAのように、海洋プレートが沈みこむところにできる深い溝を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "海溝"
+      },
+      {
+        "id": "B",
+        "text": "海嶺"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "プレートが沈みこむ場所には、深い溝の海溝ができます。日本の東の沖には日本海溝があります。",
+    "figure": {
+      "kind": "diagram",
+      "name": "trench",
+      "caption": "プレートの境目の断面（A〜C）"
+    }
+  },
+  {
+    "id": "01046",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のCは、プレートの沈みこみでできたマグマが噴き出してできた山です。この山を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "火山"
+      },
+      {
+        "id": "B",
+        "text": "断層"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "沈みこんだプレートの影響で、マグマが生まれ、地表に噴き出して火山になります。",
+    "figure": {
+      "kind": "diagram",
+      "name": "trench",
+      "caption": "プレートの境目の断面（A〜C）"
+    }
+  },
+  {
+    "id": "01047",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のAのように、海底でマグマが上昇して、新しいプレートがつくられる海底山脈を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "海嶺"
+      },
+      {
+        "id": "B",
+        "text": "海溝"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "海嶺では、マグマが上昇して冷え、新しい海洋プレートができて、左右に広がっていきます。",
+    "figure": {
+      "kind": "diagram",
+      "name": "ridge",
+      "caption": "海底の断面（A〜C）"
+    }
+  },
+  {
+    "id": "01048",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のCの矢印のように、海嶺をはさんで左右のプレートは、どのように動きますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "たがいに近づく"
+      },
+      {
+        "id": "B",
+        "text": "たがいに遠ざかる"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "海嶺では新しいプレートがつくられ、左右へ広がっていくので、たがいに遠ざかる向きに動きます。",
+    "figure": {
+      "kind": "diagram",
+      "name": "ridge",
+      "caption": "海底の断面（A〜C）"
+    }
+  },
+  {
+    "id": "01049",
+    "stage": "sea",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "図のAが植物プランクトンのとき、Bにあたる生物はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "動物プランクトン"
+      },
+      {
+        "id": "B",
+        "text": "マグロ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "植物プランクトンを食べるのは動物プランクトンです。その動物プランクトンを小魚が食べ、さらに大型の魚が食べます。",
+    "figure": {
+      "kind": "diagram",
+      "name": "food_chain",
+      "caption": "海の食物連鎖（A〜D）"
+    }
+  },
+  {
+    "id": "01050",
+    "stage": "sea",
+    "grade": 2,
+    "subject": "biology",
+    "difficulty": 1,
+    "question": "図の食物連鎖で、ふつう生物の数（個体数）が最も多いのはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "D"
+      },
+      {
+        "id": "B",
+        "text": "A"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "食べられる生物ほど数が多く、食べる生物ほど少なくなります。Aの数が最も多く、Dが最も少ないのがふつうです。",
+    "figure": {
+      "kind": "diagram",
+      "name": "food_chain",
+      "caption": "海の食物連鎖（A〜D）"
+    }
+  },
+  {
+    "id": "01051",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "図のA〜Cのうち、水圧が最も大きいのはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A"
+      },
+      {
+        "id": "B",
+        "text": "C"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "水圧は深いところほど大きくなります。最も深いCの矢印が最も長く、水圧が最大です。",
+    "figure": {
+      "kind": "diagram",
+      "name": "water_pressure",
+      "caption": "水そうの水圧（A〜C）"
+    }
+  },
+  {
+    "id": "01052",
+    "stage": "sea",
+    "grade": 1,
+    "subject": "physics",
+    "difficulty": 1,
+    "question": "水圧が水の深いところほど大きくなるのは、なぜですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水の温度が高くなるから"
+      },
+      {
+        "id": "B",
+        "text": "上にある水の重さが増えるから"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "深いところでは、その上にある水の量が多く、重さが大きいので、水圧も大きくなります。",
+    "figure": {
+      "kind": "diagram",
+      "name": "water_pressure",
+      "caption": "水そうの水圧（A〜C）"
+    }
   }
 ]

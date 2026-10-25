@@ -282,12 +282,20 @@ private struct QuizContent: View {
                 }
                 // Fixed-height feedback area: the question panel stays put when an answer is revealed.
                 feedback(engine)
-                    .frame(width: contentWidth, height: geo.size.height * (typeSize.isAccessibilitySize ? 0.3 : 0.42) > 300 ? 300 : geo.size.height * (typeSize.isAccessibilitySize ? 0.3 : 0.42), alignment: .bottom)
+                    .frame(width: contentWidth, height: feedbackHeight(engine, screen: geo.size.height), alignment: .bottom)
             }
             .frame(width: geo.size.width, height: geo.size.height)
             .padding(.top, 8)
             .padding(.bottom, 16)
         }
+    }
+
+    /// Room kept for the answer/explanation. Questions with a figure get less, so the figure and both
+    /// choices fit above it without scrolling on a normal phone.
+    private func feedbackHeight(_ engine: QuizEngine, screen: CGFloat) -> CGFloat {
+        let hasFigure = engine.current.figure != nil
+        let share: CGFloat = typeSize.isAccessibilitySize ? 0.3 : (hasFigure ? 0.29 : 0.42)
+        return min(hasFigure ? 230 : 300, screen * share)
     }
 
     private func progressLabel(_ engine: QuizEngine, short: Bool = false) -> some View {
@@ -317,6 +325,7 @@ private struct QuizContent: View {
                 .font(.mplus(.title3, .bold))
                 .foregroundStyle(Theme.ink)
                 .fixedSize(horizontal: false, vertical: true)
+            if let figure = engine.current.figure { FigureView(figure: figure) }
             ForEach(engine.current.choices) { c in
                 ChoiceButton(choice: c, phase: engine.phase, correctID: engine.current.correctChoiceId) {
                     session.answer(c.id)
