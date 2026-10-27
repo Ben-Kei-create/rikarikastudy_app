@@ -177,6 +177,8 @@ final class LayoutFitUITests: XCTestCase {
         let next = app.buttons["次の問題へ"]
         XCTAssertTrue(next.waitForExistence(timeout: 3))
         // Sample while the burst animates (0 - ~1.6 s) and after it has faded.
+        usleep(150_000)
+        attach(app, "burst-early")          // ~0.3 s after the tap: the stamp is at full size
         for i in 0..<8 {
             assertInside(next, window, "next button (burst t=\(i))")
             assertInside(a, window, "choice A (burst t=\(i))")

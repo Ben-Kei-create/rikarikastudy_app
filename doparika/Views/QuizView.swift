@@ -521,33 +521,26 @@ private struct AnswerBurst: View {
     let xp: Int
     @State private var scale = 0.3
     @State private var opacity = 1.0
-    @State private var xpOffset = 0.0
 
     private var correct: Bool { if case .correct = resolution { return true } else { return false } }
 
     var body: some View {
         ZStack {
             if correct { SparkleBurst() }
-            Text(correct ? "○" : "×")
-                .font(.mplus(fixed: 220, .black))
-                .foregroundStyle(correct ? Theme.good : Theme.bad)
-                .shadow(color: .black.opacity(0.45), radius: 10, y: 4)
+            // Painted stamps (transparent PNGs). The ring is thin, so it is drawn a little larger.
+            Image(correct ? "answer_correct" : "answer_incorrect")
+                .resizable()
+                .scaledToFit()
+                .frame(width: correct ? 260 : 220, height: correct ? 260 : 220)
+                .shadow(color: .black.opacity(0.4), radius: 10, y: 4)
                 .scaleEffect(scale)
-                .opacity(correct ? opacity : opacity * 0.8)
-            if correct && xp > 0 {
-                Text("+\(xp) XP")
-                    .font(.mplus(fixed: 44, .black))
-                    .foregroundStyle(Theme.ember)
-                    .shadow(color: .black, radius: 4, y: 2)
-                    .offset(y: 120 + xpOffset)
-                    .opacity(opacity)
-            }
+                .opacity(correct ? opacity : opacity * 0.9)
+            // "+XP" is shown in the answer panel below; a second floating copy only covered the explanation.
         }
         .allowsHitTesting(false)
         .accessibilityHidden(true)
         .onAppear {
             withAnimation(.spring(response: 0.35, dampingFraction: 0.5)) { scale = 1.0 }
-            withAnimation(.easeOut(duration: 1.4)) { xpOffset = -110 }
             withAnimation(.easeIn(duration: 0.5).delay(0.9)) { opacity = 0 }
         }
     }

@@ -79,3 +79,11 @@ final class GlobeTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(meshes, 1)
     }
 }
+
+final class StampAssetTests: XCTestCase {
+    func testAnswerStampsAreInTheBundle() {
+        for name in ["answer_correct", "answer_incorrect"] {
+            XCTAssertNotNil(UIImage(named: name), "\(name) missing from the asset catalog")
+        }
+    }
+}
