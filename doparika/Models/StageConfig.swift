@@ -1,24 +1,27 @@
 import Foundation
 
-/// Release switches. Release 1 ships the Earth stage only; 宇宙 and 深海 are fully implemented but hidden.
+/// Release switches: which stages this build ships. Release 1 shipped Earth only; the next release adds
+/// space (宇宙, Lv.31-60); the deep sea (深海, Lv.61-100) is implemented but still hidden.
 enum FeatureFlags {
-    /// Release 2: flip this to `true` (nothing else is needed) to enable 宇宙 (Lv.31-60) and 深海 (Lv.61-100).
-    static let extraStagesShipped = false
+    /// To ship the deep sea later, add `.sea` here (nothing else is needed): the level cap, stage list,
+    /// stage select and collection tabs all follow this list.
+    static let shippedStages: [Stage] = [.mountain, .sky]
 
-    /// Tests force the flag on/off; nil = follow the real setting.
+    /// Tests force the stage list: true = every stage, false = Earth only; nil = follow `shippedStages`.
     static var testOverride: Bool?
 
-    static var extraStagesEnabled: Bool {
-        if let forced = testOverride { return forced }
+    /// Stages the player can see and play right now, in level order.
+    static var availableStages: [Stage] {
+        if let forced = testOverride { return forced ? Stage.allCases : [.mountain] }
         #if DEBUG
-        // QA aid: `-debugStages YES` turns the extra stages on in debug builds only.
-        if UserDefaults.standard.bool(forKey: "debugStages") { return true }
+        // QA aid: `-debugStages YES` turns every stage on in debug builds only.
+        if UserDefaults.standard.bool(forKey: "debugStages") { return Stage.allCases }
         #endif
-        return extraStagesShipped
+        return Stage.allCases.filter { shippedStages.contains($0) }
     }
 
-    /// Stages the player can see and play right now.
-    static var availableStages: [Stage] { extraStagesEnabled ? Stage.allCases : [.mountain] }
+    /// True once there is more than Earth to choose from (stage select, collection tabs).
+    static var extraStagesEnabled: Bool { availableStages.count > 1 }
 }
 
 enum StageDirection {

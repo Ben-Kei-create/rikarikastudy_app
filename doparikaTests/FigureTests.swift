@@ -66,10 +66,12 @@ final class FigureTests: XCTestCase {
         XCTAssertEqual(names, Figure.diagramNames, "every built-in diagram is used by at least one question")
     }
 
-    func testFiguresStayWithSeaQuestionsAndIDsStayUnique() {
+    func testFigureQuestionsBelongToSeaOrSpaceAndIDsStayUnique() {
         let repo = QuestionRepository()
         XCTAssertEqual(Set(repo.questions.map(\.id)).count, repo.questions.count)
-        XCTAssertTrue(repo.questions.filter { $0.figure != nil }.allSatisfy { $0.stage == .sea })
+        XCTAssertTrue(repo.questions.filter { $0.figure != nil }.allSatisfy { $0.stage == .sea || $0.stage == .sky })
         XCTAssertGreaterThanOrEqual(repo.questions(for: .sea).count, 60)
+        XCTAssertGreaterThanOrEqual(repo.questions(for: .sky).count, 130)
+        XCTAssertGreaterThanOrEqual(repo.questions(for: .sky).filter { $0.figure != nil }.count, 20)
     }
 }

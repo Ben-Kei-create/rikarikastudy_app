@@ -31,14 +31,17 @@ Lv.1〜30 / 地球ステージ / 2択 / 制限時間15秒 / 正解 +20XP
 - `home_bg` が欠けた場合は地層背景へ、各 `earth_XXX` が欠けた場合はその区間だけコード描画へ戻る。
 - ロゴ、羊皮紙、正誤・満点演出、空・海ティザーの追加素材は未導入。
 
-## 宇宙・深海ステージ（実装済み・リリース1では非表示）
+## 宇宙・深海ステージ
 
-- スイッチは `FeatureFlags.extraStagesShipped`（`doparika/Models/StageConfig.swift`）。**リリース2では `true` にするだけ**で、宇宙（Lv.31-60）・深海（Lv.61-100）、Lv上限100、ホームのステージ選択、コレクションのタブが有効になる。リリース1（`false`）ではレベル上限30・地球のみで、ステージ行もタブも表示されない。
-- デバッグビルドでは起動引数 `-debugStages YES`（と `-debugXP 15000` でLv.35）で確認できる。
-- ステージ差分は `Stage.config`（画像の接頭辞・枚数・向き・Lv範囲・BGM）に集約。宇宙は **上昇**（`space_001` の下端＝地表から始まり、正解で上へ。ワールドを上下反転して描画、画像自体は正立）、深海は地球と同じ **潜行**（`sea_001`〜`sea_030`）。
-- 問題は `questions_mountain.json` / `questions_sky.json` / `questions_sea.json`。IDは全ステージで通し番号（一意）。追加は `tools/import_questions_txt.py FILE.txt --stage sky|sea`（`tools/question_sources/` に現在の元データ）。
-- 現在の問題数: 地球955 / 宇宙35 / 深海38。**宇宙・深海は初期の少数で、リリース2までに増やして内容を確認する必要がある**（Lv31-100の長さに対して不足）。
-- 1回の問題数: 地球 Lv.1-20=10 / 21+=20、宇宙=20、深海=20（Lv.81+は30）。過去ステージの復習プレイは獲得XP×0.5。
+- **配信するステージ**は `FeatureFlags.shippedStages`（`doparika/Models/StageConfig.swift`）の1か所で決まる。現在は **地球＋宇宙**（Lv.1〜60）。深海（Lv.61〜100）は実装済みで非表示。深海を出すときは、この配列に `.sea` を足すだけ（レベル上限100、ステージ選択、コレクションのタブがすべて追従する）。
+- デバッグビルドでは起動引数 `-debugStages YES`（全ステージ）、`-debugXP 15000`（Lv.35）、`-debugFigureFirst YES`（図つきの問題を先頭に）で確認できる。
+- ステージ差分は `Stage.config`（画像の接頭辞・枚数・向き・Lv範囲・BGM）に集約。宇宙は **上昇**（`space_001` の下端＝地表から始まり、正解で上へ）、深海は地球と同じ **潜行**（`sea_001`〜`sea_030`）。
+- Lv.31に届いた回の結果画面に「宇宙ステージが解放されました」を出す。以降は、ホームのステージ一覧から選べる。以前のステージのプレイは獲得XP×0.5。
+- 問題は `questions_mountain.json` / `questions_sky.json` / `questions_sea.json`。IDは全ステージで通し番号（一意）。追加は `tools/import_questions_txt.py FILE.txt --stage sky|sea`（元データは `tools/question_sources/`）。
+- **図・表・グラフつきの問題**は `図表:` に1行のJSONを書く（`docs/QUESTION_FORMAT.md`）。図は `ocean_zones` `trench` `ridge` `food_chain` `water_pressure`（深海）、`moon_phases` `earth_orbit`（宇宙）。
+- **問題が足りないとき**: 宇宙ステージで、宇宙の未回答の問題が尽きたら、前のステージ（地球）の未回答の問題で補う。それも尽きると、復習の問題になる。
+- 現在の問題数: 地球955 / 宇宙138 / 深海62。**Lv.31〜60を遊びきるには、約1,100問の正解が必要**（`LevelCalculator` のXP曲線）。宇宙の新規の問題は、まだこれより少ない。
+- 1回の問題数: 地球 Lv.1-20=10 / 21+=20、宇宙=20、深海=20（Lv.81+は30）。
 - 深海専用BGMは未制作（暫定でホームBGM）。
 
 ## 問題データ

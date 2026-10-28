@@ -40,7 +40,7 @@ final class PersistenceAndSelectionTests: XCTestCase {
     }
 
     func testLevel30TakesRoughlySixHundredCorrectAnswers() {
-        let correct = LevelCalculator.maxXP / QuizEngine.xpPerCorrect
+        let correct = LevelCalculator.xpThreshold(for: 30) / QuizEngine.xpPerCorrect   // Lv.30 = end of Earth
         XCTAssertTrue((550...650).contains(correct), "Lv.30 needs \(correct) correct answers")
     }
 
@@ -88,5 +88,37 @@ final class PersistenceAndSelectionTests: XCTestCase {
         XCTAssertTrue(repo.questions.allSatisfy { $0.id.count == 5 && $0.id.allSatisfy(\.isNumber) })
         XCTAssertEqual(Set(repo.questions.map(\.id)).count, repo.questions.count)
         XCTAssertTrue(repo.questions.allSatisfy { $0.choices.count == 2 })
+    }
+}
+
+@MainActor
+final class PoolFallbackTests: XCTestCase {
+    override func tearDown() { FeatureFlags.testOverride = nil }
+
+    func testASmallStageBankIsTopUpFromEarlierStagesAndNeverRunsDry() throws {
+        FeatureFlags.testOverride = nil          // Earth + space
+        let env = try TestEnv(xp: LevelCalculator.xpThreshold(for: 31))
+        let sky = env.model.repository.questions(for: .sky)
+        // Answer every space question so none are left unanswered.
+        for q in sky { env.model.record(question: q, correct: true) }
+        let session = env.model.makeSession()
+        XCTAssertEqual(session.count, env.model.sessionLength(for: .sky), "still a full session")
+        XCTAssertTrue(session.contains { $0.stage == .mountain }, "borrowed Earth questions")
+        XCTAssertFalse(session.contains { $0.stage == .sea }, "never the hidden deep sea")
+        XCTAssertEqual(Set(session.map(\.id)).count, session.count)
+    }
+
+    func testSpaceQuestionsComeFirstWhileTheyLast() throws {
+        FeatureFlags.testOverride = nil
+        let env = try TestEnv(xp: LevelCalculator.xpThreshold(for: 31))
+        let session = env.model.makeSession()
+        let sky = env.model.repository.questions(for: .sky).count
+        if sky >= session.count { XCTAssertTrue(session.allSatisfy { $0.stage == .sky }) }
+    }
+
+    func testEarthSessionsDoNotBorrowFromLaterStages() throws {
+        FeatureFlags.testOverride = nil
+        let env = try TestEnv()
+        XCTAssertTrue(env.model.makeSession().allSatisfy { $0.stage == .mountain })
     }
 }

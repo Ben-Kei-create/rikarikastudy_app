@@ -698,5 +698,2511 @@
     ],
     "correctChoiceId": "B",
     "explanation": "太陽に近い順に、水星・金星・地球・火星・木星・土星・天王星・海王星です。"
+  },
+  {
+    "id": "01053",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽系の惑星は、全部でいくつありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "8個"
+      },
+      {
+        "id": "B",
+        "text": "9個"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "太陽系の惑星は、水星・金星・地球・火星・木星・土星・天王星・海王星の8個です。冥王星は準惑星に分類されています。"
+  },
+  {
+    "id": "01054",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽系で、地球のすぐ外側を公転している惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "金星"
+      },
+      {
+        "id": "B",
+        "text": "火星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "太陽に近い順に、水星・金星・地球・火星です。火星は地球のすぐ外側を回っています。"
+  },
+  {
+    "id": "01055",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽系の惑星の中で、最も大きいものはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "木星"
+      },
+      {
+        "id": "B",
+        "text": "土星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "木星は直径が地球の約11倍あり、惑星の中で最大です。土星が2番目に大きい惑星です。"
+  },
+  {
+    "id": "01056",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球型惑星は、全部でいくつありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4個"
+      },
+      {
+        "id": "B",
+        "text": "3個"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水星・金星・地球・火星の4個が地球型惑星で、岩石でできていて、密度が大きいのが特徴です。"
+  },
+  {
+    "id": "01057",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "木星型惑星は、全部でいくつありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3個"
+      },
+      {
+        "id": "B",
+        "text": "4個"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "木星・土星・天王星・海王星の4個が木星型惑星です。大きくて、密度が小さいのが特徴です。"
+  },
+  {
+    "id": "01058",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "惑星の中で、表面温度が最も高いのはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水星"
+      },
+      {
+        "id": "B",
+        "text": "金星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "金星は二酸化炭素の厚い大気による温室効果で、表面温度が約460℃にもなります。太陽に最も近い水星より高温です。"
+  },
+  {
+    "id": "01059",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "表面が酸化鉄をふくむ岩石や砂でおおわれ、赤く見える惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "火星"
+      },
+      {
+        "id": "B",
+        "text": "金星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "火星の表面は酸化鉄をふくむ砂や岩石でおおわれていて、赤っぽく見えます。"
+  },
+  {
+    "id": "01060",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "明け方や夕方に明るく見え、「明けの明星」「宵の明星」と呼ばれる惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "金星"
+      },
+      {
+        "id": "B",
+        "text": "火星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "金星は地球より内側を公転し、明け方か夕方にしか見えません。とても明るいので、明星と呼ばれます。"
+  },
+  {
+    "id": "01061",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "金星が満ち欠けして見えるのは、金星が何を反射して光り、見える角度が変わるからですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "太陽の光"
+      },
+      {
+        "id": "B",
+        "text": "自分で出す光"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "惑星は自分では光らず、太陽の光を反射しています。公転で位置が変わると、光る部分の見え方が変わります。"
+  },
+  {
+    "id": "01062",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "金星は、地球に近いときほど、どのように見えますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "小さく満ちて見える"
+      },
+      {
+        "id": "B",
+        "text": "大きく欠けて見える"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地球に近いときは、太陽の光が当たった面をななめ後ろから見るため、大きく欠けて見えます。"
+  },
+  {
+    "id": "01063",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "小惑星探査機「はやぶさ2」が探査し、砂や石を持ち帰った小惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "イトカワ"
+      },
+      {
+        "id": "B",
+        "text": "リュウグウ"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "はやぶさ2は小惑星リュウグウから試料を持ち帰りました。初代のはやぶさは、イトカワを探査しました。"
+  },
+  {
+    "id": "01064",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "土星の環は、何でできていますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "氷や岩のかけら"
+      },
+      {
+        "id": "B",
+        "text": "気体"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "土星の環は、氷や岩の小さなかけらが無数に集まって、土星のまわりを回っているものです。"
+  },
+  {
+    "id": "01065",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "木星の表面に見える、巨大な渦を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "黒点"
+      },
+      {
+        "id": "B",
+        "text": "大赤斑"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "木星の表面にある大赤斑は、地球がいくつも入るほど大きな、長く続く嵐の渦です。"
+  },
+  {
+    "id": "01066",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽系のすべての惑星は、太陽のまわりを、どの向きに公転していますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "内側の惑星だけ逆向き"
+      },
+      {
+        "id": "B",
+        "text": "どれも同じ向き"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "惑星は、すべてほぼ同じ向きに、ほぼ同じ平面の上で、太陽のまわりを公転しています。"
+  },
+  {
+    "id": "01067",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽から遠い惑星ほど、公転周期はどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "長くなる"
+      },
+      {
+        "id": "B",
+        "text": "短くなる"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "太陽から遠いほど、公転する道のりが長く、動く速さもおそいため、公転周期は長くなります。"
+  },
+  {
+    "id": "01068",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球より内側を公転する惑星を、何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "内惑星"
+      },
+      {
+        "id": "B",
+        "text": "外惑星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "地球より内側を回る水星と金星を内惑星、外側を回る火星以遠の惑星を外惑星といいます。"
+  },
+  {
+    "id": "01069",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "次のうち、外惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "木星"
+      },
+      {
+        "id": "B",
+        "text": "水星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "外惑星は、地球より外側を公転する惑星です。木星は外惑星で、水星と金星は内惑星です。"
+  },
+  {
+    "id": "01070",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "恒星の位置を基準にして、夜空で位置を変えていく天体はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "恒星"
+      },
+      {
+        "id": "B",
+        "text": "惑星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "惑星は、星座をつくる恒星の間を、日がたつにつれて位置を変えます。「惑う星」という意味です。"
+  },
+  {
+    "id": "01071",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "星座の形がほとんど変わらないのは、恒星がどうだからですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "動いていないから"
+      },
+      {
+        "id": "B",
+        "text": "非常に遠くにあるから"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "恒星もそれぞれ動いていますが、非常に遠いため、見かけの位置関係はほとんど変わらず、星座の形は保たれます。"
+  },
+  {
+    "id": "01072",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽の黒点が少しずつ動いていくことから、何がわかりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "太陽の自転"
+      },
+      {
+        "id": "B",
+        "text": "太陽の公転"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "黒点が太陽の表面を同じ向きに動いていくのは、太陽が自転しているからです。"
+  },
+  {
+    "id": "01073",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "黒点が太陽の中央では丸く、縁では細長く見えるのは、太陽がどんな形だからですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "球形"
+      },
+      {
+        "id": "B",
+        "text": "平らな円盤"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "球の表面にある黒点は、中央では正面から、縁ではななめから見えるので、細長く見えます。"
+  },
+  {
+    "id": "01074",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "皆既日食のとき、太陽のまわりに広がって見える、高温のガスの層を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "コロナ"
+      },
+      {
+        "id": "B",
+        "text": "黒点"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "コロナは太陽の外側に広がる、とても高温のガスの層です。ふだんは太陽の光がまぶしくて見えません。"
+  },
+  {
+    "id": "01075",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽の縁からふき上がる、炎のような高温のガスを何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "プロミネンス"
+      },
+      {
+        "id": "B",
+        "text": "コロナ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "プロミネンス（紅炎）は、太陽の表面からふき上がる高温のガスです。"
+  },
+  {
+    "id": "01076",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "天体望遠鏡で太陽を観察するとき、目で直接のぞいてはいけないのは、なぜですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "像がぼやけるから"
+      },
+      {
+        "id": "B",
+        "text": "目を傷める危険があるから"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "望遠鏡で集めた太陽の光で、目を傷めるおそれがあります。像は投影板に映して観察します。"
+  },
+  {
+    "id": "01077",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月の直径は、地球の直径の約何分の1ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約10分の1"
+      },
+      {
+        "id": "B",
+        "text": "約4分の1"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "月の直径は約3500kmで、地球（約1万3000km）の約4分の1です。"
+  },
+  {
+    "id": "01078",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月の表面に見える、暗い部分を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "月の砂漠"
+      },
+      {
+        "id": "B",
+        "text": "月の海"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "月の海は、玄武岩の溶岩で平らにおおわれた、暗く見える地形です。水はありません。"
+  },
+  {
+    "id": "01079",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月には、大気や水は、どのくらいありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "たくさんある"
+      },
+      {
+        "id": "B",
+        "text": "ほとんどない"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "月は重力が小さく、大気をとどめておけません。大気や水がほとんどないため、風化が進みません。"
+  },
+  {
+    "id": "01080",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "夕方の西の空に見える、細い月はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "三日月"
+      },
+      {
+        "id": "B",
+        "text": "下弦の月"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "新月から数日たった三日月は、夕方、太陽がしずんだ西の空にしばらく見えます。"
+  },
+  {
+    "id": "01081",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "満月は、ふつう何時ごろに南中しますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "真夜中ごろ（0時）"
+      },
+      {
+        "id": "B",
+        "text": "正午ごろ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "満月は、太陽と反対側にあるので、太陽が真下にくる真夜中ごろに、南の空で最も高くなります。"
+  },
+  {
+    "id": "01082",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "上弦の月は、ふつう何時ごろに南中しますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "夕方ごろ（18時）"
+      },
+      {
+        "id": "B",
+        "text": "明け方ごろ（6時）"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "上弦の月は、新月から約7日後で、夕方に南中して、真夜中ごろに西にしずみます。"
+  },
+  {
+    "id": "01083",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "同じ時刻に月を見ると、日がたつにつれて、月の位置は東西のどちらへずれていきますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "西"
+      },
+      {
+        "id": "B",
+        "text": "東"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "月は地球のまわりを西から東へ公転しているので、同じ時刻に見る月は、毎日東へずれていきます。"
+  },
+  {
+    "id": "01084",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月が地球のまわりを1周するのにかかる時間は、約何日ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約27日"
+      },
+      {
+        "id": "B",
+        "text": "約365日"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "月の公転周期は約27.3日です。満ち欠けの周期（約29.5日）とは、少しちがいます。"
+  },
+  {
+    "id": "01085",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "新月から満月まで、約何日かかりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約7日"
+      },
+      {
+        "id": "B",
+        "text": "約15日"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "新月から次の新月まで約29.5日なので、その半分の、約15日で満月になります。"
+  },
+  {
+    "id": "01086",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "新月から上弦の月になるまで、約何日かかりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約7日"
+      },
+      {
+        "id": "B",
+        "text": "約15日"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "新月から満月までが約15日なので、そのちょうど中間の上弦の月は、約7日後になります。"
+  },
+  {
+    "id": "01087",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽が月にすっかりかくれる日食を、何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "皆既日食"
+      },
+      {
+        "id": "B",
+        "text": "金環日食"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "月が太陽を完全にかくすと皆既日食になり、昼でも夜のように暗くなります。"
+  },
+  {
+    "id": "01088",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月が太陽より小さく見えて、太陽がリングのように見える日食を、何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "金環日食"
+      },
+      {
+        "id": "B",
+        "text": "皆既日食"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "月が地球から遠いと、月が小さく見えて太陽をかくしきれず、太陽が金色のリングのように見えます。"
+  },
+  {
+    "id": "01089",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球から見たとき、太陽と月の見かけの大きさは、どうなっていますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ほぼ同じ"
+      },
+      {
+        "id": "B",
+        "text": "太陽のほうがずっと大きい"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "太陽は月の約400倍の大きさですが、約400倍遠いので、見かけの大きさはほぼ同じになります。"
+  },
+  {
+    "id": "01090",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月食は、月が何の中に入ることで起こりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "地球の影"
+      },
+      {
+        "id": "B",
+        "text": "太陽の影"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "月が太陽と反対側にきて、地球の影に入ると、月が欠けて見えます。"
+  },
+  {
+    "id": "01091",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北極星は、何座の星ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "こぐま座"
+      },
+      {
+        "id": "B",
+        "text": "おおぐま座"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "北極星は、こぐま座の星です。北斗七星を使って見つけることもできます。"
+  },
+  {
+    "id": "01092",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北斗七星は、何座の一部ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "おおぐま座"
+      },
+      {
+        "id": "B",
+        "text": "こぐま座"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "北斗七星は、おおぐま座のしっぽとからだの一部をつくる、7つの星です。"
+  },
+  {
+    "id": "01093",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "冬の大三角の1つ、ベテルギウスは、何座の星ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "オリオン座"
+      },
+      {
+        "id": "B",
+        "text": "さそり座"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "ベテルギウスは、オリオン座の赤い1等星です。冬の大三角は、ほかにシリウスとプロキオンでできています。"
+  },
+  {
+    "id": "01094",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "夏の大三角の1つ、ベガは、何座の星ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "わし座"
+      },
+      {
+        "id": "B",
+        "text": "こと座"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "ベガは、こと座の1等星です。夏の大三角は、ほかにデネブ（はくちょう座）とアルタイル（わし座）でできています。"
+  },
+  {
+    "id": "01095",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "さそり座にある、赤く明るい1等星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ベテルギウス"
+      },
+      {
+        "id": "B",
+        "text": "アンタレス"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "アンタレスは、さそり座の赤い1等星です。ベテルギウスは、オリオン座の星です。"
+  },
+  {
+    "id": "01096",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "アンタレスのように赤く見える星は、青白い星と比べて、表面温度はどうですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "高い"
+      },
+      {
+        "id": "B",
+        "text": "低い"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "星の色は表面温度で決まります。赤い星は低温（約3000℃）、青白い星は高温（1万℃以上）です。"
+  },
+  {
+    "id": "01097",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北の空の星は、北極星を中心に、どちら回りに動いて見えますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "反時計回り"
+      },
+      {
+        "id": "B",
+        "text": "時計回り"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "北の空の星は、地球の自転のため、北極星を中心に、反時計回りに回って見えます。"
+  },
+  {
+    "id": "01098",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "東の空にある星は、時間がたつと、どの向きに動いて見えますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "左下へ（しずむ）"
+      },
+      {
+        "id": "B",
+        "text": "右上へ（のぼる）"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "東の空の星は、右上に向かって、のぼっていきます。"
+  },
+  {
+    "id": "01099",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "西の空にある星は、時間がたつと、どの向きに動いて見えますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "右下へ（しずむ）"
+      },
+      {
+        "id": "B",
+        "text": "左上へ（のぼる）"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "西の空の星は、右下に向かって、しずんでいきます。"
+  },
+  {
+    "id": "01100",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "南の空の星は、どの向きに動いて見えますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "左（東）から右（西）へ"
+      },
+      {
+        "id": "B",
+        "text": "右（西）から左（東）へ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "南の空の星は、東（左）から西（右）へ動きます。太陽と同じ向きです。"
+  },
+  {
+    "id": "01101",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "同じ星座が、1年たつと同じ時刻に同じ位置に見えるのは、なぜですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "地球が1年で公転するから"
+      },
+      {
+        "id": "B",
+        "text": "地球が1日で自転するから"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "地球は1年で太陽のまわりを1周するので、同じ時刻に見える星座は、1年で元の位置にもどります。"
+  },
+  {
+    "id": "01102",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽系は、銀河系の中のどのあたりにありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ちょうど中心"
+      },
+      {
+        "id": "B",
+        "text": "中心から離れた円盤部"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "太陽系は、銀河系の中心から約2万6000光年はなれた、円盤部にあります。"
+  },
+  {
+    "id": "01103",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "夜空に見える天の川の正体は、何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "雲"
+      },
+      {
+        "id": "B",
+        "text": "無数の恒星の集まり"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "天の川は、銀河系の円盤部を内側から見たもので、数多くの恒星が帯のように見えています。"
+  },
+  {
+    "id": "01104",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "銀河系は、どんな形をしていますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "球状"
+      },
+      {
+        "id": "B",
+        "text": "円盤状（うずまき状）"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "銀河系は、中心がふくらんだ円盤状で、うずを巻くような腕をもっています。"
+  },
+  {
+    "id": "01105",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "銀河系のほかにも、宇宙には銀河がありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ほかにはない"
+      },
+      {
+        "id": "B",
+        "text": "数多くある"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "宇宙には、銀河系のような銀河が、数千億個以上あるといわれています。"
+  },
+  {
+    "id": "01106",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "1等星は、6等星の約何倍の明るさですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約6倍"
+      },
+      {
+        "id": "B",
+        "text": "約100倍"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "星の等級が5つ小さくなると、明るさが約100倍になります。1等星は6等星の約100倍の明るさです。"
+  },
+  {
+    "id": "01107",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球の自転の向きは、どちらですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "東から西"
+      },
+      {
+        "id": "B",
+        "text": "西から東"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地球は、北極側から見て反時計回り、つまり西から東へ自転しています。"
+  },
+  {
+    "id": "01108",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地軸は、公転面に垂直な線に対して、約何度傾いていますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約45度"
+      },
+      {
+        "id": "B",
+        "text": "約23.4度"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地軸は約23.4度傾いたまま公転しています。この傾きが、四季をつくります。"
+  },
+  {
+    "id": "01109",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球の直径は、約何kmですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約3万8000km"
+      },
+      {
+        "id": "B",
+        "text": "約1万3000km"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地球の直径は約1万2700kmです。月は約3500kmで、地球の約4分の1です。"
+  },
+  {
+    "id": "01110",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "夏に昼の時間が長くなるのは、太陽の通り道がどうなるからですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "短く低くなる"
+      },
+      {
+        "id": "B",
+        "text": "長く高くなる"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "夏は、太陽の通り道が高くて長くなるので、昼が長くなります。"
+  },
+  {
+    "id": "01111",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北半球で、冬至の日の昼の長さは、1年の中でどうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "最も長い"
+      },
+      {
+        "id": "B",
+        "text": "最も短い"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "冬至は、太陽の通り道が最も低く短くなり、昼の長さが最も短くなる日です。"
+  },
+  {
+    "id": "01112",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北緯36度の地点で、夏至の日の太陽の南中高度は、約何度ですか。（地軸の傾きは23.4度）",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約77度"
+      },
+      {
+        "id": "B",
+        "text": "約54度"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "夏至の南中高度は、90°－緯度＋23.4°で求めます。90－36＋23.4＝77.4なので、約77度です。"
+  },
+  {
+    "id": "01113",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北緯36度の地点で、春分・秋分の日の太陽の南中高度は、約何度ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約54度"
+      },
+      {
+        "id": "B",
+        "text": "約36度"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "春分・秋分の南中高度は、90°－緯度で求めます。90－36＝54なので、約54度です。"
+  },
+  {
+    "id": "01114",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北緯36度の地点で、冬至の日の太陽の南中高度は、約何度ですか。（地軸の傾きは23.4度）",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約54度"
+      },
+      {
+        "id": "B",
+        "text": "約31度"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "冬至の南中高度は、90°－緯度－23.4°で求めます。90－36－23.4＝30.6なので、約31度です。"
+  },
+  {
+    "id": "01115",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "夏至の日、北半球で太陽がのぼる位置は、真東と比べてどうですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "北寄り"
+      },
+      {
+        "id": "B",
+        "text": "南寄り"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "夏至のころは、太陽が真東より北寄りからのぼり、真西より北寄りにしずみます。"
+  },
+  {
+    "id": "01116",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽が南中したとき、地面に立てた棒の影は、どの向きにのびますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "北"
+      },
+      {
+        "id": "B",
+        "text": "南"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "北半球では、太陽が南の空で最も高くなったとき、影は真北にのびます。"
+  },
+  {
+    "id": "01117",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "天体望遠鏡で星を見ると、ふつう像はどのように見えますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "上下左右が逆"
+      },
+      {
+        "id": "B",
+        "text": "正立で同じ"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "ふつうの天体望遠鏡は、レンズや鏡のはたらきで、像が上下左右逆さまに見えます。"
+  },
+  {
+    "id": "01118",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "国際宇宙ステーション（ISS）は、地上から約何kmの高さを飛んでいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約400km"
+      },
+      {
+        "id": "B",
+        "text": "約4万km"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "ISSは、地上から約400kmの高さで、約90分で地球を1周しています。"
+  },
+  {
+    "id": "01119",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "1969年に、人類を初めて月に着陸させた宇宙船は、どれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "アポロ11号"
+      },
+      {
+        "id": "B",
+        "text": "ボイジャー1号"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "1969年、アポロ11号で、人類が初めて月面に降り立ちました。"
+  },
+  {
+    "id": "01120",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "気象を観測する、日本の人工衛星の名前は、どれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "はやぶさ"
+      },
+      {
+        "id": "B",
+        "text": "ひまわり"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "「ひまわり」は、雲の動きなどを観測して、天気予報に使われる気象衛星です。"
+  },
+  {
+    "id": "01121",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球の自転とほぼ同じ周期で回り、地上から止まって見える人工衛星を、何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "静止衛星"
+      },
+      {
+        "id": "B",
+        "text": "周回衛星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "赤道の上空約3万6000kmを、自転と同じ周期で回る衛星は、地上から見て止まっているように見えます。"
+  },
+  {
+    "id": "01122",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽の光が地球に届くまで、約何分かかりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約8分"
+      },
+      {
+        "id": "B",
+        "text": "約1分"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "太陽と地球の距離は約1億5000万kmで、光の速さ（秒速約30万km）で約8分かかります。"
+  },
+  {
+    "id": "01123",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月の光が地球に届くまで、約何秒かかりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約1.3秒"
+      },
+      {
+        "id": "B",
+        "text": "約13秒"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "月までは約38万kmで、光の速さで約1.3秒かかります。"
+  },
+  {
+    "id": "01124",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球から太陽までの距離は、約何kmですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約1億5000万km"
+      },
+      {
+        "id": "B",
+        "text": "約38万km"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "地球と太陽の平均距離は約1億5000万kmで、これを1天文単位とよびます。"
+  },
+  {
+    "id": "01125",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "地球から月までの距離は、約何kmですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約150万km"
+      },
+      {
+        "id": "B",
+        "text": "約38万km"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地球と月の平均距離は約38万kmです。"
+  },
+  {
+    "id": "01126",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "彗星の核は、おもに何でできていますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "鉄"
+      },
+      {
+        "id": "B",
+        "text": "氷とちり"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "彗星の核は、氷とちりが固まったものです。太陽に近づくと氷が蒸発して、尾ができます。"
+  },
+  {
+    "id": "01127",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "流星群が見られるのは、地球が何の通り道を横切るからですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "惑星の環"
+      },
+      {
+        "id": "B",
+        "text": "彗星が残したちりの帯"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "彗星が通ったあとに残ったちりの群れの中を地球が通ると、たくさんの流星が見られます。"
+  },
+  {
+    "id": "01128",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "太陽が誕生したのは、約何年前ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約4600万年前"
+      },
+      {
+        "id": "B",
+        "text": "約46億年前"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "太陽や地球は、約46億年前に生まれました。"
+  },
+  {
+    "id": "01129",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "宇宙が誕生したとされる、大爆発を何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ビッグバン"
+      },
+      {
+        "id": "B",
+        "text": "超新星爆発"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "宇宙は約138億年前に、ビッグバンという大爆発から始まったと考えられています。"
+  },
+  {
+    "id": "01130",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "質量の大きな恒星が、一生の最後に起こす大爆発を、何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "超新星爆発"
+      },
+      {
+        "id": "B",
+        "text": "流星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "質量の大きな恒星は、最後に超新星爆発を起こし、元素を宇宙にまきちらします。"
+  },
+  {
+    "id": "01131",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "強い重力のため、光さえ外に出られない天体を、何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ブラックホール"
+      },
+      {
+        "id": "B",
+        "text": "彗星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "ブラックホールは、非常に強い重力で、光も外に出られない天体です。"
+  },
+  {
+    "id": "01132",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "表で、地球より直径が小さい惑星は、水星・金星と、あと何ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "木星"
+      },
+      {
+        "id": "B",
+        "text": "火星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地球の直径を1とすると、水星0.38、金星0.95、火星0.53で、この3つが地球より小さい惑星です。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "惑星",
+        "直径(地球=1)",
+        "公転周期"
+      ],
+      "rows": [
+        [
+          "水星",
+          "0.38",
+          "88日"
+        ],
+        [
+          "金星",
+          "0.95",
+          "225日"
+        ],
+        [
+          "地球",
+          "1.00",
+          "1年"
+        ],
+        [
+          "火星",
+          "0.53",
+          "1.9年"
+        ],
+        [
+          "木星",
+          "11.0",
+          "11.9年"
+        ],
+        [
+          "土星",
+          "9.1",
+          "29.5年"
+        ]
+      ],
+      "caption": "惑星の直径と公転周期（約）"
+    }
+  },
+  {
+    "id": "01133",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "表から、木星の直径は、地球の約何倍ですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約5倍"
+      },
+      {
+        "id": "B",
+        "text": "約11倍"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "表の直径は地球を1としているので、木星の11.0がそのまま、地球の約11倍を表しています。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "惑星",
+        "直径(地球=1)",
+        "公転周期"
+      ],
+      "rows": [
+        [
+          "水星",
+          "0.38",
+          "88日"
+        ],
+        [
+          "金星",
+          "0.95",
+          "225日"
+        ],
+        [
+          "地球",
+          "1.00",
+          "1年"
+        ],
+        [
+          "火星",
+          "0.53",
+          "1.9年"
+        ],
+        [
+          "木星",
+          "11.0",
+          "11.9年"
+        ],
+        [
+          "土星",
+          "9.1",
+          "29.5年"
+        ]
+      ],
+      "caption": "惑星の直径と公転周期（約）"
+    }
+  },
+  {
+    "id": "01134",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "表の惑星のうち、公転周期が最も長いのはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "木星"
+      },
+      {
+        "id": "B",
+        "text": "土星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "公転周期は、土星が29.5年で最長です。木星は11.9年です。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "惑星",
+        "直径(地球=1)",
+        "公転周期"
+      ],
+      "rows": [
+        [
+          "水星",
+          "0.38",
+          "88日"
+        ],
+        [
+          "金星",
+          "0.95",
+          "225日"
+        ],
+        [
+          "地球",
+          "1.00",
+          "1年"
+        ],
+        [
+          "火星",
+          "0.53",
+          "1.9年"
+        ],
+        [
+          "木星",
+          "11.0",
+          "11.9年"
+        ],
+        [
+          "土星",
+          "9.1",
+          "29.5年"
+        ]
+      ],
+      "caption": "惑星の直径と公転周期（約）"
+    }
+  },
+  {
+    "id": "01135",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "表のうち、公転周期が1年より短い惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "水星と金星"
+      },
+      {
+        "id": "B",
+        "text": "火星と木星"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "水星は88日、金星は225日で、1年（365日）より短くなっています。内側の惑星ほど公転周期が短くなります。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "惑星",
+        "直径(地球=1)",
+        "公転周期"
+      ],
+      "rows": [
+        [
+          "水星",
+          "0.38",
+          "88日"
+        ],
+        [
+          "金星",
+          "0.95",
+          "225日"
+        ],
+        [
+          "地球",
+          "1.00",
+          "1年"
+        ],
+        [
+          "火星",
+          "0.53",
+          "1.9年"
+        ],
+        [
+          "木星",
+          "11.0",
+          "11.9年"
+        ],
+        [
+          "土星",
+          "9.1",
+          "29.5年"
+        ]
+      ],
+      "caption": "惑星の直径と公転周期（約）"
+    }
+  },
+  {
+    "id": "01136",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "表で、太陽に最も近い惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "金星"
+      },
+      {
+        "id": "B",
+        "text": "水星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "太陽からの距離が最も小さい0.39の水星が、太陽に最も近い惑星です。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "惑星",
+        "太陽からの距離(地球=1)"
+      ],
+      "rows": [
+        [
+          "水星",
+          "0.39"
+        ],
+        [
+          "金星",
+          "0.72"
+        ],
+        [
+          "地球",
+          "1.00"
+        ],
+        [
+          "火星",
+          "1.52"
+        ],
+        [
+          "木星",
+          "5.20"
+        ],
+        [
+          "土星",
+          "9.54"
+        ]
+      ],
+      "caption": "太陽からの距離（地球＝1）"
+    }
+  },
+  {
+    "id": "01137",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "表から、木星は太陽から、地球の約何倍はなれていますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "約50倍"
+      },
+      {
+        "id": "B",
+        "text": "約5倍"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地球を1とすると、木星は5.20です。つまり、地球の約5倍はなれています。",
+    "figure": {
+      "kind": "table",
+      "headers": [
+        "惑星",
+        "太陽からの距離(地球=1)"
+      ],
+      "rows": [
+        [
+          "水星",
+          "0.39"
+        ],
+        [
+          "金星",
+          "0.72"
+        ],
+        [
+          "地球",
+          "1.00"
+        ],
+        [
+          "火星",
+          "1.52"
+        ],
+        [
+          "木星",
+          "5.20"
+        ],
+        [
+          "土星",
+          "9.54"
+        ]
+      ],
+      "caption": "太陽からの距離（地球＝1）"
+    }
+  },
+  {
+    "id": "01138",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "グラフで、昼の長さが最も長いのは、何月ごろですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "12月"
+      },
+      {
+        "id": "B",
+        "text": "6月"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "グラフは6月ごろで最大の約14.6時間です。夏至（6月ごろ）は、昼が最も長くなります。",
+    "figure": {
+      "kind": "chart",
+      "chartType": "line",
+      "xs": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ys": [
+        10.2,
+        11.0,
+        11.9,
+        13.1,
+        14.1,
+        14.6,
+        14.4,
+        13.5,
+        12.3,
+        11.2,
+        10.3,
+        9.8
+      ],
+      "xLabel": "月",
+      "yLabel": "昼の長さ(時間)",
+      "caption": "東京の昼の長さ（各月の中ごろ・約）"
+    }
+  },
+  {
+    "id": "01139",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "グラフで、昼の長さが最も短いのは、何月ごろですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "12月"
+      },
+      {
+        "id": "B",
+        "text": "6月"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "グラフは12月ごろで最小の約9.8時間です。冬至（12月ごろ）は、昼が最も短くなります。",
+    "figure": {
+      "kind": "chart",
+      "chartType": "line",
+      "xs": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ys": [
+        10.2,
+        11.0,
+        11.9,
+        13.1,
+        14.1,
+        14.6,
+        14.4,
+        13.5,
+        12.3,
+        11.2,
+        10.3,
+        9.8
+      ],
+      "xLabel": "月",
+      "yLabel": "昼の長さ(時間)",
+      "caption": "東京の昼の長さ（各月の中ごろ・約）"
+    }
+  },
+  {
+    "id": "01140",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "グラフで、昼の長さが約12時間になるのは、3月ごろと、何月ごろですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "6月"
+      },
+      {
+        "id": "B",
+        "text": "9月"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "春分（3月ごろ）と秋分（9月ごろ）は、昼と夜の長さがほぼ等しくなり、昼の長さが約12時間になります。",
+    "figure": {
+      "kind": "chart",
+      "chartType": "line",
+      "xs": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ys": [
+        10.2,
+        11.0,
+        11.9,
+        13.1,
+        14.1,
+        14.6,
+        14.4,
+        13.5,
+        12.3,
+        11.2,
+        10.3,
+        9.8
+      ],
+      "xLabel": "月",
+      "yLabel": "昼の長さ(時間)",
+      "caption": "東京の昼の長さ（各月の中ごろ・約）"
+    }
+  },
+  {
+    "id": "01141",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "グラフで、最も大きい惑星はどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "土星"
+      },
+      {
+        "id": "B",
+        "text": "木星"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "グラフは木星が11で最大です。土星は9.1です。",
+    "figure": {
+      "kind": "chart",
+      "chartType": "bar",
+      "categories": [
+        "水星",
+        "金星",
+        "地球",
+        "火星",
+        "木星",
+        "土星"
+      ],
+      "values": [
+        0.38,
+        0.95,
+        1,
+        0.53,
+        11,
+        9.1
+      ],
+      "yLabel": "直径（地球＝1）",
+      "caption": "惑星の直径の比べ"
+    }
+  },
+  {
+    "id": "01142",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "グラフで、地球より小さい惑星は、何個ありますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2個"
+      },
+      {
+        "id": "B",
+        "text": "3個"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "地球の1より小さいのは、水星（0.38）・金星（0.95）・火星（0.53）の3個です。",
+    "figure": {
+      "kind": "chart",
+      "chartType": "bar",
+      "categories": [
+        "水星",
+        "金星",
+        "地球",
+        "火星",
+        "木星",
+        "土星"
+      ],
+      "values": [
+        0.38,
+        0.95,
+        1,
+        0.53,
+        11,
+        9.1
+      ],
+      "yLabel": "直径（地球＝1）",
+      "caption": "惑星の直径の比べ"
+    }
+  },
+  {
+    "id": "01143",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のEの位置に月があるとき、地球から見える月の形は、どれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "新月"
+      },
+      {
+        "id": "B",
+        "text": "満月"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "Eの位置の月は、太陽と反対側にあり、光が当たった面を地球に向けているので、満月に見えます。",
+    "figure": {
+      "kind": "diagram",
+      "name": "moon_phases",
+      "caption": "月の位置（地球の北極側から見た図）"
+    }
+  },
+  {
+    "id": "01144",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のAの位置に月があるとき、地球から見える月は、どうなりますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "新月（ほぼ見えない）"
+      },
+      {
+        "id": "B",
+        "text": "満月"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "Aの位置の月は、太陽の側にあり、光が当たっていない面を地球に向けているので、新月になります。",
+    "figure": {
+      "kind": "diagram",
+      "name": "moon_phases",
+      "caption": "月の位置（地球の北極側から見た図）"
+    }
+  },
+  {
+    "id": "01145",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のCの位置にある月を、何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "上弦の月"
+      },
+      {
+        "id": "B",
+        "text": "下弦の月"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "新月のあと、月が反時計回りに90度進んだCの位置の月は、右側が光って見える上弦の月です。",
+    "figure": {
+      "kind": "diagram",
+      "name": "moon_phases",
+      "caption": "月の位置（地球の北極側から見た図）"
+    }
+  },
+  {
+    "id": "01146",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のGの位置にある月を、何といいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "下弦の月"
+      },
+      {
+        "id": "B",
+        "text": "上弦の月"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "満月のあと、さらに90度進んだGの位置の月は、下弦の月です。",
+    "figure": {
+      "kind": "diagram",
+      "name": "moon_phases",
+      "caption": "月の位置（地球の北極側から見た図）"
+    }
+  },
+  {
+    "id": "01147",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "日食が起こるのは、月が図のどの位置にあるときですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "E"
+      },
+      {
+        "id": "B",
+        "text": "A"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "日食は、太陽・月・地球がこの順に一直線に並ぶときです。新月の位置のAで起こります。",
+    "figure": {
+      "kind": "diagram",
+      "name": "moon_phases",
+      "caption": "月の位置（地球の北極側から見た図）"
+    }
+  },
+  {
+    "id": "01148",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "月食が起こるのは、月が図のどの位置にあるときですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A"
+      },
+      {
+        "id": "B",
+        "text": "E"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "月食は、太陽・地球・月がこの順に一直線に並ぶときです。満月の位置のEで起こります。",
+    "figure": {
+      "kind": "diagram",
+      "name": "moon_phases",
+      "caption": "月の位置（地球の北極側から見た図）"
+    }
+  },
+  {
+    "id": "01149",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図で、月が地球のまわりを回る向きとして、正しいのはどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A→H→G→F→E"
+      },
+      {
+        "id": "B",
+        "text": "A→B→C→D→E"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "月は、北極側から見て反時計回りに公転します。図ではA→B→C→D→Eの向きです。",
+    "figure": {
+      "kind": "diagram",
+      "name": "moon_phases",
+      "caption": "月の位置（地球の北極側から見た図）"
+    }
+  },
+  {
+    "id": "01150",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北半球が夏至のときの地球は、図のA〜Dのどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A"
+      },
+      {
+        "id": "B",
+        "text": "C"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "北半球が夏至のときは、地軸の北極側が太陽のほうに傾いています。図ではAです。",
+    "figure": {
+      "kind": "diagram",
+      "name": "earth_orbit",
+      "caption": "地球の公転（北極側から見た図）"
+    }
+  },
+  {
+    "id": "01151",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "北半球が冬至のときの地球は、図のどれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A"
+      },
+      {
+        "id": "B",
+        "text": "C"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "北半球が冬至のときは、地軸の北極側が太陽と反対に傾いています。図ではCです。",
+    "figure": {
+      "kind": "diagram",
+      "name": "earth_orbit",
+      "caption": "地球の公転（北極側から見た図）"
+    }
+  },
+  {
+    "id": "01152",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のCのとき、北半球の昼の長さは、夜の長さと比べてどうですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "昼のほうが短い"
+      },
+      {
+        "id": "B",
+        "text": "昼のほうが長い"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "Cは北半球の冬至のころです。太陽の通り道が低く、昼が短く、夜が長くなります。",
+    "figure": {
+      "kind": "diagram",
+      "name": "earth_orbit",
+      "caption": "地球の公転（北極側から見た図）"
+    }
+  },
+  {
+    "id": "01153",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のA〜Dで、北半球が春分のときの地球は、どれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "B"
+      },
+      {
+        "id": "B",
+        "text": "D"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "公転の向きに、A（夏至）→B（秋分）→C（冬至）→D（春分）と進みます。春分はDです。",
+    "figure": {
+      "kind": "diagram",
+      "name": "earth_orbit",
+      "caption": "地球の公転（北極側から見た図）"
+    }
+  },
+  {
+    "id": "01154",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のA〜Dで、地軸の北極側が太陽の側に傾いているのは、どれですか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "C"
+      },
+      {
+        "id": "B",
+        "text": "A"
+      }
+    ],
+    "correctChoiceId": "B",
+    "explanation": "図では、地軸がどの位置でも同じ向きに傾いています。太陽が右にあるAでは、北極側が太陽の側に傾きます。",
+    "figure": {
+      "kind": "diagram",
+      "name": "earth_orbit",
+      "caption": "地球の公転（北極側から見た図）"
+    }
+  },
+  {
+    "id": "01155",
+    "stage": "sky",
+    "grade": 3,
+    "subject": "earth",
+    "difficulty": 1,
+    "question": "図のBの地球は、このあと公転して、どの位置に向かいますか。",
+    "choices": [
+      {
+        "id": "A",
+        "text": "C"
+      },
+      {
+        "id": "B",
+        "text": "A"
+      }
+    ],
+    "correctChoiceId": "A",
+    "explanation": "地球は北極側から見て反時計回りに公転するので、B→C→D→Aの順に進みます。",
+    "figure": {
+      "kind": "diagram",
+      "name": "earth_orbit",
+      "caption": "地球の公転（北極側から見た図）"
+    }
   }
 ]

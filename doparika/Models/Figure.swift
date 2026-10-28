@@ -27,7 +27,8 @@ struct Figure: Codable, Hashable {
     let name: String?
 
     /// Built-in diagrams (see FigureView). Every diagram marks its parts with the letters A, B, C...
-    static let diagramNames: Set<String> = ["ocean_zones", "trench", "ridge", "food_chain", "water_pressure"]
+    static let diagramNames: Set<String> = ["ocean_zones", "trench", "ridge", "food_chain", "water_pressure",
+                                         "moon_phases", "earth_orbit"]
 
     var isValid: Bool {
         switch kind {

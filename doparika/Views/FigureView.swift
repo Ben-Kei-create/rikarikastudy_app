@@ -121,6 +121,8 @@ private struct DiagramFigure: View {
             case "ridge": Diagrams.ridge(&ctx, size)
             case "food_chain": Diagrams.foodChain(&ctx, size)
             case "water_pressure": Diagrams.waterPressure(&ctx, size)
+            case "moon_phases": Diagrams.moonPhases(&ctx, size)
+            case "earth_orbit": Diagrams.earthOrbit(&ctx, size)
             default: break
             }
         }
@@ -279,5 +281,72 @@ private enum Diagrams {
             letter(&ctx, l, at: CGPoint(x: left + 20 + len + 10, y: y))
         }
         label(&ctx, "水面", at: CGPoint(x: right - 6, y: top + 14), anchor: .trailing, size: 11)
+    }
+
+    // Moon around Earth seen from above the north pole; sunlight comes from the right.
+    // A = new moon, then counter-clockwise: C first quarter, E full moon, G last quarter.
+    static func moonPhases(_ ctx: inout GraphicsContext, _ s: CGSize) {
+        let c = CGPoint(x: s.width * 0.40, y: s.height * 0.5)
+        let orbit = min(s.height * 0.29, s.width * 0.26), moonR: CGFloat = 10
+        var ring = Path(); ring.addEllipse(in: CGRect(x: c.x - orbit, y: c.y - orbit, width: 2 * orbit, height: 2 * orbit))
+        ctx.stroke(ring, with: .color(ink.opacity(0.45)), style: StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+        // sunlight
+        for dy in [-52.0, 0.0, 52.0] {
+            arrow(&ctx, from: CGPoint(x: s.width - 14, y: c.y + dy), to: CGPoint(x: c.x + orbit + 44, y: c.y + dy),
+                  color: Color(red: 0.95, green: 0.65, blue: 0.1), width: 3)
+        }
+        label(&ctx, "太陽の光", at: CGPoint(x: s.width - 14, y: c.y - 70), anchor: .trailing, size: 11)
+        // Earth
+        let earth = Path(ellipseIn: CGRect(x: c.x - 15, y: c.y - 15, width: 30, height: 30))
+        ctx.fill(earth, with: .color(Color(red: 0.25, green: 0.5, blue: 0.85)))
+        label(&ctx, "地球", at: c, color: .white, size: 10)
+        // moon at eight places, the half facing the sun is lit
+        for k in 0..<8 {
+            let a = -CGFloat(k) * .pi / 4
+            let m = CGPoint(x: c.x + cos(a) * orbit, y: c.y + sin(a) * orbit)
+            let disc = Path(ellipseIn: CGRect(x: m.x - moonR, y: m.y - moonR, width: 2 * moonR, height: 2 * moonR))
+            ctx.fill(disc, with: .color(Color(red: 1, green: 0.93, blue: 0.55)))
+            ctx.drawLayer { layer in
+                layer.clip(to: Path(CGRect(x: m.x - moonR - 1, y: m.y - moonR - 1, width: moonR + 1, height: 2 * moonR + 2)))
+                layer.fill(disc, with: .color(Color(red: 0.22, green: 0.22, blue: 0.28)))
+            }
+            ctx.stroke(disc, with: .color(ink), lineWidth: 1.5)
+            letter(&ctx, String(UnicodeScalar(65 + k)!), at: CGPoint(x: c.x + cos(a) * (orbit + 24), y: c.y + sin(a) * (orbit + 24)))
+        }
+    }
+
+    // Earth around the sun seen from above the north pole (counter-clockwise).
+    // A = north pole leans toward the sun, C = away; B and D are the equinoxes.
+    static func earthOrbit(_ ctx: inout GraphicsContext, _ s: CGSize) {
+        let c = CGPoint(x: s.width / 2, y: s.height * 0.5)
+        let orbit = min(s.height * 0.27, s.width * 0.26)
+        var ring = Path(); ring.addEllipse(in: CGRect(x: c.x - orbit, y: c.y - orbit, width: 2 * orbit, height: 2 * orbit))
+        ctx.stroke(ring, with: .color(ink.opacity(0.45)), style: StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+        let glow = Path(ellipseIn: CGRect(x: c.x - 26, y: c.y - 26, width: 52, height: 52))
+        ctx.fill(glow, with: .color(Color(red: 1, green: 0.85, blue: 0.3).opacity(0.35)))
+        ctx.fill(Path(ellipseIn: CGRect(x: c.x - 17, y: c.y - 17, width: 34, height: 34)), with: .color(Color(red: 1, green: 0.75, blue: 0.1)))
+        label(&ctx, "太陽", at: c, size: 10)
+        // orbit direction arrow between A and B
+        let phi: CGFloat = 225 * .pi / 180
+        let p = CGPoint(x: c.x + orbit * cos(phi), y: c.y - orbit * sin(phi))
+        let t = CGPoint(x: -sin(phi), y: -cos(phi))
+        arrow(&ctx, from: CGPoint(x: p.x - 9 * t.x, y: p.y - 9 * t.y), to: CGPoint(x: p.x + 9 * t.x, y: p.y + 9 * t.y), width: 3)
+        let tilt: CGFloat = 23.4 * .pi / 180
+        let places: [(String, CGPoint, CGPoint)] = [
+            ("A", CGPoint(x: c.x - orbit, y: c.y), CGPoint(x: -1, y: 0)),
+            ("B", CGPoint(x: c.x, y: c.y + orbit), CGPoint(x: -1, y: 0.35)),
+            ("C", CGPoint(x: c.x + orbit, y: c.y), CGPoint(x: 1, y: 0)),
+            ("D", CGPoint(x: c.x, y: c.y - orbit), CGPoint(x: -1, y: -0.35)),
+        ]
+        for (l, e, out) in places {
+            ctx.fill(Path(ellipseIn: CGRect(x: e.x - 11, y: e.y - 11, width: 22, height: 22)), with: .color(Color(red: 0.25, green: 0.5, blue: 0.85)))
+            // the same tilt everywhere: the north pole leans to the upper right
+            let axis = CGPoint(x: sin(tilt) * 20, y: -cos(tilt) * 20)
+            var line = Path(); line.move(to: CGPoint(x: e.x - axis.x, y: e.y - axis.y)); line.addLine(to: CGPoint(x: e.x + axis.x, y: e.y + axis.y))
+            ctx.stroke(line, with: .color(ink), lineWidth: 2.5)
+            ctx.fill(Path(ellipseIn: CGRect(x: e.x + axis.x - 3.5, y: e.y + axis.y - 3.5, width: 7, height: 7)), with: .color(Color(red: 0.85, green: 0.15, blue: 0.1)))
+            letter(&ctx, l, at: CGPoint(x: e.x + out.x * 25, y: e.y + out.y * 25))
+        }
+        label(&ctx, "● 北極", at: CGPoint(x: 8, y: s.height - 12), anchor: .leading, color: Color(red: 0.85, green: 0.15, blue: 0.1), size: 11)
     }
 }

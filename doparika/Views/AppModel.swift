@@ -101,8 +101,11 @@ final class AppModel {
                                      lastCorrect: $0.lastCorrect, lastWrongAt: $0.lastWrongAt,
                                      lastWrongLevel: $0.lastWrongLevel, lastAnsweredAt: $0.lastAnsweredAt)
         }
+        // A stage with a small bank borrows unanswered questions from the stages before it.
+        let earlier = FeatureFlags.availableStages.filter { $0.config.levels.lowerBound < stage.config.levels.lowerBound }
+        let fallback = earlier.flatMap { repository.questions(for: $0) }
         var picked = QuestionSelector.select(all: repository.questions(for: stage), history: history,
-                                             currentLevel: levelInfo.level, size: length)
+                                             currentLevel: levelInfo.level, size: length, fallback: fallback)
         #if DEBUG
         // QA aid: `-debugCorrectIsA YES` always makes choice A the right one, so UI tests can answer correctly.
         if UserDefaults.standard.bool(forKey: "debugCorrectIsA") {

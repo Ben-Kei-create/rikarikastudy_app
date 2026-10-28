@@ -9,11 +9,25 @@ final class StageTests: XCTestCase {
 
     // MARK: release 1 (flag off)
 
-    func testExtraStagesAreHiddenByDefault() {
+    func testThisReleaseShipsEarthAndSpaceButNotTheDeepSea() {
         FeatureFlags.testOverride = nil
-        XCTAssertFalse(FeatureFlags.extraStagesShipped, "release 1 ships Earth only")
-        XCTAssertEqual(FeatureFlags.availableStages, [.mountain])
-        XCTAssertEqual(LevelCalculator.maxLevel, 30)
+        XCTAssertEqual(FeatureFlags.shippedStages, [.mountain, .sky])
+        XCTAssertEqual(FeatureFlags.availableStages, [.mountain, .sky])
+        XCTAssertFalse(FeatureFlags.availableStages.contains(.sea), "the deep sea stays hidden")
+        XCTAssertEqual(LevelCalculator.maxLevel, 60)
+    }
+
+    func testSpaceOpensAtLevel31AndTheCapIs60() throws {
+        FeatureFlags.testOverride = nil
+        let at30 = try TestEnv(xp: LevelCalculator.xpThreshold(for: 30))
+        XCTAssertEqual(at30.model.unlockedStages, [.mountain])
+        let at31 = try TestEnv(xp: LevelCalculator.xpThreshold(for: 31))
+        XCTAssertEqual(at31.model.currentStage, .sky)
+        XCTAssertEqual(at31.model.unlockedStages, [.mountain, .sky])
+        let beyond = try TestEnv(xp: 10_000_000)
+        XCTAssertEqual(beyond.model.levelInfo.level, 60)
+        XCTAssertEqual(beyond.model.currentStage, .sky, "never into the hidden deep sea")
+        XCTAssertTrue(beyond.model.levelInfo.isMax)
     }
 
     func testFlagOffKeepsLevelCappedAndStageEarth() throws {
@@ -149,5 +163,37 @@ final class StageTests: XCTestCase {
         XCTAssertEqual(rows.count, repo.questions(for: .sea).count)
         XCTAssertEqual(rows.filter { $0.question != nil }.map(\.id), [one.id])
         XCTAssertTrue(rows.allSatisfy { r in repo.questions(for: .sea).contains { $0.id == r.id } })
+    }
+}
+
+@MainActor
+final class StageUnlockTests: XCTestCase {
+    override func tearDown() { FeatureFlags.testOverride = nil }
+
+    func testSessionRemembersTheLevelItStartedAt() throws {
+        FeatureFlags.testOverride = nil
+        let env = try TestEnv(xp: LevelCalculator.xpThreshold(for: 30) + 10)
+        let s = QuizSession(model: env.model)
+        XCTAssertEqual(s.startLevel, 30)
+        XCTAssertEqual(s.stage, .mountain)
+    }
+
+    func testStageArtworkForTheUnlockBannerIsBundled() {
+        XCTAssertNotNil(UIImage(named: "stage_space_title"))
+        XCTAssertNotNil(UIImage(named: "stage_deepsea_title"))
+    }
+
+    func testCrossingLevel31OpensSpaceDuringARun() throws {
+        FeatureFlags.testOverride = nil
+        // 10 XP below the Lv.31 threshold; one correct answer (20 XP) crosses it.
+        let env = try TestEnv(xp: LevelCalculator.xpThreshold(for: 31) - 10)
+        let clock = FakeClock()
+        let s = QuizSession(model: env.model, now: { clock.now() })
+        s.configure(viewportHeight: 874, width: 402)
+        XCTAssertEqual(s.startLevel, 30)
+        s.answer(s.engine.current.correctChoiceId)
+        XCTAssertEqual(env.model.levelInfo.level, 31)
+        let opened = FeatureFlags.availableStages.first { $0.config.levels.lowerBound > s.startLevel && $0.config.levels.lowerBound <= env.model.levelInfo.level }
+        XCTAssertEqual(opened, .sky)
     }
 }

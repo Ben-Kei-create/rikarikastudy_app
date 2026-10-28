@@ -18,6 +18,9 @@ final class QuizSession {
     private let carryOverDepth: Double?
     /// Pausing (Background, or the player's pause button) drops the clock reference, so the suspended
     /// interval is never counted. `paused` is the system's switch (scene phase); `userPaused` is the button.
+    /// The player's level when this run began; the result screen compares it with the level after the run
+    /// to announce a newly opened stage.
+    let startLevel: Int
     var paused = false { didSet { pauseChanged() } }
     var userPaused = false { didSet { pauseChanged() } }
     var isPaused: Bool { paused || userPaused }
@@ -44,6 +47,7 @@ final class QuizSession {
          now: @escaping () -> ContinuousClock.Instant = { ContinuousClock().now }) {
         let stage = stage ?? model.currentStage
         self.model = model
+        self.startLevel = model.levelInfo.level
         self.stage = stage
         self.now = now
         self.carryOverDepth = carryOverDepth
@@ -208,7 +212,7 @@ private struct QuizContent: View {
                 LowTimeVignette(engine: engine)
             }
             if engine.phase == .finished {
-                ResultView(model: model, engine: engine, onRestart: onRestart, onHome: onHome)
+                ResultView(model: model, engine: engine, startLevel: session.startLevel, onRestart: onRestart, onHome: onHome)
             } else {
                 // The burst is an overlay: it is drawn on top but never takes part in layout, so its
                 // 520pt sparkle can no longer widen the screen (it did, on every correct answer).

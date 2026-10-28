@@ -17,13 +17,19 @@ struct QuestionSelector {
         let lastAnsweredAt: Date
     }
 
+    /// `all` is the stage being played. `fallback` (questions of earlier stages) is only used once the
+    /// stage's own unanswered questions run out, so a stage with a small question bank stays fully playable.
     static func select(all: [Question], history: [History], currentLevel: Int,
-                       size: Int = sessionSize) -> [Question] {
-        let byID = Dictionary(uniqueKeysWithValues: all.map { ($0.id, $0) })
+                       size: Int = sessionSize, fallback: [Question] = []) -> [Question] {
+        let ownIDs = Set(all.map(\.id))
+        let pool = all + fallback.filter { f in !ownIDs.contains(f.id) }
+        let byID = Dictionary(uniqueKeysWithValues: pool.map { ($0.id, $0) })
         let answered = history.filter { byID[$0.questionID] != nil }
         let answeredIDs = Set(answered.map(\.questionID))
-        // New questions are drawn at random from everything not yet answered (not in ID order).
+        // New questions are drawn at random from everything not yet answered (not in ID order);
+        // the stage's own questions come before any fallback ones.
         let unseen = all.filter { !answeredIDs.contains($0.id) }.shuffled()
+            + fallback.filter { f in !answeredIDs.contains(f.id) && !ownIDs.contains(f.id) }.shuffled()
 
         // Priority: 1. previous session's mistakes  2. recent mistakes
         // 3. repeat offenders  4. previously correct.

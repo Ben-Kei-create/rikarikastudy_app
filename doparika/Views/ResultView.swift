@@ -3,10 +3,36 @@ import SwiftUI
 struct ResultView: View {
     let model: AppModel
     let engine: QuizEngine
+    /// Level before this run; a stage whose first level lies in (startLevel, current level] just opened.
+    var startLevel: Int = 1
     let onRestart: () -> Void
     let onHome: () -> Void
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown = false
+
+    /// A stage that opened because of this run (e.g. space at Lv.31).
+    private var newlyOpenedStage: Stage? {
+        FeatureFlags.availableStages.first {
+            let first = $0.config.levels.lowerBound
+            return first > 1 && first > startLevel && first <= model.levelInfo.level
+        }
+    }
+
+    private func stageUnlockBanner(_ stage: Stage) -> some View {
+        VStack(spacing: 4) {
+            Image(stage == .sky ? "stage_space_title" : "stage_deepsea_title")
+                .resizable().scaledToFit().frame(height: 70)
+            Text("\(stage.title)ステージが解放されました！")
+                .font(.mplus(.subheadline, .black)).foregroundStyle(.white).shadow(color: .black, radius: 3)
+            Text("ホームのステージ一覧から選べます").font(.mplus(.caption, .bold)).foregroundStyle(.white.opacity(0.9))
+                .shadow(color: .black, radius: 3)
+        }
+        .padding(.vertical, 8)
+        .scaleEffect(animate && !shown ? 0.6 : 1).opacity(animate && !shown ? 0 : 1)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(stage.title)ステージが解放されました。ホームのステージ一覧から選べます。")
+        .accessibilityIdentifier("stage-unlocked")
+    }
 
     private var animate: Bool { AppSettings.shared.effectsEnabled && !reduceMotion }
 
@@ -37,6 +63,7 @@ struct ResultView: View {
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("ランク \(rank.letter)")
             .accessibilityIdentifier("rank")
+            if let stage = newlyOpenedStage { stageUnlockBanner(stage) }
             VStack(spacing: 12) {
                 Text("SCORE").font(.mplus(.caption, .bold))
                 Text("\(engine.correctCount) / \(engine.total)")

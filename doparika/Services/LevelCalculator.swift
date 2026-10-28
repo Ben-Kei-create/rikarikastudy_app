@@ -1,8 +1,9 @@
 import Foundation
 
-/// Lv is derived purely from cumulative XP. Release 1 caps at Lv.30; with the extra stages on it is Lv.100.
+/// Lv is derived purely from cumulative XP. The cap follows the stages shipped in this build.
 enum LevelCalculator {
-    static var maxLevel: Int { FeatureFlags.extraStagesEnabled ? 100 : 30 }
+    /// The last level of the last stage that is shipped (30 Earth only, 60 with space, 100 with the deep sea).
+    static var maxLevel: Int { FeatureFlags.availableStages.last?.config.levels.upperBound ?? 30 }
 
     /// The stage a player of this level is currently in (Lv.1-30 Earth, 31-60 space, 61+ deep sea).
     static func stage(forLevel level: Int) -> Stage {

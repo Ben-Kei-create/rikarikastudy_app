@@ -15,7 +15,7 @@ SUBJECT = {"生物": "biology", "化学": "chemistry", "物理": "physics", "地
 GRADE = {"中1": 1, "中2": 2, "中3": 3}
 KEYS = {"図表": "figure", "分野": "field", "学年": "grade", "難易度": "difficulty", "問題": "question",
         "正解": "correct", "不正解": "wrong", "解説": "explanation", "単元": "unit"}
-DIAGRAMS = {"ocean_zones", "trench", "ridge", "food_chain", "water_pressure"}
+DIAGRAMS = {"ocean_zones", "trench", "ridge", "food_chain", "water_pressure", "moon_phases", "earth_orbit"}
 LIMITS = {"question": 90, "correct": 24, "wrong": 24, "explanation": 140}
 
 def h(s):
