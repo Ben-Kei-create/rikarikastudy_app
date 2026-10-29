@@ -5,6 +5,7 @@ struct HomeView: View {
     @Binding var path: [Route]
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var motion = WorldMotionController()
+    @State private var updateNotice: AppModel.UpdateNotice?
     // Launch intro: the logo slams in, the screen flashes, a shine sweeps across, then the rest fades up.
     private static var introPlayed = false
     @State private var logoScale = 2.6
@@ -92,13 +93,29 @@ struct HomeView: View {
             .accessibilityLabel("せってい")
         }
         .sheet(isPresented: $showSettings) { SettingsView(model: model) }
+        .alert("宇宙ステージが登場！", isPresented: Binding(get: { updateNotice != nil }, set: { _ in })) {
+            Button("OK") { model.dismissUpdateNotice(); updateNotice = nil }
+        } message: {
+            Text(Self.noticeText(updateNotice))
+        }
         .overlay { Color.white.opacity(flash).ignoresSafeArea().allowsHitTesting(false) }
         .offset(x: shake)
         .navigationBarHidden(true)
         .onAppear {
+            if updateNotice == nil { updateNotice = model.pendingUpdateNotice() }
             motion.jump(to: 0)
             MusicPlayer.shared.request(.home)
             playIntro()
+        }
+    }
+
+    private static func noticeText(_ n: AppModel.UpdateNotice?) -> String {
+        switch n {
+        case .coming(let levels)?: return "Lv.31 から、宇宙ステージで遊べます。あと \(levels) レベルです。"
+        case .atEarthEnd(let xp)?: return "地球ステージを走りきりました！あと \(xp) XP で、宇宙ステージが開きます。"
+        case .spaceOpen?: return "Lv.31 に届いているので、宇宙ステージで遊べます。ステージ一覧から選んでください。"
+        case .spaceCleared?: return "宇宙ステージも最高レベルに届いています。すごい！"
+        case nil: return ""
         }
     }
 

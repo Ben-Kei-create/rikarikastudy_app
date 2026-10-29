@@ -22,6 +22,7 @@ struct TestEnv {
             for: PlayerProgress.self, QuestionRecord.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true))
         model = AppModel(context: container.mainContext)
+        model.flags = UserDefaults(suiteName: "flags-test-\(UUID().uuidString)")!
         if xp > 0 { model.store.addXP(xp) }
         model.reloadFromStore()
     }

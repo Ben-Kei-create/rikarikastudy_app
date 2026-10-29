@@ -9,6 +9,8 @@ final class AppModel {
     let store: PlayerProgressStore
     var ads: AdManaging = NoopAdManager()
     var adScheduler = AdScheduler()
+    /// One-time flags (update notice, space-clear celebration). Cleared by a progress reset.
+    var flags: UserDefaults = .standard
 
     private(set) var totalXP: Int
     private(set) var unlockedIDs: Set<String>
@@ -58,7 +60,58 @@ final class AppModel {
         }
     }
 
+    // MARK: One-time messages
+
+    private static let noticeKey = "spaceUpdateNoticeSeen"
+    private static let clearKey = "spaceClearCelebrated"
+    static var spaceClearLevel: Int { Stage.sky.config.levels.upperBound }
+
+    enum UpdateNotice: Equatable {
+        case coming(levelsToGo: Int)    // below Lv.30
+        case atEarthEnd(xpToGo: Int)    // Lv.30 reached, space not yet
+        case spaceOpen                  // already inside space
+        case spaceCleared               // already at the top of space
+    }
+
+    /// The "space has arrived" message for a player who had saved progress before this update; nil for new
+    /// players and once it has been dismissed.
+    func pendingUpdateNotice() -> UpdateNotice? {
+        guard FeatureFlags.availableStages.contains(.sky), repository.isPlayable(.sky),
+              !flags.bool(forKey: Self.noticeKey) else { return nil }
+        if totalXP == 0 && store.sessionsCompleted == 0 { return nil }
+        let level = levelInfo.level
+        if level >= Self.spaceClearLevel { return .spaceCleared }
+        if level >= Stage.sky.config.levels.lowerBound { return .spaceOpen }
+        if level >= Stage.mountain.config.levels.upperBound {
+            return .atEarthEnd(xpToGo: LevelCalculator.xpThreshold(for: Stage.sky.config.levels.lowerBound) - totalXP)
+        }
+        return .coming(levelsToGo: Stage.sky.config.levels.lowerBound - level)
+    }
+
+    func dismissUpdateNotice() {
+        // A player who is already at the top of space has been told; no surprise celebration later.
+        if levelInfo.level >= Self.spaceClearLevel { flags.set(true, forKey: Self.clearKey) }
+        flags.set(true, forKey: Self.noticeKey)
+    }
+
+    /// True once, when a run takes the player to the top of space (Lv.60).
+    func claimSpaceClear(startLevel: Int) -> Bool {
+        guard startLevel < Self.spaceClearLevel, levelInfo.level >= Self.spaceClearLevel,
+              !flags.bool(forKey: Self.clearKey) else { return false }
+        flags.set(true, forKey: Self.clearKey)
+        return true
+    }
+
+    /// Correct / wrong answers per field, from the saved records.
+    func subjectStats() -> [SubjectStat] {
+        var counts: [String: (correct: Int, wrong: Int)] = [:]
+        for r in store.records() { counts[r.questionID] = (r.correctCount, r.wrongCount) }
+        return CollectionService.subjectStats(questions: repository.questions, counts: counts)
+    }
+
     func resetProgress() {
+        flags.removeObject(forKey: Self.noticeKey)
+        flags.removeObject(forKey: Self.clearKey)
         adScheduler.reset()
         store.resetAll()
         reloadFromStore()

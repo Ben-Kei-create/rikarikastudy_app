@@ -11,6 +11,7 @@ struct ResultView: View {
     var onStartStage: (Stage) -> Void = { _ in }
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown = false
+    @State private var spaceCleared = false
 
     /// A stage that opened because of this run (e.g. space at Lv.31).
     private var newlyOpenedStage: Stage? {
@@ -65,6 +66,16 @@ struct ResultView: View {
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("ランク \(rank.letter)")
             .accessibilityIdentifier("rank")
+            if spaceCleared {
+                VStack(spacing: 4) {
+                    Text("宇宙ステージ クリア！").font(.mplus(.title3, .black)).foregroundStyle(.white)
+                        .shadow(color: .black, radius: 3)
+                    Text("Lv.\(AppModel.spaceClearLevel) 到達。宇宙の果てにたどり着きました！")
+                        .font(.mplus(.caption, .bold)).foregroundStyle(.white.opacity(0.9)).shadow(color: .black, radius: 3)
+                }
+                .multilineTextAlignment(.center)
+                .accessibilityIdentifier("space-clear")
+            }
             if let stage = newlyOpenedStage {
                 stageUnlockBanner(stage)
                 // Right under the announcement, so it is visible without scrolling: straight into the new
@@ -111,6 +122,7 @@ struct ResultView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .onAppear {
+            spaceCleared = model.claimSpaceClear(startLevel: startLevel)
             guard animate else { shown = true; return }
             withAnimation(.spring(response: 0.55, dampingFraction: 0.55).delay(0.25)) { shown = true }
         }

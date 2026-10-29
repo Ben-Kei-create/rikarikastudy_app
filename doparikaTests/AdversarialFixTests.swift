@@ -105,3 +105,65 @@ final class AdversarialFixTests: XCTestCase {
         XCTAssertFalse(env.model.adInFlight)
     }
 }
+
+@MainActor
+final class SpaceCurveAndNoticeTests: XCTestCase {
+    override func tearDown() { FeatureFlags.testOverride = nil }
+
+    func testSpaceLevelsCostFlat200AndTotal290Answers() {
+        for lv in 31..<60 { XCTAssertEqual(LevelCalculator.xpToNext(from: lv), 200) }
+        XCTAssertEqual(LevelCalculator.xpThreshold(for: 60) - LevelCalculator.xpThreshold(for: 31), 29 * 200)
+        XCTAssertEqual(29 * 200 / QuizEngine.xpPerCorrect, 290)
+        XCTAssertEqual(LevelCalculator.xpToNext(from: 29), 240 + 12 * 28, "Earth is unchanged")
+        XCTAssertEqual(LevelCalculator.level(forXP: LevelCalculator.xpThreshold(for: 60)), 60)
+    }
+
+    func testNoticeDependsOnSavedXPAndShowsOnce() throws {
+        FeatureFlags.testOverride = nil
+        let fresh = try TestEnv()
+        XCTAssertNil(fresh.model.pendingUpdateNotice(), "new player")
+        let early = try TestEnv(xp: LevelCalculator.xpThreshold(for: 10))
+        XCTAssertEqual(early.model.pendingUpdateNotice(), .coming(levelsToGo: 21))
+        let end = try TestEnv(xp: LevelCalculator.xpThreshold(for: 30) + 5)
+        XCTAssertEqual(end.model.pendingUpdateNotice(),
+                       .atEarthEnd(xpToGo: LevelCalculator.xpThreshold(for: 31) - end.model.totalXP))
+        let inSpace = try TestEnv(xp: LevelCalculator.xpThreshold(for: 40))
+        XCTAssertEqual(inSpace.model.pendingUpdateNotice(), .spaceOpen)
+        inSpace.model.dismissUpdateNotice()
+        XCTAssertNil(inSpace.model.pendingUpdateNotice())
+        let top = try TestEnv(xp: LevelCalculator.xpThreshold(for: 60))
+        XCTAssertEqual(top.model.pendingUpdateNotice(), .spaceCleared)
+        top.model.dismissUpdateNotice()
+        XCTAssertFalse(top.model.claimSpaceClear(startLevel: 59), "already told: no surprise celebration")
+    }
+
+    func testSpaceClearCelebratesOnlyOnce() throws {
+        FeatureFlags.testOverride = nil
+        let env = try TestEnv(xp: LevelCalculator.xpThreshold(for: 60))
+        XCTAssertFalse(env.model.claimSpaceClear(startLevel: 60), "not crossed in this run")
+        XCTAssertTrue(env.model.claimSpaceClear(startLevel: 59))
+        XCTAssertFalse(env.model.claimSpaceClear(startLevel: 59))
+        env.model.resetProgress()
+        XCTAssertNil(env.model.pendingUpdateNotice())
+    }
+}
+
+@MainActor
+final class AnswerStatsTests: XCTestCase {
+    func testStatsSumCorrectAndWrongPerField() throws {
+        let env = try TestEnv()
+        XCTAssertEqual(env.model.subjectStats().map(\.total).reduce(0, +), 0)
+        let qs = env.model.repository.questions(for: .mountain)
+        let phys = qs.filter { $0.subject == "physics" }.prefix(3), bio = qs.first { $0.subject == "biology" }!
+        phys.forEach { env.model.record(question: $0, correct: true, xp: 20) }
+        env.model.record(question: phys.first!, correct: false, xp: 0)
+        env.model.record(question: bio, correct: false, xp: 0)
+        let stats = env.model.subjectStats()
+        XCTAssertEqual(stats.map(\.subject), ["physics", "chemistry", "biology", "earth"])
+        XCTAssertEqual(stats[0].correct, 3); XCTAssertEqual(stats[0].wrong, 1)
+        XCTAssertEqual(stats[2].wrong, 1)
+        XCTAssertEqual(stats.map(\.total).reduce(0, +), 5)
+        env.model.resetProgress()
+        XCTAssertEqual(env.model.subjectStats().map(\.total).reduce(0, +), 0)
+    }
+}

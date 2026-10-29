@@ -3,6 +3,7 @@ import SwiftUI
 struct CollectionView: View {
     let model: AppModel
     @State private var stage: Stage = .mountain
+    @State private var stats: [SubjectStat] = []
 
     var body: some View {
         let rows = CollectionService.rows(for: stage, questions: model.repository.questions,
@@ -28,7 +29,9 @@ struct CollectionView: View {
             }
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
+            AnswerStatsView(stats: stats)
         }
+        .onAppear { stats = model.subjectStats() }
         .foregroundStyle(Theme.ink)
         .background(Theme.parchment.ignoresSafeArea())
         .navigationTitle("コレクション")

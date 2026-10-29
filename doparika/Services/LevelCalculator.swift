@@ -10,9 +10,15 @@ enum LevelCalculator {
         Stage.allCases.first { $0.config.levels.contains(level) } ?? .sea
     }
 
-    /// XP needed to go from `level` to `level + 1`. Tuned so Lv.30 takes roughly 600 correct answers
-    /// (20 XP each): about two thirds of the ~900 questions.
-    static func xpToNext(from level: Int) -> Int { 240 + 12 * (level - 1) }
+    /// Lv.31...60 (space) cost this much each: 29 levels = 290 correct answers, within reach of the space bank.
+    static let spaceXPPerLevel = 200
+
+    /// XP needed to go from `level` to `level + 1`. Earth is tuned so Lv.30 takes roughly 600 correct
+    /// answers (20 XP each): about two thirds of the ~900 questions. Space is a flat 200 per level.
+    static func xpToNext(from level: Int) -> Int {
+        if (31..<60).contains(level) { return spaceXPPerLevel }
+        return 240 + 12 * (level - 1)
+    }
 
     /// Cumulative XP at which `level` is reached.
     static func xpThreshold(for level: Int) -> Int {
