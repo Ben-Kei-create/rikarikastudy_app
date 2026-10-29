@@ -14,7 +14,7 @@ struct ResultView: View {
 
     /// A stage that opened because of this run (e.g. space at Lv.31).
     private var newlyOpenedStage: Stage? {
-        FeatureFlags.availableStages.first {
+        model.unlockedStages.first {
             let first = $0.config.levels.lowerBound
             return first > 1 && first > startLevel && first <= model.levelInfo.level
         }
