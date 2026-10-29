@@ -38,7 +38,7 @@ struct HomeView: View {
             ScrollView {
                 VStack(spacing: 22) {
                     VStack(spacing: 10) {
-                        Text("知識で、\n地球の中心をめざせ。")
+                        Text(Self.tagline(for: playStage))
                             .font(.mplus(fixed: 22, .heavy))
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.white)
@@ -104,6 +104,15 @@ struct HomeView: View {
 
     /// Decorative motion: off with the in-app switch or the system "Reduce Motion".
     private var motionAllowed: Bool { AppSettings.shared.effectsEnabled && !reduceMotion }
+
+    /// The headline follows the stage that Start will play.
+    private static func tagline(for stage: Stage) -> String {
+        switch stage {
+        case .mountain: return "知識で、\n地球の中心をめざせ。"
+        case .sky: return "知識で、\n宇宙の果てをめざせ。"
+        case .sea: return "知識で、\n深海の底をめざせ。"
+        }
+    }
 
     private var logo: some View {
         Image("logo")
@@ -175,10 +184,11 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 4) {
             ForEach(FeatureFlags.availableStages, id: \.self) { stage in
                 let unlocked = model.unlockedStages.contains(stage)
+                let missing = model.stagesWithoutQuestions.contains(stage)
                 Button { if unlocked { selectedStage = stage } } label: {
                     stageRow(icon: Self.icon(stage), title: stage.title,
                              detail: unlocked ? Self.detail(stage, current: model.currentStage)
-                                              : "Lv.\(stage.config.levels.lowerBound)で解放",
+                                              : (missing ? "準備中" : "Lv.\(stage.config.levels.lowerBound)で解放"),
                              locked: !unlocked, selected: unlocked && playStage == stage)
                 }
                 .buttonStyle(.plain)

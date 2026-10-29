@@ -41,10 +41,41 @@ final class StageUnlockUITests: XCTestCase {
         XCTAssertTrue(banner.waitForExistence(timeout: 4), "space unlock banner is shown")
         XCTAssertTrue(banner.label.contains("宇宙"))
         let a = XCTAttachment(screenshot: app.screenshot()); a.name = "space-unlocked"; a.lifetime = .keepAlways; add(a)
-        app.buttons["ホームに戻る"].tap()
+        // The result screen offers a direct way into the new stage; the quiz that follows is a space run.
+        let go = app.buttons["go-new-stage"]
+        XCTAssertTrue(go.exists && go.isHittable, "\"宇宙へ進む\" is offered")
+        go.tap()
+        let progress = app.staticTexts["progress"]
+        XCTAssertTrue(progress.waitForExistence(timeout: 6))
+        XCTAssertTrue(progress.label.hasPrefix("第1問"), progress.label)
+        app.buttons["pause"].tap()
+        app.buttons["ホームへもどる"].tap()
         // Home now lists space as playable.
         XCTAssertTrue(app.buttons["stage-sky"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons["stage-sky"].isEnabled)
+    }
+
+    /// Lv.59 -> Lv.60 is the end of the shipped game: the cap is shown and the run still completes.
+    func testReachingLevel60ShowsTheTopLevel() {
+        resetProgress()
+        let app = XCUIApplication()
+        // 10 XP below the Lv.60 threshold (34,692).
+        app.launchArguments = ["-debugNoAds", "YES", "-debugXP", "34682", "-debugCorrectIsA", "YES",
+                               "-settings.bgm", "NO", "-settings.sfx", "NO", "-settings.effects", "NO", "-settings.haptics", "NO"]
+        app.launch()
+        app.buttons["スタート"].tap()
+        var n = 0
+        while !app.buttons["もう一度挑戦"].exists && n < 30 {
+            n += 1
+            let a = app.buttons.matching(NSPredicate(format: "label CONTAINS 'A'")).firstMatch
+            XCTAssertTrue(a.waitForExistence(timeout: 6)); a.tap()
+            let next = app.buttons.matching(NSPredicate(format: "label == '次の問題へ' OR label == '結果を見る'")).firstMatch
+            XCTAssertTrue(next.waitForExistence(timeout: 6)); next.tap()
+        }
+        XCTAssertTrue(app.buttons["もう一度挑戦"].waitForExistence(timeout: 6))
+        XCTAssertTrue(app.staticTexts["Lv.60"].exists)
+        XCTAssertTrue(app.staticTexts["最高レベルです!"].exists)
+        XCTAssertFalse(app.buttons["go-new-stage"].exists, "no further stage is shipped")
     }
 
     func testSpaceStageIsPlayableFromLevel35() {

@@ -106,6 +106,23 @@ final class PoolFallbackTests: XCTestCase {
         XCTAssertTrue(session.contains { $0.stage == .mountain }, "borrowed Earth questions")
         XCTAssertFalse(session.contains { $0.stage == .sea }, "never the hidden deep sea")
         XCTAssertEqual(Set(session.map(\.id)).count, session.count)
+        let own = session.filter { $0.stage == .sky }.count
+        XCTAssertGreaterThanOrEqual(own, Int((Double(session.count) * QuestionSelector.minStageShare).rounded(.up)),
+                                    "the stage keeps its minimum share of the session even when its bank is used up")
+        XCTAssertLessThanOrEqual(session.count - own, session.count - Int((Double(session.count) * QuestionSelector.minStageShare).rounded(.up)))
+    }
+
+    func testStageShareHoldsForEverySessionLength() throws {
+        FeatureFlags.testOverride = nil
+        let env = try TestEnv(xp: LevelCalculator.xpThreshold(for: 31))
+        let sky = env.model.repository.questions(for: .sky)
+        for q in sky { env.model.record(question: q, correct: true) }
+        let earth = env.model.repository.questions(for: .mountain)
+        let pool = QuestionSelector.select(all: sky, history: env.model.store.records().map {
+            QuestionSelector.History(questionID: $0.questionID, wrongCount: $0.wrongCount, lastCorrect: $0.lastCorrect,
+                                     lastWrongAt: $0.lastWrongAt, lastWrongLevel: $0.lastWrongLevel, lastAnsweredAt: $0.lastAnsweredAt)
+        }, currentLevel: 35, size: 10, fallback: earth)
+        XCTAssertGreaterThanOrEqual(pool.filter { $0.stage == .sky }.count, 7, "7 of 10")
     }
 
     func testSpaceQuestionsComeFirstWhileTheyLast() throws {
@@ -120,5 +137,82 @@ final class PoolFallbackTests: XCTestCase {
         FeatureFlags.testOverride = nil
         let env = try TestEnv()
         XCTAssertTrue(env.model.makeSession().allSatisfy { $0.stage == .mountain })
+    }
+}
+
+@MainActor
+final class StageDataHealthTests: XCTestCase {
+    override func tearDown() { FeatureFlags.testOverride = nil }
+
+    private func bundled(_ stage: Stage) -> Data? {
+        Bundle.main.url(forResource: stage.questionsResource, withExtension: "json").flatMap { try? Data(contentsOf: $0) }
+    }
+
+    private func repo(sky: Data?) -> QuestionRepository {
+        QuestionRepository(loader: { $0 == .sky ? sky : self.bundled($0) })
+    }
+
+    func testRealDataIsHealthyForEveryStage() {
+        let r = QuestionRepository()
+        for s in Stage.allCases { XCTAssertTrue(r.isPlayable(s), "\(s): \(r.stageErrors[s] ?? "")") }
+        XCTAssertNil(r.loadError)
+    }
+
+    func testMissingBrokenInvalidOrTooSmallSpaceBankStopsOnlySpace() {
+        let cases: [(String, Data?)] = [
+            ("missing", nil),
+            ("corrupt", Data("not json".utf8)),
+            ("all invalid", Data(#"[{"id":"1","stage":"sky","grade":3,"subject":"earth","difficulty":1,"question":"q","choices":[{"id":"A","text":"a"}],"correctChoiceId":"A","explanation":"e"}]"#.utf8)),
+            ("too few", Data("[]".utf8)),
+        ]
+        for (name, data) in cases {
+            let r = repo(sky: data)
+            XCTAssertFalse(r.isPlayable(.sky), name)
+            XCTAssertNotNil(r.stageErrors[.sky], name)
+            XCTAssertTrue(r.isPlayable(.mountain), "Earth is untouched (\(name))")
+            XCTAssertNil(r.loadError, "the app itself still starts (\(name))")
+        }
+    }
+
+    func testAPlayerAtLevel35StaysOnEarthWhenSpaceCannotLoad() throws {
+        FeatureFlags.testOverride = nil
+        let env = try TestEnv(xp: LevelCalculator.xpThreshold(for: 35))
+        let model = AppModel(context: env.container.mainContext, repository: repo(sky: nil))
+        XCTAssertEqual(model.levelInfo.level, 35)
+        XCTAssertEqual(model.currentStage, .mountain)
+        XCTAssertEqual(model.unlockedStages, [.mountain])
+        XCTAssertEqual(model.stagesWithoutQuestions, [.sky])
+        XCTAssertTrue(model.makeSession().allSatisfy { $0.stage == .mountain })
+        XCTAssertEqual(model.xpPerCorrect(for: .mountain), QuizEngine.xpPerCorrect, "Earth pays full XP while space is unavailable")
+    }
+}
+
+
+@MainActor
+final class OnDiskPersistenceTests: XCTestCase {
+    /// A real file store reopened by a fresh container (what an update or a relaunch does), not the same context.
+    func testProgressSurvivesReopeningTheSameStoreFile() throws {
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("doparika-\(UUID().uuidString).store")
+        defer { for suffix in ["", "-wal", "-shm"] { try? FileManager.default.removeItem(atPath: url.path + suffix) } }
+        let schema: [any PersistentModel.Type] = [PlayerProgress.self, QuestionRecord.self]
+        var answered: [String] = []
+        do {
+            let c1 = try ModelContainer(for: Schema(schema), configurations: ModelConfiguration(url: url))
+            let m1 = AppModel(context: c1.mainContext)
+            let qs = m1.repository.questions(for: .mountain)
+            m1.record(question: qs[0], correct: true)
+            m1.record(question: qs[1], correct: false)
+            m1.record(question: qs[2], correct: true)
+            m1.finishSession()
+            answered = [qs[0].id, qs[1].id, qs[2].id]
+            try c1.mainContext.save()
+        }
+        let c2 = try ModelContainer(for: Schema(schema), configurations: ModelConfiguration(url: url))
+        let m2 = AppModel(context: c2.mainContext)
+        XCTAssertEqual(m2.totalXP, 2 * QuizEngine.xpPerCorrect)
+        XCTAssertEqual(m2.unlockedIDs, Set(answered))
+        XCTAssertEqual(m2.store.sessionsCompleted, 1)
+        let wrong = m2.store.records().first { $0.questionID == answered[1] }
+        XCTAssertEqual(wrong?.wrongCount, 1)
     }
 }

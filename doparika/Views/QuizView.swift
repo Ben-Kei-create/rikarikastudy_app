@@ -165,12 +165,15 @@ struct QuizView: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var session: QuizSession?
     @State private var restartToken = 0
+    /// The stage being played; changes when the result screen sends the player on to a new stage.
+    @State private var playedStage: Stage?
 
     var body: some View {
         GeometryReader { geo in
             ZStack {
                 if let session {
-                    QuizContent(session: session, model: model, onRestart: restart, onHome: { path.removeAll() })
+                    QuizContent(session: session, model: model, onRestart: restart, onHome: { path.removeAll() },
+                                onStartStage: startStage)
                         .onAppear { session.start(viewportHeight: geo.size.height, width: geo.size.width) }
                         .onDisappear { session.stop() }
                         .id(ObjectIdentifier(session))   // outermost: a new session recreates the view and re-runs onAppear
@@ -187,7 +190,14 @@ struct QuizView: View {
     private func restart() {
         let carry = session?.currentDepth
         session?.stop()
-        session = QuizSession(model: model, stage: stage, carryOverDepth: carry)
+        session = QuizSession(model: model, stage: playedStage ?? stage, carryOverDepth: carry)
+    }
+
+    /// A different stage starts from its own beginning: the old stage's depth must not be carried over.
+    private func startStage(_ new: Stage) {
+        session?.stop()
+        playedStage = new
+        session = QuizSession(model: model, stage: new)
     }
 }
 
@@ -196,6 +206,7 @@ private struct QuizContent: View {
     let model: AppModel
     let onRestart: () -> Void
     let onHome: () -> Void
+    var onStartStage: (Stage) -> Void = { _ in }
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @ScaledMetric(relativeTo: .title2) private var progressSize: CGFloat = 24
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -212,7 +223,8 @@ private struct QuizContent: View {
                 LowTimeVignette(engine: engine)
             }
             if engine.phase == .finished {
-                ResultView(model: model, engine: engine, startLevel: session.startLevel, onRestart: onRestart, onHome: onHome)
+                ResultView(model: model, engine: engine, startLevel: session.startLevel, onRestart: onRestart, onHome: onHome,
+                           onStartStage: onStartStage)
             } else {
                 // The burst is an overlay: it is drawn on top but never takes part in layout, so its
                 // 520pt sparkle can no longer widen the screen (it did, on every correct answer).

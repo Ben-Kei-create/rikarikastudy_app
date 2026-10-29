@@ -7,6 +7,9 @@ struct QuestionSelector {
     static let sessionSize = 10
     /// Reviews never take more than this share of a session, so most questions stay new.
     static let maxReviewShare = 0.3
+    /// When a stage has to borrow questions from earlier stages, at least this share of the session still
+    /// comes from the stage itself (new ones first, then its own oldest-answered ones).
+    static let minStageShare = 0.7
 
     struct History {
         let questionID: String
@@ -50,7 +53,27 @@ struct QuestionSelector {
         let reviewCount = unseen.isEmpty ? min(ranked.count, size)
                                          : min(ranked.filter(open.contains).count, cap)
         var picked: [Question] = ranked.prefix(reviewCount).compactMap { byID[$0] }
-        picked += unseen.prefix(size - picked.count)
+        // 1. The stage's own new questions come first.
+        let ownUnseen = unseen.filter { ownIDs.contains($0.id) }
+        picked += ownUnseen.prefix(size - picked.count)
+        // 2. Its bank is running out: keep the stage share up with its own oldest-answered questions
+        //    (spaced review) instead of letting borrowed questions take over the whole session.
+        if !fallback.isEmpty, picked.count < size {
+            let share = Int((Double(size) * minStageShare).rounded(.up))
+            let have = Set(picked.map(\.id))
+            let ownInPicked = picked.filter { ownIDs.contains($0.id) }.count
+            let short = min(max(0, share - ownInPicked), size - picked.count)
+            if short > 0 {
+                let oldest = answered.filter { ownIDs.contains($0.questionID) && !have.contains($0.questionID) }
+                    .sorted { $0.lastAnsweredAt < $1.lastAnsweredAt }
+                picked += oldest.prefix(short).compactMap { byID[$0.questionID] }
+            }
+        }
+        // 3. Borrowed (earlier-stage) new questions fill the rest.
+        if picked.count < size {
+            let have = Set(picked.map(\.id))
+            picked += unseen.filter { !ownIDs.contains($0.id) && !have.contains($0.id) }.prefix(size - picked.count)
+        }
         // Not enough unseen: top up with remaining review questions.
         if picked.count < size {
             let have = Set(picked.map(\.id))

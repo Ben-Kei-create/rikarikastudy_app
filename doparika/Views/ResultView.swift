@@ -7,6 +7,8 @@ struct ResultView: View {
     var startLevel: Int = 1
     let onRestart: () -> Void
     let onHome: () -> Void
+    /// Starts a run in another stage (used by the "go to the new stage" button).
+    var onStartStage: (Stage) -> Void = { _ in }
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown = false
 
@@ -63,7 +65,14 @@ struct ResultView: View {
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("ランク \(rank.letter)")
             .accessibilityIdentifier("rank")
-            if let stage = newlyOpenedStage { stageUnlockBanner(stage) }
+            if let stage = newlyOpenedStage {
+                stageUnlockBanner(stage)
+                // Right under the announcement, so it is visible without scrolling: straight into the new
+                // stage. Replaying the old one is the quieter choice at the bottom.
+                Button("\(stage.title)へ進む") { model.presentAdIfDue { onStartStage(stage) } }
+                    .buttonStyle(PrimaryButtonStyle())
+                    .accessibilityIdentifier("go-new-stage")
+            }
             VStack(spacing: 12) {
                 Text("SCORE").font(.mplus(.caption, .bold))
                 Text("\(engine.correctCount) / \(engine.total)")

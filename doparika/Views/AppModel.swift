@@ -68,14 +68,24 @@ final class AppModel {
 
     var worldProgress: Double { min(1, Double(totalXP) / Double(max(LevelCalculator.maxXP, 1))) }
 
+    /// Stages the player's level has reached but whose questions cannot be loaded (shown as "準備中").
+    var stagesWithoutQuestions: [Stage] {
+        FeatureFlags.availableStages.filter { levelInfo.level >= $0.config.levels.lowerBound && !repository.isPlayable($0) }
+    }
+
     var canStartSession: Bool { repository.loadError == nil }
 
     /// The stage the player's current level belongs to.
-    var currentStage: Stage { LevelCalculator.stage(forLevel: levelInfo.level) }
+    /// The stage the player's level belongs to; if that stage's question bank is unusable the player is
+    /// kept on the latest stage that works, so a bad data file in one stage never blocks the game.
+    var currentStage: Stage {
+        let level = levelInfo.level
+        return FeatureFlags.availableStages.last { $0.config.levels.lowerBound <= level && repository.isPlayable($0) } ?? .mountain
+    }
 
     /// Stages that are visible AND reached by level. A stage opens when the player reaches its first level.
     var unlockedStages: [Stage] {
-        FeatureFlags.availableStages.filter { levelInfo.level >= $0.config.levels.lowerBound }
+        FeatureFlags.availableStages.filter { levelInfo.level >= $0.config.levels.lowerBound && repository.isPlayable($0) }
     }
 
     /// Replaying an earlier stage pays half XP; the current stage pays in full.

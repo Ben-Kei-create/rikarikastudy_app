@@ -75,3 +75,24 @@ final class FigureTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(repo.questions(for: .sky).filter { $0.figure != nil }.count, 20)
     }
 }
+
+@MainActor
+final class FigureAccessibilityTests: XCTestCase {
+    func testEveryBuiltInDiagramHasADetailedNarrationThatNamesItsLetters() {
+        for name in Figure.diagramNames {
+            let text = Figure.diagramNarration(name)
+            XCTAssertGreaterThan(text.count, 60, "\(name) narration is too thin")
+            XCTAssertTrue(text.contains("A") && text.contains("B"), "\(name) must name its letters")
+            XCTAssertNotEqual(text, Figure.diagramNarration("unknown"), name)
+        }
+    }
+
+    func testNarrationsStateWhereThingsAreWithoutGivingAwayTheAnswers() {
+        let moon = Figure.diagramNarration("moon_phases")
+        XCTAssertTrue(moon.contains("右") && moon.contains("反時計回り") && moon.contains("北極側"))
+        XCTAssertFalse(moon.contains("満月") || moon.contains("新月"), "positions, not the answers")
+        let orbit = Figure.diagramNarration("earth_orbit")
+        XCTAssertTrue(orbit.contains("反時計回り") && orbit.contains("地軸"))
+        XCTAssertFalse(orbit.contains("夏至") || orbit.contains("冬至"))
+    }
+}
