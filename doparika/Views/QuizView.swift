@@ -34,6 +34,9 @@ final class QuizSession {
     }
 
     private func pauseChanged() {
+        // Pausing first settles the time played since the last frame (it may be long if the UI stalled);
+        // only the suspended interval itself is dropped. A second pause source finds no clock and does nothing.
+        if isPaused, lastTick != nil { settleElapsed() }
         lastTick = nil
         guard isPaused else { return }
         sound.stopAll()
@@ -45,7 +48,7 @@ final class QuizSession {
     /// surface from there instead of warping.
     init(model: AppModel, stage: Stage? = nil, carryOverDepth: Double? = nil,
          now: @escaping () -> ContinuousClock.Instant = { ContinuousClock().now }) {
-        let stage = stage ?? model.currentStage
+        let stage = model.resolvedStage(stage)
         self.model = model
         self.startLevel = model.levelInfo.level
         self.stage = stage
@@ -85,17 +88,24 @@ final class QuizSession {
 
     func stop() { ticker?.cancel(); ticker = nil; lastTick = nil; sound.stopAll() }
 
-    /// Single time source: the frame ticker and answer handling both advance the engine to "now" first,
-    /// so an answer arriving after the deadline is a timeout regardless of task ordering.
-    func advance() {
-        guard !isPaused else { return }
+    /// Advances the engine and world by the time since the last reference; false when there was none.
+    @discardableResult
+    private func settleElapsed() -> Bool {
         let current = now()
         defer { lastTick = current }
-        guard let last = lastTick else { return }
+        guard let last = lastTick else { return false }
         let d = current - last
         let dt = Double(d.components.seconds) + Double(d.components.attoseconds) / 1e18
         engine.tick(dt)
         motion.step(dt)
+        return true
+    }
+
+    /// Single time source: the frame ticker and answer handling both advance the engine to "now" first,
+    /// so an answer arriving after the deadline is a timeout regardless of task ordering.
+    func advance() {
+        guard !isPaused else { return }
+        guard settleElapsed() else { return }
         // "3, 2, 1, 0" voice: ends as the time runs out. After a pause it resumes from the matching offset.
         if engine.phase == .answering, !countdownStarted, engine.remaining <= countdownLead {
             countdownStarted = true

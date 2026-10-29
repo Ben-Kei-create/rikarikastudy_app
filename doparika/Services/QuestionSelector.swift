@@ -48,6 +48,15 @@ struct QuestionSelector {
         add(wrong.sorted { $0.wrongCount > $1.wrongCount })
         add(answered.filter { $0.lastCorrect }.sorted { $0.lastAnsweredAt < $1.lastAnsweredAt })
 
+        // Everything is answered: the review picks are the whole session, so the stage's own share is
+        // enforced here (own questions first, then the rest by priority).
+        if unseen.isEmpty, !fallback.isEmpty {
+            let shareN = Int((Double(size) * minStageShare).rounded(.up))
+            let own = ranked.filter { ownIDs.contains($0) }.prefix(shareN)
+            let ownSet = Set(own)
+            ranked = Array(own) + ranked.filter { !ownSet.contains($0) }
+        }
+
         let open = Set(wrong.map(\.questionID))
         let cap = max(1, Int(Double(size) * maxReviewShare))
         let reviewCount = unseen.isEmpty ? min(ranked.count, size)

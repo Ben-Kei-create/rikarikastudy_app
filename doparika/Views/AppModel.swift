@@ -42,11 +42,18 @@ final class AppModel {
 
     /// Runs `next` after the full-screen ad that is due every 10 finished plays (or at once if none is due).
     /// A due ad that could not be shown (no SDK / not loaded) stays due and is tried again at the next break.
+    /// While an ad is on its way the result screen's buttons are off, and further requests are ignored,
+    /// so one tap yields one transition.
+    private(set) var adInFlight = false
+
     func presentAdIfDue(then next: @escaping () -> Void) {
+        guard !adInFlight else { return }
         let plays = store.sessionsCompleted
         guard adScheduler.isDue(playsCompleted: plays) else { next(); return }
+        adInFlight = true
         ads.showInterstitial { [weak self] shown in
             if shown { self?.adScheduler.markShown(playsCompleted: plays) }
+            self?.adInFlight = false
             next()
         }
     }
@@ -103,8 +110,15 @@ final class AppModel {
     }
     var sessionLength: Int { sessionLength(for: currentStage) }
 
+    /// The stage to play: the requested one only if the player has reached it and its data is playable,
+    /// otherwise the current stage.
+    func resolvedStage(_ requested: Stage?) -> Stage {
+        guard let requested, unlockedStages.contains(requested) else { return currentStage }
+        return requested
+    }
+
     func makeSession(stage: Stage? = nil) -> [Question] {
-        let stage = stage ?? currentStage
+        let stage = resolvedStage(stage)
         let length = sessionLength(for: stage)
         let history = store.records().map {
             QuestionSelector.History(questionID: $0.questionID, wrongCount: $0.wrongCount,

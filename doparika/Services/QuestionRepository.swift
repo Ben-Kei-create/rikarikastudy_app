@@ -17,6 +17,7 @@ final class QuestionRepository {
     /// a missing, broken or too-small 宇宙 / 深海 bank only stops that stage.
     init(loader: (Stage) -> Data?) {
         var all: [Question] = []
+        var seen = Set<String>()
         for stage in Stage.allCases {
             guard let data = loader(stage) else {
                 stageErrors[stage] = "問題データが見つかりません"
@@ -25,16 +26,21 @@ final class QuestionRepository {
             do {
                 let decoded = try JSONDecoder().decode([Question].self, from: data)
                 let valid = decoded.filter { $0.isValid && $0.stage == stage }
-                all += valid
-                if valid.count < Self.minimumQuestions(for: stage) {
+                // Judge the stage by the questions that will really be playable: unique IDs, none already
+                // taken by another stage. A repeated ID is a data error in its own right.
+                var unique: [Question] = []
+                for q in valid where seen.insert(q.id).inserted { unique.append(q) }
+                all += unique
+                if unique.count != valid.count {
+                    stageErrors[stage] = "問題IDが重複しています"
+                } else if unique.count < Self.minimumQuestions(for: stage) {
                     stageErrors[stage] = "問題データが不足しています"
                 }
             } catch {
                 stageErrors[stage] = "問題データを読み込めませんでした"
             }
         }
-        var seen = Set<String>()
-        questions = all.filter { seen.insert($0.id).inserted }.sorted { $0.id < $1.id }
+        questions = all.sorted { $0.id < $1.id }
         byID = Dictionary(uniqueKeysWithValues: questions.map { ($0.id, $0) })
         loadError = stageErrors[.mountain]
     }

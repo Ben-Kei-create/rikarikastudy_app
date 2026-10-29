@@ -71,6 +71,7 @@ struct ResultView: View {
                 // stage. Replaying the old one is the quieter choice at the bottom.
                 Button("\(stage.title)へ進む") { model.presentAdIfDue { onStartStage(stage) } }
                     .buttonStyle(PrimaryButtonStyle())
+                    .disabled(model.adInFlight)
                     .accessibilityIdentifier("go-new-stage")
             }
             VStack(spacing: 12) {
@@ -100,7 +101,9 @@ struct ResultView: View {
             .parchmentPanel(opacity: 0.92)
             HStack(spacing: 12) {
                 Button("もう一度挑戦") { model.presentAdIfDue(then: onRestart) }.buttonStyle(PrimaryButtonStyle())
+                    .disabled(model.adInFlight)
                 Button("ホームに戻る") { model.presentAdIfDue(then: onHome) }.buttonStyle(PrimaryButtonStyle(tint: Theme.parchment))
+                    .disabled(model.adInFlight)
             }
         }
         .padding(20)
